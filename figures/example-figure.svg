@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" width="720" height="300" font-family="system-ui, 'Segoe UI', sans-serif">
+  <rect width="720" height="300" fill="#ffffff"/>
+
+  <text x="360" y="30" text-anchor="middle" font-size="17" font-weight="600" fill="#1b2430">A complex biological system</text>
+  <g fill="#8d9aa8">
+    <circle cx="300" cy="58" r="6"/><circle cx="330" cy="50" r="4"/><circle cx="360" cy="62" r="7"/>
+    <circle cx="390" cy="48" r="5"/><circle cx="420" cy="60" r="4"/>
+  </g>
+  <path d="M320 78 L200 108 M360 78 L360 108 M400 78 L520 108" stroke="#c3ccd5" stroke-width="1.5" fill="none"/>
+
+  <!-- left: model -->
+  <rect x="40" y="112" width="300" height="158" rx="10" fill="#eef5f3" stroke="#1f7a6c" stroke-width="1.5"/>
+  <text x="190" y="138" text-anchor="middle" font-size="15" font-weight="600" fill="#1f7a6c">Simplify it: a model</text>
+  <path d="M75 240 C 120 240, 145 235, 165 200 S 215 152, 300 150"
+        stroke="#1f7a6c" stroke-width="2.5" fill="none"/>
+  <line x1="75" y1="248" x2="305" y2="248" stroke="#a9b7c2" stroke-width="1.5"/>
+  <line x1="75" y1="248" x2="75" y2="150" stroke="#a9b7c2" stroke-width="1.5"/>
+  <text x="190" y="266" text-anchor="middle" font-size="11.5" fill="#5b6875">few rules, run it, see what happens</text>
+
+  <!-- right: statistics -->
+  <rect x="380" y="112" width="300" height="158" rx="10" fill="#f3f0f7" stroke="#6b5b95" stroke-width="1.5"/>
+  <text x="530" y="138" text-anchor="middle" font-size="15" font-weight="600" fill="#6b5b95">Measure it: statistics</text>
+  <g fill="#6b5b95">
+    <rect x="420" y="222" width="22" height="26" rx="2"/>
+    <rect x="448" y="200" width="22" height="48" rx="2"/>
+    <rect x="476" y="172" width="22" height="76" rx="2"/>
+    <rect x="504" y="160" width="22" height="88" rx="2"/>
+    <rect x="532" y="186" width="22" height="62" rx="2"/>
+    <rect x="560" y="212" width="22" height="36" rx="2"/>
+    <rect x="588" y="232" width="22" height="16" rx="2"/>
+  </g>
+  <line x1="412" y1="248" x2="620" y2="248" stroke="#a9b7c2" stroke-width="1.5"/>
+  <line x1="412" y1="248" x2="412" y2="152" stroke="#a9b7c2" stroke-width="1.5"/>
+  <text x="530" y="266" text-anchor="middle" font-size="11.5" fill="#5b6875">many measurements, describe the variation</text>
+</svg>

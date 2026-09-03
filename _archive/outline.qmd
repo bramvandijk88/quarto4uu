@@ -1,0 +1,152 @@
+# Getting started with Quarto {#sec-outline}
+
+This is a short scaffold for teaching colleagues at Utrecht University how to
+build a Quarto book or website. It is deliberately compact: each section below
+is one "lesson", with a note on **which screenshot** to capture so the finished
+guide is easy to follow along with. The companion chapter
+([Tricks from the BMS book](tricks-from-boek.qmd)) shows the more advanced
+things you can do once the basics land.
+
+## 1. What Quarto is (and why bother)
+
+Quarto is a free, open-source publishing system. You write in plain text
+(`.qmd` files: Markdown + optional live code), and Quarto renders that into a
+website, book, PDF, slides, or Word doc from the *same source*. Think "R
+Markdown, grown up and language-agnostic" — it works with R, Python, and Julia.
+
+For teaching it is attractive because: everything is text (so it lives in Git
+and is easy to co-author), maths renders beautifully, and you can drop in live,
+interactive simulations right next to the explanation.
+
+*Screenshot to include:* the [quarto.org](https://quarto.org) gallery page, and
+side-by-side a `.qmd` source file next to its rendered HTML output.
+
+## 2. Installing it
+
+Quarto ships *inside* recent RStudio, so many colleagues already have it. For a
+standalone install, download from [quarto.org/docs/get-started](https://quarto.org/docs/get-started/).
+Confirm from a terminal with `quarto --version`.
+
+*Screenshot to include:* RStudio's *About* / version screen showing the bundled
+Quarto version, and a terminal showing `quarto --version`.
+
+## 3. Project types: document vs website vs book
+
+The single most useful concept to teach up front. One `_quarto.yml` file at the
+project root decides what you are building:
+
+- `type: default` — a single standalone document.
+- `type: website` — many pages with a top navbar, good for a course site.
+- `type: book` — many chapters with numbered sections, a sidebar, cross-references,
+  and a combined PDF. This is what the BMS book uses.
+
+A book *is* a website with extra structure, so it is easy to start as a website
+and "graduate" to a book later.
+
+*Screenshot to include:* RStudio's *New Project → Quarto Book* dialog, and the
+resulting folder in the Files pane.
+
+## 4. Anatomy of `_quarto.yml`
+
+This is the control panel. Teach it by annotating a real one. A minimal book:
+
+```yaml
+project:
+  type: book
+
+book:
+  title: "My Course"
+  author: "Your Name"
+  chapters:
+    - index.qmd          # the first chapter / landing page
+    - intro.qmd
+    - methods.qmd
+
+format:
+  html:
+    theme: cosmo         # any built-in Bootswatch theme
+    toc: true            # table of contents in the margin
+  pdf:
+    documentclass: scrbook
+```
+
+Point out the three blocks that matter: `project` (what to build), `book`
+(structure + which chapters, in order), and `format` (how each output looks).
+Chapters can be grouped into `part:` sections and can use `text:`/`href:` to
+control the sidebar label — see the BMS `_quarto.yml` for a large real example.
+
+*Screenshot to include:* `_quarto.yml` open in the editor with the three blocks
+highlighted, alongside the rendered sidebar so the mapping is obvious.
+
+## 5. Writing a `.qmd`: Markdown + code cells
+
+A `.qmd` is Markdown with a YAML header. Teach the essentials: `#`/`##` headings,
+`**bold**`, lists, links, and images. Two things worth a dedicated demo:
+
+Maths, using LaTeX between dollar signs — `$\alpha$` inline and `$$...$$` for
+display equations. This renders in the browser via MathJax and in the PDF via
+LaTeX, from the *same* source.
+
+Live code cells, which run and show their output on render:
+
+````markdown
+```{r}
+x <- 1:10
+mean(x)
+```
+````
+
+Use `#|` cell options to control behaviour, e.g. `#| echo: false` to hide the
+code but keep the output, or `#| label: fig-plot` + `#| fig-cap: "..."` to make
+a figure cross-referenceable.
+
+*Screenshot to include:* a code cell in the editor and its rendered output
+(a plot), plus a rendered display equation.
+
+## 6. Rendering and live preview
+
+Two commands do almost everything. `quarto preview` starts a live server that
+re-renders on save — the fastest way to work. `quarto render` builds the whole
+project into `_book/` (or `_site/`). In RStudio both are buttons.
+
+*Screenshot to include:* the **Render** button in the RStudio toolbar, and the
+live-preview pane updating after a save.
+
+## 7. Navigation, cross-references and callouts
+
+Show how structure emerges almost for free: the sidebar/TOC is generated from
+your chapters and headings; `@fig-cover`, `@sec-intro`, `@eq-growth` produce
+auto-numbered, clickable cross-references; and callout blocks
+(`::: {.callout-tip}` … `:::`) give you tip/note/warning/important boxes for
+pedagogy. All of these are used heavily in the BMS book.
+
+*Screenshot to include:* the rendered sidebar/TOC, a resolved cross-reference
+link, and a coloured callout box.
+
+## 8. Theming and styling
+
+The look is set by `theme:` in `_quarto.yml` (pick a
+[Bootswatch theme](https://bootswatch.com/), or offer a light/dark pair). For
+custom tweaks, add a `.scss` file with a `/*-- scss:defaults --*/` block (to set
+variables like `$primary`) and a `/*-- scss:rules --*/` block (for raw CSS). The
+BMS book uses exactly this pattern.
+
+*Screenshot to include:* the same page in two themes (light/dark), and the
+`.scss` file showing a `$primary` colour change.
+
+## 9. Publishing
+
+Once it renders locally, it is just static files. Easiest routes:
+`quarto publish quarto-pub` (free hosting), `quarto publish gh-pages` (GitHub
+Pages), or hand the `_book/` / `_site/` folder to any web server (the BMS book
+is served from a UU server). PDF output is a single `quarto render --to pdf`.
+
+*Screenshot to include:* the terminal output of a `quarto publish` command, and
+the resulting live URL in a browser.
+
+## 10. Where to go next
+
+Point colleagues at the official docs ([quarto.org/docs](https://quarto.org/docs/guide/))
+and then at the tricks chapter, which shows how the BMS book embeds interactive
+simulations, shares LaTeX macros between HTML and PDF, and controls re-rendering
+with `freeze` and `cache`.

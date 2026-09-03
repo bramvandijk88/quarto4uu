@@ -1,0 +1,130 @@
+# Setting up in RStudio {#sec-setup}
+
+Ten minutes, once. At the end you will have a real book rendering in front of
+you.
+
+There are two ways in, and the second is usually the better one.
+
+## Option A: start from this book {#sec-starter}
+
+**The book you are reading is itself the starter book.** Every chapter is a
+worked demonstration of the thing it describes — the figures in @sec-figures
+are real figures, the applet in @sec-iframes really runs, the maths in
+@sec-latex really renders. Copy the folder and you inherit all of it: the UU
+house style, a working `_quarto.yml`, a sensible `.gitignore`, and an example
+of each pattern you are likely to need.
+
+[**Download the starter book (.zip)**](starter-book.zip)
+
+Then:
+
+::: {.callout-tip}
+## Opening a downloaded folder in RStudio
+1. Unzip it somewhere sensible and **rename the folder** to your course.
+2. In RStudio: <kbd>File</kbd> → <kbd>New Project…</kbd> → **<kbd>Existing
+   Directory</kbd>** → browse to that folder → <kbd>Create Project</kbd>.
+
+   *Existing Directory* is the option people miss, because the wizard's first
+   screen pushes you towards *New Directory*. It creates nothing of its own —
+   it tells RStudio "this folder is a project", writes an `.Rproj` file into
+   it, and opens it. Everything already in the folder stays exactly as it is.
+   (The zip deliberately contains no `.Rproj`, so the one RStudio makes will be
+   named after *your* folder.)
+3. Press **Render**. You should get this book back, running locally — nothing
+   else needs installing.
+4. Now start replacing. Open `_quarto.yml`, change the title and author, and
+   work through the chapters one at a time: keep the scaffolding, delete our
+   prose, write yours.
+:::
+
+::: {.callout-note}
+## What to keep, what to throw away
+**Keep:** `_quarto.yml` (edit it), `uu.scss`, `.gitignore`, `README.md`, the
+`figures/` and `applets/` folders, and `applets/AI-prompt-template.md`.
+Keep `make-starter-zip.R` only if you want to hand *your* book on the same way.
+
+**Throw away** once you no longer need them: our chapter files, and every
+`::: {.screenshot}` block — those are our drafting markers, and @sec-theming
+explains how they are styled. Search the project for `{.screenshot}` to find
+them all.
+:::
+
+## Option B: start from nothing
+
+If you would rather see a book grow from an empty folder, RStudio will make you
+one.
+
+## Make the project
+
+<kbd>File</kbd> → <kbd>New Project…</kbd> → <kbd>New Directory</kbd> →
+<kbd>Quarto Book</kbd>.
+
+Give the folder a name. Tick **Create a git repository** if you already know
+you want to publish it (see @sec-publishing) — it is easier to tick now than to
+add later. Press **Create**.
+
+RStudio opens the new project, and you are already looking at a working book.
+
+::: {.screenshot}
+RStudio's *New Project → Quarto Book* dialog, and the resulting folder in the
+Files pane.
+:::
+
+## Press Render
+
+The **Render** button sits in the toolbar above the editor. The first render
+takes a minute; the finished book then appears in RStudio's Viewer pane, and as
+files in a folder called `_book` (or `docs` — see @sec-yml).
+
+## Turn on Render on Save
+
+The tick-box next to the Render button. Now every save refreshes the preview by
+itself.
+
+This is the single change that makes writing a book pleasant rather than
+laborious. Do it before you write anything.
+
+::: {.screenshot}
+The **Render** button in the toolbar with *Render on Save* ticked, and the
+preview pane updating after a save.
+:::
+
+## Source or Visual?
+
+Top-right of the editor pane there is a <kbd>Source</kbd> / <kbd>Visual</kbd>
+toggle.
+
+**Visual** gives you a Word-like view — real bold text, real tables, menus for
+inserting figures, equations and cross-references — while still saving a plain
+text file underneath. A colleague who does not want to see any markup at all
+can live here permanently.
+
+**Source** shows the markup. It is faster once you know it, and it is what the
+rest of this guide shows.
+
+Most people end up switching back and forth: Visual for tables and equations,
+Source for everything else.
+
+::: {.callout-tip}
+## Tables are the killer feature of Visual mode
+Markdown tables are miserable to write by hand and trivial in Visual mode.
+Insert one there, then switch back to Source.
+:::
+
+## What is in the folder
+
+| Item | What it is |
+|---|---|
+| `_quarto.yml` | The book definition: which chapters, in which order, with which theme. **The only file you truly must understand** — see @sec-yml. |
+| `index.qmd` | The front page. |
+| `*.qmd` | One file per chapter. This is where you write. |
+| `_book/` or `docs/` | The finished website. Generated — never edit anything in here, it is overwritten on every render. |
+| `*.Rproj` | RStudio's project file. Double-click it to reopen the book later. |
+| `_freeze/` | Stored results of code that has already run — see @sec-rendering. |
+
+::: {.callout-important}
+## Never edit the output folder
+`_book/` and `docs/` are built from your `.qmd` files. Anything you type in
+there disappears at the next render. If you find yourself editing HTML, you are
+in the wrong folder.
+:::

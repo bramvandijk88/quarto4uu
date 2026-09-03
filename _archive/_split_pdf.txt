@@ -1,0 +1,147 @@
+## Content that only exists in one format
+
+An interactive simulation cannot exist on paper, and a full-page table of
+contents makes no sense on the web. Quarto's native mechanism for this is
+conditional content:
+
+```markdown
+::: {.content-visible when-format="html"}
+<the live simulation>
+:::
+
+::: {.content-visible when-format="pdf"}
+![Screenshot of the simulation](figures/sim-screenshot.png)
+
+The interactive version is at <https://…>
+:::
+```
+
+There is also `.content-hidden when-format="…"` if it reads better inverted.
+
+::: {.callout-warning}
+## Conditional content runs *after* the code does
+The div hides output; it does not stop a chunk from executing. A chunk that
+emits HTML-only output should also be gated at the chunk level:
+
+```r
+#| eval: !expr knitr::is_html_output()
+```
+:::
+
+## Printing the web page {#sec-printing}
+
+Students *will* hit Ctrl-P on a chapter. This is a different problem from the
+one above, and the distinction catches everybody out once.
+
+::: {.callout-important}
+## Two mechanisms, two different questions
+
+`content-visible when-format="html"` asks **"which output format is Quarto
+building?"** It is resolved once, at render time, and bakes the answer into the
+file. In the HTML file, the HTML branch is simply *there*.
+
+`.screen-only` / `.print-only` asks **"is the browser painting to a screen or
+to paper?"** It is resolved by CSS, in the reader's browser, every time they
+print.
+
+So `when-format` does **nothing** for a student printing your web page — the
+iframe is in the HTML, and it will print as an empty rectangle. Use
+`when-format` for the HTML-versus-PDF split, and `.screen-only`/`.print-only`
+for the screen-versus-paper split. A book that produces a PDF *and* expects
+students to print pages needs both.
+:::
+
+### The page furniture looks after itself
+
+You do not have to hide the sidebar, the table of contents or the previous/next
+links. Quarto's own CSS already does it:
+
+```css
+/* from Quarto's bundled bootstrap css */
+@media print {
+  :root { font-size: 11pt }
+  #quarto-sidebar, #TOC, .nav-page { display: none }
+  .fixed-top { position: relative }
+}
+```
+
+This applies to any Quarto HTML output, book or website. If you have ever seen
+a Quarto page print with its menu attached, it was almost certainly not Quarto
+output at all.
+
+### What you do have to handle
+
+The content. Two helper classes, in an `@media print` block in your SCSS:
+
+```scss
+.screen-only { display: block; }
+.print-only  { display: none; }
+
+@media print {
+  .screen-only { display: none !important; }
+  .print-only  { display: block !important; border: 1px dashed #999; padding: 1em; }
+
+  iframe { display: none !important; }      // prints as an empty rectangle
+
+  h1, h2, h3 { break-after: avoid; }        // no heading orphaned at a page foot
+  figure, table, pre, .callout { break-inside: avoid; }
+
+  a[href^="http"]::after {                  // paper cannot be clicked
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+  }
+}
+```
+
+All of that is already in this book's `uu.scss`, so `::: {.screen-only}` and
+`::: {.print-only}` work straight away — see the two embeds in @sec-iframes,
+which use exactly this pattern.
+
+::: {.callout-tip collapse="true"}
+## Going further: a two-column print layout
+The BMS book squeezes a lot onto paper with `column-count: 2` inside its
+`@media print` block, plus smaller type and forced full-width figures. Worth
+copying if students print whole chapters — but check your equations and wide
+code blocks, which do not enjoy narrow columns.
+:::
+
+::: {.callout-caution collapse="true"}
+## Historical note: `print_friendly.html`
+Earlier versions of the BMS book used a hand-written `<script>` that swapped
+every `<iframe id="iframeToReplace">` for a link on `window.onbeforeprint` and
+reloaded the page afterwards. It was clever, and it predates Quarto having good
+native tools.
+
+It is retired: the file survives only as an unused copy in `Boek/scripts/`, and
+no live chapter includes it. Print handling now rests entirely on the CSS above
+plus `content-visible`.
+
+**Don't teach it as a pattern.** It relies on a magic element id, it reloads the
+page after printing, and `content-visible when-format` does the same job
+properly.
+:::
+
+## A real PDF, rather than printing a web page
+
+Printing from the browser is always a compromise. If the PDF matters, add a
+proper format:
+
+```yaml
+format:
+  html:
+    theme: [cosmo, uu.scss]
+  pdf:
+    documentclass: scrreprt
+    include-in-header: _macros.tex
+```
+
+Rendering then produces both. This needs a LaTeX installation; if you have none,
+`quarto install tinytex` sets up a small self-contained one.
+
+::: {.callout-tip}
+## LaTeX feels like too much?
+`format: typst` is a modern, much lighter alternative that needs no LaTeX
+toolchain at all. It does not yet do everything LaTeX does — check your maths
+and your cross-references carefully — but for a straightforward reader it is
+fast and pleasant.
+:::

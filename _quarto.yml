@@ -1,0 +1,78 @@
+project:
+  type: book
+  output-dir: docs          # ready for GitHub Pages (Settings -> Pages -> /docs)
+
+execute:
+  freeze: auto              # only re-run a chapter's code when that chapter changed
+  warning: false
+
+book:
+  title: "Making a course book with Quarto"
+  subtitle: "A guide, and a starter book, for teachers at Utrecht University"
+  author: "Bram van Dijk, Theoretical Biology, Utrecht University"
+  date: today
+  language: "en"
+  search: true
+  page-footer:
+    left: "Utrecht University"
+    right: "Made with <a href='https://quarto.org/'>Quarto</a>"
+  favicon: figures/favicon.png
+  sidebar:
+    logo: figures/uu-logo.png
+    logo-alt: "Utrecht University"
+    style: floating
+    collapse-level: 1
+    pinned: true
+  chapters:
+    - index.qmd
+    - part: "Getting started"
+      chapters:
+        - 01-what-is-quarto.qmd
+        - 02-setup-rstudio.qmd
+        - 03-quarto-yml.qmd
+    - part: "Writing"
+      chapters:
+        - 04-writing.qmd
+        - 05-figures.qmd
+        - 06-maths-latex.qmd
+        - 07-pdf-and-print.qmd
+    - part: "Interactive material"
+      chapters:
+        - 08-iframes.qmd
+        - 09-runnable-code.qmd
+        - 10-ai-applets.qmd
+    - part: "Building and publishing"
+      chapters:
+        - 11-rendering.qmd
+        - 12-publishing.qmd
+        - 13-troubleshooting.qmd
+    - about.qmd
+
+# Applet files are copied into the finished site as-is.
+resources:
+  - applets/
+  - starter-book.zip
+
+format:
+  # live-html == html + the WebAssembly machinery for the runnable {webr}
+  # cells in chapter 09. Needs the quarto-live extension in _extensions/
+  # (commit that folder). To go back to a plain book see "Going back" in
+  # chapter 09: this becomes `html:` again.
+  live-html:
+    # Single theme, deliberately. The UU identity is specified on a white
+    # ground -- UU red and yellow are defined against paper -- so the book
+    # commits to the light palette rather than inventing a dark variant.
+    # Listing one theme also removes Quarto's light/dark toggle.
+    theme: [cosmo, uu.scss]
+    include-in-header:
+      - text: |
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    lightbox: true
+    code-overflow: wrap
+    link-external-newwindow: true
+    link-external-icon: true

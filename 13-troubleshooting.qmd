@@ -1,0 +1,56 @@
+# When it breaks {#sec-trouble}
+
+Almost everything that goes wrong in a Quarto book is on this list.
+
+| Symptom | Almost certainly |
+|---|---|
+| A chapter doesn't appear on the website | It isn't listed under `chapters:` in `_quarto.yml` — see @sec-yml |
+| Render fails with a YAML error | Indentation. A tab where spaces belong, or one level too many |
+| `?@fig-something` appears in the text | The label is missing its `fig-` prefix, or is spelled differently where it's defined — see @tbl-xref |
+| A figure is missing | The path is relative to the chapter file, not to the top of the book |
+| An iframe shows a blank box | Wrong relative path, or the folder isn't listed under `resources:` |
+| Raw `<iframe>` text appears on the page | The ```` ```{=html} ```` wrapper is missing |
+| An applet renders strangely | A missing quote in the iframe tag. `height=600"` |
+| A `{mermaid}` or `{r}` chunk renders as literal text, and its `@fig-` reference breaks | Somewhere earlier in that chapter a line *begins* with three or more backticks as inline code. knitr reads it as a fence opener and stops recognising chunks after it. Reflow the sentence so the backticks are not the first thing on the line |
+| Render is painfully slow | Add `execute: freeze: auto`; render HTML only while drafting |
+| A plot doesn't update after changing the data | Stale `_freeze/` or `*_cache/`. Delete them and re-render |
+| The PDF has a blank gap | An interactive element not wrapped in `content-visible when-format="html"` |
+| Custom LaTeX macros work in the PDF but not the browser | The `{{{< include _macros.tex >}}}` line is missing from that chapter |
+| The website is stale after pushing | You rendered but didn't commit `docs/`, or Pages is pointed at the wrong folder |
+| Fonts look wrong | The Google Fonts `<link>` is missing from `include-in-header` — see @sec-theming |
+| Render dies naming `readExtensionFormat`, or "Include directive failed" for `_knitr.qmd` | `_quarto.yml` says `live-html` but the `quarto-live` extension is missing. Either install it (`quarto add r-wasm/quarto-live`, from the project folder) or revert the two edits in @sec-webr-install |
+| Render dies with "Jupyter is not available" | A chapter *shows* a `{webr}`/`{pyodide}` fence as an example. Add `engine: markdown` to that chapter's YAML header — see @sec-webr |
+| Render says "Output created" but no preview window opens | Expected once the format is `live-html` — RStudio only auto-previews formats it recognises. Run `quarto preview` in the Terminal instead |
+| Live cells appear but never become editors, and nothing runs | You opened the HTML file from disk. Browsers will not start the WebAssembly worker over `file://` — use RStudio's Render/preview, or a published site |
+| A `{webr}` cell renders as a dead code block | The `{{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}}` line is missing from that chapter — see @sec-webr |
+| A live cell says a package is not available | That package has no WebAssembly build. Check `repo.r-wasm.org` before rewriting a practical around it |
+
+: The complete troubleshooting list, in rough order of how often it happens. {#tbl-trouble}
+
+## Reading an error message
+
+Quarto's errors usually name the file and the line. Two habits help:
+
+- **Render one chapter at a time** when hunting a problem. A full book render
+  buries the useful line in a hundred others.
+- **Look above the red text.** The actual cause is often the last thing Quarto
+  said it was doing successfully, not the line where it finally gave up.
+
+## Where to look next
+
+- The [official Quarto documentation](https://quarto.org/docs/guide/) is
+  genuinely good and searchable. The
+  [authoring section](https://quarto.org/docs/authoring/) covers layout,
+  callouts and cross-references; the
+  [books section](https://quarto.org/docs/books/) covers structure.
+- The fastest way to learn a trick is still to open a book you like and read the
+  `.qmd` that produced the page. Both departmental books are readable source:
+  `Onderwijs/BMS/Boek` and `Onderwijs/Modeling_Life/Course_Website`.
+- There is a copyable starter book at `Onderwijs/Quarto Books/starter-book`.
+
+::: {.callout-tip}
+## Ask an assistant, but give it the file
+Claude and ChatGPT know Quarto well. Paste the actual `_quarto.yml` and the
+actual error message rather than describing them — most Quarto problems are
+one wrong character, and it will spot it faster than you will.
+:::

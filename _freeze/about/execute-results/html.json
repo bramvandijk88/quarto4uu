@@ -1,0 +1,17 @@
+{
+  "hash": "559b3ddddb6c717445b007c1f71dc898",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# About this guide {.unnumbered}\n\nWritten for teachers at Utrecht University who want to turn a course reader\ninto a website.\n\nIt merges three sources:\n\n- a scaffold outline of what colleagues need to be taught, in order;\n- the tricks used in the **Biologische Modellen en Statistiek** book — iframes,\n  shared LaTeX macros, `freeze` versus `cache`, SCSS theming;\n- a practical walkthrough of setup, figures, interactive applets and publishing.\n\nThe theme follows the\n[Utrecht University corporate identity](https://www.uu.nl/en/organisation/corporate-identity):\nMerriweather and Open Sans as the standard fonts, UU red for links, UU yellow\nas the accent, and the supporting palette for callouts. `uu.scss` in this\nproject is free to copy into your own book.\n\nThe book is deliberately single-theme: the UU palette is defined against white\npaper, so there is no dark mode and no toggle. See @sec-theming if you want one\nanyway.\n\nBoxes like this one still need an image:\n\n::: {.screenshot}\nThese mark screenshots that have not been taken yet. Search the project for\n`{.screenshot}` to find them all; delete the div once the figure is in place.\n:::\n\n## Source material\n\n- `Onderwijs/BMS/Boek` — the Dutch course book\n- `Onderwijs/Modeling_Life/Course_Website` — the English course website\n- `_archive/` in this project — the two documents this guide was merged from\n\n## Keeping the download in step\n\n`starter-book.zip` is a snapshot of this project. After you change the book,\nopen `make-starter-zip.R` and Source it to rebuild the zip; otherwise readers\ndownload a stale copy.\n\n## The logo\n\n`figures/uu-logo.png` is the official Utrecht University logo. Use the files\nfrom the [corporate identity site](https://www.uu.nl/en/organisation/corporate-identity)\nrather than one pulled off a web page, and do not recolour, stretch or\nreconstruct it.\n\n## Colophon\n\nBuilt with [Quarto](https://quarto.org).\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stdout}\n\n```\nRendered with R 4.6.1\n```\n\n\n:::\n:::\n\n",
+    "supporting": [
+      "about_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

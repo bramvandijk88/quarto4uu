@@ -1,0 +1,51 @@
+# Custom notation and getting a PDF out {#sec-macros}
+
+A course book usually has to exist on paper as well as on screen. Quarto can do
+that from the same source — but a few things need care.
+
+## Define your notation once
+
+If you write $\mathrm{d}N/\mathrm{d}t$ two hundred times, define it once. Put
+your LaTeX macros in a file called `_macros.tex` at the top of the project:
+
+```tex
+\providecommand{\dd}{\mathrm{d}}
+\newcommand{\dt}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+\providecommand{\ev}[1]{\mathbb{E}\!\left[#1\right]}
+\providecommand{\var}[1]{\mathrm{Var}\!\left(#1\right)}
+```
+
+Then start every chapter that needs them with an include shortcode on the very
+first line:
+
+```markdown
+{{{< include _macros.tex >}}}
+```
+
+Now `$\dt{N}$` renders correctly in **both** outputs from a single definition:
+MathJax picks up the `\newcommand`s in the browser, LaTeX picks them up in the
+PDF. This is exactly what the BMS book does.
+
+::: {.callout-tip}
+## Why `\providecommand` rather than `\newcommand`
+`\providecommand` only defines the macro if it does not already exist, so it
+cannot collide with something LaTeX already knows. Use it for anything with a
+plausibly common name; keep `\newcommand` for names you are sure are yours.
+:::
+
+`_macros.tex` can also contain `\usepackage{…}` lines that only make sense for
+the PDF. MathJax simply ignores them, which is why one include is safe for both
+formats.
+
+::: {.callout-note}
+## A tidy pattern
+Wrap the include in a hidden div so it never shows up as an empty line in the
+rendered page:
+
+````markdown
+::: {.content-hidden}
+$ {{{< include _macros.tex >}}} $
+:::
+````
+:::
+

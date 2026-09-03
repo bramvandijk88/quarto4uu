@@ -1,0 +1,216 @@
+/*-- scss:defaults --*/
+
+// ===========================================================================
+//  Utrecht University house style
+//  Colours: https://www.uu.nl/en/organisation/corporate-identity/brand-policy/colour
+//  Fonts:   https://www.uu.nl/en/organisation/corporate-identity/brand-policy/fonts
+//  Merriweather and Open Sans are the UU standard fonts; both are on Google
+//  Fonts and are linked from _quarto.yml (include-in-header).
+// ===========================================================================
+
+// --- primary palette -------------------------------------------------------
+$uu-yellow:    #FFCD00;   // UU geel — our most distinctive colour
+$uu-red:       #C00A35;   // UU rood — accent
+$uu-black:     #000000;
+$uu-white:     #FFFFFF;
+
+// --- supporting palette ----------------------------------------------------
+$uu-cream:     #FFE6AB;
+$uu-orange:    #F3965E;
+$uu-bordeaux:  #AA1555;
+$uu-brown:     #6E3B23;
+$uu-green:     #24A793;
+$uu-blue:      #5287C6;
+$uu-darkblue:  #001240;
+$uu-purple:    #5B2182;
+
+// --- map onto Bootstrap / Quarto ------------------------------------------
+$primary:      $uu-red    !default;
+$secondary:    $uu-darkblue !default;
+$success:      $uu-green  !default;
+$info:         $uu-blue   !default;
+$warning:      $uu-orange !default;
+$danger:       $uu-bordeaux !default;
+
+$body-bg:      $uu-white  !default;
+$body-color:   #1A1A1A    !default;
+$link-color:   $uu-red    !default;
+
+// --- type ------------------------------------------------------------------
+$font-family-sans-serif:  "Open Sans", "Helvetica Neue", Arial, sans-serif !default;
+$headings-font-family:    "Merriweather", Georgia, "Times New Roman", serif !default;
+$font-family-monospace:   "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace !default;
+$font-size-root:          17px !default;
+$headings-font-weight:    700 !default;
+
+// --- callouts, in UU colours ----------------------------------------------
+$callout-color-note:      $uu-blue      !default;
+$callout-color-tip:       $uu-green     !default;
+$callout-color-important: $uu-red       !default;
+$callout-color-warning:   $uu-orange    !default;
+$callout-color-caution:   $uu-purple    !default;
+$callout-border-width:    4px           !default;
+
+// --- code ------------------------------------------------------------------
+$code-block-border-left:  $uu-yellow    !default;
+$code-color:              $uu-bordeaux  !default;
+
+
+/*-- scss:rules --*/
+
+body {
+  line-height: 1.65;
+}
+
+// Headings: Merriweather, with UU yellow used the way UU uses it — as a
+// short accent rule rather than as a background.
+h1, h2, h3, h4, h5, h6,
+.quarto-title h1.title,
+#title-block-header .title {
+  font-family: $headings-font-family;
+  letter-spacing: -0.005em;
+}
+
+#title-block-header .title,
+h1.title,
+main > h1:first-of-type {
+  padding-bottom: 0.35em;
+  border-bottom: 5px solid $uu-yellow;
+}
+
+h2 {
+  margin-top: 2rem;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid rgba($uu-yellow, 0.75);
+}
+
+// Links: UU red, with a yellow wash on hover.
+a {
+  text-underline-offset: 2px;
+}
+a:hover {
+  background-color: rgba($uu-yellow, 0.35);
+}
+// ...but not for links that are really buttons or nav items.
+.sidebar a:hover, .navbar a:hover, .toc-actions a:hover,
+#TOC a:hover, .nav-link:hover, .btn:hover {
+  background-color: transparent;
+}
+
+// Sidebar: mark the current chapter in UU red with a yellow edge.
+.sidebar-item .sidebar-item-container .active,
+.sidebar-item .sidebar-item-container > .sidebar-link.active {
+  color: $uu-red;
+  font-weight: 600;
+  border-left: 3px solid $uu-yellow;
+  padding-left: 0.5rem;
+}
+
+// Figures
+figcaption, .figure-caption {
+  max-width: 85%;
+  margin: 0.4rem auto 0;
+  font-size: 0.88rem;
+  color: #555;
+}
+
+// Tables: quiet, with a UU header rule.
+table thead th {
+  border-bottom: 2px solid $uu-yellow !important;
+  font-weight: 600;
+}
+
+blockquote {
+  border-left: 4px solid $uu-yellow;
+  background: rgba($uu-cream, 0.35);
+  padding: 0.6rem 1rem;
+  margin-left: 0;
+}
+
+li::marker {
+  color: $uu-red;
+}
+
+// Long URLs in inline code must be allowed to break, or they push the page
+// sideways on a phone.
+p code, li code, td code {
+  overflow-wrap: anywhere;
+}
+
+// ---------------------------------------------------------------------------
+//  ::: {.screenshot} ... :::
+//  Drafting marker: a note to ourselves about which screenshot still needs to
+//  be made. Delete the div (or this rule) once the image is in place.
+// ---------------------------------------------------------------------------
+.screenshot {
+  border: 1px dashed $uu-orange;
+  background: rgba($uu-cream, 0.30);
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  margin: 1.2rem 0;
+  font-size: 0.9rem;
+}
+.screenshot::before {
+  content: "SCREENSHOT TO ADD";
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: $uu-orange;
+  margin-bottom: 0.3rem;
+}
+.screenshot p:last-child { margin-bottom: 0; }
+
+// ---------------------------------------------------------------------------
+//  PRINT
+//  Quarto's own CSS already hides the page furniture when printing --
+//      @media print { #quarto-sidebar, #TOC, .nav-page { display: none } }
+//  -- so the sidebar, the right-hand TOC and the prev/next links look after
+//  themselves. Everything below is about what is left: the content.
+// ---------------------------------------------------------------------------
+
+.screen-only { display: block; }
+.print-only  { display: none; }
+
+@media print {
+  .screen-only { display: none !important; }
+  .print-only  {
+    display: block !important;
+    border: 1px dashed #999;
+    padding: 0.8em 1em;
+    margin-bottom: 1em;
+    font-size: 0.85em;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  body { line-height: 1.35; font-size: 0.9em; }
+
+  // An iframe prints as an empty rectangle. Hide it; the .print-only block
+  // beside it is what the reader gets instead (see the Interactive chapter).
+  iframe { display: none !important; }
+
+  // Keep things whole across page breaks.
+  h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  figure, table, pre, .callout, blockquote {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  // Yellow all but disappears on a mono printer, so the accent rules that are
+  // pure decoration become grey. Callout colours stay: those carry meaning.
+  h1, .title { border-bottom-color: #333 !important; }
+  h2         { border-bottom-color: #bbb !important; }
+  table thead th { border-bottom-color: #333 !important; }
+
+  // A printed page cannot be clicked.
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #555;
+    word-break: break-all;
+  }
+
+  // Drafting markers should never reach paper.
+  .screenshot { display: none !important; }
+}

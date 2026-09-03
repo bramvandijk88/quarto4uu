@@ -1,0 +1,43 @@
+/*-- scss:defaults --*/
+
+// Dark variant. UU red is too dark to read on a dark ground, so yellow —
+// the university's most distinctive colour — carries the links instead.
+
+$uu-yellow:    #FFCD00;
+$uu-cream:     #FFE6AB;
+$uu-green:     #24A793;
+$uu-blue:      #5287C6;
+$uu-orange:    #F3965E;
+$uu-purple:    #9B6FC4;   // lightened from #5B2182 for contrast on dark
+$uu-red-light: #E8607F;   // lightened from #C00A35 for contrast on dark
+
+$body-bg:      #12151C !default;
+$body-color:   #E6E8EC !default;
+$primary:      $uu-yellow !default;
+$link-color:   $uu-yellow !default;
+
+$callout-color-note:      $uu-blue      !default;
+$callout-color-tip:       $uu-green     !default;
+$callout-color-important: $uu-red-light !default;
+$callout-color-warning:   $uu-orange    !default;
+$callout-color-caution:   $uu-purple    !default;
+
+$code-color:   $uu-cream !default;
+
+/*-- scss:rules --*/
+
+a:hover { background-color: rgba(255, 205, 0, 0.18); }
+
+figcaption, .figure-caption { color: #9AA1AC; }
+
+.sidebar-item .sidebar-item-container > .sidebar-link.active {
+  color: $uu-yellow;
+}
+
+blockquote {
+  background: rgba(255, 205, 0, 0.07);
+}
+
+.screenshot {
+  background: rgba(243, 150, 94, 0.08);
+}

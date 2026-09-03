@@ -1,0 +1,195 @@
+# Writing a chapter {#sec-writing}
+
+A `.qmd` file is Markdown — plain text with a few marks for emphasis — plus
+three Quarto additions: maths, runnable code, and cross-references.
+
+## Text and headings
+
+`**bold**`, `*italic*`, `` `code` ``, `[link](url)`. A blank line starts a new
+paragraph.
+
+One `#` is the chapter title, `##` a section, `###` a subsection. The `##`
+headings are what fill the table of contents on the right of every page, so
+they are worth naming well.
+
+Add `{.unnumbered}` after a heading to keep a page out of the chapter
+numbering — useful for a preface, a schedule, or a links page.
+
+## Maths
+
+Inline between single dollars: `$N_{t+1} = \lambda N_t$` gives
+$N_{t+1} = \lambda N_t$. Displayed between double dollars, with a label so you
+can point at it later:
+
+```markdown
+$$
+\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
+$$ {#eq-logistic}
+```
+
+$$
+\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
+$$ {#eq-logistic}
+
+Writing `@eq-logistic` anywhere in the book now produces a numbered, clickable
+reference: @eq-logistic.
+
+@sec-latex is a full reference for the notation — symbols, multi-line
+equations, statistics, and how to define your own shorthand once and use it in
+both the website and the PDF.
+
+## Code that runs
+
+A chunk marked `{r}` is executed when you render, and its output lands on the
+page.
+
+```{r}
+#| label: fig-growth
+#| fig-cap: "Logistic growth for three values of $r$."
+#| fig-width: 6
+#| fig-height: 3.2
+
+t <- 0:40
+logistic <- function(r, K = 100, N0 = 2) {
+  N <- numeric(length(t)); N[1] <- N0
+  for (i in 2:length(t)) N[i] <- N[i-1] + r * N[i-1] * (1 - N[i-1]/K)
+  N
+}
+plot(t, logistic(0.10), type = "l", lwd = 2, ylim = c(0, 110),
+     xlab = "time", ylab = "N")
+lines(t, logistic(0.20), lwd = 2, lty = 2)
+lines(t, logistic(0.35), lwd = 2, lty = 3)
+legend("bottomright", c("r = 0.10", "r = 0.20", "r = 0.35"), lty = 1:3, lwd = 2)
+```
+
+Because that chunk carries `label: fig-growth`, it is referenceable as
+@fig-growth.
+
+Chunk options go one per line at the top of the chunk, each starting with `#|`:
+
+| Option | Effect |
+|---|---|
+| `echo: false` | run the code, hide it from students |
+| `eval: false` | show the code, don't run it |
+| `code-fold: true` | hide the code behind a "Show the code" toggle |
+| `code-summary: "..."` | the text on that toggle |
+| `warning: false` | suppress R's warnings |
+| `label: fig-…` | make the output referenceable as a figure |
+| `fig-width`, `fig-height` | size in inches |
+
+: Chunk options you will actually use. {#tbl-chunk-options}
+
+::: {.callout-tip}
+## Set the defaults once
+Options that should apply everywhere belong in `_quarto.yml`:
+
+```yaml
+execute:
+  echo: true
+  warning: false
+```
+Individual chunks can still override them.
+:::
+
+## Code that is only shown
+
+To *display* code without running it — Python that students will run
+themselves, for instance — use a plain fenced block with no curly braces:
+write ```` ```python ```` rather than ```` ```{python} ````. You still get
+syntax highlighting, and nothing executes.
+
+## Callouts
+
+Five kinds, and they are the workhorse of a teaching book.
+
+::: {.callout-note}
+`note` — background information, an aside.
+:::
+
+::: {.callout-tip}
+## A title
+`tip` — advice. A `##` heading on the first line becomes the callout's title.
+:::
+
+::: {.callout-important}
+`important` — the thing students must not miss.
+:::
+
+::: {.callout-warning}
+`warning` — a common mistake.
+:::
+
+::: {.callout-caution collapse="true"}
+## Click to see the answer
+`caution` — and with `collapse="true"` it starts folded shut. This is how you
+put a hint or a worked answer right next to the question without giving it
+away.
+:::
+
+```markdown
+::: {.callout-caution collapse="true"}
+## Click to see the answer
+Hidden until the student expands it.
+:::
+```
+
+## Exercises that number themselves
+
+::: {#exr-carrying}
+## Carrying capacity
+
+Using @eq-logistic, what happens to $\mathrm{d}N/\mathrm{d}t$ when $N = K$?
+
+  a. Write down the answer.
+  b. Check it against @fig-growth.
+:::
+
+```markdown
+::: {#exr-carrying}
+## Carrying capacity
+Using @eq-logistic, what happens when $N = K$?
+:::
+```
+
+Refer to it as `@exr-carrying` → @exr-carrying. Reorder your chapters and every
+number in the book renumbers itself.
+
+## Cross-references, in one table
+
+Structure emerges almost for free. The **prefix decides the type**, so it is
+not optional decoration.
+
+| Write this label | Refer to it as | Gives |
+|---|---|---|
+| `{#fig-cover}` | `@fig-cover` | Figure 2.1 |
+| `{#tbl-params}` | `@tbl-params` | Table 3.2 |
+| `{#eq-logistic}` | `@eq-logistic` | Equation 4.1 |
+| `{#sec-writing}` | `@sec-writing` | Section 4 |
+| `{#exr-carrying}` | `@exr-carrying` | Exercise 4.1 |
+| `{#tip-setup}` | `@tip-setup` | Tip 1 |
+
+: Cross-reference prefixes. {#tbl-xref}
+
+`{#cover}` does nothing at all; `{#fig-cover}` works. A reference that renders
+as `?@fig-cover` means the label is missing, misspelled, or lacking its prefix.
+
+::: {.screenshot}
+The rendered sidebar and right-hand TOC, a resolved cross-reference link, and a
+coloured callout box.
+:::
+
+## Diagrams without a drawing program
+
+```{mermaid}
+%%| label: fig-approaches
+%%| fig-cap: "Two ways to study a biological system."
+flowchart TB
+  A(Biological system) --> B(Model)
+  A --> C(Data)
+  B --> D(Simulate)
+  C --> E(Statistics)
+```
+
+Six lines of [Mermaid](https://mermaid.js.org/) produce @fig-approaches, and it
+restyles itself with the rest of the book. Far easier to maintain than a PNG
+exported from PowerPoint.

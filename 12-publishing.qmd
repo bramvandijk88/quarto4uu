@@ -1,0 +1,127 @@
+# Putting it online {#sec-publishing}
+
+Once it renders, your book is just a folder of static files. Any web server can
+host it — including a free one.
+
+## Three routes
+
+| Route | Effort | Good for |
+|---|---|---|
+| **GitHub Pages** | Set up once, then Commit + Push | A course book you will keep editing. Free, versioned, and a colleague can contribute. |
+| **A UU server** | Ask your local support to host the folder | Something that must live under a `uu.nl` address. The BMS book is served this way. |
+| **Quarto Pub** | One command | A quick demo or a one-off hand-out. |
+
+The rest of this chapter is the GitHub Pages route, done **without ever opening
+a terminal**.
+
+## The idea
+
+Your book folder becomes a *repository* — a folder that GitHub keeps a copy of.
+You render the website into a subfolder called `docs`, send it to GitHub, and
+tell GitHub to serve that folder as a website.
+
+## Step by step
+
+**1. Point Quarto at `docs`.** In `_quarto.yml`:
+
+```yaml
+project:
+  type: book
+  output-dir: docs
+```
+
+Render once. The finished website now appears in `docs/`.
+
+**2. Add a file called `.nojekyll`.** An empty file, at the top of your book
+folder. In RStudio: <kbd>File</kbd> → <kbd>New File</kbd> → <kbd>Text File</kbd>,
+then save it with exactly that name, leading dot included. It stops GitHub from
+reprocessing your site and quietly mangling parts of it.
+
+**3. Make the folder a repository.** If you did not tick "Create a git
+repository" when making the project: <kbd>Tools</kbd> → <kbd>Project Options</kbd>
+→ <kbd>Git/SVN</kbd> → set version control to *Git*, and restart RStudio. A
+**Git** tab appears next to Environment and History.
+
+**4. Create the repository on GitHub and connect it.** Make a free account,
+press <kbd>New repository</kbd>, give it a name, leave it empty. GitHub then
+offers you a list of terminal commands — to avoid those, install
+[GitHub Desktop](https://desktop.github.com), choose *Add existing repository*,
+point it at your book folder, and press *Publish repository*.
+
+**5. Send your work up.** From then on, in RStudio's **Git** tab or in GitHub
+Desktop: tick the changed files, write a one-line message saying what you
+changed, press <kbd>Commit</kbd>, then <kbd>Push</kbd>. Those three actions are
+the whole of Git for this purpose.
+
+**6. Switch the website on.** On github.com, in your repository:
+<kbd>Settings</kbd> → <kbd>Pages</kbd> → under *Build and deployment*, set
+Source to *Deploy from a branch*, choose your main branch, and set the folder to
+**`/docs`**. Save.
+
+A minute later your book is live at
+`https://<your-username>.github.io/<repository-name>/`.
+
+::: {.callout-tip}
+## From then on
+Write. Render. Commit. Push. The website updates itself within a minute or two.
+There is nothing else to remember.
+:::
+
+::: {.screenshot}
+GitHub's *Settings → Pages* screen with Source set to the main branch and
+`/docs`, and the resulting live URL in a browser.
+:::
+
+## Before you make it public
+
+::: {.callout-warning}
+## A GitHub Pages site is visible to anyone with the address
+And so is everything else in the repository — including files you never listed
+in `_quarto.yml`, because the source is published too.
+
+Keep exam questions, model answers you do not want found, and anything with
+student data **out of the book folder entirely**. Not merely unlisted: out.
+Answer chapters that are *meant* to be public are fine; the danger is the file
+you forgot was in there.
+:::
+
+A `.gitignore` file keeps generated and personal files out of the repository.
+A sensible starting point:
+
+```
+.Rproj.user/
+.Rhistory
+.RData
+.DS_Store
+
+/.quarto/
+_book/
+**/*.quarto_ipynb
+**/*_cache/
+
+*.aux
+*.log
+*.toc
+```
+
+Note that `_freeze/` is deliberately **not** ignored — see @sec-rendering.
+
+## Working on a book with a colleague
+
+Two people editing different chapters is easy. Two people editing the same
+paragraph is a conflict, and no tool prevents that — agree who owns which
+chapters for a given course block.
+
+One rule removes most of the pain: **pull before you start, push when you
+stop.** A week of uncommitted edits is what turns a small overlap into a large
+one.
+
+::: {.callout-important}
+## Everyone must use the same Quarto version
+Different Quarto versions produce different HTML from identical source. If two
+people render the same book with different versions and both commit the output,
+every push rewrites the entire site and every merge becomes a conflict.
+
+Agree a version, write it down in the repository, and check it with
+`quarto --version` when someone new joins.
+:::

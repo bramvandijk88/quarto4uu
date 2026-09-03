@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Maths and LaTeX – Making a course book with Quarto</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07-pdf-and-print.html" rel="next">
+<link href="./05-figures.html" rel="prev">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-6036fc3794b2b8ac1c61eac6f98d7e4d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-58a0d7e270a3423d7b380f20ee5520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&amp;family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-writing.html">Writing</a></li><li class="breadcrumb-item"><a href="./06-maths-latex.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Maths and LaTeX</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Making a course book with Quarto</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Getting started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-what-is-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Quarto is, and why bother</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-setup-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting up in RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-writing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing a chapter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Figures and tables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-maths-latex.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Maths and LaTeX</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-pdf-and-print.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Getting it onto paper</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Interactive material</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-iframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Embedding interactive content</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-runnable-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Code students can run in the browser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-ai-applets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing applets with an AI assistant</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Building and publishing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-rendering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Rendering, and keeping it fast</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-publishing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Putting it online</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">When it breaks</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About this guide</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#inline-and-displayed" id="toc-inline-and-displayed" class="nav-link active" data-scroll-target="#inline-and-displayed"><span class="header-section-number">6.1</span> Inline and displayed</a></li>
+  <li><a href="#the-notation-you-will-actually-use" id="toc-the-notation-you-will-actually-use" class="nav-link" data-scroll-target="#the-notation-you-will-actually-use"><span class="header-section-number">6.2</span> The notation you will actually use</a></li>
+  <li><a href="#statistics-notation" id="toc-statistics-notation" class="nav-link" data-scroll-target="#statistics-notation"><span class="header-section-number">6.3</span> Statistics notation</a></li>
+  <li><a href="#words-inside-formulas" id="toc-words-inside-formulas" class="nav-link" data-scroll-target="#words-inside-formulas"><span class="header-section-number">6.4</span> Words inside formulas</a></li>
+  <li><a href="#multi-line-equations" id="toc-multi-line-equations" class="nav-link" data-scroll-target="#multi-line-equations"><span class="header-section-number">6.5</span> Multi-line equations</a></li>
+  <li><a href="#brackets-that-grow" id="toc-brackets-that-grow" class="nav-link" data-scroll-target="#brackets-that-grow"><span class="header-section-number">6.6</span> Brackets that grow</a></li>
+  <li><a href="#numbering-and-referring-to-an-equation" id="toc-numbering-and-referring-to-an-equation" class="nav-link" data-scroll-target="#numbering-and-referring-to-an-equation"><span class="header-section-number">6.7</span> Numbering and referring to an equation</a></li>
+  <li><a href="#sec-macros" id="toc-sec-macros" class="nav-link" data-scroll-target="#sec-macros"><span class="header-section-number">6.8</span> Define your notation once</a></li>
+  <li><a href="#where-mathjax-and-latex-disagree" id="toc-where-mathjax-and-latex-disagree" class="nav-link" data-scroll-target="#where-mathjax-and-latex-disagree"><span class="header-section-number">6.9</span> Where MathJax and LaTeX disagree</a></li>
+  <li><a href="#when-something-does-not-render" id="toc-when-something-does-not-render" class="nav-link" data-scroll-target="#when-something-does-not-render"><span class="header-section-number">6.10</span> When something does not render</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-writing.html">Writing</a></li><li class="breadcrumb-item"><a href="./06-maths-latex.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Maths and LaTeX</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-latex" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Maths and LaTeX</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Quarto writes maths with <strong>LaTeX</strong> notation. You do not need to <em>learn LaTeX</em> — you are not typesetting a document with it, only writing formulas — but a page of the notation goes a very long way in a biology course book.</p>
+<p>The same source is rendered twice: by <strong>MathJax</strong> in the browser and by <strong>LaTeX itself</strong> in the PDF. You write it once.</p>
+<section id="inline-and-displayed" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="inline-and-displayed"><span class="header-section-number">6.1</span> Inline and displayed</h2>
+<p><strong>Inline</strong> maths sits between single dollars, inside a sentence:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>The population grows at rate $r$ until it approaches $K$.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The population grows at rate <span class="math inline">\(r\)</span> until it approaches <span class="math inline">\(K\)</span>.</p>
+<p><strong>Displayed</strong> maths sits between double dollars, on its own lines, and is centred:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>$$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[
+\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Leave the dollars tight against the maths
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>$r$</code> works. <code>$ r $</code> may not — Quarto uses the spacing to tell maths from an ordinary dollar sign. If you need a literal dollar in your text, escape it: <code>\$</code>.</p>
+</div>
+</div>
+</section>
+<section id="the-notation-you-will-actually-use" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="the-notation-you-will-actually-use"><span class="header-section-number">6.2</span> The notation you will actually use</h2>
+<div id="tbl-latex-basics" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-latex-basics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Notation for everyday use.
+</figcaption>
+<div aria-describedby="tbl-latex-basics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>You want</th>
+<th>You write</th>
+<th>You get</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>subscript</td>
+<td><code>$N_t$</code></td>
+<td><span class="math inline">\(N_t\)</span></td>
+</tr>
+<tr class="even">
+<td>superscript</td>
+<td><code>$e^{-x}$</code></td>
+<td><span class="math inline">\(e^{-x}\)</span></td>
+</tr>
+<tr class="odd">
+<td>more than one character</td>
+<td><code>$N_{t+1}$</code></td>
+<td><span class="math inline">\(N_{t+1}\)</span></td>
+</tr>
+<tr class="even">
+<td>fraction</td>
+<td><code>$\frac{a}{b}$</code></td>
+<td><span class="math inline">\(\frac{a}{b}\)</span></td>
+</tr>
+<tr class="odd">
+<td>derivative</td>
+<td><code>$\frac{\mathrm{d}N}{\mathrm{d}t}$</code></td>
+<td><span class="math inline">\(\frac{\mathrm{d}N}{\mathrm{d}t}\)</span></td>
+</tr>
+<tr class="even">
+<td>partial derivative</td>
+<td><code>$\frac{\partial u}{\partial x}$</code></td>
+<td><span class="math inline">\(\frac{\partial u}{\partial x}\)</span></td>
+</tr>
+<tr class="odd">
+<td>square root</td>
+<td><code>$\sqrt{x}$</code>, <code>$\sqrt[3]{x}$</code></td>
+<td><span class="math inline">\(\sqrt{x}\)</span>, <span class="math inline">\(\sqrt[3]{x}\)</span></td>
+</tr>
+<tr class="even">
+<td>sum</td>
+<td><code>$\sum_{i=1}^{n} x_i$</code></td>
+<td><span class="math inline">\(\sum_{i=1}^{n} x_i\)</span></td>
+</tr>
+<tr class="odd">
+<td>product</td>
+<td><code>$\prod_{i=1}^{n} p_i$</code></td>
+<td><span class="math inline">\(\prod_{i=1}^{n} p_i\)</span></td>
+</tr>
+<tr class="even">
+<td>integral</td>
+<td><code>$\int_0^\infty f(x)\,\mathrm{d}x$</code></td>
+<td><span class="math inline">\(\int_0^\infty f(x)\,\mathrm{d}x\)</span></td>
+</tr>
+<tr class="odd">
+<td>limit</td>
+<td><code>$\lim_{t \to \infty} N_t$</code></td>
+<td><span class="math inline">\(\lim_{t \to \infty} N_t\)</span></td>
+</tr>
+<tr class="even">
+<td>mean / hat / tilde</td>
+<td><code>$\bar{x}$, $\hat{p}$, $\tilde{N}$</code></td>
+<td><span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(\hat{p}\)</span>, <span class="math inline">\(\tilde{N}\)</span></td>
+</tr>
+<tr class="odd">
+<td>vector</td>
+<td><code>$\vec{v}$</code>, <code>$\mathbf{v}$</code></td>
+<td><span class="math inline">\(\vec{v}\)</span>, <span class="math inline">\(\mathbf{v}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="tbl-latex-symbols" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-latex-symbols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.2: Symbols and relations.
+</figcaption>
+<div aria-describedby="tbl-latex-symbols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>You want</th>
+<th>You write</th>
+<th>You get</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>times / divide</td>
+<td><code>$a \times b$</code>, <code>$a \div b$</code></td>
+<td><span class="math inline">\(a \times b\)</span>, <span class="math inline">\(a \div b\)</span></td>
+</tr>
+<tr class="even">
+<td>plus-minus</td>
+<td><code>$\pm$</code></td>
+<td><span class="math inline">\(\pm\)</span></td>
+</tr>
+<tr class="odd">
+<td>approximately</td>
+<td><code>$\approx$</code></td>
+<td><span class="math inline">\(\approx\)</span></td>
+</tr>
+<tr class="even">
+<td>proportional to</td>
+<td><code>$\propto$</code></td>
+<td><span class="math inline">\(\propto\)</span></td>
+</tr>
+<tr class="odd">
+<td>not equal</td>
+<td><code>$\neq$</code></td>
+<td><span class="math inline">\(\neq\)</span></td>
+</tr>
+<tr class="even">
+<td>less/greater or equal</td>
+<td><code>$\leq$, $\geq$</code></td>
+<td><span class="math inline">\(\leq\)</span>, <span class="math inline">\(\geq\)</span></td>
+</tr>
+<tr class="odd">
+<td>much less/greater</td>
+<td><code>$\ll$, $\gg$</code></td>
+<td><span class="math inline">\(\ll\)</span>, <span class="math inline">\(\gg\)</span></td>
+</tr>
+<tr class="even">
+<td>arrow</td>
+<td><code>$\to$</code>, <code>$\rightarrow$</code></td>
+<td><span class="math inline">\(\to\)</span></td>
+</tr>
+<tr class="odd">
+<td>implies / equivalent</td>
+<td><code>$\Rightarrow$, $\Leftrightarrow$</code></td>
+<td><span class="math inline">\(\Rightarrow\)</span>, <span class="math inline">\(\Leftrightarrow\)</span></td>
+</tr>
+<tr class="even">
+<td>infinity</td>
+<td><code>$\infty$</code></td>
+<td><span class="math inline">\(\infty\)</span></td>
+</tr>
+<tr class="odd">
+<td>element of</td>
+<td><code>$x \in \mathbb{R}$</code></td>
+<td><span class="math inline">\(x \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td>dots</td>
+<td><code>$x_1, \ldots, x_n$</code></td>
+<td><span class="math inline">\(x_1, \ldots, x_n\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Greek letters are their names with a backslash: <code>$\alpha \beta \gamma \delta \lambda \mu \sigma \tau \phi \theta \rho$</code> gives <span class="math inline">\(\alpha \beta \gamma \delta \lambda \mu \sigma \tau \phi \theta \rho\)</span>. Capitalise the first letter for the capital form: <code>$\Delta$, $\Sigma$, $\Omega$</code> gives <span class="math inline">\(\Delta\)</span>, <span class="math inline">\(\Sigma\)</span>, <span class="math inline">\(\Omega\)</span>.</p>
+</section>
+<section id="statistics-notation" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="statistics-notation"><span class="header-section-number">6.3</span> Statistics notation</h2>
+<div id="tbl-latex-stats" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-latex-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.3: Notation for the statistics chapters.
+</figcaption>
+<div aria-describedby="tbl-latex-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>You want</th>
+<th>You write</th>
+<th>You get</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sample mean</td>
+<td><code>$\bar{x}$</code></td>
+<td><span class="math inline">\(\bar{x}\)</span></td>
+</tr>
+<tr class="even">
+<td>estimate</td>
+<td><code>$\hat{\beta}$</code></td>
+<td><span class="math inline">\(\hat{\beta}\)</span></td>
+</tr>
+<tr class="odd">
+<td>expectation</td>
+<td><code>$\mathbb{E}[X]$</code></td>
+<td><span class="math inline">\(\mathbb{E}[X]\)</span></td>
+</tr>
+<tr class="even">
+<td>variance / sd</td>
+<td><code>$\mathrm{Var}(X)$, $\mathrm{SD}(X)$</code></td>
+<td><span class="math inline">\(\mathrm{Var}(X)\)</span></td>
+</tr>
+<tr class="odd">
+<td>probability</td>
+<td><code>$P(X &gt; x)$</code></td>
+<td><span class="math inline">\(P(X &gt; x)\)</span></td>
+</tr>
+<tr class="even">
+<td>conditional</td>
+<td><code>$P(A \mid B)$</code></td>
+<td><span class="math inline">\(P(A \mid B)\)</span></td>
+</tr>
+<tr class="odd">
+<td>distributed as</td>
+<td><code>$X \sim N(\mu, \sigma^2)$</code></td>
+<td><span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></td>
+</tr>
+<tr class="even">
+<td>null hypothesis</td>
+<td><code>$H_0: \mu = \mu_0$</code></td>
+<td><span class="math inline">\(H_0: \mu = \mu_0\)</span></td>
+</tr>
+<tr class="odd">
+<td>degrees of freedom</td>
+<td><code>$t_{n-1}$</code></td>
+<td><span class="math inline">\(t_{n-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Use <code>\mid</code>, not <code>|</code>, for “given”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A bare <code>|</code> in <code>$P(A|B)$</code> is typeset as an ordinary bar with no spacing. <code>\mid</code> is the real conditional-probability symbol and gets the spacing right.</p>
+</div>
+</div>
+</section>
+<section id="words-inside-formulas" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="words-inside-formulas"><span class="header-section-number">6.4</span> Words inside formulas</h2>
+<p>Anything you type in maths mode is set in italic, letter by letter, as if every character were a variable. That is wrong for words and for units:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="an">Wrong:</span><span class="co">  $rate = births - deaths$</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">Right:</span><span class="co">  $\text{rate} = \text{births} - \text{deaths}$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wrong: <span class="math inline">\(rate = births - deaths\)</span></p>
+<p>Right: <span class="math inline">\(\text{rate} = \text{births} - \text{deaths}\)</span></p>
+<p>Use <code>\text{...}</code> for words, and <code>\mathrm{...}</code> for upright single symbols such as the d in a derivative — <code>\mathrm{d}N</code>, not <code>dN</code>.</p>
+</section>
+<section id="multi-line-equations" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="multi-line-equations"><span class="header-section-number">6.5</span> Multi-line equations</h2>
+<p>Two environments cover almost everything. <strong><code>aligned</code></strong> lines equations up on a chosen character — put an <code>&amp;</code> where the alignment should happen and <code>\\</code> at the end of each line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>\frac{\mathrm{d}R}{\mathrm{d}t} &amp;= aR - bRC <span class="sc">\\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>\frac{\mathrm{d}C}{\mathrm{d}t} &amp;= cRC - dC</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>$$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathrm{d}R}{\mathrm{d}t} &amp;= aR - bRC \\
+\frac{\mathrm{d}C}{\mathrm{d}t} &amp;= cRC - dC
+\end{aligned}
+\]</span></p>
+<p><strong><code>cases</code></strong> is for a piecewise definition:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>f(x) =</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>\begin{cases}</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>0 &amp; \text{if } x &lt; 0 <span class="sc">\\</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>1 &amp; \text{if } x \geq 0</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>\end{cases}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>$$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[
+f(x) =
+\begin{cases}
+0 &amp; \text{if } x &lt; 0 \\
+1 &amp; \text{if } x \geq 0
+\end{cases}
+\]</span></p>
+<p>A matrix, if you need one:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>J = \begin{pmatrix}</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>\partial f / \partial x &amp; \partial f / \partial y <span class="sc">\\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>\partial g / \partial x &amp; \partial g / \partial y</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>$$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[
+J = \begin{pmatrix}
+\partial f / \partial x &amp; \partial f / \partial y \\
+\partial g / \partial x &amp; \partial g / \partial y
+\end{pmatrix}
+\]</span></p>
+<p><code>pmatrix</code> gives round brackets, <code>bmatrix</code> square ones, <code>vmatrix</code> the vertical bars of a determinant.</p>
+</section>
+<section id="brackets-that-grow" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="brackets-that-grow"><span class="header-section-number">6.6</span> Brackets that grow</h2>
+<p>Ordinary brackets stay small and look wrong around a tall fraction. Prefix them with <code>\left</code> and <code>\right</code> and they scale:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="an">Small:</span><span class="co">  $(1 - \frac{N}{K})$</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">Grown:</span><span class="co">  $\left(1 - \frac{N}{K}\right)$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Small: <span class="math inline">\((1 - \frac{N}{K})\)</span> &nbsp;&nbsp; Grown: <span class="math inline">\(\left(1 - \frac{N}{K}\right)\)</span></p>
+<p><code>\left</code> and <code>\right</code> must come in pairs. If you want only one visible bracket, pair it with <code>\right.</code> (a full stop means “nothing here”).</p>
+</section>
+<section id="numbering-and-referring-to-an-equation" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="numbering-and-referring-to-an-equation"><span class="header-section-number">6.7</span> Numbering and referring to an equation</h2>
+<p>Put a <code>#eq-</code> label after the closing <code>$$</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>$$ {#eq-logistic2}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span id="eq-logistic2"><span class="math display">\[
+\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
+\tag{6.1}\]</span></span></p>
+<p>Then <code>@eq-logistic2</code> gives <a href="#eq-logistic2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-logistic2</span></a>, numbered and clickable, and the numbering fixes itself when you reorder chapters. For a custom label, <code>[see @eq-logistic2]</code> gives <a href="#eq-logistic2" class="quarto-xref">see&nbsp;<span class="quarto-unresolved-ref ref-noprefix">eq-logistic2</span></a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The label goes <em>outside</em> the dollars
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>$$ ... $$ {#eq-name}</code> — on the same line as the closing <code>$$</code>. Inside the maths it is just more maths, and Quarto will not see it.</p>
+</div>
+</div>
+</section>
+<section id="sec-macros" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="sec-macros"><span class="header-section-number">6.8</span> Define your notation once</h2>
+<p>If you write <span class="math inline">\(\mathrm{d}N/\mathrm{d}t\)</span> two hundred times, define it once. Put your macros in a file called <code>_macros.tex</code> at the top of the project:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\providecommand</span>{<span class="ex">\dd</span>}{<span class="fu">\mathrm</span>{d}}</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\dt</span>}[1]{<span class="fu">\frac</span>{<span class="fu">\mathrm</span>{d}#1}{<span class="fu">\mathrm</span>{d}t}}</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\providecommand</span>{<span class="ex">\ev</span>}[1]{<span class="fu">\mathbb</span>{E}<span class="fu">\!\left</span>[#1<span class="fu">\right</span>]}</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\providecommand</span>{<span class="ex">\var</span>}[1]{<span class="fu">\mathrm</span>{Var}<span class="fu">\!\left</span>(#1<span class="fu">\right</span>)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>[1]</code> means “this macro takes one argument”, and <code>#1</code> is where that argument lands. So <code>\dt{N}</code> expands to the whole derivative.</p>
+<p>Then start every chapter that needs them with an include shortcode on the very first line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>{{&lt; include _macros.tex &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now <code>$\dt{N}$</code> renders correctly in <strong>both</strong> outputs from a single definition: MathJax picks up the <code>\newcommand</code>s in the browser, LaTeX picks them up in the PDF. This is exactly what the BMS book does.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why <code>\providecommand</code> rather than <code>\newcommand</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>\providecommand</code> only defines the macro if it does not already exist, so it cannot collide with something LaTeX already knows. Use it for anything with a plausibly common name; keep <code>\newcommand</code> for names you are sure are yours.</p>
+</div>
+</div>
+<p><code>_macros.tex</code> can also contain <code>\usepackage{…}</code> lines that only make sense for the PDF. MathJax simply ignores them, which is why one include is safe for both formats.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>A tidy pattern
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wrap the include in a hidden div so it never shows up as an empty line in the rendered page:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>::: {.content-hidden}</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>$ {{&lt; include _macros.tex &gt;}} $</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="where-mathjax-and-latex-disagree" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="where-mathjax-and-latex-disagree"><span class="header-section-number">6.9</span> Where MathJax and LaTeX disagree</h2>
+<p>They agree on almost everything, and then they do not. Watch for:</p>
+<ul>
+<li><strong>Packages.</strong> <code>\usepackage{amsmath}</code> and friends only exist in the PDF. MathJax has most of <code>amsmath</code> built in, so the common environments work anyway — but an exotic package will render on paper and silently fail on the web.</li>
+<li><strong><code>\text{}</code> needs no package</strong> in either. Prefer it to <code>\mbox{}</code>.</li>
+<li><strong>Coloured maths.</strong> <code>\color{red}{...}</code> works in MathJax; in the PDF it needs <code>\usepackage{xcolor}</code> in <code>_macros.tex</code>.</li>
+<li><strong>Line breaks.</strong> <code>\\</code> inside <code>aligned</code> is fine in both. A bare <code>\\</code> in inline maths is not — put multi-line maths in a display block.</li>
+<li><strong>Unicode.</strong> Typing <code>α</code> directly usually works in HTML and breaks the PDF. Write <code>\alpha</code>.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Always look at both outputs before a course starts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Render to HTML and PDF and skim the equations in each. A formula that silently fails in one output is the single most common way a course book embarrasses itself.</p>
+</div>
+</div>
+</section>
+<section id="when-something-does-not-render" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="when-something-does-not-render"><span class="header-section-number">6.10</span> When something does not render</h2>
+<p>A formula that shows as raw <code>\frac{...}</code> text, or a chunk of the page that has gone blank, is nearly always one of these:</p>
+<div id="tbl-latex-trouble" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-latex-trouble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.4: Maths that will not render.
+</figcaption>
+<div aria-describedby="tbl-latex-trouble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symptom</th>
+<th>Cause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Raw LaTeX visible on the page</td>
+<td>Unbalanced <code>$</code> or <code>$$</code> somewhere <em>earlier</em> in the chapter</td>
+</tr>
+<tr class="even">
+<td>Everything after a point is italic</td>
+<td>An unclosed <code>$</code></td>
+</tr>
+<tr class="odd">
+<td><code>\left</code> error</td>
+<td>A <code>\left</code> with no matching <code>\right</code></td>
+</tr>
+<tr class="even">
+<td>Works in HTML, breaks in PDF</td>
+<td>A missing <code>\usepackage</code>, or a Unicode character</td>
+</tr>
+<tr class="odd">
+<td>Works in PDF, breaks in HTML</td>
+<td>A LaTeX package MathJax does not implement</td>
+</tr>
+<tr class="even">
+<td>Nothing renders in one chapter</td>
+<td>A missing <code>{{&lt; include _macros.tex &gt;}}</code> line</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Two tools worth knowing
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://detexify.kirelabs.org">Detexify</a> lets you <em>draw</em> a symbol and tells you its LaTeX name. And RStudio’s <strong>Visual</strong> editor has an equation editor with a live preview — insert the equation there, then switch back to Source to see what it wrote.</p>
+</div>
+</div>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+</script>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-figures.html" class="pagination-link" aria-label="Figures and tables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Figures and tables</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-pdf-and-print.html" class="pagination-link" aria-label="Getting it onto paper">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Getting it onto paper</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Utrecht University</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

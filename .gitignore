@@ -1,0 +1,33 @@
+# machine-local
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+.positai
+
+# quarto build
+/.quarto/
+_book*/
+_site*/
+**/*.quarto_ipynb
+/*_cache/
+/*_files/
+
+# latex / pdf intermediates
+*.aux
+*.log
+*.toc
+
+# NOTE: _freeze/ is deliberately NOT ignored -- committing it lets a
+# colleague render the book without installing R and every package.
+# NOTE: docs/ is deliberately NOT ignored -- GitHub Pages serves it.
+
+# Dropbox: never commit conflicted copies
+*conflicted copy*
+
+# NOTE: the *_cache/ and *_files/ rules above are root-anchored on purpose.
+# Quarto renders each chapter in the project root and then moves the output
+# into docs/, so the leftovers to ignore are the ROOT ones. An unanchored
+# **/*_files/ would also swallow docs/04-writing_files/, which holds the
+# figures GitHub Pages serves -- chapter 4's plot would 404.

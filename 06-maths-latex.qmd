@@ -1,0 +1,318 @@
+# Maths and LaTeX {#sec-latex}
+
+Quarto writes maths with **LaTeX** notation. You do not need to *learn LaTeX*
+— you are not typesetting a document with it, only writing formulas — but a
+page of the notation goes a very long way in a biology course book.
+
+The same source is rendered twice: by **MathJax** in the browser and by **LaTeX
+itself** in the PDF. You write it once.
+
+## Inline and displayed
+
+**Inline** maths sits between single dollars, inside a sentence:
+
+``` markdown
+The population grows at rate $r$ until it approaches $K$.
+```
+
+The population grows at rate $r$ until it approaches $K$.
+
+**Displayed** maths sits between double dollars, on its own lines, and is
+centred:
+
+``` markdown
+$$
+\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
+$$
+```
+
+$$
+\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
+$$
+
+::: {.callout-important}
+## Leave the dollars tight against the maths
+`$r$` works. `$ r $` may not — Quarto uses the spacing to tell maths from an
+ordinary dollar sign. If you need a literal dollar in your text, escape it:
+`\$`.
+:::
+
+## The notation you will actually use
+
+| You want | You write | You get |
+|---|---|---|
+| subscript | `$N_t$` | $N_t$ |
+| superscript | `$e^{-x}$` | $e^{-x}$ |
+| more than one character | `$N_{t+1}$` | $N_{t+1}$ |
+| fraction | `$\frac{a}{b}$` | $\frac{a}{b}$ |
+| derivative | `$\frac{\mathrm{d}N}{\mathrm{d}t}$` | $\frac{\mathrm{d}N}{\mathrm{d}t}$ |
+| partial derivative | `$\frac{\partial u}{\partial x}$` | $\frac{\partial u}{\partial x}$ |
+| square root | `$\sqrt{x}$`, `$\sqrt[3]{x}$` | $\sqrt{x}$, $\sqrt[3]{x}$ |
+| sum | `$\sum_{i=1}^{n} x_i$` | $\sum_{i=1}^{n} x_i$ |
+| product | `$\prod_{i=1}^{n} p_i$` | $\prod_{i=1}^{n} p_i$ |
+| integral | `$\int_0^\infty f(x)\,\mathrm{d}x$` | $\int_0^\infty f(x)\,\mathrm{d}x$ |
+| limit | `$\lim_{t \to \infty} N_t$` | $\lim_{t \to \infty} N_t$ |
+| mean / hat / tilde | `$\bar{x}$, $\hat{p}$, $\tilde{N}$` | $\bar{x}$, $\hat{p}$, $\tilde{N}$ |
+| vector | `$\vec{v}$`, `$\mathbf{v}$` | $\vec{v}$, $\mathbf{v}$ |
+
+: Notation for everyday use. {#tbl-latex-basics}
+
+| You want | You write | You get |
+|---|---|---|
+| times / divide | `$a \times b$`, `$a \div b$` | $a \times b$, $a \div b$ |
+| plus-minus | `$\pm$` | $\pm$ |
+| approximately | `$\approx$` | $\approx$ |
+| proportional to | `$\propto$` | $\propto$ |
+| not equal | `$\neq$` | $\neq$ |
+| less/greater or equal | `$\leq$, $\geq$` | $\leq$, $\geq$ |
+| much less/greater | `$\ll$, $\gg$` | $\ll$, $\gg$ |
+| arrow | `$\to$`, `$\rightarrow$` | $\to$ |
+| implies / equivalent | `$\Rightarrow$, $\Leftrightarrow$` | $\Rightarrow$, $\Leftrightarrow$ |
+| infinity | `$\infty$` | $\infty$ |
+| element of | `$x \in \mathbb{R}$` | $x \in \mathbb{R}$ |
+| dots | `$x_1, \ldots, x_n$` | $x_1, \ldots, x_n$ |
+
+: Symbols and relations. {#tbl-latex-symbols}
+
+Greek letters are their names with a backslash: `$\alpha \beta \gamma \delta
+\lambda \mu \sigma \tau \phi \theta \rho$` gives
+$\alpha \beta \gamma \delta \lambda \mu \sigma \tau \phi \theta \rho$.
+Capitalise the first letter for the capital form: `$\Delta$, $\Sigma$, $\Omega$`
+gives $\Delta$, $\Sigma$, $\Omega$.
+
+## Statistics notation
+
+| You want | You write | You get |
+|---|---|---|
+| sample mean | `$\bar{x}$` | $\bar{x}$ |
+| estimate | `$\hat{\beta}$` | $\hat{\beta}$ |
+| expectation | `$\mathbb{E}[X]$` | $\mathbb{E}[X]$ |
+| variance / sd | `$\mathrm{Var}(X)$, $\mathrm{SD}(X)$` | $\mathrm{Var}(X)$ |
+| probability | `$P(X > x)$` | $P(X > x)$ |
+| conditional | `$P(A \mid B)$` | $P(A \mid B)$ |
+| distributed as | `$X \sim N(\mu, \sigma^2)$` | $X \sim N(\mu, \sigma^2)$ |
+| null hypothesis | `$H_0: \mu = \mu_0$` | $H_0: \mu = \mu_0$ |
+| degrees of freedom | `$t_{n-1}$` | $t_{n-1}$ |
+
+: Notation for the statistics chapters. {#tbl-latex-stats}
+
+::: {.callout-tip}
+## Use `\mid`, not `|`, for "given"
+A bare `|` in `$P(A|B)$` is typeset as an ordinary bar with no spacing.
+`\mid` is the real conditional-probability symbol and gets the spacing right.
+:::
+
+## Words inside formulas
+
+Anything you type in maths mode is set in italic, letter by letter, as if every
+character were a variable. That is wrong for words and for units:
+
+``` markdown
+Wrong:  $rate = births - deaths$
+Right:  $\text{rate} = \text{births} - \text{deaths}$
+```
+
+Wrong: $rate = births - deaths$
+
+Right: $\text{rate} = \text{births} - \text{deaths}$
+
+Use `\text{...}` for words, and `\mathrm{...}` for upright single symbols such
+as the d in a derivative — `\mathrm{d}N`, not `dN`.
+
+## Multi-line equations
+
+Two environments cover almost everything. **`aligned`** lines equations up on a
+chosen character — put an `&` where the alignment should happen and `\\` at the
+end of each line:
+
+``` markdown
+$$
+\begin{aligned}
+\frac{\mathrm{d}R}{\mathrm{d}t} &= aR - bRC \\
+\frac{\mathrm{d}C}{\mathrm{d}t} &= cRC - dC
+\end{aligned}
+$$
+```
+
+$$
+\begin{aligned}
+\frac{\mathrm{d}R}{\mathrm{d}t} &= aR - bRC \\
+\frac{\mathrm{d}C}{\mathrm{d}t} &= cRC - dC
+\end{aligned}
+$$
+
+**`cases`** is for a piecewise definition:
+
+``` markdown
+$$
+f(x) =
+\begin{cases}
+0 & \text{if } x < 0 \\
+1 & \text{if } x \geq 0
+\end{cases}
+$$
+```
+
+$$
+f(x) =
+\begin{cases}
+0 & \text{if } x < 0 \\
+1 & \text{if } x \geq 0
+\end{cases}
+$$
+
+A matrix, if you need one:
+
+``` markdown
+$$
+J = \begin{pmatrix}
+\partial f / \partial x & \partial f / \partial y \\
+\partial g / \partial x & \partial g / \partial y
+\end{pmatrix}
+$$
+```
+
+$$
+J = \begin{pmatrix}
+\partial f / \partial x & \partial f / \partial y \\
+\partial g / \partial x & \partial g / \partial y
+\end{pmatrix}
+$$
+
+`pmatrix` gives round brackets, `bmatrix` square ones, `vmatrix` the vertical
+bars of a determinant.
+
+## Brackets that grow
+
+Ordinary brackets stay small and look wrong around a tall fraction. Prefix them
+with `\left` and `\right` and they scale:
+
+``` markdown
+Small:  $(1 - \frac{N}{K})$
+Grown:  $\left(1 - \frac{N}{K}\right)$
+```
+
+Small: $(1 - \frac{N}{K})$ &nbsp;&nbsp; Grown: $\left(1 - \frac{N}{K}\right)$
+
+`\left` and `\right` must come in pairs. If you want only one visible bracket,
+pair it with `\right.` (a full stop means "nothing here").
+
+## Numbering and referring to an equation
+
+Put a `#eq-` label after the closing `$$`:
+
+``` markdown
+$$
+\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
+$$ {#eq-logistic2}
+```
+
+$$
+\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
+$$ {#eq-logistic2}
+
+Then `@eq-logistic2` gives @eq-logistic2, numbered and clickable, and the
+numbering fixes itself when you reorder chapters. For a custom label,
+`[see @eq-logistic2]` gives [see @eq-logistic2].
+
+::: {.callout-note}
+## The label goes *outside* the dollars
+`$$ ... $$ {#eq-name}` — on the same line as the closing `$$`. Inside the maths
+it is just more maths, and Quarto will not see it.
+:::
+
+## Define your notation once {#sec-macros}
+
+If you write $\mathrm{d}N/\mathrm{d}t$ two hundred times, define it once. Put
+your macros in a file called `_macros.tex` at the top of the project:
+
+``` tex
+\providecommand{\dd}{\mathrm{d}}
+\newcommand{\dt}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+\providecommand{\ev}[1]{\mathbb{E}\!\left[#1\right]}
+\providecommand{\var}[1]{\mathrm{Var}\!\left(#1\right)}
+```
+
+The `[1]` means "this macro takes one argument", and `#1` is where that
+argument lands. So `\dt{N}` expands to the whole derivative.
+
+Then start every chapter that needs them with an include shortcode on the very
+first line:
+
+``` markdown
+{{{< include _macros.tex >}}}
+```
+
+Now `$\dt{N}$` renders correctly in **both** outputs from a single definition:
+MathJax picks up the `\newcommand`s in the browser, LaTeX picks them up in the
+PDF. This is exactly what the BMS book does.
+
+::: {.callout-tip}
+## Why `\providecommand` rather than `\newcommand`
+`\providecommand` only defines the macro if it does not already exist, so it
+cannot collide with something LaTeX already knows. Use it for anything with a
+plausibly common name; keep `\newcommand` for names you are sure are yours.
+:::
+
+`_macros.tex` can also contain `\usepackage{…}` lines that only make sense for
+the PDF. MathJax simply ignores them, which is why one include is safe for both
+formats.
+
+::: {.callout-note}
+## A tidy pattern
+Wrap the include in a hidden div so it never shows up as an empty line in the
+rendered page:
+
+```` markdown
+::: {.content-hidden}
+$ {{{< include _macros.tex >}}} $
+:::
+````
+:::
+
+## Where MathJax and LaTeX disagree
+
+They agree on almost everything, and then they do not. Watch for:
+
+- **Packages.** `\usepackage{amsmath}` and friends only exist in the PDF.
+  MathJax has most of `amsmath` built in, so the common environments work
+  anyway — but an exotic package will render on paper and silently fail on the
+  web.
+- **`\text{}` needs no package** in either. Prefer it to `\mbox{}`.
+- **Coloured maths.** `\color{red}{...}` works in MathJax; in the PDF it needs
+  `\usepackage{xcolor}` in `_macros.tex`.
+- **Line breaks.** `\\` inside `aligned` is fine in both. A bare `\\` in inline
+  maths is not — put multi-line maths in a display block.
+- **Unicode.** Typing `α` directly usually works in HTML and breaks the PDF.
+  Write `\alpha`.
+
+::: {.callout-important}
+## Always look at both outputs before a course starts
+Render to HTML and PDF and skim the equations in each. A formula that silently
+fails in one output is the single most common way a course book embarrasses
+itself.
+:::
+
+## When something does not render
+
+A formula that shows as raw `\frac{...}` text, or a chunk of the page that has
+gone blank, is nearly always one of these:
+
+| Symptom | Cause |
+|---|---|
+| Raw LaTeX visible on the page | Unbalanced `$` or `$$` somewhere *earlier* in the chapter |
+| Everything after a point is italic | An unclosed `$` |
+| `\left` error | A `\left` with no matching `\right` |
+| Works in HTML, breaks in PDF | A missing `\usepackage`, or a Unicode character |
+| Works in PDF, breaks in HTML | A LaTeX package MathJax does not implement |
+| Nothing renders in one chapter | A missing `{{{< include _macros.tex >}}}` line |
+
+: Maths that will not render. {#tbl-latex-trouble}
+
+::: {.callout-tip}
+## Two tools worth knowing
+[Detexify](https://detexify.kirelabs.org) lets you *draw* a symbol and tells you
+its LaTeX name. And RStudio's **Visual** editor has an equation editor with a
+live preview — insert the equation there, then switch back to Source to see
+what it wrote.
+:::
