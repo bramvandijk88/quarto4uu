@@ -1,0 +1,68 @@
+---
+toc: true
+toc-depth: 2
+search: false
+number-sections: false
+execute:
+  freeze: false
+---
+
+# Print book 🖨️ {.unnumbered}
+
+```{=html}
+<style>
+@media print {
+  /* The page's own heading is screen furniture -- on paper the book opens
+     on its cover instead. Scoped here, so a single chapter still prints
+     with its own title. */
+  #title-block-header { display: none !important; }
+}
+</style>
+```
+
+::: {.cover-page}
+![](figures/uu-logo.png){.cover-logo .nolightbox fig-alt="Utrecht University"}
+
+[{{< meta book.title >}}]{.cover-title}
+
+[{{< meta book.subtitle >}}]{.cover-subtitle}
+
+[{{< meta book.author >}}]{.cover-author}
+:::
+
+::: {.screen-only}
+This page serves the whole book on one page, so that <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd>
+gives you a single print/PDF for everything, rather than only one chapter. This 
+can then be offered to students as a physical course book^[Which in our courses, was still surprisingly popular!]. Everything below is pulled
+from the same chapter sources, so no need to manage multiple copies. 
+:::
+
+{{< include index.qmd >}}
+
+{{< include 01-what-is-quarto.qmd >}}
+
+{{< include 02-setup-rstudio.qmd >}}
+
+{{< include 03-quarto-yml.qmd >}}
+
+{{< include 04-writing.qmd >}}
+
+{{< include 05-figures.qmd >}}
+
+{{< include 06-maths-latex.qmd >}}
+
+{{< include 07-pdf-and-print.qmd >}}
+
+{{< include 08-iframes.qmd >}}
+
+{{< include 09-runnable-code.qmd >}}
+
+{{< include 10-ai-applets.qmd >}}
+
+{{< include 11-rendering.qmd >}}
+
+{{< include 12-publishing.qmd >}}
+
+{{< include 13-troubleshooting.qmd >}}
+
+{{< include about.qmd >}}

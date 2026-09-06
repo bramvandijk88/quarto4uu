@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-6036fc3794b2b8ac1c61eac6f98d7e4d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-58a0d7e270a3423d7b380f20ee5520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8a7c5e76d5f4be2f78cb7ad72d3e451c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -325,6 +325,12 @@ window.Quarto = {
  <span class="menu-text">About this guide</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./print.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Print book 🖨️</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -384,7 +390,7 @@ window.Quarto = {
 <p><span id="eq-logistic"><span class="math display">\[
 \frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
 \tag{4.1}\]</span></span></p>
-<p>Writing <code>@eq-logistic</code> anywhere in the book now produces a numbered, clickable reference: <a href="#eq-logistic" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>.</p>
+<p>Writing <code>@eq-logistic</code> anywhere in the book now produces a numbered, clickable reference: <a href="print.html#eq-logistic" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>.</p>
 <p>If you’re familiar with LateX, I’m sure you’ll find your way with this stuff.</p>
 </section>
 <section id="code-that-produces-a-figure" class="level2" data-number="4.3">
@@ -415,7 +421,7 @@ Figure&nbsp;4.1: Logistic growth for three values of <span class="math inline">\
 </div>
 </div>
 </div>
-<p>Because that chunk carries <code>label: fig-growth</code>, it is referenceable as <a href="#fig-growth" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</p>
+<p>Because that chunk carries <code>label: fig-growth</code>, it is referenceable as <a href="print.html#fig-growth" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</p>
 <p>Chunk options go one per line at the top of the chunk, each starting with <code>#|</code>:</p>
 <div id="tbl-chunk-options" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -565,17 +571,17 @@ Warning
 <section id="exercises-that-number-themselves" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="exercises-that-number-themselves"><span class="header-section-number">4.6</span> Exercises that number themselves</h2>
 <div id="exr-carrying" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.1 (Carrying capacity)</strong></span> Using <a href="#eq-logistic" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>, what happens to <span class="math inline">\(\mathrm{d}N/\mathrm{d}t\)</span> when <span class="math inline">\(N = K\)</span>?</p>
+<p><span class="theorem-title"><strong>Exercise 4.1 (Carrying capacity)</strong></span> Using <a href="print.html#eq-logistic" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>, what happens to <span class="math inline">\(\mathrm{d}N/\mathrm{d}t\)</span> when <span class="math inline">\(N = K\)</span>?</p>
 <ol type="a">
 <li>Write down the answer.</li>
-<li>Check it against <a href="#fig-growth" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</li>
+<li>Check it against <a href="print.html#fig-growth" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</li>
 </ol>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>::: {#exr-carrying}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Carrying capacity</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Using @eq-logistic, what happens when $N = K$?</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Refer to it as <code>@exr-carrying</code> → <a href="#exr-carrying" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a>. Reorder your chapters and every number in the book renumbers itself.</p>
+<p>Refer to it as <code>@exr-carrying</code> → <a href="print.html#exr-carrying" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a>. Reorder your chapters and every number in the book renumbers itself.</p>
 </section>
 <section id="cross-references-in-one-table" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="cross-references-in-one-table"><span class="header-section-number">4.7</span> Cross-references, in one table</h2>
@@ -655,7 +661,7 @@ Figure&nbsp;4.2: Two ways to study a biological system.
 </div>
 </div>
 </div>
-<p>Six lines of <a href="https://mermaid.js.org/">Mermaid</a> produce <a href="#fig-approaches" class="quarto-xref">Figure&nbsp;<span>4.2</span></a>, and it restyles itself with the rest of the book. Far easier to maintain than a PNG exported from PowerPoint.</p>
+<p>Six lines of <a href="https://mermaid.js.org/">Mermaid</a> produce <a href="print.html#fig-approaches" class="quarto-xref">Figure&nbsp;<span>4.2</span></a>, and it restyles itself with the rest of the book. Far easier to maintain than a PNG exported from PowerPoint.</p>
 
 
 <script type="ojs-module-contents">

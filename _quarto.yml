@@ -48,6 +48,7 @@ book:
         - 12-publishing.qmd
         - 13-troubleshooting.qmd
     - about.qmd
+    - print.qmd
 
 # Applet files are copied into the finished site as-is.
 resources:

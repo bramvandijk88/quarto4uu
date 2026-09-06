@@ -70,3 +70,25 @@ books (saving 70 pages that students did not need to pay for). To do this,
 us `column-count: 2` inside the `@media print` part of the uu.scss file. But carefully
 check your equations and wide code blocks, which do not enjoy narrow columns.
 :::
+
+::: {.callout-tip collapse="true"}
+## Printing the whole book
+
+When you press print on one of these pages, you get a nice PDF, but only of that one chapter. For the *whole*
+book you would have to print all of them and stitch the pieces together, and with 
+this template, you do not have to do that by hand.
+
+In the sidebar there is a page called **Print book 🖨️**. It is the entire book
+in one document: open it, press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd> and
+save as PDF. Everything on this page applies, so the `.print-only` screenshots
+appear and the live embeds do not.
+
+That page contains no prose of its own. `print.qmd` is a heading followed by a
+list of includes, one per chapter:
+
+```` markdown
+# Print book 🖨️ {.unnumbered}
+
+{{< include 01-what-is-quarto.qmd >}}
+{{< include 02-setup-rstudio.qmd >}}
+

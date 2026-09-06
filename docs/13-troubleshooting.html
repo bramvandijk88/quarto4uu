@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-6036fc3794b2b8ac1c61eac6f98d7e4d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-58a0d7e270a3423d7b380f20ee5520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8a7c5e76d5f4be2f78cb7ad72d3e451c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -255,6 +255,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">About this guide</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./print.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Print book 🖨️</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -313,7 +319,7 @@ Table&nbsp;13.1: An incomplete but probably useful troubleshooting list.
 <tbody>
 <tr class="odd">
 <td>A chapter doesn’t appear on the website</td>
-<td>It isn’t listed under <code>chapters:</code> in <code>_quarto.yml</code> — see <a href="03-quarto-yml.html" class="quarto-xref"><span>Chapter 3</span></a></td>
+<td>It isn’t listed under <code>chapters:</code> in <code>_quarto.yml</code> — see <a href="print.html" class="quarto-xref"><span>Chapter 3</span></a></td>
 </tr>
 <tr class="even">
 <td>Render fails with a YAML error</td>
@@ -321,7 +327,7 @@ Table&nbsp;13.1: An incomplete but probably useful troubleshooting list.
 </tr>
 <tr class="odd">
 <td><code>?@fig-something</code> appears in the text</td>
-<td>The label is missing its <code>fig-</code> prefix, or is spelled differently where it’s defined — see <a href="04-writing.html#tbl-xref" class="quarto-xref">Table&nbsp;<span>4.2</span></a></td>
+<td>The label is missing its <code>fig-</code> prefix, or is spelled differently where it’s defined — see <a href="print.html#tbl-xref" class="quarto-xref">Table&nbsp;<span>4.2</span></a></td>
 </tr>
 <tr class="even">
 <td>A figure is missing</td>
@@ -353,7 +359,7 @@ Table&nbsp;13.1: An incomplete but probably useful troubleshooting list.
 </tr>
 <tr class="odd">
 <td>Render dies with “Jupyter is not available”</td>
-<td>A chapter <em>shows</em> a <code>{webr}</code>/<code>{pyodide}</code> fence as an example. Add <code>engine: markdown</code> to that chapter’s YAML header — see <a href="09-runnable-code.html" class="quarto-xref"><span>Chapter 9</span></a></td>
+<td>A chapter <em>shows</em> a <code>{webr}</code>/<code>{pyodide}</code> fence as an example. Add <code>engine: markdown</code> to that chapter’s YAML header — see <a href="print.html" class="quarto-xref"><span>Chapter 8</span></a></td>
 </tr>
 <tr class="even">
 <td>Render says “Output created” but no preview window opens</td>
@@ -365,7 +371,7 @@ Table&nbsp;13.1: An incomplete but probably useful troubleshooting list.
 </tr>
 <tr class="even">
 <td>A <code>{webr}</code> cell renders as a dead code block</td>
-<td>The <code>{{&lt; include ./_extensions/r-wasm/live/_knitr.qmd &gt;}}</code> line is missing from that chapter — see <a href="09-runnable-code.html" class="quarto-xref"><span>Chapter 9</span></a></td>
+<td>The <code>{{&lt; include ./_extensions/r-wasm/live/_knitr.qmd &gt;}}</code> line is missing from that chapter — see <a href="print.html" class="quarto-xref"><span>Chapter 8</span></a></td>
 </tr>
 <tr class="odd">
 <td>A live cell says a package is not available</td>

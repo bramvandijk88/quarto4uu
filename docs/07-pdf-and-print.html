@@ -79,9 +79,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-6036fc3794b2b8ac1c61eac6f98d7e4d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-58a0d7e270a3423d7b380f20ee5520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8a7c5e76d5f4be2f78cb7ad72d3e451c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -290,6 +293,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">About this guide</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./print.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Print book 🖨️</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -348,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Although a minority, some students enjoy printing your book. We found that approximately 1 in 8 students still wanted a printed version, which is why we decided to offer not only a printer-friendly web book, but also compiled our own PDF via the printing route.</p>
 <p>First things first: you do <strong>not</strong> have to worry about all the web elements, like the side bars and logos. Try it: hit print on this web page and you’ll they dont get printed. But what about interactive elements, like simulations and videos? How will these get printed? We did a bit of additional hacking to fix this.</p>
 <section id="a-trick-applied-in-this-template" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="a-trick-applied-in-this-template"><span class="header-section-number">7.2.1</span> A trick applied in this template</h3>
+<h3 data-number="7.2.1" class="anchored"><span class="header-section-number">7.2.1</span> A trick applied in this template</h3>
 <p>The trick below is already in this template, but if you have interactive materials and are <strong>not</strong> using this template, it is really worth copying. In our course material, every interactive embed in that book is a pair: a screenshot with a short caption for the printed version, and the live thing for screen.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>:::{.print-only}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">center</span><span class="dt">&gt;</span>*Interactive content available on the website.*</span>
@@ -379,8 +388,218 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Printing the whole book
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>When you press print on one of these pages, you get a nice PDF, but only of that one chapter. For the <em>whole</em> book you would have to print all of them and stitch the pieces together, and with this template, you do not have to do that by hand.</p>
+<p>In the sidebar there is a page called <strong>Print book 🖨️</strong>. It is the entire book in one document: open it, press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd> and save as PDF. Everything on this page applies, so the <code>.print-only</code> screenshots appear and the live embeds do not.</p>
+<p>That page contains no prose of its own. <code>print.qmd</code> is a heading followed by a list of includes, one per chapter:</p>
+<p>```` markdown # Print book 🖨️ {.unnumbered}</p>
+<section id="sec-what" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> What Quarto is, and why bother</h1>
+<p>Quarto is a free, open-source publishing system. You write in plain text — <code>.qmd</code> files, which use Markdown syntax: <code>#</code> and <code>##</code> indicate chapter and section headings, text between one or two asterisks (<code>*</code>) is italic/bold respectively, etc. Quarto can render this into a website or a PDF.</p>
+<section id="why-it-suits-teaching" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="why-it-suits-teaching"><span class="header-section-number">8.1</span> Why it suits teaching</h2>
+<p><strong>Less worry about formatting, more focus on content </strong> Your book is a folder of plain text files. This enables you to think better about the content, rather than worry about formatting. Quarto takes care of 90% of the formatting (I will not lie, sometimes you will still need to tweak a bit if you’re a prefectionist).</p>
+<p><strong>Maths renders properly.</strong> You can use LaTeX to format all your math by putting text between dollar signs. It prints beautifully, and students can copy/paste either the image or the LateX code easily.</p>
+<p><strong>Code can run.</strong> A plot in your reader can be generated by the code that produced it, so the figure and the analysis never drift apart.</p>
+<p><strong>Interactive explainers right next to the explanation.</strong> A student can read about the material, model and immediately turn some knobs (see section <a href="08-iframes.html" class="quarto-xref"><span>Chapter 8</span></a>). In fact, with <a href="print.html" class="quarto-xref"><span>Chapter 8</span></a> they can edit the R or Python code and run it <strong>locally</strong> in the browser, even if they have no R or Python installed.</p>
+<p><strong>Navigational structure comes for free.</strong> Sidebar, search box, chapter numbering, cross-references and a table of contents are all generated for you.</p>
+</section>
+<section id="what-you-need-to-install" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="what-you-need-to-install"><span class="header-section-number">8.2</span> What you need to install</h2>
+<p>As said, we will go the Rstudio route here. Three things you need to install, in this order.</p>
+<ol type="1">
+<li><strong><a href="https://cran.r-project.org">R</a></strong>: the programming language itself.</li>
+<li><strong><a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop</a></strong>: the editor. RStudio v2022.07 and later have built-in Quarto support.</li>
+<li><strong><a href="https://quarto.org/docs/get-started/">Quarto</a></strong> (sometimes optional)</li>
+</ol>
+<p>Recent RStudio versions ship with a copy of Quarto bundled, so step 3 is sometimes optional. But perhaps always good to jot down which version of Quarto you have.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Which version am I on?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In RStudio: <kbd>Tools</kbd> → <kbd>Terminal</kbd> → <kbd>New Terminal</kbd>, then type <code>quarto --version</code>. This is one of the few times in this guide you need a terminal, and you can skip it if you would rather not. But let’s be honest, we all like to feel like a hacker every now and then =)</p>
+</div>
+</div>
+</section>
+<section id="document-website-or-book" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="document-website-or-book"><span class="header-section-number">8.3</span> Document, website, or book?</h2>
+<p>The most important file, <code>_quarto.yml</code>, decides what you are building.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>type:</code></th>
+<th>What you get</th>
+<th>Good for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>default</code></td>
+<td>A single standalone document</td>
+<td>A single web-page for a practical or lecture</td>
+</tr>
+<tr class="even">
+<td><code>website</code></td>
+<td>Many pages with a top navigation bar</td>
+<td>A course site: schedule, links, materials</td>
+</tr>
+<tr class="odd">
+<td><code>book</code></td>
+<td>Numbered chapters, a sidebar, cross-references, and a combined PDF</td>
+<td>A course reader</td>
+</tr>
+</tbody>
+</table>
+<p>A book <em>is</em> a website with extra structure, so starting as a website and graduating to a book later costs almost nothing. This guide assumes a book.</p>
+</section>
+<section id="sec-other-languages" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="sec-other-languages"><span class="header-section-number">8.4</span> Not an R user?</h2>
+<p>Almost nothing here is really about R. Write <code>```{python}</code> instead of <code>```{r}</code> and your code chunks run Python; Julia and Observable JS work too, and a book can mix them. However, I have no experience using Quarto with Python or other languages, so I cannot give you any advice on that. It’s probably just as easy. Either way, the structure, the figures, the callouts, the iframes, the publishing, this is all identical whether you edit in RStudio, VS Code, or a plain text editor.</p>
+<p>So let’s get started.</p>
+</section>
+</section>
+<section id="sec-setup" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Setting up in RStudio</h1>
+<p>Duration: ten minutes, once. At the end you will have a real book rendering in front of you.</p>
+<p>There are two ways in, and the second is usually the better one.</p>
+<section id="sec-starter" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="sec-starter"><span class="header-section-number">9.1</span> Option A: start from this book</h2>
+<p><strong>The book you are reading is itself a starter template.</strong> Every chapter in this guide is a working demonstration of the thing it describes. Download and extract the folder below and you inherit all of it: the UU house style, a working <code>_quarto.yml</code>, a sensible <code>.gitignore</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and an example of each pattern you are likely to need.</p>
+<p><a href="starter-book.zip"><strong>Download the starter book (.zip)</strong></a></p>
+</section>
+<section id="opening-a-downloaded-folder-in-rstudio" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="opening-a-downloaded-folder-in-rstudio"><span class="header-section-number">9.2</span> Opening a downloaded folder in RStudio</h2>
+<ol type="1">
+<li><p>Unzip it somewhere sensible and <strong>rename the folder</strong> to your course.</p></li>
+<li><p>In RStudio: <kbd>File</kbd> → <kbd>New Project…</kbd> → <strong><kbd>Existing Directory</kbd></strong> → browse to that folder → <kbd>Create Project</kbd>.</p>
+<p><em>Existing Directory</em> is the option people miss, because the wizard’s first screen pushes you towards <em>New Directory</em>. It creates nothing of its own. It only tells RStudio “this folder is a project”, writes an <code>.Rproj</code> file into it, and opens it. Everything already in the folder stays exactly as it is. (The zip deliberately contains no <code>.Rproj</code>, so the one RStudio makes will be named after <em>your</em> folder.)</p></li>
+<li><p>Press <strong>Render</strong>. You should get this book back, running locally. Nothing else needs installing.</p></li>
+<li><p>Now start replacing. Open <code>_quarto.yml</code>, change the title and author, and work through the chapters one at a time: keep the scaffolding, delete our prose, write yours.</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What to keep, what to throw away
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Keep:</strong> <code>_quarto.yml</code> (although you’ll edit it), <code>uu.scss</code> (uu house style), <code>.gitignore</code>, and folder structure (e.g.&nbsp;<code>figures/</code> and <code>applets/</code>)., and <code>applets/AI-prompt-template.md</code>. Keep <code>make-starter-zip.R</code> only if you want to hand <em>your</em> book on the same way.</p>
+<p><strong>Throw away</strong> once you no longer need them: the speicific chapter files for this book, and apps/figures only used for this explainer.</p>
+</div>
+</div>
+</section>
+<section id="option-b-start-from-nothing" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="option-b-start-from-nothing"><span class="header-section-number">9.3</span> Option B: start from nothing</h2>
+<p>If you would rather setup your book from an empty folder, which will help you better understand how it works, you can start one from scratch with RStudio.</p>
+</section>
+<section id="make-the-project" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="make-the-project"><span class="header-section-number">9.4</span> Make the project</h2>
+<p><kbd>File</kbd> → <kbd>New Project…</kbd> → <kbd>New Directory</kbd> → <kbd>Quarto Book</kbd>.</p>
+<p>Give the folder a name. Tick <strong>Create a git repository</strong> if you already know you want to publish it (see <a href="print.html" class="quarto-xref"><span>Chapter 11</span></a>): it is easier to tick now than to add later. Press <strong>Create</strong>.</p>
+<p>RStudio opens the new project, and you are already looking at a working book.</p>
+</section>
+<section id="press-render" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="press-render"><span class="header-section-number">9.5</span> Press Render</h2>
+<p>The <strong>Render</strong> button sits in the toolbar above the editor. The first render takes a few minutes (depending on the book size); the finished book then appears either in the RStudio’s Viewer pane or in your web browser (system dependent). All the HTML files are moved to a folder called <code>_book</code> (or later: <code>docs</code> — see <a href="print.html" class="quarto-xref"><span>Chapter 3</span></a>). Note that you can open the HTML files in this directory from your file browser, and everything will work with one exception: the live code chunks, which either requires a local webserve (by typing <code>quarto preview</code> in the terminal), or simply an online copy of your book (see <a href="print.html" class="quarto-xref"><span>Chapter 11</span></a>).</p>
+<p>If you use <code>quarto preview</code> to show your web book in the browser, there is a neat little tick-box left of the Render button called <code>Render on Save</code>. Now every save refreshes the preview by itself.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/renderbutton.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The Render button sits in the toolbare above the editor"><img src="figures/renderbutton.png" class="img-fluid figure-img" alt="The Render button sits in the toolbare above the editor"></a></p>
+<figcaption>The Render button sits in the toolbare above the editor</figcaption>
+</figure>
+</div>
+</section>
+<section id="source-or-visual" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="source-or-visual"><span class="header-section-number">9.6</span> Source or Visual?</h2>
+<p>Note that the toolbar with the render button also contains a <kbd>Source</kbd>/<kbd>Visual</kbd> toggle.</p>
+<p><strong>Visual</strong> gives you a Word-like view real bold text, real tables, menus for inserting figures, equations and cross-references. If you dont want to see any markup at all, you can live here permanently.</p>
+<p><strong>Source</strong> shows the markup. It is faster once you know it, and it is what the rest of this guide shows. I do recommend this, with one exception, shown in the tip below.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Make tables in Visual mode
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Markdown tables are miserable to write by hand and trivial in Visual mode. Insert one there, then switch back to Source. Or ask AI to convert a table into markdown.</p>
+</div>
+</div>
+</section>
+<section id="important-elements-in-a-quarto-book-folder" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="important-elements-in-a-quarto-book-folder"><span class="header-section-number">9.7</span> Important elements in a Quarto book folder</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_quarto.yml</code></td>
+<td>The book definition: which chapters, in which order, with which theme. <strong>The only file you truly must understand</strong> (see <a href="print.html" class="quarto-xref"><span>Chapter 3</span></a>).</td>
+</tr>
+<tr class="even">
+<td><code>index.qmd</code></td>
+<td>The front page. You cannot rename this file, it is required and it the ‘home page’ of your web book.</td>
+</tr>
+<tr class="odd">
+<td><code>*.qmd</code></td>
+<td>One file per chapter. This is where you write. You can enable / disable chapters by modifying <code>_quarto.yml</code>.</td>
+</tr>
+<tr class="even">
+<td><code>_book/</code></td>
+<td>The finished website, generated by Quarto upon rendering. Don’t edit these files, they will be overwritten next render anyway.</td>
+</tr>
+<tr class="odd">
+<td><code>*.Rproj</code></td>
+<td>RStudio’s project file. Double-click it to reopen the book later.</td>
+</tr>
+<tr class="even">
+<td><code>_freeze/</code></td>
+<td>Stored results of code that has already been run or rendered, helps speed up rendering later (see <a href="print.html" class="quarto-xref"><span>Chapter 10</span></a>).</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
+</div>
+</div>
+</div>
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
@@ -396,6 +615,12 @@ eyJjb250ZW50cyI6W119
 WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>If you will follow the guide and publish your book on Github pages, this files ensures you do not track every single temporary file along with the actual contents of the book.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -843,6 +1068,38 @@ window._ojs.runtime.interpretFromScriptTags();
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

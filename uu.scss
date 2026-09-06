@@ -172,7 +172,53 @@ p code, li code, td code {
 .screen-only { display: block; }
 .print-only  { display: none; }
 
+// The printed book opens on a cover built from the book: metadata in
+// _quarto.yml, so the title, subtitle and author cannot drift out of step
+// with the website. On screen it does not exist at all.
+.cover-page { display: none; }
+
 @media print {
+  // Quarto hides the sidebar and the TOC, but not everything: the search
+  // field lives in the sidebar *and* in the collapsed header, and the header
+  // copy survives onto paper as an empty box. These are all screen furniture.
+  #quarto-search, .sidebar-search, #quarto-header,
+  #quarto-search-results, #quarto-search-options, .aa-DetachedOverlay,
+  #quarto-back-to-top, .quarto-btn-toggle {
+    display: none !important;
+  }
+
+  .cover-page {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 86vh;
+    break-after: page;
+    page-break-after: always;
+  }
+  .cover-logo img, img.cover-logo { width: 130px; margin-bottom: 2.5rem; }
+  .cover-title {
+    display: block;
+    font-family: $headings-font-family;
+    font-size: 2.4em;
+    font-weight: 700;
+    line-height: 1.15;
+    padding-bottom: 0.4em;
+    border-bottom: 5px solid $uu-yellow;
+  }
+  .cover-subtitle {
+    display: block;
+    font-size: 1.15em;
+    margin-top: 1.2em;
+    color: #444;
+  }
+  .cover-author {
+    display: block;
+    margin-top: 3.5rem;
+    font-size: 0.95em;
+  }
+
   .screen-only { display: none !important; }
   .print-only  {
     display: block !important;
@@ -190,6 +236,55 @@ p code, li code, td code {
   // beside it is what the reader gets instead (see the Interactive chapter).
   iframe { display: none !important; }
 
+  // On the one-page print version (see print.qmd) every chapter is a
+  // top-level section, and each should start on a fresh sheet. A normal
+  // chapter page has exactly one such section, and :first-of-type exempts
+  // it, so this rule costs those pages nothing -- no leading blank page.
+  main > section.level1 {
+    break-before: page;
+    page-break-before: always;
+  }
+  main > section.level1:first-of-type {
+    break-before: auto;
+    page-break-before: avoid;
+  }
+
+  // The webR/pyodide spinner and its status line ("Downloading webR...") are
+  // frequently still on screen when a print is taken, and land in the middle
+  // of a page. Hide just the loading chrome -- the cells themselves stay, so
+  // the printed book keeps chapter 9's demos.
+  #exercise-loading-indicator, .exercise-loading-indicator,
+  #exercise-loading-status, .exercise-loading-status,
+  .spinner-grow, .spinner-border {
+    display: none !important;
+  }
+
+  // Quarto only makes {layout-ncol} panels side-by-side inside
+  // @media (min-width: 992px), and below 768px it actively forces them to
+  // stack. An A4 page is about 660px of usable width, so on paper every
+  // side-by-side panel silently collapses into a column. Restating the
+  // wide-screen rules here puts them back; the 50% flex-basis Quarto writes
+  // inline on each cell then does the rest.
+  .quarto-layout-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .quarto-layout-cell {
+    position: relative;
+    margin-right: 20px;
+  }
+  .quarto-layout-cell:last-child { margin-right: 0; }
+  .quarto-layout-cell img { max-width: 100%; }
+  .quarto-layout-cell figure {
+    display: block;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+  }
+  .quarto-layout-cell figure, .quarto-layout-cell > p { margin: 0.2em; }
+
   // Keep things whole across page breaks.
   h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
   figure, table, pre, .callout, blockquote {
@@ -203,13 +298,30 @@ p code, li code, td code {
   h2         { border-bottom-color: #bbb !important; }
   table thead th { border-bottom-color: #333 !important; }
 
-  // A printed page cannot be clicked.
-  a[href^="http"]::after {
+  // A printed page cannot be clicked, so links stop pretending to be links:
+  // no UU red, no underline. Running prose keeps an underline so you can see
+  // that something was linked, and external links spell out their address.
+  a { color: inherit !important; text-decoration: none; }
+  p a, li a, td a { text-decoration: underline; text-underline-offset: 2px; }
+
+  p a[href^="http"]::after,
+  li a[href^="http"]::after,
+  td a[href^="http"]::after {
     content: " (" attr(href) ")";
     font-size: 0.75em;
     color: #555;
     word-break: break-all;
   }
+
+  // ...but never in a heading, on the cover, in the TOC or in navigation.
+  // That is where the parenthesised URLs looked wrong: a subtitle reading
+  // "A guide to Quarto (https://quarto.org/), and a template" is noise.
+  h1 a::after, h2 a::after, h3 a::after, h4 a::after, h5 a::after,
+  .cover-page a::after, #TOC a::after, nav a::after,
+  .footnote-ref::after, a.quarto-xref::after {
+    content: none !important;
+  }
+
 
   // Drafting markers should never reach paper.
   .screenshot { display: none !important; }
