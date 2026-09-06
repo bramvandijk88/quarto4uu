@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-6036fc3794b2b8ac1c61eac6f98d7e4d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8a7c5e76d5f4be2f78cb7ad72d3e451c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7dc787a484c58ca90fffca74c61478bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -406,6 +406,51 @@ window.Quarto = {
   <li><a href="#a-real-pdf-rather-than-printing-a-web-page" id="toc-a-real-pdf-rather-than-printing-a-web-page" class="nav-link" data-scroll-target="#a-real-pdf-rather-than-printing-a-web-page">A real PDF, rather than printing a web page</a></li>
   <li><a href="#sec-printing" id="toc-sec-printing" class="nav-link" data-scroll-target="#sec-printing">Printing the web page</a></li>
   </ul></li>
+  <li><a href="#sec-iframes" id="toc-sec-iframes" class="nav-link" data-scroll-target="#sec-iframes">Embedding interactive content</a>
+  <ul class="collapse">
+  <li><a href="#how-to-embed-iframes" id="toc-how-to-embed-iframes" class="nav-link" data-scroll-target="#how-to-embed-iframes">How to embed iframes</a></li>
+  <li><a href="#external-a-simulation-on-another-server" id="toc-external-a-simulation-on-another-server" class="nav-link" data-scroll-target="#external-a-simulation-on-another-server">External: a simulation on another server</a></li>
+  <li><a href="#external-a-desmos-graph" id="toc-external-a-desmos-graph" class="nav-link" data-scroll-target="#external-a-desmos-graph">External: a Desmos graph</a></li>
+  <li><a href="#external-a-video" id="toc-external-a-video" class="nav-link" data-scroll-target="#external-a-video">External: a video</a></li>
+  <li><a href="#external-code-students-can-edit-and-run" id="toc-external-code-students-can-edit-and-run" class="nav-link" data-scroll-target="#external-code-students-can-edit-and-run">External: code students can edit and run</a></li>
+  <li><a href="#internal-an-applet-inside-your-own-book" id="toc-internal-an-applet-inside-your-own-book" class="nav-link" data-scroll-target="#internal-an-applet-inside-your-own-book">Internal: an applet inside your own book</a></li>
+  </ul></li>
+  <li><a href="#sec-webr" id="toc-sec-webr" class="nav-link" data-scroll-target="#sec-webr">Code students can run in the browser</a>
+  <ul class="collapse">
+  <li><a href="#a-first-example" id="toc-a-first-example" class="nav-link" data-scroll-target="#a-first-example">A first example</a></li>
+  <li><a href="#where-this-sits-among-the-other-options" id="toc-where-this-sits-among-the-other-options" class="nav-link" data-scroll-target="#where-this-sits-among-the-other-options">Where this sits among the other options</a></li>
+  <li><a href="#sec-webr-install" id="toc-sec-webr-install" class="nav-link" data-scroll-target="#sec-webr-install">Installing it</a></li>
+  <li><a href="#one-more-step-before-it-works" id="toc-one-more-step-before-it-works" class="nav-link" data-scroll-target="#one-more-step-before-it-works">One more step before it works</a></li>
+  <li><a href="#writing-a-cell" id="toc-writing-a-cell" class="nav-link" data-scroll-target="#writing-a-cell">Writing a cell</a></li>
+  <li><a href="#cell-options" id="toc-cell-options" class="nav-link" data-scroll-target="#cell-options">Cell options</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#sec-webr-python" id="toc-sec-webr-python" class="nav-link" data-scroll-target="#sec-webr-python">The same trick for Python</a></li>
+  <li><a href="#does-it-work-in-the-pdf" id="toc-does-it-work-in-the-pdf" class="nav-link" data-scroll-target="#does-it-work-in-the-pdf">Does it work in the PDF?</a></li>
+  </ul></li>
+  <li><a href="#sec-ai" id="toc-sec-ai" class="nav-link" data-scroll-target="#sec-ai">Writing applets with an AI assistant</a>
+  <ul class="collapse">
+  <li><a href="#example-applet" id="toc-example-applet" class="nav-link" data-scroll-target="#example-applet">Example applet</a></li>
+  <li><a href="#tips-for-making-apps-with-ai." id="toc-tips-for-making-apps-with-ai." class="nav-link" data-scroll-target="#tips-for-making-apps-with-ai.">Tips for making apps with AI.</a></li>
+  <li><a href="#what-not-to-do" id="toc-what-not-to-do" class="nav-link" data-scroll-target="#what-not-to-do">What not to do</a></li>
+  </ul></li>
+  <li><a href="#sec-rendering" id="toc-sec-rendering" class="nav-link" data-scroll-target="#sec-rendering">Rendering, and keeping it fast</a>
+  <ul class="collapse">
+  <li><a href="#two-buttons-two-commands" id="toc-two-buttons-two-commands" class="nav-link" data-scroll-target="#two-buttons-two-commands">Two buttons, two commands</a></li>
+  <li><a href="#yml-options-freeze-and-cache" id="toc-yml-options-freeze-and-cache" class="nav-link" data-scroll-target="#yml-options-freeze-and-cache">YML options <code>freeze</code> and <code>cache</code></a></li>
+  </ul></li>
+  <li><a href="#sec-publishing" id="toc-sec-publishing" class="nav-link" data-scroll-target="#sec-publishing">Putting it online</a>
+  <ul class="collapse">
+  <li><a href="#three-routes" id="toc-three-routes" class="nav-link" data-scroll-target="#three-routes">Three routes</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
+  <li><a href="#step-by-step" id="toc-step-by-step" class="nav-link" data-scroll-target="#step-by-step">Step by step</a></li>
+  <li><a href="#note-that-the-github-repository-has-to-be-public" id="toc-note-that-the-github-repository-has-to-be-public" class="nav-link" data-scroll-target="#note-that-the-github-repository-has-to-be-public">Note that the Github repository has to be public</a></li>
+  </ul></li>
+  <li><a href="#sec-trouble" id="toc-sec-trouble" class="nav-link" data-scroll-target="#sec-trouble">When it breaks</a>
+  <ul class="collapse">
+  <li><a href="#reading-an-error-message" id="toc-reading-an-error-message" class="nav-link" data-scroll-target="#reading-an-error-message">Reading an error message</a></li>
+  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other resources</a></li>
+  </ul></li>
+  <li><a href="#about-this-guide" id="toc-about-this-guide" class="nav-link" data-scroll-target="#about-this-guide">About this guide</a></li>
   </ul>
 </nav>
     </div>
@@ -431,7 +476,49 @@ window.Quarto = {
 </header>
 
 
+<div class="screen-only">
+<p>This is the whole book in one document, so that a single print gives you everything rather than one chapter at a time. Nothing here is a second copy: the chapters are pulled straight from the same sources as the chapter pages, so this page cannot fall behind them.</p>
+<p>Pick a layout and the print dialog opens:</p>
+<div class="print-choices">
+  <button type="button" onclick="printBook('print-1col')">
+    🖨️ One column
+  </button>
+  <button type="button" onclick="printBook('print-2col')">
+    🖨️ Two columns, smaller type
+  </button>
+</div>
+<script>
+  function printBook(mode) {
+    const root = document.documentElement;
+    root.classList.remove('print-1col', 'print-2col');
+    root.classList.add(mode);
+    window.print();
+  }
+  // Leave no trace on screen once the dialog closes.
+  window.addEventListener('afterprint', function () {
+    document.documentElement.classList.remove('print-1col', 'print-2col');
+  });
+</script>
+<p><strong>One column</strong> is the readable default: full-width text, and the side-by-side figure panels stay side by side. See left-hand side of image below.</p>
+<p><strong>Two columns</strong> fits noticeably more text on a sheet, which is worth real money if students pay to print it. The type comes down a little with the measure, and the side-by-side panels stack rather than squeeze into half a column. Wide code blocks and long equations are the things to check before committing to it. See right-hand side of image below.</p>
+<div class="print-preview">
+<p><a href="figures/layouts.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="figures/layouts.png" class="img-fluid" alt="One-column and two-column print layouts compared"></a></p>
+</div>
+<p>Either way the book opens on a cover page and every chapter starts on a fresh sheet. Pressing <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd> without using a button gives you the one-column version.</p>
+</div>
 <style>
+/* This page is an unnumbered chapter, which makes Quarto drop numbering for
+   the whole document -- including every chapter pulled in below. The numbers
+   still matter though: "What Quarto is, and why bother" is chapter 1 on the
+   website and must be chapter 1 here too. So they are counted back in.
+   Welcome and About carry .unnumbered from their own headings and are
+   skipped, exactly as they are in the sidebar. Scoped to this page. */
+main { counter-reset: chapnum; }
+main > section.level1:not(.unnumbered) > h1::before {
+  counter-increment: chapnum;
+  content: counter(chapnum) "\00a0\00a0";
+}
+
 @media print {
   /* The page's own heading is screen furniture -- on paper the book opens
      on its cover instead. Scoped here, so a single chapter still prints
@@ -444,9 +531,6 @@ window.Quarto = {
 <p><span class="cover-title">Quarto 4 UU</span></p>
 <p><span class="cover-subtitle">A guide to <a href="https://quarto.org/">Quarto</a>, and a template, for teachers at Utrecht University</span></p>
 <p><span class="cover-author">Bram van Dijk, TBB, Utrecht University</span></p>
-</div>
-<div class="screen-only">
-<p>This page serves the whole book on one page, so that <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd> gives you a single print/PDF for everything, rather than only one chapter. This can then be offered to students as a physical course book<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Everything below is pulled from the same chapter sources, so no need to manage multiple copies.</p>
 </div>
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
@@ -483,7 +567,7 @@ window.Quarto = {
 <p><strong>Less worry about formatting, more focus on content </strong> Your book is a folder of plain text files. This enables you to think better about the content, rather than worry about formatting. Quarto takes care of 90% of the formatting (I will not lie, sometimes you will still need to tweak a bit if you’re a prefectionist).</p>
 <p><strong>Maths renders properly.</strong> You can use LaTeX to format all your math by putting text between dollar signs. It prints beautifully, and students can copy/paste either the image or the LateX code easily.</p>
 <p><strong>Code can run.</strong> A plot in your reader can be generated by the code that produced it, so the figure and the analysis never drift apart.</p>
-<p><strong>Interactive explainers right next to the explanation.</strong> A student can read about the material, model and immediately turn some knobs (see section <a href="08-iframes.html" class="quarto-xref"><span>8&nbsp; Embedding interactive content</span></a>). In fact, with <a href="#sec-webr" class="quarto-xref"><span>Code students can run in the browser</span></a> they can edit the R or Python code and run it <strong>locally</strong> in the browser, even if they have no R or Python installed.</p>
+<p><strong>Interactive explainers right next to the explanation.</strong> A student can read about the material, model and immediately turn some knobs (see section <a href="#sec-iframes" class="quarto-xref"><span>Embedding interactive content</span></a>). In fact, with <a href="#sec-webr" class="quarto-xref"><span>Code students can run in the browser</span></a> they can edit the R or Python code and run it <strong>locally</strong> in the browser, even if they have no R or Python installed.</p>
 <p><strong>Navigational structure comes for free.</strong> Sidebar, search box, chapter numbering, cross-references and a table of contents are all generated for you.</p>
 </section>
 <section id="what-you-need-to-install" class="level2">
@@ -557,7 +641,7 @@ window.Quarto = {
 <p>There are two ways in, and the second is usually the better one.</p>
 <section id="sec-starter" class="level2">
 <h2 class="anchored" data-anchor-id="sec-starter">Option A: start from this book</h2>
-<p><strong>The book you are reading is itself a starter template.</strong> Every chapter in this guide is a working demonstration of the thing it describes. Download and extract the folder below and you inherit all of it: the UU house style, a working <code>_quarto.yml</code>, a sensible <code>.gitignore</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and an example of each pattern you are likely to need.</p>
+<p><strong>The book you are reading is itself a starter template.</strong> Every chapter in this guide is a working demonstration of the thing it describes. Download and extract the folder below and you inherit all of it: the UU house style, a working <code>_quarto.yml</code>, a sensible <code>.gitignore</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and an example of each pattern you are likely to need.</p>
 <p><a href="starter-book.zip"><strong>Download the starter book (.zip)</strong></a></p>
 </section>
 <section id="opening-a-downloaded-folder-in-rstudio" class="level2">
@@ -600,7 +684,7 @@ window.Quarto = {
 <p>If you use <code>quarto preview</code> to show your web book in the browser, there is a neat little tick-box left of the Render button called <code>Render on Save</code>. Now every save refreshes the preview by itself.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figures/renderbutton.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The Render button sits in the toolbare above the editor"><img src="figures/renderbutton.png" class="img-fluid figure-img" alt="The Render button sits in the toolbare above the editor"></a></p>
+<p><a href="figures/renderbutton.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="The Render button sits in the toolbare above the editor"><img src="figures/renderbutton.png" class="img-fluid figure-img" alt="The Render button sits in the toolbare above the editor"></a></p>
 <figcaption>The Render button sits in the toolbare above the editor</figcaption>
 </figure>
 </div>
@@ -742,7 +826,7 @@ window.Quarto = {
 <div id="fig-bmsdark" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bmsdark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/darkmode.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics."><img src="figures/darkmode.png" class="img-fluid figure-img" style="width:50.0%"></a>
+<a href="figures/darkmode.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics."><img src="figures/darkmode.png" class="img-fluid figure-img" style="width:50.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bmsdark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics.
@@ -814,7 +898,7 @@ Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book 
 <div id="fig-growth" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="print_files/figure-html/fig-growth-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;4.1: Logistic growth for three values of r."><img src="print_files/figure-html/fig-growth-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="print_files/figure-html/fig-growth-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4.1: Logistic growth for three values of r."><img src="print_files/figure-html/fig-growth-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.1: Logistic growth for three values of <span class="math inline">\(r\)</span>.
@@ -1074,7 +1158,7 @@ Figure&nbsp;4.2: Two ways to study a biological system.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="al">![A caption students will actually read.](figures/example-figure.svg)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics."><img src="figures/example-figure.svg" class="img-fluid figure-img" alt="Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics."></a></p>
+<p><a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics."><img src="figures/example-figure.svg" class="img-fluid figure-img" alt="Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics."></a></p>
 <figcaption>Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics.</figcaption>
 </figure>
 </div>
@@ -1087,7 +1171,7 @@ Figure&nbsp;4.2: Two ways to study a biological system.
 <div id="fig-example" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5.1: The same figure at 55% width, centred."><img src="figures/example-figure.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></a>
+<a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;5.1: The same figure at 55% width, centred."><img src="figures/example-figure.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.1: The same figure at 55% width, centred.
@@ -1113,7 +1197,7 @@ Figure&nbsp;5.1: The same figure at 55% width, centred.
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Left panel"><img src="figures/example-figure.svg" class="img-fluid figure-img" alt="Left panel"></a></p>
+<p><a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Left panel"><img src="figures/example-figure.svg" class="img-fluid figure-img" alt="Left panel"></a></p>
 <figcaption>Left panel</figcaption>
 </figure>
 </div>
@@ -1121,7 +1205,7 @@ Figure&nbsp;5.1: The same figure at 55% width, centred.
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Right panel"><img src="figures/example-figure.svg" class="img-fluid figure-img" alt="Right panel"></a></p>
+<p><a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Right panel"><img src="figures/example-figure.svg" class="img-fluid figure-img" alt="Right panel"></a></p>
 <figcaption>Right panel</figcaption>
 </figure>
 </div>
@@ -1609,7 +1693,7 @@ Table&nbsp;6.4: Maths that will not render.
 <p>Although a minority, some students enjoy printing your book. We found that approximately 1 in 8 students still wanted a printed version, which is why we decided to offer not only a printer-friendly web book, but also compiled our own PDF via the printing route.</p>
 <p>First things first: you do <strong>not</strong> have to worry about all the web elements, like the side bars and logos. Try it: hit print on this web page and you’ll they dont get printed. But what about interactive elements, like simulations and videos? How will these get printed? We did a bit of additional hacking to fix this.</p>
 <section id="a-trick-applied-in-this-template" class="level3">
-<h3 class="anchored">A trick applied in this template</h3>
+<h3 class="anchored" data-anchor-id="a-trick-applied-in-this-template">A trick applied in this template</h3>
 <p>The trick below is already in this template, but if you have interactive materials and are <strong>not</strong> using this template, it is really worth copying. In our course material, every interactive embed in that book is a pair: a screenshot with a short caption for the printed version, and the live thing for screen.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>:::{.print-only}</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">center</span><span class="dt">&gt;</span>*Interactive content available on the website.*</span>
@@ -1641,7 +1725,7 @@ Table&nbsp;6.4: Maths that will not render.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1650,7 +1734,7 @@ Table&nbsp;6.4: Maths that will not render.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>When you press print on one of these pages, you get a nice PDF, but only of that one chapter. For the <em>whole</em> book you would have to print all of them and stitch the pieces together, and with this template, you do not have to do that by hand.</p>
 <p>In the sidebar there is a page called <strong>Print book 🖨️</strong>. It is the entire book in one document: open it, press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd> and save as PDF. Everything on this page applies, so the <code>.print-only</code> screenshots appear and the live embeds do not.</p>
@@ -1845,37 +1929,74 @@ Table&nbsp;6.4: Maths that will not render.
 <span id="cb26-188"><a href="#cb26-188" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`*.Rproj`</span> <span class="pp">|</span> RStudio's project file. Double-click it to reopen the book later. <span class="pp">|</span></span>
 <span id="cb26-189"><a href="#cb26-189" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`_freeze/`</span> <span class="pp">|</span> Stored results of code that has already been run or rendered, helps speed up rendering later (see @sec-rendering). <span class="pp">|</span></span>
 <span id="cb26-190"><a href="#cb26-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-192"><a href="#cb26-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-193"><a href="#cb26-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-194"><a href="#cb26-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-195"><a href="#cb26-195" aria-hidden="true" tabindex="-1"></a><span class="fu"># Embedding interactive content {#sec-iframes}</span></span>
-<span id="cb26-196"><a href="#cb26-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-197"><a href="#cb26-197" aria-hidden="true" tabindex="-1"></a>An **iframe** is a whole webpage shown inside a box on your page. It's a tiny</span>
-<span id="cb26-198"><a href="#cb26-198" aria-hidden="true" tabindex="-1"></a>website inside your website. It is the single most useful trick in our course books, </span>
-<span id="cb26-199"><a href="#cb26-199" aria-hidden="true" tabindex="-1"></a>because it lets you develop independent "apps" that you can then drop in the </span>
-<span id="cb26-200"><a href="#cb26-200" aria-hidden="true" tabindex="-1"></a>middle of the book. </span>
-<span id="cb26-201"><a href="#cb26-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-202"><a href="#cb26-202" aria-hidden="true" tabindex="-1"></a>There are two flavours, written almost identically:</span>
-<span id="cb26-203"><a href="#cb26-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-204"><a href="#cb26-204" aria-hidden="true" tabindex="-1"></a>**External** — you point at a page on someone else's server: Desmos for mathmatics,</span>
-<span id="cb26-205"><a href="#cb26-205" aria-hidden="true" tabindex="-1"></a>YouTube for videos, JSFiddle for javascript simulations, or one of my many <span class="co">[</span><span class="ot">other simulations</span><span class="co">](tbb.bio.uu.nl/bvd/simulations)</span>.</span>
-<span id="cb26-206"><a href="#cb26-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-207"><a href="#cb26-207" aria-hidden="true" tabindex="-1"></a>**Internal** — you point at an HTML file that lives inside your own project.</span>
-<span id="cb26-208"><a href="#cb26-208" aria-hidden="true" tabindex="-1"></a>Nothing external is involved and it keeps working forever. If you^<span class="co">[</span><span class="ot">With or without the help of our robot overlords</span><span class="co">]</span> develop your own</span>
-<span id="cb26-209"><a href="#cb26-209" aria-hidden="true" tabindex="-1"></a>little app, you can ship it with your book. </span>
-<span id="cb26-210"><a href="#cb26-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-211"><a href="#cb26-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to embed iframes</span></span>
-<span id="cb26-212"><a href="#cb26-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-213"><a href="#cb26-213" aria-hidden="true" tabindex="-1"></a>Raw HTML must be wrapped into a <span class="in">`{=html}`</span> block, or Quarto escapes it and</span>
-<span id="cb26-214"><a href="#cb26-214" aria-hidden="true" tabindex="-1"></a>students see the angle brackets:</span>
-<span id="cb26-215"><a href="#cb26-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-216"><a href="#cb26-216" aria-hidden="true" tabindex="-1"></a><span class="in">````markdown</span></span>
-<span id="cb26-217"><a href="#cb26-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb26-218"><a href="#cb26-218" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="…" width="100%" height="600"</span></span>
-<span id="cb26-219"><a href="#cb26-219" aria-hidden="true" tabindex="-1"></a><span class="in">        style="border:none; border-radius:8px;"&gt;</span></span>
-<span id="cb26-220"><a href="#cb26-220" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/iframe&gt;</span></span>
-<span id="cb26-221"><a href="#cb26-221" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The chapters are pulled from the same sources the chapter pages use, so there is no second copy of anything. Add a chapter to <code>_quarto.yml</code> and you add one line here as well – that is the whole maintenance burden.</p>
+<p>On paper it opens on a cover built from the <code>book:</code> metadata in <code>_quarto.yml</code>, so the title, subtitle and author cannot drift out of step with the website. After that, every chapter starts on a fresh sheet.</p>
+<p>Five settings are doing the work, and all five are worth copying:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Lives in</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>{.unnumbered}</code> on the heading</td>
+<td><code>print.qmd</code></td>
+<td>keeps the page out of the chapter numbering, so it does not become chapter 14</td>
+</tr>
+<tr class="even">
+<td><code>number-sections: false</code></td>
+<td><code>print.qmd</code></td>
+<td>stops the <em>included</em> chapters continuing the book’s numbering – without it the page opens at 14 and runs to 27</td>
+</tr>
+<tr class="odd">
+<td><code>search: false</code></td>
+<td><code>print.qmd</code></td>
+<td>keeps it out of the search index – without it every chapter turns up twice in every result</td>
+</tr>
+<tr class="even">
+<td><code>execute: freeze: false</code></td>
+<td><code>print.qmd</code></td>
+<td>rebuilds the page on every render</td>
+</tr>
+<tr class="odd">
+<td><code>main &gt; section.level1</code></td>
+<td><code>uu.scss</code></td>
+<td>one chapter per sheet. <code>:first-of-type</code> is exempt, so a single chapter still prints without a blank leading page</td>
+</tr>
+</tbody>
+</table>
+<p>The freeze one is what will catch you out. Quarto’s cache tracks the file it is rendering, not the files that file includes – so without it the long page quietly serves yesterday’s text while the chapter pages update, with no warning of any kind. It costs a few seconds per render, and it saves you publishing a printed book that no longer matches the website.</p>
+<p>A couple of smaller things live in the <code>@media print</code> block of <code>uu.scss</code> and apply to every page, not just this one. Links stop being red and underlined, and only spell out their address in running prose – in a heading or on the cover a parenthesised URL is noise. The webR loading spinner is hidden, since it is often still on screen when the print is taken. And <code>{layout-ncol}</code> panels are forced back into a row: Quarto only lays those out side by side above 992px, and an A4 page is about 660px wide, so without help they silently stack.</p>
+<p>One last thing: the page must be listed under <code>chapters:</code> in <code>_quarto.yml</code>. A book renders only what is listed there. A loose <code>.qmd</code> sitting in the folder is silently skipped, and adding <code>project: render:</code> does not override it.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="sec-iframes" class="level1">
+<h1>Embedding interactive content</h1>
+<p>An <strong>iframe</strong> is a whole webpage shown inside a box on your page. It’s a tiny website inside your website. It is the single most useful trick in our course books, because it lets you develop independent “apps” that you can then drop in the middle of the book.</p>
+<p>There are two flavours, written almost identically:</p>
+<p><strong>External</strong> — you point at a page on someone else’s server: Desmos for mathmatics, YouTube for videos, JSFiddle for javascript simulations, or one of my many <a href="tbb.bio.uu.nl/bvd/simulations">other simulations</a>.</p>
+<p><strong>Internal</strong> — you point at an HTML file that lives inside your own project. Nothing external is involved and it keeps working forever. If you<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> develop your own little app, you can ship it with your book.</p>
+<section id="how-to-embed-iframes" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-embed-iframes">How to embed iframes</h2>
+<p>Raw HTML must be wrapped into a <code>{=html}</code> block, or Quarto escapes it and students see the angle brackets:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="…" width="100%" height="600"</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="in">        style="border:none; border-radius:8px;"&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/iframe&gt;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>width="100%"</code> makes it responsive to the page width (similar to images, probably a great idea with students looking at your content on phones and laptops alike). <code>height</code> is typically fixed for my embeddings. The inline <code>style</code> (no border, rounded corners, a little vertical margin) is what makes an embedded tool look like part of the page rather than a box someone dropped in.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1890,6 +2011,7 @@ Table&nbsp;6.4: Maths that will not render.
 <p>As discussed in the previous section, an iframe cannot exist on paper. Wrap every one of them in <code>::: {.content-visible when-format="html"}</code> and give the PDF a screenshot and a link instead — see <a href="#sec-pdf" class="quarto-xref"><span>Getting it onto paper</span></a>. Otherwise the PDF gets a mysterious blank gap, or worse, something half cut-off or overlapping with your book’s content. The simulation below has a replacement: if you press print now, you will see the stale image appear with a remark that this interactive content is only available on the website.</p>
 </div>
 </div>
+</section>
 <section id="external-a-simulation-on-another-server" class="level2">
 <h2 class="anchored" data-anchor-id="external-a-simulation-on-another-server">External: a simulation on another server</h2>
 <div class="screen-only">
@@ -1899,31 +2021,31 @@ Table&nbsp;6.4: Maths that will not render.
 <div class="print-only">
 <p><strong>Simulation: rabbits in Australia.</strong> The interactive version is at <a href="https://tbb.bio.uu.nl/bvd/simulations/australia/" class="uri">https://tbb.bio.uu.nl/bvd/simulations/australia/</a> <img src="figures/australia.png" class="img-fluid" alt="figures"></p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://tbb.bio.uu.nl/bvd/simulations/australia/"</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Rabbits in Australia"</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        style</span><span class="op">=</span><span class="st">"border:none; border-radius:8px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://tbb.bio.uu.nl/bvd/simulations/australia/"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Rabbits in Australia"</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        style</span><span class="op">=</span><span class="st">"border:none; border-radius:8px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="external-a-desmos-graph" class="level2">
 <h2 class="anchored" data-anchor-id="external-a-desmos-graph">External: a Desmos graph</h2>
 <p>Build the graph on <a href="https://www.desmos.com/calculator">desmos.com/calculator</a>, press <strong>Share</strong>, and use the URL you are given (something like <code>https://www.desmos.com/calculator/qxycdqwsdq</code>) directly as the <code>src</code>. Students can then drag its sliders inside your book. We use these quite often for students that struggle with maths.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.desmos.com/calculator/qxycdqwsdq"</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"467"</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        style</span><span class="op">=</span><span class="st">"border:1px solid #ccc;"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.desmos.com/calculator/qxycdqwsdq"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"467"</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        style</span><span class="op">=</span><span class="st">"border:1px solid #ccc;"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Give you:</p>
 <iframe src="https://www.desmos.com/calculator/qxycdqwsdq" width="100%" height="467" style="border:1px solid #ccc;" frameborder="0"></iframe>
 </section>
 <section id="external-a-video" class="level2">
 <h2 class="anchored" data-anchor-id="external-a-video">External: a video</h2>
 <p>Do not hand-write an iframe for YouTube. Quarto has a shortcode that does it properly, including on phones:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/embed/wo9vZccmqwc &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/embed/wo9vZccmqwc &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Give you:</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/wo9vZccmqwc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
 <section id="external-code-students-can-edit-and-run" class="level2">
 <h2 class="anchored" data-anchor-id="external-code-students-can-edit-and-run">External: code students can edit and run</h2>
 <p><a href="https://jsfiddle.net">JSFiddle</a> hosts a small program together with its output. Append <code>/embedded/result</code> to the share URL for output only, or <code>/embedded/js,result</code> to show the code beside it so students can change a parameter and press Run.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://tbb.bio.uu.nl/bvd/simulations/cooperation/"</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"600"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Simulation"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://tbb.bio.uu.nl/bvd/simulations/cooperation/"</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"600"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Simulation"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Give you:</p>
 <iframe src="https://tbb.bio.uu.nl/bvd/simulations/cooperation/" width="100%" height="600" title="Simulation"></iframe>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -1943,13 +2065,13 @@ Table&nbsp;6.4: Maths that will not render.
 <section id="internal-an-applet-inside-your-own-book" class="level2">
 <h2 class="anchored" data-anchor-id="internal-an-applet-inside-your-own-book">Internal: an applet inside your own book</h2>
 <p>One self-contained <code>.html</code> file in a folder in your project. The <code>src</code> is then just a relative path:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="applets/example-applet.html"</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="in">        width="100%" height="620"</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="in">        title="Logistic growth explorer"</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="in">        style="border:none; border-radius:8px; margin:1em 0;"&gt;</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/iframe&gt;</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="applets/example-applet.html"</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="in">        width="100%" height="620"</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="in">        title="Logistic growth explorer"</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="in">        style="border:none; border-radius:8px; margin:1em 0;"&gt;</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/iframe&gt;</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Which gives you what you see below, a real applet, running inside this page:</p>
 <div class="screen-only">
 <iframe src="applets/example-applet.html" width="100%" height="620" title="Logistic growth explorer" style="border:none; border-radius:8px; margin:1em 0;">
@@ -1959,6 +2081,7 @@ Table&nbsp;6.4: Maths that will not render.
 <p><strong>Applet: logistic growth explorer.</strong> Sliders for <span class="math inline">\(r\)</span>, <span class="math inline">\(K\)</span> and <span class="math inline">\(N_0\)</span>, with the resulting trajectory. Open the book in a browser to use it.</p>
 </div>
 <p>Notice that this does not transfer well to a printed version of your book, but there is a solution. See <a href="#sec-printing" class="quarto-xref"><span>Printing the web page</span></a>.</p>
+</section>
 </section>
 <section id="sec-webr" class="level1">
 <h1>Code students can run in the browser</h1>
@@ -2011,7 +2134,7 @@ eyJhdHRyIjp7ImNhcHRpb24iOiJQYXJhY2V0YW1vbCBpbiB0aGUgYmxvb2QiLCJlZGl0Ijp0cnVlLCJl
 <div id="tbl-interactive" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-interactive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;8.1: The three kinds of interactive content.
+Table&nbsp;9.1: The three kinds of interactive content.
 </figcaption>
 <div aria-describedby="tbl-interactive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -2031,7 +2154,7 @@ Table&nbsp;8.1: The three kinds of interactive content.
 </thead>
 <tbody>
 <tr class="odd">
-<td>External iframe (<a href="08-iframes.html" class="quarto-xref"><span>8&nbsp; Embedding interactive content</span></a>)</td>
+<td>External iframe (<a href="#sec-iframes" class="quarto-xref"><span>Embedding interactive content</span></a>)</td>
 <td>Someone else</td>
 <td>Only what the tool allows</td>
 <td>Their server</td>
@@ -2137,7 +2260,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBwbG90IGEgc2luY2VcbnBs
 <div id="tbl-live-options" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-live-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;8.2: Live cell options.
+Table&nbsp;9.2: Live cell options.
 </figcaption>
 <div aria-describedby="tbl-live-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -2333,7 +2456,7 @@ pyodide:
 <li><strong>Ask for it to repeat your request in a hidden comment</strong> This way, your original suggestion (maybe reprased) will always remain visible, and it remains transparent that the app was made with the help of AI. We often request students to show when/if they used AI, so we should do the same.</li>
 </ul>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2342,7 +2465,7 @@ pyodide:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div style="font-family: &quot;Courier New">
 <p>Write me a small interactive teaching applet as <strong>one single, self-contained HTML file</strong>, that teaches [topic] (below).</p>
@@ -2387,9 +2510,9 @@ pyodide:
 <section id="yml-options-freeze-and-cache" class="level2">
 <h2 class="anchored" data-anchor-id="yml-options-freeze-and-cache">YML options <code>freeze</code> and <code>cache</code></h2>
 <p>These options can be defined globally in the <code>_quarto.yml</code> file<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These options solve slightly <strong>different</strong> problems, but the names aren’t too clear about this so the distinction is worth clarifying:</p>
 <section id="freeze-is-about-portability" class="level3">
 <h3 class="anchored" data-anchor-id="freeze-is-about-portability"><code>freeze</code> is about <em>portability</em></h3>
@@ -2473,9 +2596,9 @@ pyodide:
 <section id="step-by-step" class="level2">
 <h2 class="anchored" data-anchor-id="step-by-step">Step by step</h2>
 <p><strong>1. Point Quarto at <code>docs</code>.</strong> In <code>_quarto.yml</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> book</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> book</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Render once. The finished website now appears in <code>docs/</code>.</p>
 <p><strong>2. Add a file called <code>.nojekyll</code>.</strong> An empty file, inside <code>docs/</code>. GitHub runs its own processor over whatever folder it publishes, and that processor quietly drops directories whose names begin with an underscore, which is most of what Quarto generates. This file switches it off.</p>
 <p>In RStudio: <kbd>File</kbd> → <kbd>New File</kbd> → <kbd>Text File</kbd>, then <kbd>Save As</kbd>, navigate <strong>into <code>docs/</code></strong>, and give it exactly that name, leading dot included<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. Nothing appears in the Files pane afterwards (a leading dot means hidden). It is there; <em>⚙</em> → <em>Show Hidden Files</em> will show it.</p>
@@ -2487,10 +2610,10 @@ pyodide:
 <div id="fig-ghpages" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ghpages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/github_pages.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;11.1: Settings to be configures on your Github repository"><img src="figures/github_pages.png" class="img-fluid figure-img"></a>
+<a href="figures/github_pages.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;12.1: Settings to be configures on your Github repository"><img src="figures/github_pages.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ghpages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.1: Settings to be configures on your Github repository
+Figure&nbsp;12.1: Settings to be configures on your Github repository
 </figcaption>
 </figure>
 </div>
@@ -2548,7 +2671,7 @@ _book/
 <div id="tbl-trouble" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-trouble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;12.1: An incomplete but probably useful troubleshooting list.
+Table&nbsp;13.1: An incomplete but probably useful troubleshooting list.
 </figcaption>
 <div aria-describedby="tbl-trouble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -2652,10 +2775,6 @@ Table&nbsp;12.1: An incomplete but probably useful troubleshooting list.
 <p>The theme tries to follow the <a href="https://www.uu.nl/en/organisation/corporate-identity">Utrecht University corporate identity</a>, but is not official. I just applied the correct fonts (Merriweather and Open Sans), the correct colours (UU red and UU yellow), and the logo.</p>
 
 
-</section>
-</div>
-</div>
-</div>
 <script type="webr-data">
 eyJvcHRpb25zIjp7ImJhc2VVcmwiOiJodHRwczovL3dlYnIuci13YXNtLm9yZy92MC42LjAvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsiZXZhbHVhdGUiLCJrbml0ciIsImh0bWx0b29scyJdLCJyZXBvcyI6W119LCJyZW5kZXJfZGYiOiJkZWZhdWx0In0=
 </script>
@@ -2677,13 +2796,11 @@ eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2RO
 WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
 </section>
-</section>
-</section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Which in our courses, was still surprisingly popular!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>If you will follow the guide and publish your book on Github pages, this files ensures you do not track every single temporary file along with the actual contents of the book.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>If you will follow the guide and publish your book on Github pages, this files ensures you do not track every single temporary file along with the actual contents of the book.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>With or without the help of our robot overlords<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>for those interested, look for <a href="https://webassembly.org/">WebAssembly</a>) online<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>I know, not the best way to go about with R but they have to learn the concepts of loops<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>That doesnt always work, but it does in this case<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>

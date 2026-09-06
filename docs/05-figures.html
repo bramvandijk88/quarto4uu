@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Embedding interactive content – Quarto 4 UU</title>
+<title>5&nbsp; Figures and tables – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -67,8 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./09-runnable-code.html" rel="next">
-<link href="./07-pdf-and-print.html" rel="prev">
+<link href="./06-maths-latex.html" rel="next">
+<link href="./04-writing.html" rel="prev">
 <link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -82,6 +82,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-7dc787a484c58ca90fffca74c61478bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -156,7 +159,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-iframes.html">Interactive material</a></li><li class="breadcrumb-item"><a href="./08-iframes.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Embedding interactive content</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-writing.html">Writing</a></li><li class="breadcrumb-item"><a href="./05-figures.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Figures and tables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -222,13 +225,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Writing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-writing.html" class="sidebar-item-text sidebar-link">
@@ -237,7 +240,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-figures.html" class="sidebar-item-text sidebar-link">
+  <a href="./05-figures.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Figures and tables</span></span></a>
   </div>
 </li>
@@ -257,16 +260,16 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Interactive material</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-iframes.html" class="sidebar-item-text sidebar-link active">
+  <a href="./08-iframes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Embedding interactive content</span></span></a>
   </div>
 </li>
@@ -335,21 +338,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#how-to-embed-iframes" id="toc-how-to-embed-iframes" class="nav-link active" data-scroll-target="#how-to-embed-iframes"><span class="header-section-number">8.1</span> How to embed iframes</a></li>
-  <li><a href="#external-a-simulation-on-another-server" id="toc-external-a-simulation-on-another-server" class="nav-link" data-scroll-target="#external-a-simulation-on-another-server"><span class="header-section-number">8.2</span> External: a simulation on another server</a></li>
-  <li><a href="#external-a-desmos-graph" id="toc-external-a-desmos-graph" class="nav-link" data-scroll-target="#external-a-desmos-graph"><span class="header-section-number">8.3</span> External: a Desmos graph</a></li>
-  <li><a href="#external-a-video" id="toc-external-a-video" class="nav-link" data-scroll-target="#external-a-video"><span class="header-section-number">8.4</span> External: a video</a></li>
-  <li><a href="#external-code-students-can-edit-and-run" id="toc-external-code-students-can-edit-and-run" class="nav-link" data-scroll-target="#external-code-students-can-edit-and-run"><span class="header-section-number">8.5</span> External: code students can edit and run</a></li>
-  <li><a href="#internal-an-applet-inside-your-own-book" id="toc-internal-an-applet-inside-your-own-book" class="nav-link" data-scroll-target="#internal-an-applet-inside-your-own-book"><span class="header-section-number">8.6</span> Internal: an applet inside your own book</a></li>
+  <li><a href="#inserting-a-figure" id="toc-inserting-a-figure" class="nav-link active" data-scroll-target="#inserting-a-figure"><span class="header-section-number">5.1</span> Inserting a figure</a></li>
+  <li><a href="#sizing-alignment-and-labels" id="toc-sizing-alignment-and-labels" class="nav-link" data-scroll-target="#sizing-alignment-and-labels"><span class="header-section-number">5.2</span> Sizing, alignment and labels</a></li>
+  <li><a href="#click-to-enlarge" id="toc-click-to-enlarge" class="nav-link" data-scroll-target="#click-to-enlarge"><span class="header-section-number">5.3</span> Click to enlarge</a></li>
+  <li><a href="#figures-side-by-side" id="toc-figures-side-by-side" class="nav-link" data-scroll-target="#figures-side-by-side"><span class="header-section-number">5.4</span> Figures side-by-side</a></li>
+  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">5.5</span> Tables</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-iframes.html">Interactive material</a></li><li class="breadcrumb-item"><a href="./08-iframes.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Embedding interactive content</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-writing.html">Writing</a></li><li class="breadcrumb-item"><a href="./05-figures.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Figures and tables</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-iframes" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Embedding interactive content</span></span></h1>
+<h1 class="title"><span id="sec-figures" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Figures and tables</span></span></h1>
 </div>
 
 
@@ -366,102 +368,113 @@ window.Quarto = {
 </header>
 
 
-<p>An <strong>iframe</strong> is a whole webpage shown inside a box on your page. It’s a tiny website inside your website. It is the single most useful trick in our course books, because it lets you develop independent “apps” that you can then drop in the middle of the book.</p>
-<p>There are two flavours, written almost identically:</p>
-<p><strong>External</strong> — you point at a page on someone else’s server: Desmos for mathmatics, YouTube for videos, JSFiddle for javascript simulations, or one of my many <a href="tbb.bio.uu.nl/bvd/simulations">other simulations</a>.</p>
-<p><strong>Internal</strong> — you point at an HTML file that lives inside your own project. Nothing external is involved and it keeps working forever. If you<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> develop your own little app, you can ship it with your book.</p>
-<section id="how-to-embed-iframes" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="how-to-embed-iframes"><span class="header-section-number">8.1</span> How to embed iframes</h2>
-<p>Raw HTML must be wrapped into a <code>{=html}</code> block, or Quarto escapes it and students see the angle brackets:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="…" width="100%" height="600"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">        style="border:none; border-radius:8px;"&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/iframe&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>width="100%"</code> makes it responsive to the page width (similar to images, probably a great idea with students looking at your content on phones and laptops alike). <code>height</code> is typically fixed for my embeddings. The inline <code>style</code> (no border, rounded corners, a little vertical margin) is what makes an embedded tool look like part of the page rather than a box someone dropped in.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="inserting-a-figure" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="inserting-a-figure"><span class="header-section-number">5.1</span> Inserting a figure</h2>
+<p>Put the image in a <code>figures/</code> folder next to your chapters, and write one line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="al">![A caption students will actually read.](figures/example-figure.svg)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics."><img src="figures/example-figure.svg" class="img-fluid figure-img" alt="Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics."></a></p>
+<figcaption>Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics.</figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Add a screenshot for the printed version
+<p>The text in square brackets is the caption. <code>![]()</code> with an empty caption is allowed, but a caption is nearly always worth writing.</p>
+</section>
+<section id="sizing-alignment-and-labels" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sizing-alignment-and-labels"><span class="header-section-number">5.2</span> Sizing, alignment and labels</h2>
+<p>Options go in curly braces after the image:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](figures/example-figure.svg)</span>{#fig-example width=55% fig-align="center"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-example" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;5.1: The same figure at 55% width, centred."><img src="figures/example-figure.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: The same figure at 55% width, centred.
+</figcaption>
+</figure>
+</div>
+<p><code>width</code> is best given as a percentage so it adapts to the reader’s screen (you’d be surprised how many students will read from their phones…).</p>
+<p><code>fig-align</code> takes <code>left</code>, <code>center</code> or <code>right</code>. The <code>#fig-</code> prefix makes it referred to as <a href="print.html#fig-example" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> (rather than Table, Equation, etc.)</p>
+</section>
+<section id="click-to-enlarge" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="click-to-enlarge"><span class="header-section-number">5.3</span> Click to enlarge</h2>
+<p><code>lightbox: true</code> in <code>_quarto.yml</code> makes every figure in the book open full-screen when clicked.</p>
+</section>
+<section id="figures-side-by-side" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="figures-side-by-side"><span class="header-section-number">5.4</span> Figures side-by-side</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol=2}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="al">![Left panel](figures/a.svg)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="al">![Right panel](figures/b.svg)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Left panel"><img src="figures/example-figure.svg" class="img-fluid figure-img" alt="Left panel"></a></p>
+<figcaption>Left panel</figcaption>
+</figure>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>As discussed in the previous section, an iframe cannot exist on paper. Wrap every one of them in <code>::: {.content-visible when-format="html"}</code> and give the PDF a screenshot and a link instead — see <a href="print.html" class="quarto-xref"><span>Chapter 7</span></a>. Otherwise the PDF gets a mysterious blank gap, or worse, something half cut-off or overlapping with your book’s content. The simulation below has a replacement: if you press print now, you will see the stale image appear with a remark that this interactive content is only available on the website.</p>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/example-figure.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Right panel"><img src="figures/example-figure.svg" class="img-fluid figure-img" alt="Right panel"></a></p>
+<figcaption>Right panel</figcaption>
+</figure>
+</div>
+</div>
 </div>
 </div>
 </section>
-<section id="external-a-simulation-on-another-server" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="external-a-simulation-on-another-server"><span class="header-section-number">8.2</span> External: a simulation on another server</h2>
-<div class="screen-only">
-<iframe src="https://tbb.bio.uu.nl/bvd/simulations/australia/" width="100%" height="560" title="Rabbits in Australia" style="border:none; border-radius:8px;">
-</iframe>
+<section id="tables" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="tables"><span class="header-section-number">5.5</span> Tables</h2>
+<p>An ordinary Markdown table, with a caption line underneath to make it referenceable:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symbol <span class="pp">|</span> Meaning <span class="pp">|</span> Unit <span class="pp">|</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $N$ <span class="pp">|</span> population density <span class="pp">|</span> individuals per square kilometer <span class="pp">|</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r$ <span class="pp">|</span> intrinsic growth rate <span class="pp">|</span> per day / day$^{-1}$ <span class="pp">|</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $K$ <span class="pp">|</span> carrying capacity <span class="pp">|</span> maximum individuals per km$^2$ <span class="pp">|</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>: Parameters of the logistic model. {#tbl-parameters}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-parameters" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: Parameters of the logistic model.
+</figcaption>
+<div aria-describedby="tbl-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(N\)</span></td>
+<td>population density</td>
+<td>individuals per square kilometer</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(r\)</span></td>
+<td>intrinsic growth rate</td>
+<td>per day / day<span class="math inline">\(^{-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(K\)</span></td>
+<td>carrying capacity</td>
+<td>maximum individuals per km<span class="math inline">\(^2\)</span></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="print-only">
-<p><strong>Simulation: rabbits in Australia.</strong> The interactive version is at <a href="https://tbb.bio.uu.nl/bvd/simulations/australia/" class="uri">https://tbb.bio.uu.nl/bvd/simulations/australia/</a> <img src="figures/australia.png" class="img-fluid" alt="figures"></p>
+</figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://tbb.bio.uu.nl/bvd/simulations/australia/"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Rabbits in Australia"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        style</span><span class="op">=</span><span class="st">"border:none; border-radius:8px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="external-a-desmos-graph" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="external-a-desmos-graph"><span class="header-section-number">8.3</span> External: a Desmos graph</h2>
-<p>Build the graph on <a href="https://www.desmos.com/calculator">desmos.com/calculator</a>, press <strong>Share</strong>, and use the URL you are given (something like <code>https://www.desmos.com/calculator/qxycdqwsdq</code>) directly as the <code>src</code>. Students can then drag its sliders inside your book. We use these quite often for students that struggle with maths.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.desmos.com/calculator/qxycdqwsdq"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"467"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        style</span><span class="op">=</span><span class="st">"border:1px solid #ccc;"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Give you:</p>
-<iframe src="https://www.desmos.com/calculator/qxycdqwsdq" width="100%" height="467" style="border:1px solid #ccc;" frameborder="0"></iframe>
-</section>
-<section id="external-a-video" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="external-a-video"><span class="header-section-number">8.4</span> External: a video</h2>
-<p>Do not hand-write an iframe for YouTube. Quarto has a shortcode that does it properly, including on phones:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/embed/wo9vZccmqwc &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Give you:</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/wo9vZccmqwc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section>
-<section id="external-code-students-can-edit-and-run" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="external-code-students-can-edit-and-run"><span class="header-section-number">8.5</span> External: code students can edit and run</h2>
-<p><a href="https://jsfiddle.net">JSFiddle</a> hosts a small program together with its output. Append <code>/embedded/result</code> to the share URL for output only, or <code>/embedded/js,result</code> to show the code beside it so students can change a parameter and press Run.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://tbb.bio.uu.nl/bvd/simulations/cooperation/"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"600"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Simulation"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Give you:</p>
-<iframe src="https://tbb.bio.uu.nl/bvd/simulations/cooperation/" width="100%" height="600" title="Simulation"></iframe>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>External things break
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Fair warning: every external iframe relies on that web page staying online. Servers move, accounts expire, embedding gets blocked… Probably check any external links at the start of each course year, and for anything students are assessed on, best to make it internal.</p>
-</div>
-</div>
-</section>
-<section id="internal-an-applet-inside-your-own-book" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="internal-an-applet-inside-your-own-book"><span class="header-section-number">8.6</span> Internal: an applet inside your own book</h2>
-<p>One self-contained <code>.html</code> file in a folder in your project. The <code>src</code> is then just a relative path:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="applets/example-applet.html"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">        width="100%" height="620"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">        title="Logistic growth explorer"</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">        style="border:none; border-radius:8px; margin:1em 0;"&gt;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/iframe&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Which gives you what you see below, a real applet, running inside this page:</p>
-<div class="screen-only">
-<iframe src="applets/example-applet.html" width="100%" height="620" title="Logistic growth explorer" style="border:none; border-radius:8px; margin:1em 0;">
-</iframe>
-</div>
-<div class="print-only">
-<p><strong>Applet: logistic growth explorer.</strong> Sliders for <span class="math inline">\(r\)</span>, <span class="math inline">\(K\)</span> and <span class="math inline">\(N_0\)</span>, with the resulting trajectory. Open the book in a browser to use it.</p>
-</div>
-<p>Notice that this does not transfer well to a printed version of your book, but there is a solution. See <a href="print.html#sec-printing" class="quarto-xref"><span>Section 7.2</span></a>.</p>
+<p>Which is <a href="print.html#tbl-parameters" class="quarto-xref">Table&nbsp;<span>5.1</span></a>.</p>
 
 
 <script type="ojs-module-contents">
@@ -478,12 +491,6 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>With or without the help of our robot overlords<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -907,13 +914,13 @@ window._ojs.runtime.interpretFromScriptTags();
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./07-pdf-and-print.html" class="pagination-link" aria-label="Getting it onto paper">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Getting it onto paper</span></span>
+      <a href="./04-writing.html" class="pagination-link" aria-label="Writing a chapter">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing a chapter</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./09-runnable-code.html" class="pagination-link" aria-label="Code students can run in the browser">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Code students can run in the browser</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./06-maths-latex.html" class="pagination-link" aria-label="Maths and LaTeX">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Maths and LaTeX</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -931,6 +938,38 @@ window._ojs.runtime.interpretFromScriptTags();
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

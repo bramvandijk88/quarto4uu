@@ -92,3 +92,41 @@ list of includes, one per chapter:
 {{< include 01-what-is-quarto.qmd >}}
 {{< include 02-setup-rstudio.qmd >}}
 
+````
+
+The chapters are pulled from the same sources the chapter pages use, so there
+is no second copy of anything. Add a chapter to `_quarto.yml` and you add one
+line here as well -- that is the whole maintenance burden.
+
+On paper it opens on a cover built from the `book:` metadata in `_quarto.yml`,
+so the title, subtitle and author cannot drift out of step with the website.
+After that, every chapter starts on a fresh sheet.
+
+Five settings are doing the work, and all five are worth copying:
+
+| Setting | Lives in | Why |
+|---|---|---|
+| `{.unnumbered}` on the heading | `print.qmd` | keeps the page out of the chapter numbering, so it does not become chapter 14 |
+| `number-sections: false` | `print.qmd` | stops the *included* chapters continuing the book's numbering -- without it the page opens at 14 and runs to 27 |
+| `search: false` | `print.qmd` | keeps it out of the search index -- without it every chapter turns up twice in every result |
+| `execute: freeze: false` | `print.qmd` | rebuilds the page on every render |
+| `main > section.level1` | `uu.scss` | one chapter per sheet. `:first-of-type` is exempt, so a single chapter still prints without a blank leading page |
+
+The freeze one is what will catch you out. Quarto's cache tracks the file it is
+rendering, not the files that file includes -- so without it the long page
+quietly serves yesterday's text while the chapter pages update, with no warning
+of any kind. It costs a few seconds per render, and it saves you publishing a
+printed book that no longer matches the website.
+
+A couple of smaller things live in the `@media print` block of `uu.scss` and
+apply to every page, not just this one. Links stop being red and underlined,
+and only spell out their address in running prose -- in a heading or on the
+cover a parenthesised URL is noise. The webR loading spinner is hidden, since
+it is often still on screen when the print is taken. And `{layout-ncol}` panels
+are forced back into a row: Quarto only lays those out side by side above
+992px, and an A4 page is about 660px wide, so without help they silently stack.
+
+One last thing: the page must be listed under `chapters:` in `_quarto.yml`. A
+book renders only what is listed there. A loose `.qmd` sitting in the folder is
+silently skipped, and adding `project: render:` does not override it.
+:::

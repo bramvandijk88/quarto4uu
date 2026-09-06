@@ -177,6 +177,49 @@ p code, li code, td code {
 // with the website. On screen it does not exist at all.
 .cover-page { display: none; }
 
+// The two print buttons on the print page. They set a class on <html> and
+// call print(); the @media print block below reads that class.
+.print-choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1.4rem 0 1rem;
+}
+
+// The slot under the buttons where a picture of the two layouts goes. Sized
+// small on purpose: it is an illustration of a choice, not a figure.
+.print-preview {
+  max-width: 520px;
+  margin: 0 auto 1.8rem;
+  text-align: center;
+}
+.print-preview img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.print-preview figcaption,
+.print-preview .figure-caption {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+.print-choices button {
+  font-family: $font-family-sans-serif;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid $uu-red;
+  border-radius: 4px;
+  background: $uu-white;
+  color: $uu-red;
+  cursor: pointer;
+}
+.print-choices button:hover {
+  background: rgba($uu-yellow, 0.35);
+}
+
 @media print {
   // Quarto hides the sidebar and the TOC, but not everything: the search
   // field lives in the sidebar *and* in the collapsed header, and the header
@@ -236,6 +279,19 @@ p code, li code, td code {
   // beside it is what the reader gets instead (see the Interactive chapter).
   iframe { display: none !important; }
 
+  // Quarto lays every page out with CSS grid (body .page-columns), which is
+  // how it gets margin notes and full-bleed figures. Chrome will not
+  // fragment content inside a grid container, so every break-before: page
+  // below was being silently ignored -- chapters ran straight on. On paper
+  // the margin columns are hidden anyway, so the grid has no work left to
+  // do: put the page back into ordinary block flow and the breaks fire.
+  body .page-columns,
+  .page-columns,
+  .quarto-container {
+    display: block !important;
+    grid-template-columns: none !important;
+  }
+
   // On the one-page print version (see print.qmd) every chapter is a
   // top-level section, and each should start on a fresh sheet. A normal
   // chapter page has exactly one such section, and :first-of-type exempts
@@ -284,6 +340,43 @@ p code, li code, td code {
     margin-inline-end: 0;
   }
   .quarto-layout-cell figure, .quarto-layout-cell > p { margin: 0.2em; }
+
+  // ---------------------------------------------------------------------
+  //  Two-column variant, chosen with the buttons on the print page.
+  //  Columns are only worth having if the type comes down with them, and the
+  //  side-by-side figure fix above has to be undone: there is no room for two
+  //  panels inside a column half the width of the page.
+  //  Pressing Cmd/Ctrl+P without using a button gives the one-column layout.
+  // ---------------------------------------------------------------------
+  // Columnise each chapter, NOT main as a whole. If main is the multi-column
+  // container then the chapter sections live inside the column flow, and
+  // Chrome turns their break-before: page into a mere column break -- which
+  // is why two-column mode ran the chapters together. One multi-column
+  // container per chapter keeps each section an ordinary block in normal
+  // flow, so its page break still fires, and the cover stays full width
+  // without needing to be told.
+  .print-2col main > section.level1 {
+    column-count: 2;
+    column-gap: 1.5em;
+    // Relative to the 0.9em the print block already applies to body, so this
+    // lands a shade under the one-column size rather than dramatically below
+    // it. Nudge this one number if you want more or less on a sheet.
+    font-size: 0.96em;
+    line-height: 1.45;
+  }
+  // The chapter title runs across the top of both columns.
+  .print-2col main > section.level1 > h1 { column-span: all; }
+
+  // Undo the side-by-side rule: in a narrow column the panels stack.
+  .print-2col .quarto-layout-row { display: block !important; }
+  .print-2col .quarto-layout-cell {
+    margin-right: 0;
+    width: 100% !important;
+  }
+
+  // The things that suffer most from a narrow measure, given a little help.
+  .print-2col pre, .print-2col table { font-size: 0.9em; }
+  .print-2col pre code { white-space: pre-wrap; word-break: break-word; }
 
   // Keep things whole across page breaks.
   h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
