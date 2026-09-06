@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Putting it online – Making a course book with Quarto</title>
+<title>12&nbsp; Putting it online – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Once it renders, your book is just a folder of static files. Any web server can host it — including a free one.</p>
+<p>Once it renders, your book is just a folder of static files. Any web server can host it, including many free ones.</p>
 <section id="three-routes" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="three-routes"><span class="header-section-number">12.1</span> Three routes</h2>
 <table class="caption-top table">
@@ -358,17 +358,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Something that must live under a <code>uu.nl</code> address. The BMS book is served this way.</td>
 </tr>
 <tr class="odd">
-<td><strong>Quarto Pub</strong></td>
-<td>One command</td>
+<td><strong>Your own server</strong></td>
+<td>Reupload every time, or write your own automated script</td>
 <td>A quick demo or a one-off hand-out.</td>
 </tr>
 </tbody>
 </table>
-<p>The rest of this chapter is the GitHub Pages route, done <strong>without ever opening a terminal</strong>.</p>
+<p>The rest of this chapter is the first option: the GitHub Pages route.</p>
 </section>
 <section id="the-idea" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">12.2</span> The idea</h2>
-<p>Your book folder becomes a <em>repository</em> — a folder that GitHub keeps a copy of. You render the website into a subfolder called <code>docs</code>, send it to GitHub, and tell GitHub to serve that folder as a website.</p>
+<p>Your book folder becomes a <em>repository</em>: a folder that GitHub keeps a copy of. You render the website into a subfolder called <code>docs</code>, send it to GitHub, and tell GitHub to serve that folder as a website. Some of the steps below already apply to this template, but you will need to do them again for your own book.</p>
 </section>
 <section id="step-by-step" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="step-by-step"><span class="header-section-number">12.3</span> Step by step</h2>
@@ -377,9 +377,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> book</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Render once. The finished website now appears in <code>docs/</code>.</p>
-<p><strong>2. Add a file called <code>.nojekyll</code>.</strong> An empty file, at the top of your book folder. In RStudio: <kbd>File</kbd> → <kbd>New File</kbd> → <kbd>Text File</kbd>, then save it with exactly that name, leading dot included. It stops GitHub from reprocessing your site and quietly mangling parts of it.</p>
+<p><strong>2. Add a file called <code>.nojekyll</code>.</strong> An empty file, inside <code>docs/</code>. GitHub runs its own processor over whatever folder it publishes, and that processor quietly drops directories whose names begin with an underscore, which is most of what Quarto generates. This file switches it off.</p>
+<p>In RStudio: <kbd>File</kbd> → <kbd>New File</kbd> → <kbd>Text File</kbd>, then <kbd>Save As</kbd>, navigate <strong>into <code>docs/</code></strong>, and give it exactly that name, leading dot included<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Nothing appears in the Files pane afterwards (a leading dot means hidden). It is there; <em>⚙</em> → <em>Show Hidden Files</em> will show it.</p>
+<p>Note: rendering again does <strong>not</strong> remove this file, so this step only needs to happen once per book.</p>
 <p><strong>3. Make the folder a repository.</strong> If you did not tick “Create a git repository” when making the project: <kbd>Tools</kbd> → <kbd>Project Options</kbd> → <kbd>Git/SVN</kbd> → set version control to <em>Git</em>, and restart RStudio. A <strong>Git</strong> tab appears next to Environment and History.</p>
-<p><strong>4. Create the repository on GitHub and connect it.</strong> Make a free account, press <kbd>New repository</kbd>, give it a name, leave it empty. GitHub then offers you a list of terminal commands — to avoid those, install <a href="https://desktop.github.com">GitHub Desktop</a>, choose <em>Add existing repository</em>, point it at your book folder, and press <em>Publish repository</em>.</p>
+<p><strong>4. Create the repository on GitHub and connect it.</strong> Make a free account, press <kbd>New repository</kbd>, give it a name, choose a public repository<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Do not add anything to the repository (no Readme, no gitignore). Then, you can either run a few terminal commands to get your book uploaded <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. If you wish to avoid the scary terminal, install <a href="https://desktop.github.com">GitHub Desktop</a>, choose <em>Add existing repository</em>, point it at your book folder, and press <em>Publish repository</em>.</p>
 <p><strong>5. Send your work up.</strong> From then on, in RStudio’s <strong>Git</strong> tab or in GitHub Desktop: tick the changed files, write a one-line message saying what you changed, press <kbd>Commit</kbd>, then <kbd>Push</kbd>. Those three actions are the whole of Git for this purpose.</p>
 <p><strong>6. Switch the website on.</strong> On github.com, in your repository: <kbd>Settings</kbd> → <kbd>Pages</kbd> → under <em>Build and deployment</em>, set Source to <em>Deploy from a branch</em>, choose your main branch, and set the folder to <strong><code>/docs</code></strong>. Save.</p>
 <p>A minute later your book is live at <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code>.</p>
@@ -464,8 +466,16 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Rstudio may complain, but ignore this and create the file<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Note: this means your raw .qmd files are public, so if you wish to keep them private, choose a different route of publishing your website.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Assuming git is installed, these would be <code>git remote add origin https://github.com/USERNAME/REPOSITORY.git</code>, <code>git branch -M main</code>, and <code>git push -u origin main</code><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -909,7 +919,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>

@@ -1,20 +1,22 @@
 # Embedding interactive content {#sec-iframes}
 
-An **iframe** is a whole webpage shown inside a box on your page. It is the
-single most useful trick in a course book, because it lets a student turn a
-knob instead of reading about the knob. The BMS book does it about fifty times.
+An **iframe** is a whole webpage shown inside a box on your page. It's a tiny
+website inside your website. It is the single most useful trick in our course books, 
+because it lets you develop independent "apps" that you can then drop in the 
+middle of the book. 
 
 There are two flavours, written almost identically:
 
-**External** — you point at a page on someone else's server: Desmos, YouTube,
-JSFiddle, a simulation on `tbb.bio.uu.nl`.
+**External** — you point at a page on someone else's server: Desmos for mathmatics,
+YouTube for videos, JSFiddle for javascript simulations, or one of my many [other simulations](tbb.bio.uu.nl/bvd/simulations).
 
 **Internal** — you point at an HTML file that lives inside your own project.
-Nothing external is involved and it keeps working forever.
+Nothing external is involved and it keeps working forever. If you^[With or without the help of our robot overlords] develop your own
+little app, you can ship it with your book. 
 
-## The pattern
+## How to embed iframes
 
-Raw HTML must be wrapped in a `{=html}` block, or Quarto escapes it and
+Raw HTML must be wrapped into a `{=html}` block, or Quarto escapes it and
 students see the angle brackets:
 
 ````markdown
@@ -25,17 +27,20 @@ students see the angle brackets:
 ```
 ````
 
-`width="100%"` makes it responsive to the page width. `height` is fixed per
-embed and has to suit the content — the BMS book uses anything from 330 to
-680 px. The inline `style` (no border, rounded corners, a little vertical
+`width="100%"` makes it responsive to the page width (similar to images, probably
+a great idea with students looking at your content on phones and laptops alike). 
+`height` is typically fixed for my embeddings. The inline `style` (no border, rounded corners, a little vertical
 margin) is what makes an embedded tool look like part of the page rather than a
 box someone dropped in.
 
 ::: {.callout-important}
-## If your book also makes a PDF
-An iframe cannot exist on paper. Wrap every one of them in
+## Add a screenshot for the printed version
+As discussed in the previous section, an iframe cannot exist on paper. Wrap every one of them in
 `::: {.content-visible when-format="html"}` and give the PDF a screenshot and a
-link instead — see @sec-pdf. Otherwise the PDF gets a mysterious blank gap.
+link instead — see @sec-pdf. Otherwise the PDF gets a mysterious blank gap, or worse,
+something half cut-off or overlapping with your book's content. The simulation below 
+has a replacement: if you press print now, you will see the stale image appear with
+a remark that this interactive content is only available on the website.
 :::
 
 ## External: a simulation on another server
@@ -43,7 +48,7 @@ link instead — see @sec-pdf. Otherwise the PDF gets a mysterious blank gap.
 ::: {.screen-only}
 ```{=html}
 <iframe src="https://tbb.bio.uu.nl/bvd/simulations/australia/"
-        width="100%" height="520"
+        width="100%" height="560"
         title="Rabbits in Australia"
         style="border:none; border-radius:8px;">
 </iframe>
@@ -52,28 +57,39 @@ link instead — see @sec-pdf. Otherwise the PDF gets a mysterious blank gap.
 
 ::: {.print-only}
 **Simulation: rabbits in Australia.** The interactive version is at
-<https://tbb.bio.uu.nl/bvd/simulations/australia/>
+<https://tbb.bio.uu.nl/bvd/simulations/australia/> 
+![figures](figures/australia.png)
 :::
 
 ```html
 <iframe src="https://tbb.bio.uu.nl/bvd/simulations/australia/"
-        width="100%" height="520" title="Rabbits in Australia"
+        width="100%" height="560" title="Rabbits in Australia"
         style="border:none; border-radius:8px;"></iframe>
 ```
 
 ## External: a Desmos graph
 
 Build the graph on [desmos.com/calculator](https://www.desmos.com/calculator),
-press **Share**, and use the URL you are given —
-`https://www.desmos.com/calculator/qxycdqwsdq` — directly as the `src`.
-Students can then drag its sliders inside your book. The maths chapters of the
-BMS book use thirteen of these.
+press **Share**, and use the URL you are given (something like 
+`https://www.desmos.com/calculator/qxycdqwsdq`) directly as the `src`.
+Students can then drag its sliders inside your book. We use these
+quite often for students that struggle with maths. 
+
 
 ```html
 <iframe src="https://www.desmos.com/calculator/qxycdqwsdq"
         width="100%" height="467"
         style="border:1px solid #ccc;" frameborder="0"></iframe>
 ```
+
+Give you:
+
+```{=html}
+<iframe src="https://www.desmos.com/calculator/qxycdqwsdq"
+        width="100%" height="467"
+        style="border:1px solid #ccc;" frameborder="0"></iframe>
+```
+
 
 ## External: a video
 
@@ -84,6 +100,10 @@ properly, including on phones:
 {{{< video https://www.youtube.com/embed/wo9vZccmqwc >}}}
 ```
 
+Give you: 
+
+{{< video https://www.youtube.com/embed/wo9vZccmqwc >}}
+
 ## External: code students can edit and run
 
 [JSFiddle](https://jsfiddle.net) hosts a small program together with its
@@ -92,16 +112,23 @@ output. Append `/embedded/result` to the share URL for output only, or
 parameter and press Run.
 
 ```html
-<iframe src="https://jsfiddle.net/bramvandijk88/jq3u7f6t/embedded/result"
-        width="100%" height="550" title="Simulation"></iframe>
+<iframe src="https://tbb.bio.uu.nl/bvd/simulations/cooperation/"
+        width="100%" height="600" title="Simulation"></iframe>
+```
+
+Give you:
+
+```{=html}
+<iframe src="https://tbb.bio.uu.nl/bvd/simulations/cooperation/"
+        width="100%" height="600" title="Simulation"></iframe>
 ```
 
 ::: {.callout-warning}
 ## External things break
-Every external iframe is a promise made by somebody else. Servers move,
-accounts lapse, embedding gets blocked — and you find out when a student emails
-you in week 4. Check them at the start of each course year, and for anything
-students are assessed on, make it internal.
+Fair warning: every external iframe relies on that web page staying online. 
+Servers move, accounts expire, embedding gets blocked... Probably check
+any external links at the start of each course year, and for anything
+students are assessed on, best to make it internal.
 :::
 
 ## Internal: an applet inside your own book
@@ -119,7 +146,7 @@ just a relative path:
 ```
 ````
 
-Which gives you this — a real applet, running inside this page:
+Which gives you what you see below, a real applet, running inside this page:
 
 ::: {.screen-only}
 ```{=html}
@@ -136,34 +163,6 @@ Which gives you this — a real applet, running inside this page:
 resulting trajectory. Open the book in a browser to use it.
 :::
 
-Notice that both examples on this page are wrapped in `::: {.screen-only}`,
-with a `::: {.print-only}` block beside them. That is not decoration — it is
-the whole print story, and @sec-printing explains why.
+Notice that do not transfer well to a printed version of your book, but there
+is a solution. See @sec-printing.
 
-That is the entire mechanism. The statistics chapters of the BMS book work
-exactly this way: `Statistiek/Applets/` holds a critical-value calculator, a
-*p*-value calculator and a sampling-distribution simulator, each one file.
-Nothing external, nothing that can go offline, and the applets travel with the
-book.
-
-::: {.callout-important}
-## Four things that go wrong
-**Blank box.** The path is wrong. It is relative to the *chapter file*, so a
-chapter in a subfolder needs `../applets/…`.
-
-**It vanishes after rendering.** Add `resources: [applets/]` to `_quarto.yml`
-so Quarto copies the folder into the finished site.
-
-**The box is too short** and the applet gets its own scrollbar. Iframes never
-grow to fit their contents — tune `height` by hand, then check on a phone.
-
-**A stray quote.** `height=600"` — missing its opening quote — silently breaks
-the whole tag. There is one of these in the BMS book right now
-(`Statistiek/ToetsenGemiddelde.qmd`). If an applet renders strangely, check the
-quotes before anything else.
-:::
-
-::: {.screenshot}
-The rendered page above, showing the applet embedded in the text — this is the
-image that sells the whole approach to a colleague.
-:::

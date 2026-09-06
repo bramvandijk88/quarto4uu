@@ -1,24 +1,27 @@
 # Writing a chapter {#sec-writing}
 
-A `.qmd` file is Markdown — plain text with a few marks for emphasis — plus
-three Quarto additions: maths, runnable code, and cross-references.
+A `.qmd` file is written in Markdown (q=quarto, md=markdown). That means you
+can write in plain text with a few marks for emphasis. It is extended with
+additional options: maths, raw html, (runnable) code that is easy to copy/paste, and 
+cross-references. This page discusses some basics.
 
 ## Text and headings
 
-`**bold**`, `*italic*`, `` `code` ``, `[link](url)`. A blank line starts a new
+`**bold**`, `*italic*`, `` `code` ``, `[link text](url)`. A blank line starts a new
 paragraph.
 
-One `#` is the chapter title, `##` a section, `###` a subsection. The `##`
-headings are what fill the table of contents on the right of every page, so
+One `#` is the chapter title, `##` a section, `###` a subsection. They get automatically
+numbered based on where they appear in the book (e.g. the second subsection of the first paragraph of chapter
+3, will be 3.1.2). The sections (`##`) are headings are what fill the table of contents on the right of every page, so
 they are worth naming well.
 
-Add `{.unnumbered}` after a heading to keep a page out of the chapter
-numbering — useful for a preface, a schedule, or a links page.
+Add `{.unnumbered}` directly after a heading to keep a page out of the chapter
+numbering. This is useful for a preface, a schedule, or a links page.
 
 ## Maths
 
-Inline between single dollars: `$N_{t+1} = \lambda N_t$` gives
-$N_{t+1} = \lambda N_t$. Displayed between double dollars, with a label so you
+Inline between single dollars: `$f(x) = x^3 + \alpha x` gives
+$f(x) = x^3 + \alpha x$. You can also put maths between double dollars, with a label so you
 can point at it later:
 
 ```markdown
@@ -34,11 +37,9 @@ $$ {#eq-logistic}
 Writing `@eq-logistic` anywhere in the book now produces a numbered, clickable
 reference: @eq-logistic.
 
-@sec-latex is a full reference for the notation — symbols, multi-line
-equations, statistics, and how to define your own shorthand once and use it in
-both the website and the PDF.
+If you're familiar with LateX, I'm sure you'll find your way with this stuff.
 
-## Code that runs
+## Code that produces a figure
 
 A chunk marked `{r}` is executed when you render, and its output lands on the
 page.
@@ -81,20 +82,21 @@ Chunk options go one per line at the top of the chunk, each starting with `#|`:
 
 ::: {.callout-tip}
 ## Set the defaults once
-Options that should apply everywhere belong in `_quarto.yml`:
+Options that you with to apply, can be given in the main `_quarto.yml`:
 
 ```yaml
 execute:
   echo: true
   warning: false
 ```
-Individual chunks can still override them.
+Individual chunks can still override them. 
+
 :::
 
 ## Code that is only shown
 
-To *display* code without running it — Python that students will run
-themselves, for instance — use a plain fenced block with no curly braces:
+To *display* code without running it (Python code that students will run
+themselves, for instance) use a plain fenced block with no curly braces:
 write ```` ```python ```` rather than ```` ```{python} ````. You still get
 syntax highlighting, and nothing executes.
 
@@ -103,27 +105,26 @@ syntax highlighting, and nothing executes.
 Five kinds, and they are the workhorse of a teaching book.
 
 ::: {.callout-note}
-`note` — background information, an aside.
+`note` background information. 
 :::
 
 ::: {.callout-tip}
 ## A title
-`tip` — advice. A `##` heading on the first line becomes the callout's title.
+`tip` general advice. Here's a tip: a `##` heading on the first line becomes the callout's title.
 :::
 
 ::: {.callout-important}
-`important` — the thing students must not miss.
+`important` the thing students must not miss!
 :::
 
 ::: {.callout-warning}
-`warning` — a common mistake.
+`warning` a common mistake or pitfall
 :::
 
 ::: {.callout-caution collapse="true"}
 ## Click to see the answer
-`caution` — and with `collapse="true"` it starts folded shut. This is how you
-put a hint or a worked answer right next to the question without giving it
-away.
+A note (like this one: `caution`) that has `collapse="true"` enabled, starts folded shut. This is how you
+put a hint or a worked answer right next to the question without giving it away immediately.
 :::
 
 ```markdown
@@ -156,7 +157,8 @@ number in the book renumbers itself.
 
 ## Cross-references, in one table
 
-Structure emerges almost for free. The **prefix decides the type**, so it is
+All the organisation and structure of the book is handled by Quarto. The **prefix decides how it will be 
+referenced**, so it is
 not optional decoration.
 
 | Write this label | Refer to it as | Gives |
@@ -170,13 +172,9 @@ not optional decoration.
 
 : Cross-reference prefixes. {#tbl-xref}
 
-`{#cover}` does nothing at all; `{#fig-cover}` works. A reference that renders
+Note that `{#cover}` does nothing at all, only `{#fig-cover}` works. A reference that renders
 as `?@fig-cover` means the label is missing, misspelled, or lacking its prefix.
 
-::: {.screenshot}
-The rendered sidebar and right-hand TOC, a resolved cross-reference link, and a
-coloured callout box.
-:::
 
 ## Diagrams without a drawing program
 
@@ -192,4 +190,4 @@ flowchart TB
 
 Six lines of [Mermaid](https://mermaid.js.org/) produce @fig-approaches, and it
 restyles itself with the rest of the book. Far easier to maintain than a PNG
-exported from PowerPoint.
+exported from PowerPoint. 

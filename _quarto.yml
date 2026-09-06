@@ -7,15 +7,15 @@ execute:
   warning: false
 
 book:
-  title: "Making a course book with Quarto"
-  subtitle: "A guide, and a starter book, for teachers at Utrecht University"
+  title: "Quarto 4 UU"
+  subtitle: "A guide to [Quarto](https://quarto.org/), and a template, for teachers at Utrecht University"
   author: "Bram van Dijk, Theoretical Biology, Utrecht University"
   date: today
   language: "en"
   search: true
   page-footer:
     left: "Utrecht University"
-    right: "Made with <a href='https://quarto.org/'>Quarto</a>"
+    right: "Quarto 4 UU"
   favicon: figures/favicon.png
   sidebar:
     logo: figures/uu-logo.png
@@ -29,7 +29,8 @@ book:
       chapters:
         - 01-what-is-quarto.qmd
         - 02-setup-rstudio.qmd
-        - 03-quarto-yml.qmd
+        - text: "Quarto yml"
+          href: 03-quarto-yml.qmd
     - part: "Writing"
       chapters:
         - 04-writing.qmd

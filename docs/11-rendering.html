@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Rendering, and keeping it fast – Making a course book with Quarto</title>
+<title>11&nbsp; Rendering, and keeping it fast – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -301,8 +301,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#two-buttons-two-commands" id="toc-two-buttons-two-commands" class="nav-link active" data-scroll-target="#two-buttons-two-commands"><span class="header-section-number">11.1</span> Two buttons, two commands</a></li>
-  <li><a href="#freeze-and-cache" id="toc-freeze-and-cache" class="nav-link" data-scroll-target="#freeze-and-cache"><span class="header-section-number">11.2</span> <code>freeze</code> and <code>cache</code></a></li>
-  <li><a href="#what-actually-makes-a-book-slow" id="toc-what-actually-makes-a-book-slow" class="nav-link" data-scroll-target="#what-actually-makes-a-book-slow"><span class="header-section-number">11.3</span> What actually makes a book slow</a></li>
+  <li><a href="#yml-options-freeze-and-cache" id="toc-yml-options-freeze-and-cache" class="nav-link" data-scroll-target="#yml-options-freeze-and-cache"><span class="header-section-number">11.2</span> YML options <code>freeze</code> and <code>cache</code></a>
+  <ul class="collapse">
+  <li><a href="#freeze-is-about-portability" id="toc-freeze-is-about-portability" class="nav-link" data-scroll-target="#freeze-is-about-portability"><span class="header-section-number">11.2.1</span> <code>freeze</code> is about <em>portability</em></a></li>
+  <li><a href="#cache-is-about-code-chunks-and-speed-while-writing" id="toc-cache-is-about-code-chunks-and-speed-while-writing" class="nav-link" data-scroll-target="#cache-is-about-code-chunks-and-speed-while-writing"><span class="header-section-number">11.2.2</span> <code>cache</code> is about code-chunks and <em>speed while writing</em></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -330,72 +333,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="two-buttons-two-commands" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="two-buttons-two-commands"><span class="header-section-number">11.1</span> Two buttons, two commands</h2>
-<p><strong>Render</strong> builds the whole project into <code>_book/</code> (or <code>docs/</code>). In RStudio it is the toolbar button; from a terminal it is <code>quarto render</code>.</p>
-<p><strong>Preview</strong> starts a live server that re-renders on save and refreshes the browser. In RStudio this is what <em>Render on Save</em> gives you; from a terminal it is <code>quarto preview</code>.</p>
-<p>You can work entirely from the buttons for an ordinary book. Two exceptions where you need <code>quarto preview</code> in the Terminal instead:</p>
-<ul>
-<li><strong>Anything that needs a real web server</strong> — live webR cells (<a href="09-runnable-code.html" class="quarto-xref"><span>Chapter 9</span></a>) are dead over a <code>file://</code> address.</li>
-<li><strong>Any custom format</strong>, <code>live-html</code> included. RStudio only auto-previews formats it knows, so Render prints <em>“Output created”</em> and no window appears.</li>
-</ul>
-<p><code>quarto preview</code> builds, serves at <code>http://localhost:####</code>, opens a browser, and re-renders on save. <kbd>Ctrl</kbd>+<kbd>C</kbd> stops it.</p>
+<p><strong>Rendering</strong> is the act of building the whole project into a self-contained book (in folder <code>_book/</code>). In RStudio there is a <code>Render Book → All Formats</code> in the build tab (there is a keyboard shortcut for this, Shift+Command+B on Mac, Shift+Ctrl+B on Windows). You can also render it from the terminal using the command <code>quarto render</code>.</p>
+<p><strong>Preview</strong> starts a local server that re-renders on save and refreshes the browser. In RStudio this is what <em>Render on Save</em> gives you; from a terminal it is <code>quarto preview</code>.</p>
+<p>You can often also simply open the html-files from your computer. The only thing that will not work are the live webR cells, which need a real web server to work. For these, <code>quarto preview</code> is the way to go.</p>
 </section>
-<section id="freeze-and-cache" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="freeze-and-cache"><span class="header-section-number">11.2</span> <code>freeze</code> and <code>cache</code></h2>
-<p>Both stop Quarto re-running code unnecessarily. They solve <strong>different</strong> problems and live in different places, and the distinction is worth teaching clearly because the names do not help.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><code>freeze</code> — file level, about <em>portability</em>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>With <code>freeze: auto</code>, Quarto runs a chapter’s code once, stores the results in a <code>_freeze/</code> folder, and reuses them until that <code>.qmd</code> changes.</p>
-<p>Commit <code>_freeze/</code> to Git and the payoff is large: a colleague — or a build server — can render the whole book <strong>without</strong> having R and every package installed, because the computed results travel with the repository.</p>
-<p><code>freeze: true</code> never re-runs. <code>freeze: false</code> always runs fresh.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><code>cache</code> — chunk level, about <em>speed while writing</em>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>cache: true</code> uses knitr’s cache to skip re-running an individual chunk whose code has not changed, so a slow simulation does not re-run on every preview. The caches live in per-chapter <code>*_cache/</code> folders.</p>
-</div>
-</div>
-<p><strong>Rule of thumb:</strong> <code>cache</code> for “this chunk is slow while I am writing”, <code>freeze</code> for “someone else should be able to build this without my setup”. They combine, and both can be overridden per file or per chunk.</p>
+<section id="yml-options-freeze-and-cache" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="yml-options-freeze-and-cache"><span class="header-section-number">11.2</span> YML options <code>freeze</code> and <code>cache</code></h2>
+<p>These options can be defined globally in the <code>_quarto.yml</code> file<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>These options solve slightly <strong>different</strong> problems, but the names aren’t too clear about this so the distinction is worth clarifying:</p>
+<section id="freeze-is-about-portability" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="freeze-is-about-portability"><span class="header-section-number">11.2.1</span> <code>freeze</code> is about <em>portability</em></h3>
+<p>With <code>freeze: auto</code>, Quarto runs a chapter’s code once, stores the results in a <code>_freeze/</code> folder, and reuses them until that <code>.qmd</code> has been changed by you or a colleague. If your chapters use packages that your colleague doesn’t use, freeze should still enable the other colleague to compile the entire book; the files and the data are all stored in <code>_freeze/</code>.</p>
+<p><code>freeze: true</code> never re-renders a chapter, while <code>freeze: false</code> always re-render everything.</p>
+</section>
+<section id="cache-is-about-code-chunks-and-speed-while-writing" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="cache-is-about-code-chunks-and-speed-while-writing"><span class="header-section-number">11.2.2</span> <code>cache</code> is about code-chunks and <em>speed while writing</em></h3>
+<p><code>cache: true</code> avoids re-running a code whose code has not changed, so a slow simulation or data analysis does not re-run on every preview. This cache lives in per-chapter <code>&lt;CHAPTER_NAME&gt;_cache/</code> folders.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Cached results can go stale
+<span class="screen-reader-only">Warning</span>Despite working most of the time, cached results can sometimes go stale
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Both mechanisms trust the source text, not the world. If a chunk reads a data file and the <em>file</em> changes but the <em>code</em> does not, you will keep the old result. Delete <code>_freeze/</code> and <code>*_cache/</code> and re-render when you have changed anything a chunk depends on but does not contain.</p>
+<p>Both mechanisms trust the source text, not cannot know if anything external has changed. For example, if a chunk reads a data file and the <em>file</em> changes but the <em>code</em> does not, you will keep the old result. You can simply delete the relevant <code>_freeze/</code> or <code>*_cache/</code> files, and re-render.</p>
 </div>
 </div>
-</section>
-<section id="what-actually-makes-a-book-slow" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="what-actually-makes-a-book-slow"><span class="header-section-number">11.3</span> What actually makes a book slow</h2>
-<p>In practice, in this order:</p>
-<ol type="1">
-<li><strong>Code that runs on every render.</strong> Fix with <code>freeze: auto</code>.</li>
-<li><strong>A LaTeX PDF build.</strong> Fix by only rendering the PDF when you need it: Render → <em>Render Book</em> → HTML only, or <code>quarto render --to html</code>.</li>
-<li><strong>Huge images.</strong> See <a href="05-figures.html" class="quarto-xref"><span>Chapter 5</span></a> — keep them under about 500 kB.</li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -408,9 +377,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <p><code>quarto preview 08-iframes.qmd</code> renders just that file. In RStudio, pressing Render while a single <code>.qmd</code> is open does the same thing. Cross-references to other chapters will not resolve in that preview — that is expected, and they come back in a full render.</p>
 </div>
-</div>
-<div class="screenshot">
-<p>The Render button and its dropdown showing the format choice, and the live preview refreshing after a save.</p>
 </div>
 
 
@@ -426,8 +392,15 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>You can also override the global settings per file or per chunk.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -871,7 +844,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>

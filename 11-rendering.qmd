@@ -2,52 +2,22 @@
 
 ## Two buttons, two commands
 
-**Render** builds the whole project into `_book/` (or `docs/`). In RStudio it
-is the toolbar button; from a terminal it is `quarto render`.
+**Rendering** is the act of building the whole project into a self-contained book (in folder `_book/`). 
+In RStudio there is a `Render Book → All Formats` in the build tab (there is a keyboard shortcut for this,
+Shift+Command+B on Mac, Shift+Ctrl+B on Windows). You can also render it from the terminal using the
+command `quarto render`.
 
-**Preview** starts a live server that re-renders on save and refreshes the
+**Preview** starts a local server that re-renders on save and refreshes the
 browser. In RStudio this is what *Render on Save* gives you; from a terminal it
 is `quarto preview`.
 
-You can work entirely from the buttons for an ordinary book. Two exceptions
-where you need `quarto preview` in the Terminal instead:
+You can often also simply open the html-files from your computer. The only thing
+that will not work are the live webR cells, which need a real web server to work. For 
+these, `quarto preview` is the way to go. 
 
-- **Anything that needs a real web server** — live webR cells (@sec-webr) are
-  dead over a `file://` address.
-- **Any custom format**, `live-html` included. RStudio only auto-previews
-  formats it knows, so Render prints *"Output created"* and no window appears.
+## YML options `freeze` and `cache`
 
-`quarto preview` builds, serves at `http://localhost:####`, opens a browser,
-and re-renders on save. <kbd>Ctrl</kbd>+<kbd>C</kbd> stops it.
-
-## `freeze` and `cache`
-
-Both stop Quarto re-running code unnecessarily. They solve **different**
-problems and live in different places, and the distinction is worth teaching
-clearly because the names do not help.
-
-::: {.callout-note}
-## `freeze` — file level, about *portability*
-With `freeze: auto`, Quarto runs a chapter's code once, stores the results in a
-`_freeze/` folder, and reuses them until that `.qmd` changes.
-
-Commit `_freeze/` to Git and the payoff is large: a colleague — or a build
-server — can render the whole book **without** having R and every package
-installed, because the computed results travel with the repository.
-
-`freeze: true` never re-runs. `freeze: false` always runs fresh.
-:::
-
-::: {.callout-note}
-## `cache` — chunk level, about *speed while writing*
-`cache: true` uses knitr's cache to skip re-running an individual chunk whose
-code has not changed, so a slow simulation does not re-run on every preview.
-The caches live in per-chapter `*_cache/` folders.
-:::
-
-**Rule of thumb:** `cache` for "this chunk is slow while I am writing",
-`freeze` for "someone else should be able to build this without my setup".
-They combine, and both can be overridden per file or per chunk.
+These options can be defined globally in the `_quarto.yml` file^[You can also override the global settings per file or per chunk.].
 
 ```yaml
 execute:
@@ -55,22 +25,33 @@ execute:
   cache: false
 ```
 
+These options solve slightly **different** problems, but the names aren't too clear about this so the distinction is worth clarifying:
+
+### `freeze` is about *portability*
+With `freeze: auto`, Quarto runs a chapter's code once, stores the results in a
+`_freeze/` folder, and reuses them until that `.qmd` has been changed by you
+or a colleague. If your chapters use packages that your colleague doesn't use,
+freeze should still enable the other colleague to compile the entire book; the
+files and the data are all stored in `_freeze/`.
+
+`freeze: true` never re-renders a chapter, while `freeze: false` always re-render everything.
+
+### `cache` is about code-chunks and *speed while writing*
+`cache: true` avoids re-running a code whose code has not changed, so a slow 
+simulation or data analysis does not re-run on every preview. This cache
+lives in per-chapter `<CHAPTER_NAME>_cache/` folders.
+
+
+
 ::: {.callout-warning}
-## Cached results can go stale
-Both mechanisms trust the source text, not the world. If a chunk reads a data
-file and the *file* changes but the *code* does not, you will keep the old
-result. Delete `_freeze/` and `*_cache/` and re-render when you have changed
-anything a chunk depends on but does not contain.
+## Despite working most of the time, cached results can sometimes go stale
+Both mechanisms trust the source text, not cannot know if anything external has changed. For example, 
+if a chunk reads a data file and the *file* changes but the *code* does not, you will keep the old
+result. You can simply delete the relevant `_freeze/` or `*_cache/` files, 
+and re-render. 
 :::
 
-## What actually makes a book slow
 
-In practice, in this order:
-
-1. **Code that runs on every render.** Fix with `freeze: auto`.
-2. **A LaTeX PDF build.** Fix by only rendering the PDF when you need it:
-   Render → *Render Book* → HTML only, or `quarto render --to html`.
-3. **Huge images.** See @sec-figures — keep them under about 500 kB.
 
 ::: {.callout-tip}
 ## Render one chapter while drafting
@@ -78,9 +59,4 @@ In practice, in this order:
 Render while a single `.qmd` is open does the same thing. Cross-references to
 other chapters will not resolve in that preview — that is expected, and they
 come back in a full render.
-:::
-
-::: {.screenshot}
-The Render button and its dropdown showing the format choice, and the live
-preview refreshing after a save.
 :::

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Figures and tables – Making a course book with Quarto</title>
+<title>5&nbsp; Figures and tables – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -178,7 +178,7 @@ window.Quarto = {
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -218,7 +218,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -334,10 +334,9 @@ window.Quarto = {
   <ul>
   <li><a href="#inserting-a-figure" id="toc-inserting-a-figure" class="nav-link active" data-scroll-target="#inserting-a-figure"><span class="header-section-number">5.1</span> Inserting a figure</a></li>
   <li><a href="#sizing-alignment-and-labels" id="toc-sizing-alignment-and-labels" class="nav-link" data-scroll-target="#sizing-alignment-and-labels"><span class="header-section-number">5.2</span> Sizing, alignment and labels</a></li>
-  <li><a href="#which-file-format" id="toc-which-file-format" class="nav-link" data-scroll-target="#which-file-format"><span class="header-section-number">5.3</span> Which file format</a></li>
-  <li><a href="#click-to-enlarge" id="toc-click-to-enlarge" class="nav-link" data-scroll-target="#click-to-enlarge"><span class="header-section-number">5.4</span> Click to enlarge</a></li>
-  <li><a href="#side-by-side" id="toc-side-by-side" class="nav-link" data-scroll-target="#side-by-side"><span class="header-section-number">5.5</span> Side by side</a></li>
-  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">5.6</span> Tables</a></li>
+  <li><a href="#click-to-enlarge" id="toc-click-to-enlarge" class="nav-link" data-scroll-target="#click-to-enlarge"><span class="header-section-number">5.3</span> Click to enlarge</a></li>
+  <li><a href="#figures-side-by-side" id="toc-figures-side-by-side" class="nav-link" data-scroll-target="#figures-side-by-side"><span class="header-section-number">5.4</span> Figures side-by-side</a></li>
+  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">5.5</span> Tables</a></li>
   </ul>
 </nav>
     </div>
@@ -373,7 +372,7 @@ window.Quarto = {
 <figcaption>Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics.</figcaption>
 </figure>
 </div>
-<p>The text in square brackets is the caption. <code>![]()</code> with an empty caption is allowed, but a caption is nearly always worth writing — it is the part students read first.</p>
+<p>The text in square brackets is the caption. <code>![]()</code> with an empty caption is allowed, but a caption is nearly always worth writing.</p>
 </section>
 <section id="sizing-alignment-and-labels" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="sizing-alignment-and-labels"><span class="header-section-number">5.2</span> Sizing, alignment and labels</h2>
@@ -389,71 +388,15 @@ Figure&nbsp;5.1: The same figure at 55% width, centred.
 </figcaption>
 </figure>
 </div>
-<p><code>width</code> is best given as a percentage so it adapts to the reader’s screen. <code>fig-align</code> takes <code>left</code>, <code>center</code> or <code>right</code>. The <code>#fig-</code> id makes it <a href="#fig-example" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-example</span></a>.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span><code>{#example}</code> does nothing; <code>{#fig-example}</code> works
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>See <a href="#tbl-xref" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-xref</span></a>. The prefix is what tells Quarto it is looking at a figure.</p>
-</div>
-</div>
+<p><code>width</code> is best given as a percentage so it adapts to the reader’s screen (you’d be surprised how many students will read from their phones…).</p>
+<p><code>fig-align</code> takes <code>left</code>, <code>center</code> or <code>right</code>. The <code>#fig-</code> prefix makes it referred to as <a href="#fig-example" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> (rather than Table, Equation, etc.)</p>
 </section>
-<section id="which-file-format" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="which-file-format"><span class="header-section-number">5.3</span> Which file format</h2>
-<div id="tbl-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.1: Choosing an image format.
-</figcaption>
-<div aria-describedby="tbl-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>For</th>
-<th>Use</th>
-<th>Because</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Diagrams, schematics, anything you drew</td>
-<td><strong>SVG</strong> or PDF</td>
-<td>stays sharp at any zoom, tiny file</td>
-</tr>
-<tr class="even">
-<td>Photographs, microscopy</td>
-<td><strong>JPG</strong></td>
-<td>small files for continuous tone</td>
-</tr>
-<tr class="odd">
-<td>Screenshots, exported plots</td>
-<td><strong>PNG</strong></td>
-<td>sharp edges, no compression smear</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Keep images under about 500 kB. A 3 MB photograph makes the page slow for a student on a phone, and if the book is in Git it stays in the repository forever.</p>
+<section id="click-to-enlarge" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="click-to-enlarge"><span class="header-section-number">5.3</span> Click to enlarge</h2>
+<p><code>lightbox: true</code> in <code>_quarto.yml</code> makes every figure in the book open full-screen when clicked.</p>
 </section>
-<section id="click-to-enlarge" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="click-to-enlarge"><span class="header-section-number">5.4</span> Click to enlarge</h2>
-<p><code>lightbox: true</code> in <code>_quarto.yml</code> makes every figure in the book open full-screen when clicked. No extra markup anywhere — try it on the figure above.</p>
-</section>
-<section id="side-by-side" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="side-by-side"><span class="header-section-number">5.5</span> Side by side</h2>
+<section id="figures-side-by-side" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="figures-side-by-side"><span class="header-section-number">5.4</span> Figures side-by-side</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol=2}</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="al">![Left panel](figures/a.svg)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -480,20 +423,20 @@ Table&nbsp;5.1: Choosing an image format.
 </div>
 </div>
 </section>
-<section id="tables" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="tables"><span class="header-section-number">5.6</span> Tables</h2>
+<section id="tables" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="tables"><span class="header-section-number">5.5</span> Tables</h2>
 <p>An ordinary Markdown table, with a caption line underneath to make it referenceable:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symbol <span class="pp">|</span> Meaning <span class="pp">|</span> Unit <span class="pp">|</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $N$ <span class="pp">|</span> population size <span class="pp">|</span> individuals <span class="pp">|</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r$ <span class="pp">|</span> intrinsic growth rate <span class="pp">|</span> day$^{-1}$ <span class="pp">|</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $K$ <span class="pp">|</span> carrying capacity <span class="pp">|</span> individuals <span class="pp">|</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $N$ <span class="pp">|</span> population density <span class="pp">|</span> individuals per square kilometer <span class="pp">|</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r$ <span class="pp">|</span> intrinsic growth rate <span class="pp">|</span> per day / day$^{-1}$ <span class="pp">|</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $K$ <span class="pp">|</span> carrying capacity <span class="pp">|</span> maximum individuals per km$^2$ <span class="pp">|</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>: Parameters of the logistic model. {#tbl-parameters}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="tbl-parameters" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.2: Parameters of the logistic model.
+Table&nbsp;5.1: Parameters of the logistic model.
 </figcaption>
 <div aria-describedby="tbl-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -507,39 +450,25 @@ Table&nbsp;5.2: Parameters of the logistic model.
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(N\)</span></td>
-<td>population size</td>
-<td>individuals</td>
+<td>population density</td>
+<td>individuals per square kilometer</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(r\)</span></td>
 <td>intrinsic growth rate</td>
-<td>day<span class="math inline">\(^{-1}\)</span></td>
+<td>per day / day<span class="math inline">\(^{-1}\)</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(K\)</span></td>
 <td>carrying capacity</td>
-<td>individuals</td>
+<td>maximum individuals per km<span class="math inline">\(^2\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Which is <a href="#tbl-parameters" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-parameters</span></a>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Don’t write these by hand
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Markdown tables are miserable to type and trivial to insert in RStudio’s <strong>Visual</strong> editor. Switch, insert, switch back.</p>
-<p>For a table generated from data, a chunk with <code>knitr::kable()</code> (or <code>DT</code> for a searchable, paginated one) is better than pasting numbers in — it stays correct when the data changes.</p>
-</div>
-</div>
+<p>Which is <a href="#tbl-parameters" class="quarto-xref">Table&nbsp;<span>5.1</span></a>.</p>
 
 
 <script type="ojs-module-contents">
@@ -554,7 +483,7 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
 </section>
 
@@ -999,7 +928,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>

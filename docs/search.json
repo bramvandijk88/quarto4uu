@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Making a course book with Quarto",
+    "title": "Quarto 4 UU",
     "section": "",
-    "text": "Welcome\nThis is a short, practical guide for teachers at Utrecht University who want to turn a course reader into a website — one that students can search, read on a phone, and click through, with live simulations sitting next to the text.\nWe use Quarto and RStudio. Quarto itself is only a publishing framework: it works just as happily from Jupyter notebooks or VS Code, and with Python or Julia instead of R. We describe the RStudio route because, within the Biology department, that is the environment most colleagues already have open.",
+    "text": "Welcome\nThis is a short, practical guide for teachers at Utrecht University who want to offer students a course website along with their usual course book. For this, we can use Quarto, which generates interactive and easy-to-navigate website, that is also printer-friendly. That means students can choose to read it on their screen, print it, and with very little extra effort, you can combine all this into an actual course book!\nHere, I explain how do do all this by using Quarto in RStudio. However, Quarto itself is a broader framework: it works just as happily from Jupyter notebooks or VS Code, and with Python or Julia instead of R. We describe the RStudio route because, within the Biology department, that is the environment most colleagues already have open.",
     "crumbs": [
       "Welcome"
     ]
@@ -12,29 +12,29 @@
   {
     "objectID": "index.html#what-you-end-up-with",
     "href": "index.html#what-you-end-up-with",
-    "title": "Making a course book with Quarto",
+    "title": "Quarto 4 UU",
     "section": "What you end up with",
-    "text": "What you end up with\nTwo books in our own department are built exactly this way, and everything in this guide is drawn from their source:\n\nBiologische Modellen en Statistiek — a full Dutch-language course book with interactive statistics applets, shared LaTeX macros, and a printable PDF from the same source.\nModeling Life — an English course website with embedded simulations and mini-projects.\n\nBetween them they run to hundreds of pages, and neither required anyone to learn web development.",
+    "text": "What you end up with\nTwo course books in our own department are built exactly this way, and everything in this guide is drawn from their source:\n\nBiologische Modellen en Statistiek — a full Dutch-language course book with interactive statistics applets, shared LaTeX macros, and a printable PDF from the same source.\nModeling Life — an English course website with embedded simulations and mini-projects.",
     "crumbs": [
       "Welcome"
     ]
   },
   {
-    "objectID": "index.html#how-to-read-this",
-    "href": "index.html#how-to-read-this",
-    "title": "Making a course book with Quarto",
-    "section": "How to read this",
-    "text": "How to read this\n\n\n\n\n\n\nTipIn a hurry?\n\n\n\nRead 2  Setting up in RStudio, press Render, and come back for the rest when you need it.\n\n\n\n\n\n\n\n\nImportantOne extension needed\n\n\n\n9  Code students can run in the browser contains two live R cells that students can edit and run in the browser, so the book needs the quarto-live extension. It travels with the project in _extensions/, so a copy of this folder needs nothing installed.\nIf you ever see “Include directive failed” or an error naming readExtensionFormat, that folder is missing — Installing it has the one command that fetches it, and the two edits that switch live cells back off.\n\n\n\nGetting started — installing things, making the project, and the one configuration file that decides everything.\nWriting — text, maths, code that runs, callouts, exercises, figures, and getting a decent PDF out of the same source.\nInteractive material — embedding simulations, code your students can edit and run in the browser, and self-contained applets. This is the part that makes a Quarto book worth the effort.\nBuilding and publishing — rendering fast, putting it online for free, and what to check when something breaks.",
+    "objectID": "index.html#what-this-explainer-covers",
+    "href": "index.html#what-this-explainer-covers",
+    "title": "Quarto 4 UU",
+    "section": "What this explainer covers",
+    "text": "What this explainer covers\n\nGetting started: installing stuff, making the project, and the one configuration file that decides everything.\nWriting: text, maths, code that runs, callouts, exercises, figures, and getting a decent PDF out of the same source.\nInteractive material: embedding simulations, code your students can edit and run in the browser, and self-contained applets. This is the part students love, so this makes a Quarto book worth the effort.\nBuilding and publishing: rendering the book and putting it online via Github pages.",
     "crumbs": [
       "Welcome"
     ]
   },
   {
-    "objectID": "index.html#this-book-is-also-the-starter-book",
-    "href": "index.html#this-book-is-also-the-starter-book",
-    "title": "Making a course book with Quarto",
-    "section": "This book is also the starter book",
-    "text": "This book is also the starter book\nYou do not have to start from an empty folder. This book is itself the starter book — every chapter is a working demonstration of the thing it describes, so copying it hands you the UU house style, a working _quarto.yml, a live applet, a real figure, and an example of every pattern you are likely to need.\nDownload the starter book (.zip) — then see Option A: start from this book for how to open it in RStudio.",
+    "objectID": "index.html#starting-from-scratch-or-from-a-template",
+    "href": "index.html#starting-from-scratch-or-from-a-template",
+    "title": "Quarto 4 UU",
+    "section": "Starting from scratch or from a template",
+    "text": "Starting from scratch or from a template\nYou can either start from scratch, or start from a template. This explainer is itself also a starter book: every chapter is a working demonstration of the thing it describes, so copying it yields you the UU house style, a working _quarto.yml, an example live applet, how to use figures, and an example of every pattern you are likely to need.\nDownload the starter book (.zip) — then see Option A: start from this book for how to open it in RStudio.",
     "crumbs": [
       "Welcome"
     ]
@@ -44,18 +44,7 @@
     "href": "01-what-is-quarto.html",
     "title": "1  What Quarto is, and why bother",
     "section": "",
-    "text": "1.1 Why it suits teaching\nQuarto is a free, open-source publishing system. You write in plain text — .qmd files, which are Markdown plus optional live code — and Quarto renders that same source into a website, a book, a PDF, slides, or a Word document.\nIf you have used R Markdown, this is its successor: the same idea, grown up and no longer tied to R.\nEverything is text. Your book is a folder of readable files. It fits in Git, it diffs sensibly, and a colleague can open it in any editor.\nMaths renders properly. LaTeX between dollar signs, in the browser and on paper, from one source.\nCode can run. A plot in your reader can be generated by the code that produced it, so the figure and the analysis never drift apart.\nSimulations sit next to the explanation. A student can read the model and then immediately turn its knobs — see Chapter 8. And with Chapter 9 they can edit your R or Python and run it, in the browser, with nothing installed. This is the part that really pays off.\nStructure comes free. Sidebar, search box, chapter numbering, cross-references and a table of contents are all generated for you.",
-    "crumbs": [
-      "Getting started",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Quarto is, and why bother</span>"
-    ]
-  },
-  {
-    "objectID": "01-what-is-quarto.html#why-it-suits-teaching",
-    "href": "01-what-is-quarto.html#why-it-suits-teaching",
-    "title": "1  What Quarto is, and why bother",
-    "section": "",
-    "text": "The quarto.org gallery page, and side by side a .qmd source file next to its rendered HTML output.",
+    "text": "1.1 Why it suits teaching\nQuarto is a free, open-source publishing system. You write in plain text — .qmd files, which use Markdown syntax: # and ## indicate chapter and section headings, text between one or two asterisks (*) is italic/bold respectively, etc. Quarto can render this into a website or a PDF.\nLess worry about formatting, more focus on content  Your book is a folder of plain text files. This enables you to think better about the content, rather than worry about formatting. Quarto takes care of 90% of the formatting (I will not lie, sometimes you will still need to tweak a bit if you’re a prefectionist).\nMaths renders properly. You can use LaTeX to format all your math by putting text between dollar signs. It prints beautifully, and students can copy/paste either the image or the LateX code easily.\nCode can run. A plot in your reader can be generated by the code that produced it, so the figure and the analysis never drift apart.\nInteractive explainers right next to the explanation. A student can read about the material, model and immediately turn some knobs (see section Chapter 8). In fact, with Chapter 9 they can edit the R or Python code and run it locally in the browser, even if they have no R or Python installed.\nNavigational structure comes for free. Sidebar, search box, chapter numbering, cross-references and a table of contents are all generated for you.",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Quarto is, and why bother</span>"
@@ -66,7 +55,7 @@
     "href": "01-what-is-quarto.html#what-you-need-to-install",
     "title": "1  What Quarto is, and why bother",
     "section": "1.2 What you need to install",
-    "text": "1.2 What you need to install\nThree things, in this order.\n\nR — the language.\nRStudio Desktop — the editor. RStudio v2022.07 and later has built-in Quarto support.\nQuarto — the publishing system.\n\nRecent RStudio versions ship with a copy of Quarto bundled, so step 3 is sometimes optional. Install it separately anyway: it means you know which version you have, and can say so to a colleague.\nRestart RStudio after installing Quarto so it notices.\n\n\n\n\n\n\nNoteWhich version am I on?\n\n\n\nIn RStudio: Tools → Terminal → New Terminal, then type quarto --version. This is the only time in this guide you need a terminal, and you can skip it if you would rather not.\n\n\n\nRStudio’s About screen showing the bundled Quarto version, and a terminal showing quarto --version.",
+    "text": "1.2 What you need to install\nAs said, we will go the Rstudio route here. Three things you need to install, in this order.\n\nR: the programming language itself.\nRStudio Desktop: the editor. RStudio v2022.07 and later have built-in Quarto support.\nQuarto (sometimes optional)\n\nRecent RStudio versions ship with a copy of Quarto bundled, so step 3 is sometimes optional. But perhaps always good to jot down which version of Quarto you have.\n\n\n\n\n\n\nNoteWhich version am I on?\n\n\n\nIn RStudio: Tools → Terminal → New Terminal, then type quarto --version. This is one of the few times in this guide you need a terminal, and you can skip it if you would rather not. But let’s be honest, we all like to feel like a hacker every now and then =)",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Quarto is, and why bother</span>"
@@ -77,7 +66,7 @@
     "href": "01-what-is-quarto.html#document-website-or-book",
     "title": "1  What Quarto is, and why bother",
     "section": "1.3 Document, website, or book?",
-    "text": "1.3 Document, website, or book?\nOne file — _quarto.yml at the top of your folder — decides what you are building.\n\n\n\n\n\n\n\n\ntype:\nWhat you get\nGood for\n\n\n\n\ndefault\nA single standalone document\nA hand-out, a practical, one lecture\n\n\nwebsite\nMany pages with a top navigation bar\nA course site: schedule, links, materials\n\n\nbook\nNumbered chapters, a sidebar, cross-references, and a combined PDF\nA course reader\n\n\n\nA book is a website with extra structure, so starting as a website and graduating to a book later costs almost nothing. This guide assumes a book.",
+    "text": "1.3 Document, website, or book?\nThe most important file, _quarto.yml, decides what you are building.\n\n\n\n\n\n\n\n\ntype:\nWhat you get\nGood for\n\n\n\n\ndefault\nA single standalone document\nA single web-page for a practical or lecture\n\n\nwebsite\nMany pages with a top navigation bar\nA course site: schedule, links, materials\n\n\nbook\nNumbered chapters, a sidebar, cross-references, and a combined PDF\nA course reader\n\n\n\nA book is a website with extra structure, so starting as a website and graduating to a book later costs almost nothing. This guide assumes a book.",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Quarto is, and why bother</span>"
@@ -88,7 +77,7 @@
     "href": "01-what-is-quarto.html#sec-other-languages",
     "title": "1  What Quarto is, and why bother",
     "section": "1.4 Not an R user?",
-    "text": "1.4 Not an R user?\nAlmost nothing here is really about R. Write ```{python} instead of ```{r} and your code chunks run Python; Julia and Observable JS work too, and a book can mix them. If your book is entirely Python, set engine: jupyter in _quarto.yml.\nEverything else — the structure, the figures, the callouts, the iframes, the publishing — is identical whichever language you use, and identical whether you edit in RStudio, VS Code, Positron or a plain text editor.",
+    "text": "1.4 Not an R user?\nAlmost nothing here is really about R. Write ```{python} instead of ```{r} and your code chunks run Python; Julia and Observable JS work too, and a book can mix them. However, I have no experience using Quarto with Python or other languages, so I cannot give you any advice on that. It’s probably just as easy. Either way, the structure, the figures, the callouts, the iframes, the publishing, this is all identical whether you edit in RStudio, VS Code, or a plain text editor.\nSo let’s get started.",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Quarto is, and why bother</span>"
@@ -99,18 +88,18 @@
     "href": "02-setup-rstudio.html",
     "title": "2  Setting up in RStudio",
     "section": "",
-    "text": "2.1 Option A: start from this book\nTen minutes, once. At the end you will have a real book rendering in front of you.\nThere are two ways in, and the second is usually the better one.\nThe book you are reading is itself the starter book. Every chapter is a worked demonstration of the thing it describes — the figures in Chapter 5 are real figures, the applet in Chapter 8 really runs, the maths in Chapter 6 really renders. Copy the folder and you inherit all of it: the UU house style, a working _quarto.yml, a sensible .gitignore, and an example of each pattern you are likely to need.\nDownload the starter book (.zip)\nThen:",
+    "text": "2.1 Option A: start from this book\nDuration: ten minutes, once. At the end you will have a real book rendering in front of you.\nThere are two ways in, and the second is usually the better one.\nThe book you are reading is itself a starter template. Every chapter in this guide is a working demonstration of the thing it describes. Download and extract the folder below and you inherit all of it: the UU house style, a working _quarto.yml, a sensible .gitignore1, and an example of each pattern you are likely to need.\nDownload the starter book (.zip)",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting up in RStudio</span>"
     ]
   },
   {
-    "objectID": "02-setup-rstudio.html#sec-starter",
-    "href": "02-setup-rstudio.html#sec-starter",
+    "objectID": "02-setup-rstudio.html#opening-a-downloaded-folder-in-rstudio",
+    "href": "02-setup-rstudio.html#opening-a-downloaded-folder-in-rstudio",
     "title": "2  Setting up in RStudio",
-    "section": "",
-    "text": "TipOpening a downloaded folder in RStudio\n\n\n\n\nUnzip it somewhere sensible and rename the folder to your course.\nIn RStudio: File → New Project… → Existing Directory → browse to that folder → Create Project.\nExisting Directory is the option people miss, because the wizard’s first screen pushes you towards New Directory. It creates nothing of its own — it tells RStudio “this folder is a project”, writes an .Rproj file into it, and opens it. Everything already in the folder stays exactly as it is. (The zip deliberately contains no .Rproj, so the one RStudio makes will be named after your folder.)\nPress Render. You should get this book back, running locally — nothing else needs installing.\nNow start replacing. Open _quarto.yml, change the title and author, and work through the chapters one at a time: keep the scaffolding, delete our prose, write yours.\n\n\n\n\n\n\n\n\n\nNoteWhat to keep, what to throw away\n\n\n\nKeep: _quarto.yml (edit it), uu.scss, .gitignore, README.md, the figures/ and applets/ folders, and applets/AI-prompt-template.md. Keep make-starter-zip.R only if you want to hand your book on the same way.\nThrow away once you no longer need them: our chapter files, and every ::: {.screenshot} block — those are our drafting markers, and Section 3.4 explains how they are styled. Search the project for {.screenshot} to find them all.",
+    "section": "2.2 Opening a downloaded folder in RStudio",
+    "text": "2.2 Opening a downloaded folder in RStudio\n\nUnzip it somewhere sensible and rename the folder to your course.\nIn RStudio: File → New Project… → Existing Directory → browse to that folder → Create Project.\nExisting Directory is the option people miss, because the wizard’s first screen pushes you towards New Directory. It creates nothing of its own. It only tells RStudio “this folder is a project”, writes an .Rproj file into it, and opens it. Everything already in the folder stays exactly as it is. (The zip deliberately contains no .Rproj, so the one RStudio makes will be named after your folder.)\nPress Render. You should get this book back, running locally. Nothing else needs installing.\nNow start replacing. Open _quarto.yml, change the title and author, and work through the chapters one at a time: keep the scaffolding, delete our prose, write yours.\n\n\n\n\n\n\n\nNoteWhat to keep, what to throw away\n\n\n\nKeep: _quarto.yml (although you’ll edit it), uu.scss (uu house style), .gitignore, and folder structure (e.g. figures/ and applets/)., and applets/AI-prompt-template.md. Keep make-starter-zip.R only if you want to hand your book on the same way.\nThrow away once you no longer need them: the speicific chapter files for this book, and apps/figures only used for this explainer.",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting up in RStudio</span>"
@@ -120,8 +109,8 @@
     "objectID": "02-setup-rstudio.html#option-b-start-from-nothing",
     "href": "02-setup-rstudio.html#option-b-start-from-nothing",
     "title": "2  Setting up in RStudio",
-    "section": "2.2 Option B: start from nothing",
-    "text": "2.2 Option B: start from nothing\nIf you would rather see a book grow from an empty folder, RStudio will make you one.",
+    "section": "2.3 Option B: start from nothing",
+    "text": "2.3 Option B: start from nothing\nIf you would rather setup your book from an empty folder, which will help you better understand how it works, you can start one from scratch with RStudio.",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting up in RStudio</span>"
@@ -131,8 +120,8 @@
     "objectID": "02-setup-rstudio.html#make-the-project",
     "href": "02-setup-rstudio.html#make-the-project",
     "title": "2  Setting up in RStudio",
-    "section": "2.3 Make the project",
-    "text": "2.3 Make the project\nFile → New Project… → New Directory → Quarto Book.\nGive the folder a name. Tick Create a git repository if you already know you want to publish it (see Chapter 12) — it is easier to tick now than to add later. Press Create.\nRStudio opens the new project, and you are already looking at a working book.\n\nRStudio’s New Project → Quarto Book dialog, and the resulting folder in the Files pane.",
+    "section": "2.4 Make the project",
+    "text": "2.4 Make the project\nFile → New Project… → New Directory → Quarto Book.\nGive the folder a name. Tick Create a git repository if you already know you want to publish it (see Chapter 12): it is easier to tick now than to add later. Press Create.\nRStudio opens the new project, and you are already looking at a working book.",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting up in RStudio</span>"
@@ -142,19 +131,8 @@
     "objectID": "02-setup-rstudio.html#press-render",
     "href": "02-setup-rstudio.html#press-render",
     "title": "2  Setting up in RStudio",
-    "section": "2.4 Press Render",
-    "text": "2.4 Press Render\nThe Render button sits in the toolbar above the editor. The first render takes a minute; the finished book then appears in RStudio’s Viewer pane, and as files in a folder called _book (or docs — see Chapter 3).",
-    "crumbs": [
-      "Getting started",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting up in RStudio</span>"
-    ]
-  },
-  {
-    "objectID": "02-setup-rstudio.html#turn-on-render-on-save",
-    "href": "02-setup-rstudio.html#turn-on-render-on-save",
-    "title": "2  Setting up in RStudio",
-    "section": "2.5 Turn on Render on Save",
-    "text": "2.5 Turn on Render on Save\nThe tick-box next to the Render button. Now every save refreshes the preview by itself.\nThis is the single change that makes writing a book pleasant rather than laborious. Do it before you write anything.\n\nThe Render button in the toolbar with Render on Save ticked, and the preview pane updating after a save.",
+    "section": "2.5 Press Render",
+    "text": "2.5 Press Render\nThe Render button sits in the toolbar above the editor. The first render takes a few minutes (depending on the book size); the finished book then appears either in the RStudio’s Viewer pane or in your web browser (system dependent). All the HTML files are moved to a folder called _book (or later: docs — see Chapter 3). Note that you can open the HTML files in this directory from your file browser, and everything will work with one exception: the live code chunks, which either requires a local webserve (by typing quarto preview in the terminal), or simply an online copy of your book (see Chapter 12).\nIf you use quarto preview to show your web book in the browser, there is a neat little tick-box left of the Render button called Render on Save. Now every save refreshes the preview by itself.\n\n\n\nThe Render button sits in the toolbare above the editor",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting up in RStudio</span>"
@@ -165,18 +143,29 @@
     "href": "02-setup-rstudio.html#source-or-visual",
     "title": "2  Setting up in RStudio",
     "section": "2.6 Source or Visual?",
-    "text": "2.6 Source or Visual?\nTop-right of the editor pane there is a Source / Visual toggle.\nVisual gives you a Word-like view — real bold text, real tables, menus for inserting figures, equations and cross-references — while still saving a plain text file underneath. A colleague who does not want to see any markup at all can live here permanently.\nSource shows the markup. It is faster once you know it, and it is what the rest of this guide shows.\nMost people end up switching back and forth: Visual for tables and equations, Source for everything else.\n\n\n\n\n\n\nTipTables are the killer feature of Visual mode\n\n\n\nMarkdown tables are miserable to write by hand and trivial in Visual mode. Insert one there, then switch back to Source.",
+    "text": "2.6 Source or Visual?\nNote that the toolbar with the render button also contains a Source/Visual toggle.\nVisual gives you a Word-like view real bold text, real tables, menus for inserting figures, equations and cross-references. If you dont want to see any markup at all, you can live here permanently.\nSource shows the markup. It is faster once you know it, and it is what the rest of this guide shows. I do recommend this, with one exception, shown in the tip below.\n\n\n\n\n\n\nTipMake tables in Visual mode\n\n\n\nMarkdown tables are miserable to write by hand and trivial in Visual mode. Insert one there, then switch back to Source. Or ask AI to convert a table into markdown.",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting up in RStudio</span>"
     ]
   },
   {
-    "objectID": "02-setup-rstudio.html#what-is-in-the-folder",
-    "href": "02-setup-rstudio.html#what-is-in-the-folder",
+    "objectID": "02-setup-rstudio.html#important-elements-in-a-quarto-book-folder",
+    "href": "02-setup-rstudio.html#important-elements-in-a-quarto-book-folder",
     "title": "2  Setting up in RStudio",
-    "section": "2.7 What is in the folder",
-    "text": "2.7 What is in the folder\n\n\n\n\n\n\n\nItem\nWhat it is\n\n\n\n\n_quarto.yml\nThe book definition: which chapters, in which order, with which theme. The only file you truly must understand — see Chapter 3.\n\n\nindex.qmd\nThe front page.\n\n\n*.qmd\nOne file per chapter. This is where you write.\n\n\n_book/ or docs/\nThe finished website. Generated — never edit anything in here, it is overwritten on every render.\n\n\n*.Rproj\nRStudio’s project file. Double-click it to reopen the book later.\n\n\n_freeze/\nStored results of code that has already run — see Chapter 11.\n\n\n\n\n\n\n\n\n\nImportantNever edit the output folder\n\n\n\n_book/ and docs/ are built from your .qmd files. Anything you type in there disappears at the next render. If you find yourself editing HTML, you are in the wrong folder.",
+    "section": "2.7 Important elements in a Quarto book folder",
+    "text": "2.7 Important elements in a Quarto book folder\n\n\n\n\n\n\n\nItem\nWhat it is\n\n\n\n\n_quarto.yml\nThe book definition: which chapters, in which order, with which theme. The only file you truly must understand (see Chapter 3).\n\n\nindex.qmd\nThe front page. You cannot rename this file, it is required and it the ‘home page’ of your web book.\n\n\n*.qmd\nOne file per chapter. This is where you write. You can enable / disable chapters by modifying _quarto.yml.\n\n\n_book/\nThe finished website, generated by Quarto upon rendering. Don’t edit these files, they will be overwritten next render anyway.\n\n\n*.Rproj\nRStudio’s project file. Double-click it to reopen the book later.\n\n\n_freeze/\nStored results of code that has already been run or rendered, helps speed up rendering later (see Chapter 11).",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting up in RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "02-setup-rstudio.html#footnotes",
+    "href": "02-setup-rstudio.html#footnotes",
+    "title": "2  Setting up in RStudio",
+    "section": "",
+    "text": "If you will follow the guide and publish your book on Github pages, this files ensures you do not track every single temporary file along with the actual contents of the book.↩︎",
     "crumbs": [
       "Getting started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting up in RStudio</span>"
@@ -185,67 +174,67 @@
   {
     "objectID": "03-quarto-yml.html",
     "href": "03-quarto-yml.html",
-    "title": "3  The control panel: _quarto.yml",
+    "title": "3  Almost everything is controlled by one file: _quarto.yml",
     "section": "",
-    "text": "3.1 A minimal book\nThis one file is the table of contents, the theme, and the settings. Get comfortable here and the rest of Quarto is just writing.\nThree blocks matter:",
+    "text": "3.1 A minimal book\nThis one file is the table of contents, the theme, and the settings. It is probably good to go through this step by step. Although the rest of working with Quarto is ust writing, you need to know a little bit about this file. That being said, if you end up using my template, you mostly need to modify the chapter organisation. If you want to use your own style, you can change the theme and add your own SCSS.\nThree blocks matter most:",
     "crumbs": [
       "Getting started",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The control panel: `_quarto.yml`</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quarto yml</span>"
     ]
   },
   {
     "objectID": "03-quarto-yml.html#a-minimal-book",
     "href": "03-quarto-yml.html#a-minimal-book",
-    "title": "3  The control panel: _quarto.yml",
+    "title": "3  Almost everything is controlled by one file: _quarto.yml",
     "section": "",
-    "text": "project:\n  type: book\n  output-dir: docs          # where the finished website is written\n\nbook:\n  title: \"My Course Book\"\n  author: \"Your Name, Utrecht University\"\n  chapters:\n    - index.qmd             # the front page\n    - part: \"Getting started\"     # groups chapters under a heading\n      chapters:\n        - 01-writing.qmd\n        - 02-figures.qmd\n    - part: \"Practicals\"\n      chapters:\n        - 03-practical.qmd\n  appendices:               # lettered instead of numbered\n    - answers.qmd\n\nformat:\n  html:\n    theme: cosmo            # any Bootswatch theme\n    toc: true\n  pdf:\n    documentclass: scrreprt # delete if you never want a PDF\n\n\nproject — what you are building, and where the output goes.\nbook — the structure, and which chapters in which order.\nformat — how each output type looks.\n\n\n\n\n\n\n\nImportantThe mistake everyone makes once\n\n\n\nA chapter that is not listed under chapters: does not exist. Creating week3.qmd is not enough — Quarto will render the book without it and give you no warning at all. If a chapter is missing from the website, this is why, nine times out of ten.\n\n\n\n_quarto.yml open in the editor with the project / book / format blocks highlighted, next to the rendered sidebar, so the mapping is obvious.",
+    "text": "project:\n  type: book\n  output-dir: docs          # where the finished website is written\n\nbook:\n  title: \"My Course Book\"\n  author: \"Your Name, Utrecht University\"\n  chapters:\n    - index.qmd             # the front page\n    - part: \"Getting started\"     # groups chapters under a heading\n      chapters:\n        - 01-writing.qmd\n        - 02-figures.qmd\n    - part: \"Practicals\"\n      chapters:\n        - 03-practical.qmd\n  appendices:               # lettered instead of numbered\n    - answers.qmd\n\nformat:\n  html:\n    theme: cosmo            # any Bootswatch theme\n    toc: true\n  pdf:\n    documentclass: scrreprt # delete if you never want a PDF\n\n\nproject — what you are building, and where the output goes.\nbook — the structure, and which chapters in which order.\nformat — how each output type looks.",
     "crumbs": [
       "Getting started",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The control panel: `_quarto.yml`</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quarto yml</span>"
     ]
   },
   {
-    "objectID": "03-quarto-yml.html#controlling-the-sidebar-labels",
-    "href": "03-quarto-yml.html#controlling-the-sidebar-labels",
-    "title": "3  The control panel: _quarto.yml",
-    "section": "3.2 Controlling the sidebar labels",
-    "text": "3.2 Controlling the sidebar labels\nA long chapter title makes an ugly sidebar entry. Give the sidebar its own shorter text:\n    chapters:\n      - text: \"Introduction\"\n        href: Modellen/intro_modellen.qmd\nChapters can live in subfolders, as this example shows. Paths in _quarto.yml are relative to the top of the project.",
+    "objectID": "03-quarto-yml.html#the-side-bar",
+    "href": "03-quarto-yml.html#the-side-bar",
+    "title": "3  Almost everything is controlled by one file: _quarto.yml",
+    "section": "3.2 The side bar",
+    "text": "3.2 The side bar\nYour book will render each chapter with a navigation sidebar, like the one you can see to the left right now. Note that a very long chapter title makes an ugly sidebar entry. In fact, this specific chapter has a very long title. Fortunately, you can give the sidebar its own shorter text, which was done for this chapter:\n    chapters:\n      - text: \"Quarto yml\"\n        href: 03-quarto-yml.qmd\nChapters can also live in subfolders, organising your websites into bigger chunks of chapters (e.g. part 1 and part 2 of a course).",
     "crumbs": [
       "Getting started",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The control panel: `_quarto.yml`</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quarto yml</span>"
     ]
   },
   {
     "objectID": "03-quarto-yml.html#indentation",
     "href": "03-quarto-yml.html#indentation",
-    "title": "3  The control panel: _quarto.yml",
+    "title": "3  Almost everything is controlled by one file: _quarto.yml",
     "section": "3.3 Indentation",
-    "text": "3.3 Indentation\nYAML indentation is meaningful, and must be spaces, never tabs. If Quarto complains about the file and the message makes no sense, an indentation slip is almost always the cause. RStudio inserts spaces for you if you leave its defaults alone.",
+    "text": "3.3 Indentation\nYAML indentation is annoyingly strict, and must be spaces, never tabs. If Quarto complains about the file and the message makes no sense, indentation is almost always the cause.",
     "crumbs": [
       "Getting started",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The control panel: `_quarto.yml`</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quarto yml</span>"
     ]
   },
   {
     "objectID": "03-quarto-yml.html#sec-theming",
     "href": "03-quarto-yml.html#sec-theming",
-    "title": "3  The control panel: _quarto.yml",
-    "section": "3.4 Making it look like Utrecht University",
-    "text": "3.4 Making it look like Utrecht University\nStart from a Bootswatch theme — cosmo, flatly and litera all read well as a textbook — and layer your own SCSS on top:\nformat:\n  html:\n    theme: [cosmo, uu.scss]\nThat is what this book uses, and the single entry is deliberate. Quarto will happily give you a light/dark pair with a toggle in the corner:\n    theme:\n      light: [cosmo, uu.scss]\n      dark:  [darkly, uu-dark.scss]\nThe theme listed first is the default, and the reader’s choice is remembered in their browser. Add respect-user-color-scheme: true and it follows their operating system instead.\n\n\n\n\n\n\nNoteWhy this book has no dark mode\n\n\n\nThe UU identity is specified on a white ground: red and yellow are defined against paper, and yellow in particular becomes a different colour entirely on a dark surface. A dark palette would be something we invented, not something the university sanctioned — so this book stays light for every reader. Your own book can decide differently; the mechanism is right there above.\n\n\nAn SCSS file has two blocks. The defaults block sets variables before Bootstrap is compiled; the rules block is ordinary CSS applied afterwards.\n/*-- scss:defaults --*/\n$uu-yellow: #FFCD00;    // UU geel — our most distinctive colour\n$uu-red:    #C00A35;    // UU rood\n$primary:   $uu-red !default;\n$font-family-sans-serif: \"Open Sans\", Arial, sans-serif !default;\n$headings-font-family:   \"Merriweather\", Georgia, serif !default;\n$font-size-root: 17px !default;\n\n/*-- scss:rules --*/\nh2 { border-bottom: 2px solid $uu-yellow; }\nThe full UU colour palette is:\n\n\n\nTable 3.1: Utrecht University house-style colours.\n\n\n\n\n\nName\nHex\n\nName\nHex\n\n\n\n\nUU geel\n#FFCD00\n\nUU groen\n#24A793\n\n\nUU rood\n#C00A35\n\nUU blauw\n#5287C6\n\n\nUU creme\n#FFE6AB\n\nUU donkerblauw\n#001240\n\n\nUU oranje\n#F3965E\n\nUU paars\n#5B2182\n\n\nUU bordeauxrood\n#AA1555\n\nUU bruin\n#6E3B23\n\n\n\n\n\n\nThe UU standard fonts are Merriweather and Open Sans (with Zilla Slab permitted for headlines). All three are on Google Fonts, so a book can use them directly. Link them in the page header:\nformat:\n  html:\n    include-in-header:\n      - text: |\n          &lt;link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@400;600;700&display=swap\"&gt;\n\n\n\n\n\n\nTipSteal this book’s theme\n\n\n\nuu.scss in this project is a complete, commented UU house-style theme — the palette, the fonts, callouts mapped onto the supporting colours, and the yellow accent rules. Copy that one file plus the theme: and include-in-header: blocks from this book’s _quarto.yml into yours, and you are done.\nThere is a starting point for a dark variant in _archive/uu-dark.scss if you decide your book wants one.\n\n\n\n\n\n\n\n\nCautionA note on using yellow\n\n\n\n\n\nUU yellow is a signature colour but a poor text colour — it fails contrast requirements on white. Use it the way the university does: as an accent rule, an underline, a highlight, a block of background. Keep body text and links in red, black or dark blue.\n\n\n\n\nThe same chapter side by side in light and dark mode, and the uu.scss file showing the $primary colour change.",
+    "title": "3  Almost everything is controlled by one file: _quarto.yml",
+    "section": "3.4 CSS / UU house style",
+    "text": "3.4 CSS / UU house style\nYou can modify how your book looks by changing the style sheets. Some that ship with Quarto are cosmo, flatlyand litera (all read well as a textbook). If you are familiar with CSS stylesheet, you can layer that on top:\nformat:\n  html:\n    theme: [cosmo, uu.scss]\nThat is what this book uses. Quarto will also happily use a light/dark pair:\n    theme:\n      light: [cosmo, uu.scss]\n      dark:  [darkly, uu-dark.scss]\nThe theme listed as the first is the default, and the reader’s choice is remembered in their browser. Add respect-user-color-scheme: true and it follows their operating system settings instead.\n\n\n\n\n\n\nNoteWhy this book has no dark mode\n\n\n\nThe UU identity is specified on a white ground, and has no dark mode counter part. So I decided not to add it. You can do it for your own book, of course, as we have done for many of ours (see Figure 3.1).\n\n\n\n\n\n\n\n\nFigure 3.1: Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics.",
     "crumbs": [
       "Getting started",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The control panel: `_quarto.yml`</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quarto yml</span>"
     ]
   },
   {
-    "objectID": "03-quarto-yml.html#useful-extras",
-    "href": "03-quarto-yml.html#useful-extras",
-    "title": "3  The control panel: _quarto.yml",
-    "section": "3.5 Useful extras",
-    "text": "3.5 Useful extras\nbook:\n  favicon: figures/favicon.png\n  search: true\n  sidebar:\n    logo: figures/uu-logo.png\n    style: floating\n    collapse-level: 1\n    pinned: true\n  page-footer:\n    left: \"Utrecht University\"\n    right: \"Made with &lt;a href='https://quarto.org/'&gt;Quarto&lt;/a&gt;\"\n\nformat:\n  html:\n    toc-location: right\n    lightbox: true            # click any figure to enlarge it\n    code-overflow: wrap\n    link-external-newwindow: true\nThe official UU logo files are on the corporate identity site; download the right variant rather than taking one off a web page.",
+    "objectID": "03-quarto-yml.html#other-options-in-the-yaml",
+    "href": "03-quarto-yml.html#other-options-in-the-yaml",
+    "title": "3  Almost everything is controlled by one file: _quarto.yml",
+    "section": "3.5 Other options in the yaml",
+    "text": "3.5 Other options in the yaml\nThe yaml has many other options. With out listing all of them, you can look into these:\nbook:\n  favicon: figures/favicon.png    # the little (20x20) icon next the web address\n  search: true  # search function enabled, really useful for students\n  sidebar: # menu to the left\n    logo: figures/uu-logo.png # logo's for your course / UU branding\n    style: floating # other option: 'docked'\n    collapse-level: 1 # how many levels of headings are collapsed (1=all)\n    pinned: true # stays visible when scrolling down\n  page-footer:\n    left: \"Utrecht University\"\n    right: \"Quarto 4 UU\"\n\nformat:\n  html:\n    toc-location: right  # paragraph menu to the right of web page\n    lightbox: true       # click figures to enlarge it\n    code-overflow: wrap  # wrap code that contain too many characters\n    link-external-newwindow: true # external links are always opening in a new window\nThe official UU logo files are on the corporate identity site; download the right variant rather than taking one off a web random website.",
     "crumbs": [
       "Getting started",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The control panel: `_quarto.yml`</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quarto yml</span>"
     ]
   },
   {
@@ -253,7 +242,7 @@
     "href": "04-writing.html",
     "title": "4  Writing a chapter",
     "section": "",
-    "text": "4.1 Text and headings\nA .qmd file is Markdown — plain text with a few marks for emphasis — plus three Quarto additions: maths, runnable code, and cross-references.\n**bold**, *italic*, `code`, [link](url). A blank line starts a new paragraph.\nOne # is the chapter title, ## a section, ### a subsection. The ## headings are what fill the table of contents on the right of every page, so they are worth naming well.\nAdd {.unnumbered} after a heading to keep a page out of the chapter numbering — useful for a preface, a schedule, or a links page.",
+    "text": "4.1 Text and headings\nA .qmd file is written in Markdown (q=quarto, md=markdown). That means you can write in plain text with a few marks for emphasis. It is extended with additional options: maths, raw html, (runnable) code that is easy to copy/paste, and cross-references. This page discusses some basics.\n**bold**, *italic*, `code`, [link text](url). A blank line starts a new paragraph.\nOne # is the chapter title, ## a section, ### a subsection. They get automatically numbered based on where they appear in the book (e.g. the second subsection of the first paragraph of chapter 3, will be 3.1.2). The sections (##) are headings are what fill the table of contents on the right of every page, so they are worth naming well.\nAdd {.unnumbered} directly after a heading to keep a page out of the chapter numbering. This is useful for a preface, a schedule, or a links page.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Writing a chapter</span>"
@@ -264,18 +253,18 @@
     "href": "04-writing.html#maths",
     "title": "4  Writing a chapter",
     "section": "4.2 Maths",
-    "text": "4.2 Maths\nInline between single dollars: $N_{t+1} = \\lambda N_t$ gives \\(N_{t+1} = \\lambda N_t\\). Displayed between double dollars, with a label so you can point at it later:\n$$\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n$$ {#eq-logistic}\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n\\tag{4.1}\\]\nWriting @eq-logistic anywhere in the book now produces a numbered, clickable reference: Equation 4.1.\nChapter 6 is a full reference for the notation — symbols, multi-line equations, statistics, and how to define your own shorthand once and use it in both the website and the PDF.",
+    "text": "4.2 Maths\nInline between single dollars: $f(x) = x^3 + \\alpha x gives \\(f(x) = x^3 + \\alpha x\\). You can also put maths between double dollars, with a label so you can point at it later:\n$$\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n$$ {#eq-logistic}\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n\\tag{4.1}\\]\nWriting @eq-logistic anywhere in the book now produces a numbered, clickable reference: Equation 4.1.\nIf you’re familiar with LateX, I’m sure you’ll find your way with this stuff.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Writing a chapter</span>"
     ]
   },
   {
-    "objectID": "04-writing.html#code-that-runs",
-    "href": "04-writing.html#code-that-runs",
+    "objectID": "04-writing.html#code-that-produces-a-figure",
+    "href": "04-writing.html#code-that-produces-a-figure",
     "title": "4  Writing a chapter",
-    "section": "4.3 Code that runs",
-    "text": "4.3 Code that runs\nA chunk marked {r} is executed when you render, and its output lands on the page.\n\nt &lt;- 0:40\nlogistic &lt;- function(r, K = 100, N0 = 2) {\n  N &lt;- numeric(length(t)); N[1] &lt;- N0\n  for (i in 2:length(t)) N[i] &lt;- N[i-1] + r * N[i-1] * (1 - N[i-1]/K)\n  N\n}\nplot(t, logistic(0.10), type = \"l\", lwd = 2, ylim = c(0, 110),\n     xlab = \"time\", ylab = \"N\")\nlines(t, logistic(0.20), lwd = 2, lty = 2)\nlines(t, logistic(0.35), lwd = 2, lty = 3)\nlegend(\"bottomright\", c(\"r = 0.10\", \"r = 0.20\", \"r = 0.35\"), lty = 1:3, lwd = 2)\n\n\n\n\n\n\n\nFigure 4.1: Logistic growth for three values of \\(r\\).\n\n\n\n\n\nBecause that chunk carries label: fig-growth, it is referenceable as Figure 4.1.\nChunk options go one per line at the top of the chunk, each starting with #|:\n\n\n\nTable 4.1: Chunk options you will actually use.\n\n\n\n\n\nOption\nEffect\n\n\n\n\necho: false\nrun the code, hide it from students\n\n\neval: false\nshow the code, don’t run it\n\n\ncode-fold: true\nhide the code behind a “Show the code” toggle\n\n\ncode-summary: \"...\"\nthe text on that toggle\n\n\nwarning: false\nsuppress R’s warnings\n\n\nlabel: fig-…\nmake the output referenceable as a figure\n\n\nfig-width, fig-height\nsize in inches\n\n\n\n\n\n\n\n\n\n\n\n\nTipSet the defaults once\n\n\n\nOptions that should apply everywhere belong in _quarto.yml:\nexecute:\n  echo: true\n  warning: false\nIndividual chunks can still override them.",
+    "section": "4.3 Code that produces a figure",
+    "text": "4.3 Code that produces a figure\nA chunk marked {r} is executed when you render, and its output lands on the page.\n\nt &lt;- 0:40\nlogistic &lt;- function(r, K = 100, N0 = 2) {\n  N &lt;- numeric(length(t)); N[1] &lt;- N0\n  for (i in 2:length(t)) N[i] &lt;- N[i-1] + r * N[i-1] * (1 - N[i-1]/K)\n  N\n}\nplot(t, logistic(0.10), type = \"l\", lwd = 2, ylim = c(0, 110),\n     xlab = \"time\", ylab = \"N\")\nlines(t, logistic(0.20), lwd = 2, lty = 2)\nlines(t, logistic(0.35), lwd = 2, lty = 3)\nlegend(\"bottomright\", c(\"r = 0.10\", \"r = 0.20\", \"r = 0.35\"), lty = 1:3, lwd = 2)\n\n\n\n\n\n\n\nFigure 4.1: Logistic growth for three values of \\(r\\).\n\n\n\n\n\nBecause that chunk carries label: fig-growth, it is referenceable as Figure 4.1.\nChunk options go one per line at the top of the chunk, each starting with #|:\n\n\n\nTable 4.1: Chunk options you will actually use.\n\n\n\n\n\nOption\nEffect\n\n\n\n\necho: false\nrun the code, hide it from students\n\n\neval: false\nshow the code, don’t run it\n\n\ncode-fold: true\nhide the code behind a “Show the code” toggle\n\n\ncode-summary: \"...\"\nthe text on that toggle\n\n\nwarning: false\nsuppress R’s warnings\n\n\nlabel: fig-…\nmake the output referenceable as a figure\n\n\nfig-width, fig-height\nsize in inches\n\n\n\n\n\n\n\n\n\n\n\n\nTipSet the defaults once\n\n\n\nOptions that you with to apply, can be given in the main _quarto.yml:\nexecute:\n  echo: true\n  warning: false\nIndividual chunks can still override them.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Writing a chapter</span>"
@@ -286,7 +275,7 @@
     "href": "04-writing.html#code-that-is-only-shown",
     "title": "4  Writing a chapter",
     "section": "4.4 Code that is only shown",
-    "text": "4.4 Code that is only shown\nTo display code without running it — Python that students will run themselves, for instance — use a plain fenced block with no curly braces: write ```python rather than ```{python}. You still get syntax highlighting, and nothing executes.",
+    "text": "4.4 Code that is only shown\nTo display code without running it (Python code that students will run themselves, for instance) use a plain fenced block with no curly braces: write ```python rather than ```{python}. You still get syntax highlighting, and nothing executes.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Writing a chapter</span>"
@@ -297,7 +286,7 @@
     "href": "04-writing.html#callouts",
     "title": "4  Writing a chapter",
     "section": "4.5 Callouts",
-    "text": "4.5 Callouts\nFive kinds, and they are the workhorse of a teaching book.\n\n\n\n\n\n\nNote\n\n\n\nnote — background information, an aside.\n\n\n\n\n\n\n\n\nTipA title\n\n\n\ntip — advice. A ## heading on the first line becomes the callout’s title.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nimportant — the thing students must not miss.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nwarning — a common mistake.\n\n\n\n\n\n\n\n\nCautionClick to see the answer\n\n\n\n\n\ncaution — and with collapse=\"true\" it starts folded shut. This is how you put a hint or a worked answer right next to the question without giving it away.\n\n\n\n::: {.callout-caution collapse=\"true\"}\n## Click to see the answer\nHidden until the student expands it.\n:::",
+    "text": "4.5 Callouts\nFive kinds, and they are the workhorse of a teaching book.\n\n\n\n\n\n\nNote\n\n\n\nnote background information.\n\n\n\n\n\n\n\n\nTipA title\n\n\n\ntip general advice. Here’s a tip: a ## heading on the first line becomes the callout’s title.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nimportant the thing students must not miss!\n\n\n\n\n\n\n\n\nWarning\n\n\n\nwarning a common mistake or pitfall\n\n\n\n\n\n\n\n\nCautionClick to see the answer\n\n\n\n\n\nA note (like this one: caution) that has collapse=\"true\" enabled, starts folded shut. This is how you put a hint or a worked answer right next to the question without giving it away immediately.\n\n\n\n::: {.callout-caution collapse=\"true\"}\n## Click to see the answer\nHidden until the student expands it.\n:::",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Writing a chapter</span>"
@@ -319,7 +308,7 @@
     "href": "04-writing.html#cross-references-in-one-table",
     "title": "4  Writing a chapter",
     "section": "4.7 Cross-references, in one table",
-    "text": "4.7 Cross-references, in one table\nStructure emerges almost for free. The prefix decides the type, so it is not optional decoration.\n\n\n\nTable 4.2: Cross-reference prefixes.\n\n\n\n\n\nWrite this label\nRefer to it as\nGives\n\n\n\n\n{#fig-cover}\n@fig-cover\nFigure 2.1\n\n\n{#tbl-params}\n@tbl-params\nTable 3.2\n\n\n{#eq-logistic}\n@eq-logistic\nEquation 4.1\n\n\n{#sec-writing}\n@sec-writing\nSection 4\n\n\n{#exr-carrying}\n@exr-carrying\nExercise 4.1\n\n\n{#tip-setup}\n@tip-setup\nTip 1\n\n\n\n\n\n\n{#cover} does nothing at all; {#fig-cover} works. A reference that renders as ?@fig-cover means the label is missing, misspelled, or lacking its prefix.\n\nThe rendered sidebar and right-hand TOC, a resolved cross-reference link, and a coloured callout box.",
+    "text": "4.7 Cross-references, in one table\nAll the organisation and structure of the book is handled by Quarto. The prefix decides how it will be referenced, so it is not optional decoration.\n\n\n\nTable 4.2: Cross-reference prefixes.\n\n\n\n\n\nWrite this label\nRefer to it as\nGives\n\n\n\n\n{#fig-cover}\n@fig-cover\nFigure 2.1\n\n\n{#tbl-params}\n@tbl-params\nTable 3.2\n\n\n{#eq-logistic}\n@eq-logistic\nEquation 4.1\n\n\n{#sec-writing}\n@sec-writing\nSection 4\n\n\n{#exr-carrying}\n@exr-carrying\nExercise 4.1\n\n\n{#tip-setup}\n@tip-setup\nTip 1\n\n\n\n\n\n\nNote that {#cover} does nothing at all, only {#fig-cover} works. A reference that renders as ?@fig-cover means the label is missing, misspelled, or lacking its prefix.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Writing a chapter</span>"
@@ -341,7 +330,7 @@
     "href": "05-figures.html",
     "title": "5  Figures and tables",
     "section": "",
-    "text": "5.1 Inserting a figure\nPut the image in a figures/ folder next to your chapters, and write one line:\nThe text in square brackets is the caption. ![]() with an empty caption is allowed, but a caption is nearly always worth writing — it is the part students read first.",
+    "text": "5.1 Inserting a figure\nPut the image in a figures/ folder next to your chapters, and write one line:\nThe text in square brackets is the caption. ![]() with an empty caption is allowed, but a caption is nearly always worth writing.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and tables</span>"
@@ -363,18 +352,7 @@
     "href": "05-figures.html#sizing-alignment-and-labels",
     "title": "5  Figures and tables",
     "section": "5.2 Sizing, alignment and labels",
-    "text": "5.2 Sizing, alignment and labels\nOptions go in curly braces after the image:\n![Caption](figures/example-figure.svg){#fig-example width=55% fig-align=\"center\"}\n\n\n\n\n\n\nFigure 5.1: The same figure at 55% width, centred.\n\n\n\nwidth is best given as a percentage so it adapts to the reader’s screen. fig-align takes left, center or right. The #fig- id makes it Figure 5.1.\n\n\n\n\n\n\nImportant{#example} does nothing; {#fig-example} works\n\n\n\nSee Table 4.2. The prefix is what tells Quarto it is looking at a figure.",
-    "crumbs": [
-      "Writing",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and tables</span>"
-    ]
-  },
-  {
-    "objectID": "05-figures.html#which-file-format",
-    "href": "05-figures.html#which-file-format",
-    "title": "5  Figures and tables",
-    "section": "5.3 Which file format",
-    "text": "5.3 Which file format\n\n\n\nTable 5.1: Choosing an image format.\n\n\n\n\n\n\n\n\n\n\nFor\nUse\nBecause\n\n\n\n\nDiagrams, schematics, anything you drew\nSVG or PDF\nstays sharp at any zoom, tiny file\n\n\nPhotographs, microscopy\nJPG\nsmall files for continuous tone\n\n\nScreenshots, exported plots\nPNG\nsharp edges, no compression smear\n\n\n\n\n\n\nKeep images under about 500 kB. A 3 MB photograph makes the page slow for a student on a phone, and if the book is in Git it stays in the repository forever.",
+    "text": "5.2 Sizing, alignment and labels\nOptions go in curly braces after the image:\n![Caption](figures/example-figure.svg){#fig-example width=55% fig-align=\"center\"}\n\n\n\n\n\n\nFigure 5.1: The same figure at 55% width, centred.\n\n\n\nwidth is best given as a percentage so it adapts to the reader’s screen (you’d be surprised how many students will read from their phones…).\nfig-align takes left, center or right. The #fig- prefix makes it referred to as Figure 5.1 (rather than Table, Equation, etc.)",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and tables</span>"
@@ -384,19 +362,19 @@
     "objectID": "05-figures.html#click-to-enlarge",
     "href": "05-figures.html#click-to-enlarge",
     "title": "5  Figures and tables",
-    "section": "5.4 Click to enlarge",
-    "text": "5.4 Click to enlarge\nlightbox: true in _quarto.yml makes every figure in the book open full-screen when clicked. No extra markup anywhere — try it on the figure above.",
+    "section": "5.3 Click to enlarge",
+    "text": "5.3 Click to enlarge\nlightbox: true in _quarto.yml makes every figure in the book open full-screen when clicked.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and tables</span>"
     ]
   },
   {
-    "objectID": "05-figures.html#side-by-side",
-    "href": "05-figures.html#side-by-side",
+    "objectID": "05-figures.html#figures-side-by-side",
+    "href": "05-figures.html#figures-side-by-side",
     "title": "5  Figures and tables",
-    "section": "5.5 Side by side",
-    "text": "5.5 Side by side\n::: {layout-ncol=2}\n![Left panel](figures/a.svg)\n\n![Right panel](figures/b.svg)\n:::\n\n\n\n\n\n\nLeft panel\n\n\n\n\n\n\n\nRight panel",
+    "section": "5.4 Figures side-by-side",
+    "text": "5.4 Figures side-by-side\n::: {layout-ncol=2}\n![Left panel](figures/a.svg)\n\n![Right panel](figures/b.svg)\n:::\n\n\n\n\n\n\nLeft panel\n\n\n\n\n\n\n\nRight panel",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and tables</span>"
@@ -406,8 +384,8 @@
     "objectID": "05-figures.html#tables",
     "href": "05-figures.html#tables",
     "title": "5  Figures and tables",
-    "section": "5.6 Tables",
-    "text": "5.6 Tables\nAn ordinary Markdown table, with a caption line underneath to make it referenceable:\n| Symbol | Meaning | Unit |\n|---|---|---|\n| $N$ | population size | individuals |\n| $r$ | intrinsic growth rate | day$^{-1}$ |\n| $K$ | carrying capacity | individuals |\n\n: Parameters of the logistic model. {#tbl-parameters}\n\n\n\nTable 5.2: Parameters of the logistic model.\n\n\n\n\n\nSymbol\nMeaning\nUnit\n\n\n\n\n\\(N\\)\npopulation size\nindividuals\n\n\n\\(r\\)\nintrinsic growth rate\nday\\(^{-1}\\)\n\n\n\\(K\\)\ncarrying capacity\nindividuals\n\n\n\n\n\n\nWhich is Table 5.2.\n\n\n\n\n\n\nTipDon’t write these by hand\n\n\n\nMarkdown tables are miserable to type and trivial to insert in RStudio’s Visual editor. Switch, insert, switch back.\nFor a table generated from data, a chunk with knitr::kable() (or DT for a searchable, paginated one) is better than pasting numbers in — it stays correct when the data changes.",
+    "section": "5.5 Tables",
+    "text": "5.5 Tables\nAn ordinary Markdown table, with a caption line underneath to make it referenceable:\n| Symbol | Meaning | Unit |\n|---|---|---|\n| $N$ | population density | individuals per square kilometer |\n| $r$ | intrinsic growth rate | per day / day$^{-1}$ |\n| $K$ | carrying capacity | maximum individuals per km$^2$ |\n\n: Parameters of the logistic model. {#tbl-parameters}\n\n\n\nTable 5.1: Parameters of the logistic model.\n\n\n\n\n\nSymbol\nMeaning\nUnit\n\n\n\n\n\\(N\\)\npopulation density\nindividuals per square kilometer\n\n\n\\(r\\)\nintrinsic growth rate\nper day / day\\(^{-1}\\)\n\n\n\\(K\\)\ncarrying capacity\nmaximum individuals per km\\(^2\\)\n\n\n\n\n\n\nWhich is Table 5.1.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and tables</span>"
@@ -418,7 +396,7 @@
     "href": "06-maths-latex.html",
     "title": "6  Maths and LaTeX",
     "section": "",
-    "text": "6.1 Inline and displayed\nQuarto writes maths with LaTeX notation. You do not need to learn LaTeX — you are not typesetting a document with it, only writing formulas — but a page of the notation goes a very long way in a biology course book.\nThe same source is rendered twice: by MathJax in the browser and by LaTeX itself in the PDF. You write it once.\nInline maths sits between single dollars, inside a sentence:\nThe population grows at rate \\(r\\) until it approaches \\(K\\).\nDisplayed maths sits between double dollars, on its own lines, and is centred:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n\\]",
+    "text": "6.1 Inline and displayed\nQuarto writes maths with LaTeX notation. You do not need to learn LaTeX itself, but the math notation is maybe worth knowing. Here’s a quick overview.\nInline maths sits between single dollars, inside a sentence:\nThe population grows at rate \\(r\\) until it approaches \\(K\\).\nDisplayed maths sits between double dollars, on its own lines, and is centred:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n\\]",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
@@ -429,18 +407,18 @@
     "href": "06-maths-latex.html#inline-and-displayed",
     "title": "6  Maths and LaTeX",
     "section": "",
-    "text": "The population grows at rate $r$ until it approaches $K$.\n\n\n$$\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n$$\n\n\n\n\n\n\n\nImportantLeave the dollars tight against the maths\n\n\n\n$r$ works. $ r $ may not — Quarto uses the spacing to tell maths from an ordinary dollar sign. If you need a literal dollar in your text, escape it: \\$.",
+    "text": "The population grows at rate $r$ until it approaches $K$.\n\n\n$$\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n$$\n\n\n\n\n\n\n\nImportantLeave the dollars tight against the maths\n\n\n\n$r$ works. $ r $ may not — Quarto uses the spacing to tell maths from an ordinary dollar sign. If you need a literal dollar in your text, escape it with a slash: \\$.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
     ]
   },
   {
-    "objectID": "06-maths-latex.html#the-notation-you-will-actually-use",
-    "href": "06-maths-latex.html#the-notation-you-will-actually-use",
+    "objectID": "06-maths-latex.html#common-notation-for-latex-equation",
+    "href": "06-maths-latex.html#common-notation-for-latex-equation",
     "title": "6  Maths and LaTeX",
-    "section": "6.2 The notation you will actually use",
-    "text": "6.2 The notation you will actually use\n\n\n\nTable 6.1: Notation for everyday use.\n\n\n\n\n\n\n\n\n\n\nYou want\nYou write\nYou get\n\n\n\n\nsubscript\n$N_t$\n\\(N_t\\)\n\n\nsuperscript\n$e^{-x}$\n\\(e^{-x}\\)\n\n\nmore than one character\n$N_{t+1}$\n\\(N_{t+1}\\)\n\n\nfraction\n$\\frac{a}{b}$\n\\(\\frac{a}{b}\\)\n\n\nderivative\n$\\frac{\\mathrm{d}N}{\\mathrm{d}t}$\n\\(\\frac{\\mathrm{d}N}{\\mathrm{d}t}\\)\n\n\npartial derivative\n$\\frac{\\partial u}{\\partial x}$\n\\(\\frac{\\partial u}{\\partial x}\\)\n\n\nsquare root\n$\\sqrt{x}$, $\\sqrt[3]{x}$\n\\(\\sqrt{x}\\), \\(\\sqrt[3]{x}\\)\n\n\nsum\n$\\sum_{i=1}^{n} x_i$\n\\(\\sum_{i=1}^{n} x_i\\)\n\n\nproduct\n$\\prod_{i=1}^{n} p_i$\n\\(\\prod_{i=1}^{n} p_i\\)\n\n\nintegral\n$\\int_0^\\infty f(x)\\,\\mathrm{d}x$\n\\(\\int_0^\\infty f(x)\\,\\mathrm{d}x\\)\n\n\nlimit\n$\\lim_{t \\to \\infty} N_t$\n\\(\\lim_{t \\to \\infty} N_t\\)\n\n\nmean / hat / tilde\n$\\bar{x}$, $\\hat{p}$, $\\tilde{N}$\n\\(\\bar{x}\\), \\(\\hat{p}\\), \\(\\tilde{N}\\)\n\n\nvector\n$\\vec{v}$, $\\mathbf{v}$\n\\(\\vec{v}\\), \\(\\mathbf{v}\\)\n\n\n\n\n\n\n\n\n\nTable 6.2: Symbols and relations.\n\n\n\n\n\n\n\n\n\n\nYou want\nYou write\nYou get\n\n\n\n\ntimes / divide\n$a \\times b$, $a \\div b$\n\\(a \\times b\\), \\(a \\div b\\)\n\n\nplus-minus\n$\\pm$\n\\(\\pm\\)\n\n\napproximately\n$\\approx$\n\\(\\approx\\)\n\n\nproportional to\n$\\propto$\n\\(\\propto\\)\n\n\nnot equal\n$\\neq$\n\\(\\neq\\)\n\n\nless/greater or equal\n$\\leq$, $\\geq$\n\\(\\leq\\), \\(\\geq\\)\n\n\nmuch less/greater\n$\\ll$, $\\gg$\n\\(\\ll\\), \\(\\gg\\)\n\n\narrow\n$\\to$, $\\rightarrow$\n\\(\\to\\)\n\n\nimplies / equivalent\n$\\Rightarrow$, $\\Leftrightarrow$\n\\(\\Rightarrow\\), \\(\\Leftrightarrow\\)\n\n\ninfinity\n$\\infty$\n\\(\\infty\\)\n\n\nelement of\n$x \\in \\mathbb{R}$\n\\(x \\in \\mathbb{R}\\)\n\n\ndots\n$x_1, \\ldots, x_n$\n\\(x_1, \\ldots, x_n\\)\n\n\n\n\n\n\nGreek letters are their names with a backslash: $\\alpha \\beta \\gamma \\delta \\lambda \\mu \\sigma \\tau \\phi \\theta \\rho$ gives \\(\\alpha \\beta \\gamma \\delta \\lambda \\mu \\sigma \\tau \\phi \\theta \\rho\\). Capitalise the first letter for the capital form: $\\Delta$, $\\Sigma$, $\\Omega$ gives \\(\\Delta\\), \\(\\Sigma\\), \\(\\Omega\\).",
+    "section": "6.2 Common notation for LateX equation",
+    "text": "6.2 Common notation for LateX equation\n\n\n\nTable 6.1: Notation for everyday use.\n\n\n\n\n\n\n\n\n\n\nYou want\nYou write\nYou get\n\n\n\n\nsubscript\n$N_t$\n\\(N_t\\)\n\n\nsuperscript\n$e^{-x}$\n\\(e^{-x}\\)\n\n\nmore than one character\n$N_{t+1}$\n\\(N_{t+1}\\)\n\n\nfraction\n$\\frac{a}{b}$\n\\(\\frac{a}{b}\\)\n\n\nderivative\n$\\frac{\\mathrm{d}N}{\\mathrm{d}t}$\n\\(\\frac{\\mathrm{d}N}{\\mathrm{d}t}\\)\n\n\npartial derivative\n$\\frac{\\partial u}{\\partial x}$\n\\(\\frac{\\partial u}{\\partial x}\\)\n\n\nsquare root\n$\\sqrt{x}$, $\\sqrt[3]{x}$\n\\(\\sqrt{x}\\), \\(\\sqrt[3]{x}\\)\n\n\nsum\n$\\sum_{i=1}^{n} x_i$\n\\(\\sum_{i=1}^{n} x_i\\)\n\n\nproduct\n$\\prod_{i=1}^{n} p_i$\n\\(\\prod_{i=1}^{n} p_i\\)\n\n\nintegral\n$\\int_0^\\infty f(x)\\,\\mathrm{d}x$\n\\(\\int_0^\\infty f(x)\\,\\mathrm{d}x\\)\n\n\nlimit\n$\\lim_{t \\to \\infty} N_t$\n\\(\\lim_{t \\to \\infty} N_t\\)\n\n\nmean / hat / tilde\n$\\bar{x}$, $\\hat{p}$, $\\tilde{N}$\n\\(\\bar{x}\\), \\(\\hat{p}\\), \\(\\tilde{N}\\)\n\n\nvector\n$\\vec{v}$, $\\mathbf{v}$\n\\(\\vec{v}\\), \\(\\mathbf{v}\\)\n\n\n\n\n\n\n\n\n\nTable 6.2: Symbols and relations.\n\n\n\n\n\n\n\n\n\n\nYou want\nYou write\nYou get\n\n\n\n\ntimes / divide\n$a \\times b$, $a \\div b$\n\\(a \\times b\\), \\(a \\div b\\)\n\n\nplus-minus\n$\\pm$\n\\(\\pm\\)\n\n\napproximately\n$\\approx$\n\\(\\approx\\)\n\n\nproportional to\n$\\propto$\n\\(\\propto\\)\n\n\nnot equal\n$\\neq$\n\\(\\neq\\)\n\n\nless/greater or equal\n$\\leq$, $\\geq$\n\\(\\leq\\), \\(\\geq\\)\n\n\nmuch less/greater\n$\\ll$, $\\gg$\n\\(\\ll\\), \\(\\gg\\)\n\n\narrow\n$\\to$, $\\rightarrow$\n\\(\\to\\)\n\n\nimplies / equivalent\n$\\Rightarrow$, $\\Leftrightarrow$\n\\(\\Rightarrow\\), \\(\\Leftrightarrow\\)\n\n\ninfinity\n$\\infty$\n\\(\\infty\\)\n\n\nelement of\n$x \\in \\mathbb{R}$\n\\(x \\in \\mathbb{R}\\)\n\n\ndots\n$x_1, \\ldots, x_n$\n\\(x_1, \\ldots, x_n\\)\n\n\n\n\n\n\nGreek letters are their names with a backslash: $\\alpha \\beta \\gamma \\delta \\lambda \\mu \\sigma \\tau \\phi \\theta \\rho$ gives \\(\\alpha \\beta \\gamma \\delta \\lambda \\mu \\sigma \\tau \\phi \\theta \\rho\\). Capitalise the first letter for the capital form: $\\Delta$, $\\Sigma$, $\\Omega$ gives \\(\\Delta\\), \\(\\Sigma\\), \\(\\Omega\\).",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
@@ -451,7 +429,7 @@
     "href": "06-maths-latex.html#statistics-notation",
     "title": "6  Maths and LaTeX",
     "section": "6.3 Statistics notation",
-    "text": "6.3 Statistics notation\n\n\n\nTable 6.3: Notation for the statistics chapters.\n\n\n\n\n\n\n\n\n\n\nYou want\nYou write\nYou get\n\n\n\n\nsample mean\n$\\bar{x}$\n\\(\\bar{x}\\)\n\n\nestimate\n$\\hat{\\beta}$\n\\(\\hat{\\beta}\\)\n\n\nexpectation\n$\\mathbb{E}[X]$\n\\(\\mathbb{E}[X]\\)\n\n\nvariance / sd\n$\\mathrm{Var}(X)$, $\\mathrm{SD}(X)$\n\\(\\mathrm{Var}(X)\\)\n\n\nprobability\n$P(X &gt; x)$\n\\(P(X &gt; x)\\)\n\n\nconditional\n$P(A \\mid B)$\n\\(P(A \\mid B)\\)\n\n\ndistributed as\n$X \\sim N(\\mu, \\sigma^2)$\n\\(X \\sim N(\\mu, \\sigma^2)\\)\n\n\nnull hypothesis\n$H_0: \\mu = \\mu_0$\n\\(H_0: \\mu = \\mu_0\\)\n\n\ndegrees of freedom\n$t_{n-1}$\n\\(t_{n-1}\\)\n\n\n\n\n\n\n\n\n\n\n\n\nTipUse \\mid, not |, for “given”\n\n\n\nA bare | in $P(A|B)$ is typeset as an ordinary bar with no spacing. \\mid is the real conditional-probability symbol and gets the spacing right.",
+    "text": "6.3 Statistics notation\n\n\n\nTable 6.3: Notation for the statistics chapters.\n\n\n\n\n\n\n\n\n\n\nYou want\nYou write\nYou get\n\n\n\n\nsample mean\n$\\bar{x}$\n\\(\\bar{x}\\)\n\n\nestimate\n$\\hat{\\beta}$\n\\(\\hat{\\beta}\\)\n\n\nexpectation\n$\\mathbb{E}[X]$\n\\(\\mathbb{E}[X]\\)\n\n\nvariance / sd\n$\\mathrm{Var}(X)$, $\\mathrm{SD}(X)$\n\\(\\mathrm{Var}(X)\\)\n\n\nprobability\n$P(X &gt; x)$\n\\(P(X &gt; x)\\)\n\n\nconditional\n$P(A \\mid B)$\n\\(P(A \\mid B)\\)\n\n\ndistributed as\n$X \\sim N(\\mu, \\sigma^2)$\n\\(X \\sim N(\\mu, \\sigma^2)\\)\n\n\nnull hypothesis\n$H_0: \\mu = \\mu_0$\n\\(H_0: \\mu = \\mu_0\\)\n\n\ndegrees of freedom\n$t_{n-1}$\n\\(t_{n-1}\\)",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
@@ -462,7 +440,7 @@
     "href": "06-maths-latex.html#words-inside-formulas",
     "title": "6  Maths and LaTeX",
     "section": "6.4 Words inside formulas",
-    "text": "6.4 Words inside formulas\nAnything you type in maths mode is set in italic, letter by letter, as if every character were a variable. That is wrong for words and for units:\nWrong:  $rate = births - deaths$\nRight:  $\\text{rate} = \\text{births} - \\text{deaths}$\nWrong: \\(rate = births - deaths\\)\nRight: \\(\\text{rate} = \\text{births} - \\text{deaths}\\)\nUse \\text{...} for words, and \\mathrm{...} for upright single symbols such as the d in a derivative — \\mathrm{d}N, not dN.",
+    "text": "6.4 Words inside formulas\nAnything you type in maths mode is set in italic, letter by letter, as if every character were a variable. That is wrong for words and for units:\nWrong:  $rate = births per day - deaths per day$\nRight:  $\\text{rate} = \\text{births per day} - \\text{deaths per day}$\nWrong: \\(rate = births per day - deaths per day\\)\nRight: \\(\\text{rate} = \\text{births per day} - \\text{deaths per day}\\)",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
@@ -480,22 +458,11 @@
     ]
   },
   {
-    "objectID": "06-maths-latex.html#brackets-that-grow",
-    "href": "06-maths-latex.html#brackets-that-grow",
-    "title": "6  Maths and LaTeX",
-    "section": "6.6 Brackets that grow",
-    "text": "6.6 Brackets that grow\nOrdinary brackets stay small and look wrong around a tall fraction. Prefix them with \\left and \\right and they scale:\nSmall:  $(1 - \\frac{N}{K})$\nGrown:  $\\left(1 - \\frac{N}{K}\\right)$\nSmall: \\((1 - \\frac{N}{K})\\)    Grown: \\(\\left(1 - \\frac{N}{K}\\right)\\)\n\\left and \\right must come in pairs. If you want only one visible bracket, pair it with \\right. (a full stop means “nothing here”).",
-    "crumbs": [
-      "Writing",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
-    ]
-  },
-  {
     "objectID": "06-maths-latex.html#numbering-and-referring-to-an-equation",
     "href": "06-maths-latex.html#numbering-and-referring-to-an-equation",
     "title": "6  Maths and LaTeX",
-    "section": "6.7 Numbering and referring to an equation",
-    "text": "6.7 Numbering and referring to an equation\nPut a #eq- label after the closing $$:\n$$\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n$$ {#eq-logistic2}\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n\\tag{6.1}\\]\nThen @eq-logistic2 gives Equation 6.1, numbered and clickable, and the numbering fixes itself when you reorder chapters. For a custom label, [see @eq-logistic2] gives see 6.1.\n\n\n\n\n\n\nNoteThe label goes outside the dollars\n\n\n\n$$ ... $$ {#eq-name} — on the same line as the closing $$. Inside the maths it is just more maths, and Quarto will not see it.",
+    "section": "6.6 Numbering and referring to an equation",
+    "text": "6.6 Numbering and referring to an equation\nPut a #eq- label after the closing $$:\n$$\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n$$ {#eq-logistic2}\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN\\left(1 - \\frac{N}{K}\\right)\n\\tag{6.1}\\]\nThen @eq-logistic2 gives Equation 6.1, numbered and clickable, and the numbering fixes itself when you reorder chapters. For a custom label, you can use square brackets: [see @eq-logistic2] gives see 6.1.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
@@ -505,19 +472,8 @@
     "objectID": "06-maths-latex.html#sec-macros",
     "href": "06-maths-latex.html#sec-macros",
     "title": "6  Maths and LaTeX",
-    "section": "6.8 Define your notation once",
-    "text": "6.8 Define your notation once\nIf you write \\(\\mathrm{d}N/\\mathrm{d}t\\) two hundred times, define it once. Put your macros in a file called _macros.tex at the top of the project:\n\\providecommand{\\dd}{\\mathrm{d}}\n\\newcommand{\\dt}[1]{\\frac{\\mathrm{d}#1}{\\mathrm{d}t}}\n\\providecommand{\\ev}[1]{\\mathbb{E}\\!\\left[#1\\right]}\n\\providecommand{\\var}[1]{\\mathrm{Var}\\!\\left(#1\\right)}\nThe [1] means “this macro takes one argument”, and #1 is where that argument lands. So \\dt{N} expands to the whole derivative.\nThen start every chapter that needs them with an include shortcode on the very first line:\n{{&lt; include _macros.tex &gt;}}\nNow $\\dt{N}$ renders correctly in both outputs from a single definition: MathJax picks up the \\newcommands in the browser, LaTeX picks them up in the PDF. This is exactly what the BMS book does.\n\n\n\n\n\n\nTipWhy \\providecommand rather than \\newcommand\n\n\n\n\\providecommand only defines the macro if it does not already exist, so it cannot collide with something LaTeX already knows. Use it for anything with a plausibly common name; keep \\newcommand for names you are sure are yours.\n\n\n_macros.tex can also contain \\usepackage{…} lines that only make sense for the PDF. MathJax simply ignores them, which is why one include is safe for both formats.\n\n\n\n\n\n\nNoteA tidy pattern\n\n\n\nWrap the include in a hidden div so it never shows up as an empty line in the rendered page:\n::: {.content-hidden}\n$ {{&lt; include _macros.tex &gt;}} $\n:::",
-    "crumbs": [
-      "Writing",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
-    ]
-  },
-  {
-    "objectID": "06-maths-latex.html#where-mathjax-and-latex-disagree",
-    "href": "06-maths-latex.html#where-mathjax-and-latex-disagree",
-    "title": "6  Maths and LaTeX",
-    "section": "6.9 Where MathJax and LaTeX disagree",
-    "text": "6.9 Where MathJax and LaTeX disagree\nThey agree on almost everything, and then they do not. Watch for:\n\nPackages. \\usepackage{amsmath} and friends only exist in the PDF. MathJax has most of amsmath built in, so the common environments work anyway — but an exotic package will render on paper and silently fail on the web.\n\\text{} needs no package in either. Prefer it to \\mbox{}.\nColoured maths. \\color{red}{...} works in MathJax; in the PDF it needs \\usepackage{xcolor} in _macros.tex.\nLine breaks. \\\\ inside aligned is fine in both. A bare \\\\ in inline maths is not — put multi-line maths in a display block.\nUnicode. Typing α directly usually works in HTML and breaks the PDF. Write \\alpha.\n\n\n\n\n\n\n\nImportantAlways look at both outputs before a course starts\n\n\n\nRender to HTML and PDF and skim the equations in each. A formula that silently fails in one output is the single most common way a course book embarrasses itself.",
+    "section": "6.7 Define your notation once",
+    "text": "6.7 Define your notation once\nI write \\(\\mathrm{d}N/\\mathrm{d}t\\), \\(\\mathrm{d}X/\\mathrm{d}t\\), and \\(\\mathrm{d}Y/\\mathrm{d}t\\) a lot, and to do the math formatting correctly, I make the ‘d’ non-italic (correct for derivative). This is a bit long and annoying to to write: $\\mathrm{d}N/\\mathrm{d}t$.\nSo in my books, I use a macro to define it once. Put your macros in a file called _macros.tex at the top of the project:\n\\newcommand{\\dt}[1]{\\frac{\\mathrm{d}#1}{\\mathrm{d}t}}\nThe [1] means “this macro takes one argument”, and #1 is where that argument lands. So \\dt{N} expands to the whole thing for \\(\\mathrm{d}N/\\mathrm{d}t\\).\nThen start every chapter that needs them with an include shortcode on the very first line:\n{{&lt; include _macros.tex &gt;}}\n_macros.tex can also contain \\usepackage{…} lines that only make sense for the PDF. MathJax simply ignores them, which is why one include is safe for both formats.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
@@ -527,8 +483,8 @@
     "objectID": "06-maths-latex.html#when-something-does-not-render",
     "href": "06-maths-latex.html#when-something-does-not-render",
     "title": "6  Maths and LaTeX",
-    "section": "6.10 When something does not render",
-    "text": "6.10 When something does not render\nA formula that shows as raw \\frac{...} text, or a chunk of the page that has gone blank, is nearly always one of these:\n\n\n\nTable 6.4: Maths that will not render.\n\n\n\n\n\n\n\n\n\nSymptom\nCause\n\n\n\n\nRaw LaTeX visible on the page\nUnbalanced $ or $$ somewhere earlier in the chapter\n\n\nEverything after a point is italic\nAn unclosed $\n\n\n\\left error\nA \\left with no matching \\right\n\n\nWorks in HTML, breaks in PDF\nA missing \\usepackage, or a Unicode character\n\n\nWorks in PDF, breaks in HTML\nA LaTeX package MathJax does not implement\n\n\nNothing renders in one chapter\nA missing {{&lt; include _macros.tex &gt;}} line\n\n\n\n\n\n\n\n\n\n\n\n\nTipTwo tools worth knowing\n\n\n\nDetexify lets you draw a symbol and tells you its LaTeX name. And RStudio’s Visual editor has an equation editor with a live preview — insert the equation there, then switch back to Source to see what it wrote.",
+    "section": "6.8 When something does not render",
+    "text": "6.8 When something does not render\nA formula that shows as raw \\frac{...} text, or a chunk of the page that has gone blank, is nearly always one of these:\n\n\n\nTable 6.4: Maths that will not render.\n\n\n\n\n\n\n\n\n\nSymptom\nCause\n\n\n\n\nRaw LaTeX visible on the page\nUnbalanced $ or $$ somewhere earlier in the chapter\n\n\nEverything after a point is italic\nAn unclosed $\n\n\n\\left error\nA \\left with no matching \\right\n\n\nNothing renders in one chapter\nThis one give no useful errors, but a missing {{&lt; include _macros.tex &gt;}} is often the culprit.\n\n\n\n\n\n\n\n\n\n\n\n\nTipA tools worth knowing\n\n\n\nDetexify lets you draw a symbol and tells you its LaTeX name.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Maths and LaTeX</span>"
@@ -539,40 +495,7 @@
     "href": "07-pdf-and-print.html",
     "title": "7  Getting it onto paper",
     "section": "",
-    "text": "7.1 Two different splits, and they are not the same thing\nA course book usually has to exist as a PDF as well as a website, and students will print pages from the browser whether or not you planned for it. Both are handled from the same source — with care.\nThis trips up everyone once, so here it is before anything else. There are two mechanisms, and they answer different questions.\nA book that produces a PDF and expects students to print pages needs both. The BMS book uses content-visible 33 times and the CSS classes 35 times — for different jobs.",
-    "crumbs": [
-      "Writing",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Getting it onto paper</span>"
-    ]
-  },
-  {
-    "objectID": "07-pdf-and-print.html#two-different-splits-and-they-are-not-the-same-thing",
-    "href": "07-pdf-and-print.html#two-different-splits-and-they-are-not-the-same-thing",
-    "title": "7  Getting it onto paper",
-    "section": "",
-    "text": "content-visible when-format\n.screen-only / .print-only\n\n\n\n\nAsks\nWhich output is Quarto building?\nIs the browser painting to screen or paper?\n\n\nResolved\nOnce, at render time\nIn the reader’s browser, every time they print\n\n\nSplits\nHTML file vs PDF file\nThe same HTML page, on screen vs printed\n\n\nUse for\nA PDF edition of the book\nA student pressing Ctrl-P on a web page",
-    "crumbs": [
-      "Writing",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Getting it onto paper</span>"
-    ]
-  },
-  {
-    "objectID": "07-pdf-and-print.html#content-that-only-exists-in-one-format",
-    "href": "07-pdf-and-print.html#content-that-only-exists-in-one-format",
-    "title": "7  Getting it onto paper",
-    "section": "7.2 Content that only exists in one format",
-    "text": "7.2 Content that only exists in one format\nAn interactive simulation cannot exist on paper, and a full-page table of contents makes no sense on the web. Quarto’s native mechanism for this is conditional content:\n::: {.content-visible when-format=\"html\"}\n&lt;the live simulation&gt;\n:::\n\n::: {.content-visible when-format=\"pdf\"}\n![Screenshot of the simulation](figures/sim-screenshot.png)\n\nThe interactive version is at &lt;https://…&gt;\n:::\nThere is also .content-hidden when-format=\"…\" if it reads better inverted.\n\n\n\n\n\n\nWarningConditional content runs after the code does\n\n\n\nThe div hides output; it does not stop a chunk from executing. A chunk that emits HTML-only output should also be gated at the chunk level:\n#| eval: !expr knitr::is_html_output()",
-    "crumbs": [
-      "Writing",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Getting it onto paper</span>"
-    ]
-  },
-  {
-    "objectID": "07-pdf-and-print.html#sec-printing",
-    "href": "07-pdf-and-print.html#sec-printing",
-    "title": "7  Getting it onto paper",
-    "section": "7.3 Printing the web page",
-    "text": "7.3 Printing the web page\nStudents will hit Ctrl-P on a chapter. This is a different problem from the one above, and the distinction catches everybody out once.\n\n7.3.1 The page furniture looks after itself\nYou do not have to hide the sidebar, the table of contents or the previous/next links. Quarto’s own CSS already does it:\n/* from Quarto's bundled bootstrap css */\n@media print {\n  :root { font-size: 11pt }\n  #quarto-sidebar, #TOC, .nav-page { display: none }\n  .fixed-top { position: relative }\n}\nThis applies to any Quarto HTML output, book or website. If you have ever seen a Quarto page print with its menu attached, it was almost certainly not Quarto output at all.\n\n\n7.3.2 The pattern the BMS book uses\nThis is the one worth copying. Every interactive embed in that book is a pair: a screenshot with a short caption for paper, and the live thing for screen.\n:::{.print-only}\n&lt;center&gt;*Interactieve content beschikbaar op de website:*\n![](figuren/interactive_plife.png){fig-align=center}\n&lt;/center&gt;\n:::\n\n:::{.screen-only}\n```{=html}\n&lt;iframe width=\"100%\" height=\"550\"\n  src=\"https://jsfiddle.net/…/embedded/result\" title=\"Simulation\"&gt;&lt;/iframe&gt;\n```\n:::\nTwo things make it work. The printed version is not an apology for a missing figure — it is a real screenshot plus a line telling the reader where the live version is. And because it is CSS rather than when-format, it applies to the web page itself: a student who prints chapter 4 gets the screenshots, and the same file on screen keeps the simulations.\nThe cost is that you have to take the screenshots. Thirty-odd of them, in the BMS book’s case. There is no way around that — a browser cannot photograph an iframe for you.\n\n\n7.3.3 What you do have to handle\nThe content. Two helper classes, in an @media print block in your SCSS:\n.screen-only { display: block; }\n.print-only  { display: none; }\n\n@media print {\n  .screen-only { display: none !important; }\n  .print-only  { display: block !important; border: 1px dashed #999; padding: 1em; }\n\n  iframe { display: none !important; }      // prints as an empty rectangle\n\n  h1, h2, h3 { break-after: avoid; }        // no heading orphaned at a page foot\n  figure, table, pre, .callout { break-inside: avoid; }\n\n  a[href^=\"http\"]::after {                  // paper cannot be clicked\n    content: \" (\" attr(href) \")\";\n    font-size: 0.75em;\n  }\n}\nAll of that is already in this book’s uu.scss, so ::: {.screen-only} and ::: {.print-only} work straight away — see the two embeds in Chapter 8, which use exactly this pattern.\n\n\n\n\n\n\nTipGoing further: a two-column print layout\n\n\n\n\n\nThe BMS book squeezes a lot onto paper with column-count: 2 inside its @media print block, plus smaller type and forced full-width figures. Worth copying if students print whole chapters — but check your equations and wide code blocks, which do not enjoy narrow columns.\n\n\n\n\n\n\n\n\n\nCautionHistorical note: print_friendly.html\n\n\n\n\n\nEarlier versions of the BMS book used a hand-written &lt;script&gt; that swapped every &lt;iframe id=\"iframeToReplace\"&gt; for a link on window.onbeforeprint and reloaded the page afterwards. It was clever, and it predates Quarto having good native tools.\nIt is retired: the file survives only as an unused copy in Boek/scripts/, and no live chapter includes it. Print handling now rests entirely on the CSS above plus content-visible.\nDon’t teach it as a pattern. It relies on a magic element id, it reloads the page after printing, and content-visible when-format does the same job properly.",
+    "text": "7.1 A real PDF, rather than printing a web page\nThere are a few ways of getting your webbook onto paper.\nThe easiest (but not always best) way to give a web book as both html and PDF, is to add both to the format section of _quarto.yml:\nRendering then produces both. This needs a LaTeX installation; if you have none, quarto install tinytex sets up a small self-contained one.\nHowever, we ended up not using this options for our course books. It remains a little difficult to ensure the web book and the PDF really looked the same. Instead, we ensured the entire web-book was printer friendly, and decided to work from there. And if the student then decides to print it themselves, it will also look nice for them!",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Getting it onto paper</span>"
@@ -582,8 +505,19 @@
     "objectID": "07-pdf-and-print.html#a-real-pdf-rather-than-printing-a-web-page",
     "href": "07-pdf-and-print.html#a-real-pdf-rather-than-printing-a-web-page",
     "title": "7  Getting it onto paper",
-    "section": "7.4 A real PDF, rather than printing a web page",
-    "text": "7.4 A real PDF, rather than printing a web page\nPrinting from the browser is always a compromise. If the PDF matters, add a proper format:\nformat:\n  html:\n    theme: [cosmo, uu.scss]\n  pdf:\n    documentclass: scrreprt\n    include-in-header: _macros.tex\nRendering then produces both. This needs a LaTeX installation; if you have none, quarto install tinytex sets up a small self-contained one.\n\n\n\n\n\n\nTipLaTeX feels like too much?\n\n\n\nformat: typst is a modern, much lighter alternative that needs no LaTeX toolchain at all. It does not yet do everything LaTeX does — check your maths and your cross-references carefully — but for a straightforward reader it is fast and pleasant.",
+    "section": "",
+    "text": "format:\n  html:\n    theme: [cosmo, uu.scss]\n  pdf:\n    documentclass: scrreprt\n    include-in-header: _macros.tex",
+    "crumbs": [
+      "Writing",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Getting it onto paper</span>"
+    ]
+  },
+  {
+    "objectID": "07-pdf-and-print.html#sec-printing",
+    "href": "07-pdf-and-print.html#sec-printing",
+    "title": "7  Getting it onto paper",
+    "section": "7.2 Printing the web page",
+    "text": "7.2 Printing the web page\nAlthough a minority, some students enjoy printing your book. We found that approximately 1 in 8 students still wanted a printed version, which is why we decided to offer not only a printer-friendly web book, but also compiled our own PDF via the printing route.\nFirst things first: you do not have to worry about all the web elements, like the side bars and logos. Try it: hit print on this web page and you’ll they dont get printed. But what about interactive elements, like simulations and videos? How will these get printed? We did a bit of additional hacking to fix this.\n\n7.2.1 A trick applied in this template\nThe trick below is already in this template, but if you have interactive materials and are not using this template, it is really worth copying. In our course material, every interactive embed in that book is a pair: a screenshot with a short caption for the printed version, and the live thing for screen.\n:::{.print-only}\n&lt;center&gt;*Interactive content available on the website.*\n![](figuren/interactive_plife.png){fig-align=center}\n&lt;/center&gt;\n:::\n\n:::{.screen-only}\n```{=html}\n&lt;iframe width=\"100%\" height=\"550\"\n  src=\"https://jsfiddle.net/…/embedded/result\" title=\"Simulation\"&gt;&lt;/iframe&gt;\n```\n:::\nThe cost is that you have to take the screenshots, which can be a little extra work. Without a doubt, there will be better solutions for this soon-ish, but this enables us to be fully in control of what ends up being shown in the printed version of the web book.\n\n\n\n\n\n\nTipGoing further: a two-column print layout\n\n\n\n\n\nIf you wish, you can apply a two-column layout, which we have use for one of our books (saving 70 pages that students did not need to pay for). To do this, us column-count: 2 inside the @media print part of the uu.scss file. But carefully check your equations and wide code blocks, which do not enjoy narrow columns.",
     "crumbs": [
       "Writing",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Getting it onto paper</span>"
@@ -594,18 +528,18 @@
     "href": "08-iframes.html",
     "title": "8  Embedding interactive content",
     "section": "",
-    "text": "8.1 The pattern\nAn iframe is a whole webpage shown inside a box on your page. It is the single most useful trick in a course book, because it lets a student turn a knob instead of reading about the knob. The BMS book does it about fifty times.\nThere are two flavours, written almost identically:\nExternal — you point at a page on someone else’s server: Desmos, YouTube, JSFiddle, a simulation on tbb.bio.uu.nl.\nInternal — you point at an HTML file that lives inside your own project. Nothing external is involved and it keeps working forever.\nRaw HTML must be wrapped in a {=html} block, or Quarto escapes it and students see the angle brackets:\nwidth=\"100%\" makes it responsive to the page width. height is fixed per embed and has to suit the content — the BMS book uses anything from 330 to 680 px. The inline style (no border, rounded corners, a little vertical margin) is what makes an embedded tool look like part of the page rather than a box someone dropped in.",
+    "text": "8.1 How to embed iframes\nAn iframe is a whole webpage shown inside a box on your page. It’s a tiny website inside your website. It is the single most useful trick in our course books, because it lets you develop independent “apps” that you can then drop in the middle of the book.\nThere are two flavours, written almost identically:\nExternal — you point at a page on someone else’s server: Desmos for mathmatics, YouTube for videos, JSFiddle for javascript simulations, or one of my many other simulations.\nInternal — you point at an HTML file that lives inside your own project. Nothing external is involved and it keeps working forever. If you1 develop your own little app, you can ship it with your book.\nRaw HTML must be wrapped into a {=html} block, or Quarto escapes it and students see the angle brackets:\nwidth=\"100%\" makes it responsive to the page width (similar to images, probably a great idea with students looking at your content on phones and laptops alike). height is typically fixed for my embeddings. The inline style (no border, rounded corners, a little vertical margin) is what makes an embedded tool look like part of the page rather than a box someone dropped in.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Embedding interactive content</span>"
     ]
   },
   {
-    "objectID": "08-iframes.html#the-pattern",
-    "href": "08-iframes.html#the-pattern",
+    "objectID": "08-iframes.html#how-to-embed-iframes",
+    "href": "08-iframes.html#how-to-embed-iframes",
     "title": "8  Embedding interactive content",
     "section": "",
-    "text": "```{=html}\n&lt;iframe src=\"…\" width=\"100%\" height=\"600\"\n        style=\"border:none; border-radius:8px;\"&gt;\n&lt;/iframe&gt;\n```\n\n\n\n\n\n\n\nImportantIf your book also makes a PDF\n\n\n\nAn iframe cannot exist on paper. Wrap every one of them in ::: {.content-visible when-format=\"html\"} and give the PDF a screenshot and a link instead — see Chapter 7. Otherwise the PDF gets a mysterious blank gap.",
+    "text": "```{=html}\n&lt;iframe src=\"…\" width=\"100%\" height=\"600\"\n        style=\"border:none; border-radius:8px;\"&gt;\n&lt;/iframe&gt;\n```\n\n\n\n\n\n\n\nImportantAdd a screenshot for the printed version\n\n\n\nAs discussed in the previous section, an iframe cannot exist on paper. Wrap every one of them in ::: {.content-visible when-format=\"html\"} and give the PDF a screenshot and a link instead — see Chapter 7. Otherwise the PDF gets a mysterious blank gap, or worse, something half cut-off or overlapping with your book’s content. The simulation below has a replacement: if you press print now, you will see the stale image appear with a remark that this interactive content is only available on the website.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Embedding interactive content</span>"
@@ -616,7 +550,7 @@
     "href": "08-iframes.html#external-a-simulation-on-another-server",
     "title": "8  Embedding interactive content",
     "section": "8.2 External: a simulation on another server",
-    "text": "8.2 External: a simulation on another server\n\n\n\n\n\nSimulation: rabbits in Australia. The interactive version is at https://tbb.bio.uu.nl/bvd/simulations/australia/\n\n&lt;iframe src=\"https://tbb.bio.uu.nl/bvd/simulations/australia/\"\n        width=\"100%\" height=\"520\" title=\"Rabbits in Australia\"\n        style=\"border:none; border-radius:8px;\"&gt;&lt;/iframe&gt;",
+    "text": "8.2 External: a simulation on another server\n\n\n\n\n\nSimulation: rabbits in Australia. The interactive version is at https://tbb.bio.uu.nl/bvd/simulations/australia/ \n\n&lt;iframe src=\"https://tbb.bio.uu.nl/bvd/simulations/australia/\"\n        width=\"100%\" height=\"560\" title=\"Rabbits in Australia\"\n        style=\"border:none; border-radius:8px;\"&gt;&lt;/iframe&gt;",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Embedding interactive content</span>"
@@ -627,7 +561,7 @@
     "href": "08-iframes.html#external-a-desmos-graph",
     "title": "8  Embedding interactive content",
     "section": "8.3 External: a Desmos graph",
-    "text": "8.3 External: a Desmos graph\nBuild the graph on desmos.com/calculator, press Share, and use the URL you are given — https://www.desmos.com/calculator/qxycdqwsdq — directly as the src. Students can then drag its sliders inside your book. The maths chapters of the BMS book use thirteen of these.\n&lt;iframe src=\"https://www.desmos.com/calculator/qxycdqwsdq\"\n        width=\"100%\" height=\"467\"\n        style=\"border:1px solid #ccc;\" frameborder=\"0\"&gt;&lt;/iframe&gt;",
+    "text": "8.3 External: a Desmos graph\nBuild the graph on desmos.com/calculator, press Share, and use the URL you are given (something like https://www.desmos.com/calculator/qxycdqwsdq) directly as the src. Students can then drag its sliders inside your book. We use these quite often for students that struggle with maths.\n&lt;iframe src=\"https://www.desmos.com/calculator/qxycdqwsdq\"\n        width=\"100%\" height=\"467\"\n        style=\"border:1px solid #ccc;\" frameborder=\"0\"&gt;&lt;/iframe&gt;\nGive you:",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Embedding interactive content</span>"
@@ -638,7 +572,7 @@
     "href": "08-iframes.html#external-a-video",
     "title": "8  Embedding interactive content",
     "section": "8.4 External: a video",
-    "text": "8.4 External: a video\nDo not hand-write an iframe for YouTube. Quarto has a shortcode that does it properly, including on phones:\n{{&lt; video https://www.youtube.com/embed/wo9vZccmqwc &gt;}}",
+    "text": "8.4 External: a video\nDo not hand-write an iframe for YouTube. Quarto has a shortcode that does it properly, including on phones:\n{{&lt; video https://www.youtube.com/embed/wo9vZccmqwc &gt;}}\nGive you:",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Embedding interactive content</span>"
@@ -649,7 +583,7 @@
     "href": "08-iframes.html#external-code-students-can-edit-and-run",
     "title": "8  Embedding interactive content",
     "section": "8.5 External: code students can edit and run",
-    "text": "8.5 External: code students can edit and run\nJSFiddle hosts a small program together with its output. Append /embedded/result to the share URL for output only, or /embedded/js,result to show the code beside it so students can change a parameter and press Run.\n&lt;iframe src=\"https://jsfiddle.net/bramvandijk88/jq3u7f6t/embedded/result\"\n        width=\"100%\" height=\"550\" title=\"Simulation\"&gt;&lt;/iframe&gt;\n\n\n\n\n\n\nWarningExternal things break\n\n\n\nEvery external iframe is a promise made by somebody else. Servers move, accounts lapse, embedding gets blocked — and you find out when a student emails you in week 4. Check them at the start of each course year, and for anything students are assessed on, make it internal.",
+    "text": "8.5 External: code students can edit and run\nJSFiddle hosts a small program together with its output. Append /embedded/result to the share URL for output only, or /embedded/js,result to show the code beside it so students can change a parameter and press Run.\n&lt;iframe src=\"https://tbb.bio.uu.nl/bvd/simulations/cooperation/\"\n        width=\"100%\" height=\"600\" title=\"Simulation\"&gt;&lt;/iframe&gt;\nGive you:\n\n\n\n\n\n\n\nWarningExternal things break\n\n\n\nFair warning: every external iframe relies on that web page staying online. Servers move, accounts expire, embedding gets blocked… Probably check any external links at the start of each course year, and for anything students are assessed on, best to make it internal.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Embedding interactive content</span>"
@@ -660,7 +594,18 @@
     "href": "08-iframes.html#internal-an-applet-inside-your-own-book",
     "title": "8  Embedding interactive content",
     "section": "8.6 Internal: an applet inside your own book",
-    "text": "8.6 Internal: an applet inside your own book\nOne self-contained .html file in a folder in your project. The src is then just a relative path:\n```{=html}\n&lt;iframe src=\"applets/example-applet.html\"\n        width=\"100%\" height=\"620\"\n        title=\"Logistic growth explorer\"\n        style=\"border:none; border-radius:8px; margin:1em 0;\"&gt;\n&lt;/iframe&gt;\n```\nWhich gives you this — a real applet, running inside this page:\n\n\n\n\n\nApplet: logistic growth explorer. Sliders for \\(r\\), \\(K\\) and \\(N_0\\), with the resulting trajectory. Open the book in a browser to use it.\n\nNotice that both examples on this page are wrapped in ::: {.screen-only}, with a ::: {.print-only} block beside them. That is not decoration — it is the whole print story, and Section 7.3 explains why.\nThat is the entire mechanism. The statistics chapters of the BMS book work exactly this way: Statistiek/Applets/ holds a critical-value calculator, a p-value calculator and a sampling-distribution simulator, each one file. Nothing external, nothing that can go offline, and the applets travel with the book.\n\n\n\n\n\n\nImportantFour things that go wrong\n\n\n\nBlank box. The path is wrong. It is relative to the chapter file, so a chapter in a subfolder needs ../applets/….\nIt vanishes after rendering. Add resources: [applets/] to _quarto.yml so Quarto copies the folder into the finished site.\nThe box is too short and the applet gets its own scrollbar. Iframes never grow to fit their contents — tune height by hand, then check on a phone.\nA stray quote. height=600\" — missing its opening quote — silently breaks the whole tag. There is one of these in the BMS book right now (Statistiek/ToetsenGemiddelde.qmd). If an applet renders strangely, check the quotes before anything else.\n\n\n\nThe rendered page above, showing the applet embedded in the text — this is the image that sells the whole approach to a colleague.",
+    "text": "8.6 Internal: an applet inside your own book\nOne self-contained .html file in a folder in your project. The src is then just a relative path:\n```{=html}\n&lt;iframe src=\"applets/example-applet.html\"\n        width=\"100%\" height=\"620\"\n        title=\"Logistic growth explorer\"\n        style=\"border:none; border-radius:8px; margin:1em 0;\"&gt;\n&lt;/iframe&gt;\n```\nWhich gives you what you see below, a real applet, running inside this page:\n\n\n\n\n\nApplet: logistic growth explorer. Sliders for \\(r\\), \\(K\\) and \\(N_0\\), with the resulting trajectory. Open the book in a browser to use it.\n\nNotice that do not transfer well to a printed version of your book, but there is a solution. See Section 7.2.",
+    "crumbs": [
+      "Interactive material",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Embedding interactive content</span>"
+    ]
+  },
+  {
+    "objectID": "08-iframes.html#footnotes",
+    "href": "08-iframes.html#footnotes",
+    "title": "8  Embedding interactive content",
+    "section": "",
+    "text": "With or without the help of our robot overlords↩︎",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Embedding interactive content</span>"
@@ -671,18 +616,18 @@
     "href": "09-runnable-code.html",
     "title": "9  Code students can run in the browser",
     "section": "",
-    "text": "9.1 What it looks like\nThis is the newest of the interactive options, and for a course that teaches programming it is the most useful. The student edits your code and presses Run, and it executes in their browser — no R installed, no server, no accounts, no logins that break in week 3.\nBoth cells below are real. Each is an editor with Run Code and Start Over buttons: change anything, run it again, and reset it when you have made a mess.\nSmall on purpose: the very first cell on a page has to download R itself, so a three-line example gets the student to their first Run Code quickly. Once webR is loaded, everything else on the page is instant.\nThe second cell is a real model — change d to 0.9 and the paracetamol takes far longer to clear:",
+    "text": "9.1 A first example\nTo run Python and R code, we often have servers set up that can run the code for our students. For big projects, that is still the way to go. But for small bits of practice code, there’s a better way: run it locally in the student’s browser. No server, no accounts, and no other barriers related to installation. I will spare you the technical details of how it works1. Let’s see how it works.\nBoth cells below are real executable R code. Each is an editor with Run Code and Start Over buttons: students can change stuff, run it, and reset it when they have made a mess.\nHere is a second cell with some more advanced code, a toy-model of paracetamol in the blood, mostly a nice finger exercise I give to students to learn about for loops2:\nTry running the code above, and you’ll even see a plot appear! If you run it many times, you’ll even see it’s different every time.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
     ]
   },
   {
-    "objectID": "09-runnable-code.html#what-it-looks-like",
-    "href": "09-runnable-code.html#what-it-looks-like",
+    "objectID": "09-runnable-code.html#a-first-example",
+    "href": "09-runnable-code.html#a-first-example",
     "title": "9  Code students can run in the browser",
     "section": "",
-    "text": "NoteThese two are live\n\n\n\nPress Run Code. The first cell has to fetch R itself, so give it a few seconds; after that everything on the page is instant. Section 9.3 explains how this was set up, and how to switch it back off.",
+    "text": "NoteLoading webR\n\n\n\nBefore you can press Run Code, the first cell has to fetch R itself, so give it a few seconds; after that everything on the page is instant. Section 9.3 explains how this was set up, and how to switch it back off.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
@@ -704,18 +649,18 @@
     "href": "09-runnable-code.html#sec-webr-install",
     "title": "9  Code students can run in the browser",
     "section": "9.3 Installing it",
-    "text": "9.3 Installing it\nThe extension is Quarto Live, and installing it is the one moment in this guide that needs a terminal. It is one command, run once per project.\n\n\n\n\n\n\nTipStep by step, in RStudio\n\n\n\n\nOpen the project (File → Open Project, or double-click its .Rproj).\nClick the Terminal tab — bottom-left pane, next to Console.\nCheck where you are. Type pwd and press Enter. It must print your project folder. If it prints your home folder instead, move there first:\n\ncd ~/Dropbox/…/YourBookFolder\n\nNow install:\n\nquarto add r-wasm/quarto-live\n\nIt asks whether you trust the authors — press Y, Enter. It may ask a second time to confirm; Y again.\nCheck it worked: a folder _extensions/r-wasm/live/ should now exist in the project. In RStudio’s Files pane you may need the More → Show Hidden Files option to see it.\n\n\n\n\n\n\n\n\n\nWarningThe mistake that costs ten minutes\n\n\n\nquarto add installs into whatever folder the Terminal is currently in, not into the project you have open in RStudio. Those are usually the same thing, but not always — a Terminal that opened in your home folder will cheerfully create _extensions there, report success, and leave your book exactly as broken as before.\nThat is what step 3 is for. If it has already happened, just drag the stray _extensions folder into your project.\n\n\nCommit the _extensions/ folder to Git along with everything else. Then a colleague who clones the book does not have to install anything, and neither does a build server.",
+    "text": "9.3 Installing it\nThe above setup requires an extension, Quarto Live, and installing it can be done in the R terminal. It is one command, run once per project.\n\n\n\n\n\n\nTipStep by step, in RStudio\n\n\n\n\nOpen the project (File → Open Project, or double-click its .Rproj).\nClick the Terminal tab: bottom-left pane, next to Console.\nCheck where you are. Type pwd and press Enter. It must print your project folder. If it prints your home folder instead, move there first:\n\ncd ~/Files/…/YourBookFolder\n\nNow install:\n\nquarto add r-wasm/quarto-live\n\nIt asks whether you trust the authors. Assuming you do trust the authors, press Y, Enter. It may ask a second time to confirm; Y again.\nCheck it worked: a folder _extensions/r-wasm/live/ should now exist in the project. In RStudio’s Files pane you may need the More → Show Hidden Files option to see it.\n\n\n\n\n\n\n\n\n\nWarningThe mistake that costs ten minutes\n\n\n\nquarto add installs into whatever folder the Terminal is currently in, not into the project you have open in RStudio. Those are usually the same thing, but not always — a Terminal that opened in your home folder will cheerfully create _extensions there, report success, and leave your book exactly as broken as before. That is what step 3 is for. If it has already happened, either re-run the command or drag the stray _extensions folder into your project3.\n\n\nIf you’re going to use git to work on your book with multiple teachers, you can add the _extensions/ folder to Git along with everything else. Then your colleague does not need to install anything, it’s simply some files with configurations for your folder, not a local installation.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
     ]
   },
   {
-    "objectID": "09-runnable-code.html#switching-the-book-over",
-    "href": "09-runnable-code.html#switching-the-book-over",
+    "objectID": "09-runnable-code.html#one-more-step-before-it-works",
+    "href": "09-runnable-code.html#one-more-step-before-it-works",
     "title": "9  Code students can run in the browser",
-    "section": "9.4 Switching the book over",
-    "text": "9.4 Switching the book over\nTwo edits, both one line.\nIn _quarto.yml, change the html format to live-html:\nformat:\n  live-html:          # was: html\n    theme: [cosmo, uu.scss]\n    toc: true\nlive-html is ordinary html with the WebAssembly machinery added, so everything else — the theme, the sidebar, cross-references — carries on unchanged.\nAt the top of every chapter that has a live cell, immediately below the closing --- of the YAML header:\n{{&lt; include ./_extensions/r-wasm/live/_knitr.qmd &gt;}}\nThat line registers webr as an engine that knitr recognises, and it is needed whenever your book runs R chunks anywhere — which it almost certainly does. Miss it and Quarto stops with “Include directive failed”; miss the live-html change and the cells render as ordinary dead code blocks with no Run button. This chapter has both — look at its source.\n\n\n\n\n\n\nNoteGoing back\n\n\n\nReverse the same two edits: live-html back to html, delete the include line, and put engine: markdown in the chapter header so Quarto stops looking for something to execute. The book then renders on any machine with no extension installed, which is what you want before handing it to a colleague who has not installed anything.",
+    "section": "9.4 One more step before it works",
+    "text": "9.4 One more step before it works\nTwo edits, both one line.\nIn _quarto.yml, change the html format to live-html:\nformat:\n  live-html:          # was: html\n    theme: [cosmo, uu.scss]\n    toc: true\nlive-html is ordinary html with the WebAssembly machinery added, so everything else — the theme, the sidebar, cross-references — carries on unchanged.\nAt the top of every chapter that has a live cell, immediately below the closing --- of the YAML header:\n{{&lt; include ./_extensions/r-wasm/live/_knitr.qmd &gt;}}\nThat line then knows where to find the webr engine. If you forget this step, Quarto stops with “Include directive failed”. So if you get that error, you know this step somehow didnt work.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
@@ -726,7 +671,7 @@
     "href": "09-runnable-code.html#writing-a-cell",
     "title": "9  Code students can run in the browser",
     "section": "9.5 Writing a cell",
-    "text": "9.5 Writing a cell\nA live R cell is a {webr} block. That is the whole syntax — you write this:\n```{webr}\nplot(sin(seq(0, 4 * pi, 0.1)), type = 'l', lwd = 2, col = \"#C00A35\")\n```\n…and your students get this:\n\n\n\n\n\n\n\n\nSource above, result below — the same three backticks either way. Every example from here on is shown in that pair.",
+    "text": "9.5 Writing a cell\nA live R cell is a {webr} block. That is the whole syntax — you write this:\n```{webr}\n#plot a sine \nplot(sin(seq(0, 4 * pi, 0.1)), type = 'l', lwd = 2, col = \"#C00A35\")\n```\n…and your students get this:",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
@@ -737,7 +682,7 @@
     "href": "09-runnable-code.html#cell-options",
     "title": "9  Code students can run in the browser",
     "section": "9.6 Cell options",
-    "text": "9.6 Cell options\nOptions go at the top of the cell, #| style, exactly like ordinary chunks — the cell above uses caption and min-lines.\n\n\n\nTable 9.2: Live cell options.\n\n\n\n\n\n\n\n\n\nOption\nEffect\n\n\n\n\nautorun: true\nrun once as the page loads, so the student sees output before touching anything\n\n\nedit: false\nshow and run it, but do not let them change it\n\n\nrunbutton: false\nno Run button — pair with autorun for a live demo\n\n\nstartover: false\nremove the reset button\n\n\npersist: true\nremember the student’s edits in their browser across reloads\n\n\nmin-lines, max-lines\ncontrol the height of the editor box\n\n\ntimelimit: 10\nseconds before a runaway loop is stopped (default 30)\n\n\ncaption: \"Try changing d\"\na title on the cell\n\n\ninclude: false\nrun it invisibly — for setup code the student should not see\n\n\n\n\n\n\nOptions change the cell quite a lot. This one is set to run itself on page load and refuse edits — a live demonstration rather than an exercise:\n```{webr}\n#| autorun: true\n#| edit: false\n#| caption: Exponentiële versus logistische groei\n```\n\n\n\n\n\n\n\n\nNotice there is no Run button and no editor — it simply appeared. Compare it with the cells at the top of the chapter, which have both.\n\n\n\n\n\n\nWarningLive cells need a web server — and Render alone does not start one\n\n\n\nOpen docs/index.html straight off your disk and the cells appear but stay dead: the editor never initialises, because browsers refuse to start the WebAssembly worker over a file:// address. It looks exactly like a broken install, and it is not.\nRender builds the book but does not necessarily serve it. Worse, once the format is live-html RStudio no longer recognises it as something it knows how to preview, so the Render button quietly stops opening a preview window at all — it prints “Output created: docs/index.html” and nothing appears.\nTo see live cells locally, start a server yourself. In the Terminal tab, from the project folder:\nquarto preview\nThat builds the book, serves it at a http://localhost:#### address, opens your browser at it, and re-renders whenever you save. Stop it with Ctrl+C.\nIf it opens inside RStudio’s Viewer pane rather than a real browser, click the Show in new window icon — the Viewer is a cut-down browser and WebAssembly is exactly the sort of thing it is bad at.\nPublished to GitHub Pages the book is served over https://, so students never meet any of this.\n\n\n\n\n\n\n\n\nTipThe setup-cell pattern\n\n\n\nPut data loading and library calls in an include: false cell at the top of the chapter. State carries between cells on the same page, so the student’s cell can then be three lines about the actual idea instead of fifteen lines of boilerplate.",
+    "text": "9.6 Cell options\nOptions go at the top of the cell, #| style, exactly like ordinary chunks — the cell above uses caption and min-lines.\n\n\n\nTable 9.2: Live cell options.\n\n\n\n\n\n\n\n\n\nOption\nEffect\n\n\n\n\nautorun: true\nrun once as the page loads, so the student sees output before touching anything\n\n\nedit: false\nshow and run it, but do not let them change it\n\n\nrunbutton: false\nno Run button — pair with autorun for a live demo\n\n\nstartover: false\nremove the reset button\n\n\npersist: true\nremember the student’s edits in their browser across reloads4\n\n\nmin-lines, max-lines\ncontrol the height of the editor box\n\n\ntimelimit: 10\nseconds before a runaway loop is stopped (default 30)\n\n\ncaption: \"Try changing d\"\na title on the cell\n\n\ninclude: false\nrun it invisibly — for setup code the student should not see\n\n\n\n\n\n\nOptions change the cell quite a lot. This one is set to run itself on page load and refuse edits — a live demonstration rather than an exercise:\n```{webr}\n#| autorun: true\n#| edit: false\n#| caption: Exponentiële versus logistische groei\n```\n\n\n\n\n\n\n\n\nNotice there is no Run button and no editor – it simply appeared. Compare it with the cells at the top of the chapter, which have both.\n\n\n\n\n\n\nWarningLive cells only on a server. Once you published your book online everything\n\n\n\nwill work, but if you simply open your HTML file localy, the live code will grow stale: the editor never initialises.\nTo see live cells locally, start a server yourself. In the Terminal tab, from the project folder:\nquarto preview\nThat builds the book, serves it at a http://localhost:#### address, opens your browser at it, and re-renders whenever you save. Stop it with Ctrl+C.\nIf it opens inside RStudio’s Viewer pane rather than a real browser, click the Show in new window icon; the Viewer is a cut-down browser and WebAssembly is exactly the sort of thing it is bad at.\nPublished to GitHub Pages the book is served over https://, so students never notice any of this. Once it works, it works.\n\n\n\n\n\n\n\n\nTipThe setup-cell pattern\n\n\n\nIf you load data or libraries, put that in a separate cell in the top of your page with include: false. This carries between cells on the same page, so the student’s cell can then be three lines about the actual idea instead of fifteen lines of extra boilerplate code.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
@@ -748,7 +693,7 @@
     "href": "09-runnable-code.html#packages",
     "title": "9  Code students can run in the browser",
     "section": "9.7 Packages",
-    "text": "9.7 Packages\nPackages must be declared in the YAML so they are fetched when the page loads:\nwebr:\n  packages:\n    - dplyr\n    - ggplot2\n\n\n\n\n\n\nWarningNot every package exists in WebAssembly\n\n\n\nAn R package has to have been compiled for WebAssembly. Most of the common ones are, at repo.r-wasm.org, and R-universe builds WebAssembly versions automatically — add a repos: key to pull from one. But anything wrapping compiled C or Fortran that nobody has ported will simply not be there.\nCheck the packages you need before you rewrite a practical around this. Python has the same limitation, with a different list — see Section 9.8. Every live cell in this chapter uses only base R or the Python standard library, deliberately.",
+    "text": "9.7 Packages\nPackages must be declared in the YAML so they are fetched when the page loads:\nwebr:\n  packages:\n    - dplyr\n    - ggplot2\n\n\n\n\n\n\nWarningNot every package exists in WebAssembly\n\n\n\nAn R package has to have been compiled for WebAssembly. Most of the common ones are, at repo.r-wasm.org, and R-universe builds WebAssembly versions automatically — add a repos: key to pull from one. But anything wrapping compiled C or Fortran that nobody has ported will simply not be there.\nCheck the packages you need before you rewrite a practical around this. Python has the same limitation, with a different list (see Section 9.8). Every live cell in this chapter uses only base R or the Python standard library, deliberately.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
@@ -759,18 +704,7 @@
     "href": "09-runnable-code.html#sec-webr-python",
     "title": "9  Code students can run in the browser",
     "section": "9.8 The same trick for Python",
-    "text": "9.8 The same trick for Python\nThere is nothing to install. The extension you already added ships Pyodide — CPython compiled to WebAssembly — alongside webR, and the include line at the top of this chapter registers both engines. Write {pyodide} instead of {webr} and it simply works:\n```{pyodide}\n#| caption: Exponentiële groei\nr, N = 0.12, 2.0\nfor t in range(10):\n    print(f\"t = {t:2d}   N = {N:6.2f}\")\n    N = N * (1 + r)\n```\nWhich gives you a Python editor, with its own Run Code button:\n\n\n\n\n\n\n\n\nPackages work the same way, under their own key:\nwebr:\n  packages: [dplyr, ggplot2]\npyodide:\n  packages: [numpy, matplotlib]\nPyodide ships the scientific stack, and micropip can fetch pure-Python wheels from PyPI — but not packages whose compiled parts have never been built for WebAssembly. Same caveat as R, different list.\n\n\n\n\n\n\nWarningOne page, two runtimes\n\n\n\nThis page now loads both webR and Pyodide, because it has cells of both kinds. That is roughly double the first-load cost, and this chapter only does it to show you that it works.\nIn a real course book, keep a page to one language unless you genuinely need both. Where you do — an introductory course where half the room knows R and half knows Python — a ::: {.panel-tabset} with an R cell in one tab and a Python cell in the other is the tidy way to do it.",
-    "crumbs": [
-      "Interactive material",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
-    ]
-  },
-  {
-    "objectID": "09-runnable-code.html#sec-webr-cost",
-    "href": "09-runnable-code.html#sec-webr-cost",
-    "title": "9  Code students can run in the browser",
-    "section": "9.9 What it costs",
-    "text": "9.9 What it costs\n\n\n\n\n\n\nImportantThe first cell on a page is slow\n\n\n\nLoading webR means downloading R itself — tens of megabytes. Expect a few seconds on a good connection and rather longer on eduroam in a full lecture hall. After that it is fast, and it is cached for the rest of the session.\nTwo things help: put an autorun: true cell early on so the download starts while the student is still reading, and do not scatter live cells across twenty chapters when three practical pages would do.\n\n\nTwo more limits worth knowing before you commit a practical to this:\n\nNo files and no network. The browser sandbox means no reading from the student’s disk and no download.file(). Ship data inside the page, or as a URL the extension is configured to fetch.\nIt is not a replacement for teaching them to install R. If the course outcome is “can run an analysis on their own laptop”, they still have to install it. This is for the explaining, not for the doing.",
+    "text": "9.8 The same trick for Python\nThere is nothing extra to install (unless you skipped the previous installation). That extension you already added ships Pyodide — CPython compiled to WebAssembly — alongside webR, and the include line at the top of this chapter registers both engines. Write {pyodide} instead of {webr} and it simply works:\n```{pyodide}\n#| caption: Exponentiële groei\nr, N = 0.12, 2.0\nfor t in range(10):\n    print(f\"t = {t:2d}   N = {N:6.2f}\")\n    N = N * (1 + r)\n```\nWhich gives you a Python editor, with its own Run Code button:\n\n\n\n\n\n\n\n\nPackages work the same way, under their own key:\nwebr:\n  packages: [dplyr, ggplot2]\npyodide:\n  packages: [numpy, matplotlib]\nPyodide ships the scientific stack, and micropip can fetch pure-Python wheels from PyPI. But some packages with compiled parts have never been built for WebAssembly. Same caveat as R.\n\n\n\n\n\n\nWarningOne page, two runtimes\n\n\n\nThis page now loads both webR and Pyodide, because it has cells of both kinds. That is roughly double the first-load cost, and this chapter only does it to show you that it works.\nIn a real course book, keep a page to one language unless you genuinely need both. Where you do — an introductory course where half the room knows R and half knows Python — a ::: {.panel-tabset} with an R cell in one tab and a Python cell in the other is the tidy way to do it. But there’s plenty of documentation online already, so good luck! :)",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
@@ -780,19 +714,19 @@
     "objectID": "09-runnable-code.html#does-it-work-in-the-pdf",
     "href": "09-runnable-code.html#does-it-work-in-the-pdf",
     "title": "9  Code students can run in the browser",
-    "section": "9.10 Does it work in the PDF?",
-    "text": "9.10 Does it work in the PDF?\nNo — like everything else in this part of the book, a live cell needs a browser. Wrap it the way Chapter 7 describes: the live version inside ::: {.content-visible when-format=\"html\"}, and for the PDF a plain non-executing code block showing the same code, so the printed book still has something to read.",
+    "section": "9.9 Does it work in the PDF?",
+    "text": "9.9 Does it work in the PDF?\nOf course not. Like everything else in this part of the book, a live cell needs a browser. Wrap it the way Chapter 7 describes: the live version inside ::: {.content-visible when-format=\"html\"}, and for the PDF a plain non-executing code block showing the same code, so the printed book still has something to read.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
     ]
   },
   {
-    "objectID": "09-runnable-code.html#writing-about-live-cells",
-    "href": "09-runnable-code.html#writing-about-live-cells",
+    "objectID": "09-runnable-code.html#footnotes",
+    "href": "09-runnable-code.html#footnotes",
     "title": "9  Code students can run in the browser",
-    "section": "9.11 Writing about live cells",
-    "text": "9.11 Writing about live cells\nThere is a trap here, and this chapter walks into it deliberately so you do not have to.\nQuarto picks an engine per file by scanning the raw text for cell fences, before it parses any markdown. A ```{webr} fence therefore counts even when you only meant to show it as an example — nesting it inside a bigger code block, indenting it, or adding backticks makes no difference. In a book with no live cells at all, that alone is enough to make Quarto demand a Python kernel and stop with:\nStarting python3 kernel...\nJupyter is not available in this Python installation.\nThe syntax examples on this page are therefore written as raw HTML blocks rather than fenced ones — look at the source. They still get a copy button, Quarto never sees a fence at all, and it is what lets this chapter print a cell’s source and run that same cell directly underneath.\n\n\n\n\n\n\nTipIf you only want to describe live cells\n\n\n\nA chapter that shows the syntax but runs nothing needs neither the extension nor the include. Put engine: markdown in its YAML header and Quarto will stop looking for something to execute.",
+    "section": "",
+    "text": "for those interested, look for WebAssembly) online↩︎\nI know, not the best way to go about with R but they have to learn the concepts of loops↩︎\nThat doesnt always work, but it does in this case↩︎\nNote: if students delete their cache, they lose their edits!↩︎",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Code students can run in the browser</span>"
@@ -803,51 +737,29 @@
     "href": "10-ai-applets.html",
     "title": "10  Writing applets with an AI assistant",
     "section": "",
-    "text": "10.1 Constrain the request\nA single self-contained HTML file with a few sliders and a plot is exactly the kind of thing Claude or ChatGPT produces well in one go. This is where the effort really collapses: the statistics applets in the BMS book are of this kind, and each took minutes rather than days.\nThe catch is in the title of this chapter’s key section: if you are careful.\nThe constraints below are what separate a file that still works in five years from one that mysteriously stops working in March.",
+    "text": "10.1 Example applet\nI am a programmer myself, and I have made a lot of teaching material by programming little simulations and apps. But, this takes a lot of time.\nWith AI, not only can I personally make these materials much faster, but anyone should now be able to bring these kinds of things to the classroom.\nThe catch: you have to be very, very careful. AI tends to mix your message with general learnings from all over the globa, muddying up your material. It can write code, but it cannot check that material is correctly portraying your course content.\nBelow is an example (Dutch) applet made with the help of AI. While I could have spend a few days making this myself, it saved me a bunch of time and students did appreciate the extra effort (e.g. the animations) to clarify the mathematical procedure.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Writing applets with an AI assistant</span>"
     ]
   },
   {
-    "objectID": "10-ai-applets.html#constrain-the-request",
-    "href": "10-ai-applets.html#constrain-the-request",
+    "objectID": "10-ai-applets.html#tips-for-making-apps-with-ai.",
+    "href": "10-ai-applets.html#tips-for-making-apps-with-ai.",
     "title": "10  Writing applets with an AI assistant",
-    "section": "",
-    "text": "One single .html file. All CSS and JavaScript inline. No npm, no build step, no separate files. If the answer needs installing, it is the wrong answer.\nNo external libraries, no CDN links. Plain JavaScript and a &lt;canvas&gt; element cover almost everything a statistics or modelling applet needs. A library pulled from a CDN means the applet dies whenever that CDN does, or whenever a student has no connection.\nSay the width is fluid and give the height. “It will be embedded in an iframe at width: 100%, height: 620px. Use a responsive layout; nothing may overflow at that height.”\nAsk it to set the background colour explicitly, and to handle light and dark colour schemes. Otherwise the applet inherits nothing and looks unfinished.\nAsk it to state the formula it implemented in a comment at the top of the file, in mathematical notation. That one line is what makes the file checkable.\n\n\n\n\n\n\n\nCautionA prompt you can paste\n\n\n\n\n\n\nWrite me a small interactive teaching applet as one single, self-contained HTML file.\nTopic: [what it should show — e.g. “the sampling distribution of the mean: the student sets the population SD and the sample size n, draws many samples, and sees the distribution of sample means beside the population distribution”]\nControls: [which sliders or inputs, and their ranges]\nLanguage of all labels: [English / Dutch]\nHard requirements:\n\nOne file. All CSS and JavaScript inline. No npm, no build step.\nNo external libraries and no CDN links. Plain JavaScript and &lt;canvas&gt; for plotting. It must work with no internet connection.\nIt will be embedded in an iframe at width: 100%, height: [N]px. Use a responsive layout; nothing may overflow or scroll inside the frame.\nSet the background colour explicitly on body, and support both light and dark via prefers-color-scheme.\nReadable at phone width.\nPut a comment at the very top stating exactly which formula or algorithm you implemented, in mathematical notation.\nKeep it simple and readable — I need to be able to check it.\n\nStart with the simplest version that works. I will ask for additions afterwards.",
+    "section": "10.2 Tips for making apps with AI.",
+    "text": "10.2 Tips for making apps with AI.\nHere’s a few common constraints that helped me writing good applets with AI. Note that the example above does not follow all of these as it was made a while ago. But in the future, I will follow my own tips and tricks:\n\nAsk for a single, stand-alone .html file. This prevents the AI from creating many files and loading modules externally from sources that may/may not be available in the future. No build steps, no weird compilation things, no students having to install anything. Just a file that can be opened in a browser.\nSay the width is fluid and give the height. Tell the AI where you will use the applet: “It will be embedded in an iframe at width: 100%, height: 620px. Use a responsive layout; nothing may overflow at that height, and the width must be fluid.”\nAsk answers/settings to be stored locally. Local storage means that students will not lose their settings/answers if they close the browser or refresh the page. Without AI, I find this far too much programming, so I never used it. Now, I do use it. Note that this is not a privacy/security risk, as the data is stored on the student’s own computer. However, if the student clears their cache, the data will be lost. For this, I sometimes offer an additional Copy answers to clipboard or Download answers to PDF option for students that want to keep their answers in a file.\nRequest both light/dark mode Most modern operating systems have a global setting for either light or dark mode, and browsers can retrieve this information. So you can request to make the app automatically adjust.\nAsk for it to repeat your request in a hidden comment This way, your original suggestion (maybe reprased) will always remain visible, and it remains transparent that the app was made with the help of AI. We often request students to show when/if they used AI, so we should do the same.\n\n\n\n\n\n\n\nCautionExample prompt\n\n\n\n\n\n\nWrite me a small interactive teaching applet as one single, self-contained HTML file, that teaches [topic] (below).\nTopic: [what it should show — e.g. “the sampling distribution of the mean: the student sets the population SD and the sample size n, draws many samples, and sees the distribution of sample means beside the population distribution”]\nControls: [which sliders or inputs, and their ranges]\nLanguage of all labels: [English / Dutch / Multiple languages with a button]\nHard requirements:\n\nOne stand-alone HTML file.\nIt will be embedded in an iframe at width: 100%, height: 600px. Use a responsive layout; nothing may overflow or scroll inside the frame.\nSupport both light and dark mode via prefers-color-scheme.\nIt must be readable at phone width.\nPut a comment at the very top stating exactly what I asked and what you implemented\nKeep it simple and readable (no weird compsci tricks), I need to be able to check it.\n(optional: it must work with no internet connection)\n\nStart with the simplest version that works. I will ask for adjustments afterwards.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Writing applets with an AI assistant</span>"
     ]
   },
   {
-    "objectID": "10-ai-applets.html#then-check-it",
-    "href": "10-ai-applets.html#then-check-it",
+    "objectID": "10-ai-applets.html#what-not-to-do",
+    "href": "10-ai-applets.html#what-not-to-do",
     "title": "10  Writing applets with an AI assistant",
-    "section": "10.2 Then check it",
-    "text": "10.2 Then check it\n\n\n\n\n\n\nImportantAn applet that looks convincing and computes the wrong thing is worse than no applet\n\n\n\nStudents trust it more than they trust you. Five minutes, every time.\n\n\n\nRead the formula comment at the top of the file. Is it the formula you actually teach, in your notation?\nOpen the file directly in a browser by double-clicking it, before any iframe is involved. It must work standalone.\nCheck three numbers against R. Pick inputs you can compute yourself, including one extreme case. For a p-value applet: does it agree with 2 * pt(-abs(t), df = n - 1)?\nPush every slider to both ends. \\(n = 1\\), \\(\\alpha = 0\\), \\(r\\) at maximum. AI-written applets are reliably right in the middle of the range and reliably produce NaN, an empty plot or a freeze at the edges.\nCheck the language and notation match the rest of your book. Assistants drift into English and into whatever notation is commonest online.\nNarrow the browser window to phone width.\nRender the book and open the real chapter page, not just the file.\n\n\n\n\n\n\n\nNoteThis is not hypothetical\n\n\n\nThe applet embedded in Chapter 8 was written this way and then run through the list above. Steps 3 and 4 caught a real bug: at very low growth rates it labelled a population that was still slowly growing as “oscillating”, because the classifier only looked at the spread of the last few values and never asked whether they were still rising. Correct everywhere in the middle of the range, wrong at the edge — exactly the failure mode step 4 exists to catch.",
-    "crumbs": [
-      "Interactive material",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Writing applets with an AI assistant</span>"
-    ]
-  },
-  {
-    "objectID": "10-ai-applets.html#the-rhythm-that-works",
-    "href": "10-ai-applets.html#the-rhythm-that-works",
-    "title": "10  Writing applets with an AI assistant",
-    "section": "10.3 The rhythm that works",
-    "text": "10.3 The rhythm that works\nAsk for the smallest version first — one slider, one plot — and check it. Then ask for one addition at a time.\nA 500-line applet produced in a single shot is genuinely hard to verify. The same applet grown over four steps is easy, because you checked each step while it was still small.",
-    "crumbs": [
-      "Interactive material",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Writing applets with an AI assistant</span>"
-    ]
-  },
-  {
-    "objectID": "10-ai-applets.html#if-you-do-accept-a-cdn-link",
-    "href": "10-ai-applets.html#if-you-do-accept-a-cdn-link",
-    "title": "10  Writing applets with an AI assistant",
-    "section": "10.4 If you do accept a CDN link",
-    "text": "10.4 If you do accept a CDN link\nSometimes a plotting library is worth it. The BMS applets use Chart.js this way. If you go there:\n\nPin the exact version — chart.js@4.4.0, never chart.js@latest.\nKnow that you have made your book depend on somebody else’s server, and that the applet will not work offline or in an exported copy.\nNote it somewhere, so whoever inherits the book knows why it broke.",
+    "section": "10.3 What not to do",
+    "text": "10.3 What not to do\n\nDo not forget to be transparent about AI usage to students. We are asking students to be transparent about their use of AI, so we should be too.\nDo not use AI applets as part of evaluating/assessing students (e.g. in a quiz). While the UU policy on AI is still under development, I think one can make a moral case that students deserve to be graded by humans.\n\nDo not assume that an AI applet is always correct. Always verify the results and logic yourself.\nDo not assume students will/want need less physical contact with AI. Quite the opposite; on-site education is becoming the more important to gatekeep against AI misuse!",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Writing applets with an AI assistant</span>"
@@ -858,40 +770,29 @@
     "href": "11-rendering.html",
     "title": "11  Rendering, and keeping it fast",
     "section": "",
-    "text": "11.1 Two buttons, two commands\nRender builds the whole project into _book/ (or docs/). In RStudio it is the toolbar button; from a terminal it is quarto render.\nPreview starts a live server that re-renders on save and refreshes the browser. In RStudio this is what Render on Save gives you; from a terminal it is quarto preview.\nYou can work entirely from the buttons for an ordinary book. Two exceptions where you need quarto preview in the Terminal instead:\nquarto preview builds, serves at http://localhost:####, opens a browser, and re-renders on save. Ctrl+C stops it.",
+    "text": "11.1 Two buttons, two commands\nRendering is the act of building the whole project into a self-contained book (in folder _book/). In RStudio there is a Render Book → All Formats in the build tab (there is a keyboard shortcut for this, Shift+Command+B on Mac, Shift+Ctrl+B on Windows). You can also render it from the terminal using the command quarto render.\nPreview starts a local server that re-renders on save and refreshes the browser. In RStudio this is what Render on Save gives you; from a terminal it is quarto preview.\nYou can often also simply open the html-files from your computer. The only thing that will not work are the live webR cells, which need a real web server to work. For these, quarto preview is the way to go.",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Rendering, and keeping it fast</span>"
     ]
   },
   {
-    "objectID": "11-rendering.html#two-buttons-two-commands",
-    "href": "11-rendering.html#two-buttons-two-commands",
+    "objectID": "11-rendering.html#yml-options-freeze-and-cache",
+    "href": "11-rendering.html#yml-options-freeze-and-cache",
+    "title": "11  Rendering, and keeping it fast",
+    "section": "11.2 YML options freeze and cache",
+    "text": "11.2 YML options freeze and cache\nThese options can be defined globally in the _quarto.yml file1.\nexecute:\n  freeze: auto\n  cache: false\nThese options solve slightly different problems, but the names aren’t too clear about this so the distinction is worth clarifying:\n\n11.2.1 freeze is about portability\nWith freeze: auto, Quarto runs a chapter’s code once, stores the results in a _freeze/ folder, and reuses them until that .qmd has been changed by you or a colleague. If your chapters use packages that your colleague doesn’t use, freeze should still enable the other colleague to compile the entire book; the files and the data are all stored in _freeze/.\nfreeze: true never re-renders a chapter, while freeze: false always re-render everything.\n\n\n11.2.2 cache is about code-chunks and speed while writing\ncache: true avoids re-running a code whose code has not changed, so a slow simulation or data analysis does not re-run on every preview. This cache lives in per-chapter &lt;CHAPTER_NAME&gt;_cache/ folders.\n\n\n\n\n\n\nWarningDespite working most of the time, cached results can sometimes go stale\n\n\n\nBoth mechanisms trust the source text, not cannot know if anything external has changed. For example, if a chunk reads a data file and the file changes but the code does not, you will keep the old result. You can simply delete the relevant _freeze/ or *_cache/ files, and re-render.\n\n\n\n\n\n\n\n\nTipRender one chapter while drafting\n\n\n\nquarto preview 08-iframes.qmd renders just that file. In RStudio, pressing Render while a single .qmd is open does the same thing. Cross-references to other chapters will not resolve in that preview — that is expected, and they come back in a full render.",
+    "crumbs": [
+      "Building and publishing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Rendering, and keeping it fast</span>"
+    ]
+  },
+  {
+    "objectID": "11-rendering.html#footnotes",
+    "href": "11-rendering.html#footnotes",
     "title": "11  Rendering, and keeping it fast",
     "section": "",
-    "text": "Anything that needs a real web server — live webR cells (Chapter 9) are dead over a file:// address.\nAny custom format, live-html included. RStudio only auto-previews formats it knows, so Render prints “Output created” and no window appears.",
-    "crumbs": [
-      "Building and publishing",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Rendering, and keeping it fast</span>"
-    ]
-  },
-  {
-    "objectID": "11-rendering.html#freeze-and-cache",
-    "href": "11-rendering.html#freeze-and-cache",
-    "title": "11  Rendering, and keeping it fast",
-    "section": "11.2 freeze and cache",
-    "text": "11.2 freeze and cache\nBoth stop Quarto re-running code unnecessarily. They solve different problems and live in different places, and the distinction is worth teaching clearly because the names do not help.\n\n\n\n\n\n\nNotefreeze — file level, about portability\n\n\n\nWith freeze: auto, Quarto runs a chapter’s code once, stores the results in a _freeze/ folder, and reuses them until that .qmd changes.\nCommit _freeze/ to Git and the payoff is large: a colleague — or a build server — can render the whole book without having R and every package installed, because the computed results travel with the repository.\nfreeze: true never re-runs. freeze: false always runs fresh.\n\n\n\n\n\n\n\n\nNotecache — chunk level, about speed while writing\n\n\n\ncache: true uses knitr’s cache to skip re-running an individual chunk whose code has not changed, so a slow simulation does not re-run on every preview. The caches live in per-chapter *_cache/ folders.\n\n\nRule of thumb: cache for “this chunk is slow while I am writing”, freeze for “someone else should be able to build this without my setup”. They combine, and both can be overridden per file or per chunk.\nexecute:\n  freeze: auto\n  cache: false\n\n\n\n\n\n\nWarningCached results can go stale\n\n\n\nBoth mechanisms trust the source text, not the world. If a chunk reads a data file and the file changes but the code does not, you will keep the old result. Delete _freeze/ and *_cache/ and re-render when you have changed anything a chunk depends on but does not contain.",
-    "crumbs": [
-      "Building and publishing",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Rendering, and keeping it fast</span>"
-    ]
-  },
-  {
-    "objectID": "11-rendering.html#what-actually-makes-a-book-slow",
-    "href": "11-rendering.html#what-actually-makes-a-book-slow",
-    "title": "11  Rendering, and keeping it fast",
-    "section": "11.3 What actually makes a book slow",
-    "text": "11.3 What actually makes a book slow\nIn practice, in this order:\n\nCode that runs on every render. Fix with freeze: auto.\nA LaTeX PDF build. Fix by only rendering the PDF when you need it: Render → Render Book → HTML only, or quarto render --to html.\nHuge images. See Chapter 5 — keep them under about 500 kB.\n\n\n\n\n\n\n\nTipRender one chapter while drafting\n\n\n\nquarto preview 08-iframes.qmd renders just that file. In RStudio, pressing Render while a single .qmd is open does the same thing. Cross-references to other chapters will not resolve in that preview — that is expected, and they come back in a full render.\n\n\n\nThe Render button and its dropdown showing the format choice, and the live preview refreshing after a save.",
+    "text": "You can also override the global settings per file or per chunk.↩︎",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Rendering, and keeping it fast</span>"
@@ -902,7 +803,7 @@
     "href": "12-publishing.html",
     "title": "12  Putting it online",
     "section": "",
-    "text": "12.1 Three routes\nOnce it renders, your book is just a folder of static files. Any web server can host it — including a free one.\nThe rest of this chapter is the GitHub Pages route, done without ever opening a terminal.",
+    "text": "12.1 Three routes\nOnce it renders, your book is just a folder of static files. Any web server can host it, including many free ones.\nThe rest of this chapter is the first option: the GitHub Pages route.",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
@@ -913,7 +814,7 @@
     "href": "12-publishing.html#three-routes",
     "title": "12  Putting it online",
     "section": "",
-    "text": "Route\nEffort\nGood for\n\n\n\n\nGitHub Pages\nSet up once, then Commit + Push\nA course book you will keep editing. Free, versioned, and a colleague can contribute.\n\n\nA UU server\nAsk your local support to host the folder\nSomething that must live under a uu.nl address. The BMS book is served this way.\n\n\nQuarto Pub\nOne command\nA quick demo or a one-off hand-out.",
+    "text": "Route\nEffort\nGood for\n\n\n\n\nGitHub Pages\nSet up once, then Commit + Push\nA course book you will keep editing. Free, versioned, and a colleague can contribute.\n\n\nA UU server\nAsk your local support to host the folder\nSomething that must live under a uu.nl address. The BMS book is served this way.\n\n\nYour own server\nReupload every time, or write your own automated script\nA quick demo or a one-off hand-out.",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
@@ -924,7 +825,7 @@
     "href": "12-publishing.html#the-idea",
     "title": "12  Putting it online",
     "section": "12.2 The idea",
-    "text": "12.2 The idea\nYour book folder becomes a repository — a folder that GitHub keeps a copy of. You render the website into a subfolder called docs, send it to GitHub, and tell GitHub to serve that folder as a website.",
+    "text": "12.2 The idea\nYour book folder becomes a repository: a folder that GitHub keeps a copy of. You render the website into a subfolder called docs, send it to GitHub, and tell GitHub to serve that folder as a website. Some of the steps below already apply to this template, but you will need to do them again for your own book.",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
@@ -935,7 +836,7 @@
     "href": "12-publishing.html#step-by-step",
     "title": "12  Putting it online",
     "section": "12.3 Step by step",
-    "text": "12.3 Step by step\n1. Point Quarto at docs. In _quarto.yml:\nproject:\n  type: book\n  output-dir: docs\nRender once. The finished website now appears in docs/.\n2. Add a file called .nojekyll. An empty file, at the top of your book folder. In RStudio: File → New File → Text File, then save it with exactly that name, leading dot included. It stops GitHub from reprocessing your site and quietly mangling parts of it.\n3. Make the folder a repository. If you did not tick “Create a git repository” when making the project: Tools → Project Options → Git/SVN → set version control to Git, and restart RStudio. A Git tab appears next to Environment and History.\n4. Create the repository on GitHub and connect it. Make a free account, press New repository, give it a name, leave it empty. GitHub then offers you a list of terminal commands — to avoid those, install GitHub Desktop, choose Add existing repository, point it at your book folder, and press Publish repository.\n5. Send your work up. From then on, in RStudio’s Git tab or in GitHub Desktop: tick the changed files, write a one-line message saying what you changed, press Commit, then Push. Those three actions are the whole of Git for this purpose.\n6. Switch the website on. On github.com, in your repository: Settings → Pages → under Build and deployment, set Source to Deploy from a branch, choose your main branch, and set the folder to /docs. Save.\nA minute later your book is live at https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/.\n\n\n\n\n\n\nTipFrom then on\n\n\n\nWrite. Render. Commit. Push. The website updates itself within a minute or two. There is nothing else to remember.\n\n\n\nGitHub’s Settings → Pages screen with Source set to the main branch and /docs, and the resulting live URL in a browser.",
+    "text": "12.3 Step by step\n1. Point Quarto at docs. In _quarto.yml:\nproject:\n  type: book\n  output-dir: docs\nRender once. The finished website now appears in docs/.\n2. Add a file called .nojekyll. An empty file, inside docs/. GitHub runs its own processor over whatever folder it publishes, and that processor quietly drops directories whose names begin with an underscore, which is most of what Quarto generates. This file switches it off.\nIn RStudio: File → New File → Text File, then Save As, navigate into docs/, and give it exactly that name, leading dot included1. Nothing appears in the Files pane afterwards (a leading dot means hidden). It is there; ⚙ → Show Hidden Files will show it.\nNote: rendering again does not remove this file, so this step only needs to happen once per book.\n3. Make the folder a repository. If you did not tick “Create a git repository” when making the project: Tools → Project Options → Git/SVN → set version control to Git, and restart RStudio. A Git tab appears next to Environment and History.\n4. Create the repository on GitHub and connect it. Make a free account, press New repository, give it a name, choose a public repository2. Do not add anything to the repository (no Readme, no gitignore). Then, you can either run a few terminal commands to get your book uploaded 3. If you wish to avoid the scary terminal, install GitHub Desktop, choose Add existing repository, point it at your book folder, and press Publish repository.\n5. Send your work up. From then on, in RStudio’s Git tab or in GitHub Desktop: tick the changed files, write a one-line message saying what you changed, press Commit, then Push. Those three actions are the whole of Git for this purpose.\n6. Switch the website on. On github.com, in your repository: Settings → Pages → under Build and deployment, set Source to Deploy from a branch, choose your main branch, and set the folder to /docs. Save.\nA minute later your book is live at https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/.\n\n\n\n\n\n\nTipFrom then on\n\n\n\nWrite. Render. Commit. Push. The website updates itself within a minute or two. There is nothing else to remember.\n\n\n\nGitHub’s Settings → Pages screen with Source set to the main branch and /docs, and the resulting live URL in a browser.",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
@@ -1001,7 +902,7 @@
     "href": "about.html",
     "title": "About this guide",
     "section": "",
-    "text": "Source material\nWritten for teachers at Utrecht University who want to turn a course reader into a website.\nIt merges three sources:\nThe theme follows the Utrecht University corporate identity: Merriweather and Open Sans as the standard fonts, UU red for links, UU yellow as the accent, and the supporting palette for callouts. uu.scss in this project is free to copy into your own book.\nThe book is deliberately single-theme: the UU palette is defined against white paper, so there is no dark mode and no toggle. See Making it look like Utrecht University if you want one anyway.\nBoxes like this one still need an image:",
+    "text": "Source material\nWritten for teachers at Utrecht University who want to turn a course reader into a website.\nIt merges three sources:\nThe theme follows the Utrecht University corporate identity: Merriweather and Open Sans as the standard fonts, UU red for links, UU yellow as the accent, and the supporting palette for callouts. uu.scss in this project is free to copy into your own book.\nThe book is deliberately single-theme: the UU palette is defined against white paper, so there is no dark mode and no toggle. See CSS / UU house style if you want one anyway.\nBoxes like this one still need an image:",
     "crumbs": [
       "About this guide"
     ]
@@ -1044,6 +945,17 @@
     "text": "Colophon\nBuilt with Quarto.\n\n\nRendered with R 4.6.1",
     "crumbs": [
       "About this guide"
+    ]
+  },
+  {
+    "objectID": "12-publishing.html#footnotes",
+    "href": "12-publishing.html#footnotes",
+    "title": "12  Putting it online",
+    "section": "",
+    "text": "Rstudio may complain, but ignore this and create the file↩︎\nNote: this means your raw .qmd files are public, so if you wish to keep them private, choose a different route of publishing your website.↩︎\nAssuming git is installed, these would be git remote add origin https://github.com/USERNAME/REPOSITORY.git, git branch -M main, and git push -u origin main↩︎",
+    "crumbs": [
+      "Building and publishing",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
     ]
   }
 ]

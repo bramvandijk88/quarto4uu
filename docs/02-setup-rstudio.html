@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Setting up in RStudio – Making a course book with Quarto</title>
+<title>2&nbsp; Setting up in RStudio – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -47,6 +47,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-58a0d7e270a3423d7b380f20ee5520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -111,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -151,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,12 +269,12 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#sec-starter" id="toc-sec-starter" class="nav-link active" data-scroll-target="#sec-starter"><span class="header-section-number">2.1</span> Option A: start from this book</a></li>
-  <li><a href="#option-b-start-from-nothing" id="toc-option-b-start-from-nothing" class="nav-link" data-scroll-target="#option-b-start-from-nothing"><span class="header-section-number">2.2</span> Option B: start from nothing</a></li>
-  <li><a href="#make-the-project" id="toc-make-the-project" class="nav-link" data-scroll-target="#make-the-project"><span class="header-section-number">2.3</span> Make the project</a></li>
-  <li><a href="#press-render" id="toc-press-render" class="nav-link" data-scroll-target="#press-render"><span class="header-section-number">2.4</span> Press Render</a></li>
-  <li><a href="#turn-on-render-on-save" id="toc-turn-on-render-on-save" class="nav-link" data-scroll-target="#turn-on-render-on-save"><span class="header-section-number">2.5</span> Turn on Render on Save</a></li>
+  <li><a href="#opening-a-downloaded-folder-in-rstudio" id="toc-opening-a-downloaded-folder-in-rstudio" class="nav-link" data-scroll-target="#opening-a-downloaded-folder-in-rstudio"><span class="header-section-number">2.2</span> Opening a downloaded folder in RStudio</a></li>
+  <li><a href="#option-b-start-from-nothing" id="toc-option-b-start-from-nothing" class="nav-link" data-scroll-target="#option-b-start-from-nothing"><span class="header-section-number">2.3</span> Option B: start from nothing</a></li>
+  <li><a href="#make-the-project" id="toc-make-the-project" class="nav-link" data-scroll-target="#make-the-project"><span class="header-section-number">2.4</span> Make the project</a></li>
+  <li><a href="#press-render" id="toc-press-render" class="nav-link" data-scroll-target="#press-render"><span class="header-section-number">2.5</span> Press Render</a></li>
   <li><a href="#source-or-visual" id="toc-source-or-visual" class="nav-link" data-scroll-target="#source-or-visual"><span class="header-section-number">2.6</span> Source or Visual?</a></li>
-  <li><a href="#what-is-in-the-folder" id="toc-what-is-in-the-folder" class="nav-link" data-scroll-target="#what-is-in-the-folder"><span class="header-section-number">2.7</span> What is in the folder</a></li>
+  <li><a href="#important-elements-in-a-quarto-book-folder" id="toc-important-elements-in-a-quarto-book-folder" class="nav-link" data-scroll-target="#important-elements-in-a-quarto-book-folder"><span class="header-section-number">2.7</span> Important elements in a Quarto book folder</a></li>
   </ul>
 </nav>
     </div>
@@ -297,32 +300,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ten minutes, once. At the end you will have a real book rendering in front of you.</p>
+<p>Duration: ten minutes, once. At the end you will have a real book rendering in front of you.</p>
 <p>There are two ways in, and the second is usually the better one.</p>
 <section id="sec-starter" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-starter"><span class="header-section-number">2.1</span> Option A: start from this book</h2>
-<p><strong>The book you are reading is itself the starter book.</strong> Every chapter is a worked demonstration of the thing it describes — the figures in <a href="#sec-figures" class="quarto-xref"><span class="quarto-unresolved-ref">sec-figures</span></a> are real figures, the applet in <a href="#sec-iframes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-iframes</span></a> really runs, the maths in <a href="#sec-latex" class="quarto-xref"><span class="quarto-unresolved-ref">sec-latex</span></a> really renders. Copy the folder and you inherit all of it: the UU house style, a working <code>_quarto.yml</code>, a sensible <code>.gitignore</code>, and an example of each pattern you are likely to need.</p>
+<p><strong>The book you are reading is itself a starter template.</strong> Every chapter in this guide is a working demonstration of the thing it describes. Download and extract the folder below and you inherit all of it: the UU house style, a working <code>_quarto.yml</code>, a sensible <code>.gitignore</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and an example of each pattern you are likely to need.</p>
 <p><a href="starter-book.zip"><strong>Download the starter book (.zip)</strong></a></p>
-<p>Then:</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Opening a downloaded folder in RStudio
-</div>
-</div>
-<div class="callout-body-container callout-body">
+</section>
+<section id="opening-a-downloaded-folder-in-rstudio" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="opening-a-downloaded-folder-in-rstudio"><span class="header-section-number">2.2</span> Opening a downloaded folder in RStudio</h2>
 <ol type="1">
 <li><p>Unzip it somewhere sensible and <strong>rename the folder</strong> to your course.</p></li>
 <li><p>In RStudio: <kbd>File</kbd> → <kbd>New Project…</kbd> → <strong><kbd>Existing Directory</kbd></strong> → browse to that folder → <kbd>Create Project</kbd>.</p>
-<p><em>Existing Directory</em> is the option people miss, because the wizard’s first screen pushes you towards <em>New Directory</em>. It creates nothing of its own — it tells RStudio “this folder is a project”, writes an <code>.Rproj</code> file into it, and opens it. Everything already in the folder stays exactly as it is. (The zip deliberately contains no <code>.Rproj</code>, so the one RStudio makes will be named after <em>your</em> folder.)</p></li>
-<li><p>Press <strong>Render</strong>. You should get this book back, running locally — nothing else needs installing.</p></li>
+<p><em>Existing Directory</em> is the option people miss, because the wizard’s first screen pushes you towards <em>New Directory</em>. It creates nothing of its own. It only tells RStudio “this folder is a project”, writes an <code>.Rproj</code> file into it, and opens it. Everything already in the folder stays exactly as it is. (The zip deliberately contains no <code>.Rproj</code>, so the one RStudio makes will be named after <em>your</em> folder.)</p></li>
+<li><p>Press <strong>Render</strong>. You should get this book back, running locally. Nothing else needs installing.</p></li>
 <li><p>Now start replacing. Open <code>_quarto.yml</code>, change the title and author, and work through the chapters one at a time: keep the scaffolding, delete our prose, write yours.</p></li>
 </ol>
-</div>
-</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -333,58 +326,53 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Keep:</strong> <code>_quarto.yml</code> (edit it), <code>uu.scss</code>, <code>.gitignore</code>, <code>README.md</code>, the <code>figures/</code> and <code>applets/</code> folders, and <code>applets/AI-prompt-template.md</code>. Keep <code>make-starter-zip.R</code> only if you want to hand <em>your</em> book on the same way.</p>
-<p><strong>Throw away</strong> once you no longer need them: our chapter files, and every <code>::: {.screenshot}</code> block — those are our drafting markers, and <a href="#sec-theming" class="quarto-xref"><span class="quarto-unresolved-ref">sec-theming</span></a> explains how they are styled. Search the project for <code>{.screenshot}</code> to find them all.</p>
+<p><strong>Keep:</strong> <code>_quarto.yml</code> (although you’ll edit it), <code>uu.scss</code> (uu house style), <code>.gitignore</code>, and folder structure (e.g.&nbsp;<code>figures/</code> and <code>applets/</code>)., and <code>applets/AI-prompt-template.md</code>. Keep <code>make-starter-zip.R</code> only if you want to hand <em>your</em> book on the same way.</p>
+<p><strong>Throw away</strong> once you no longer need them: the speicific chapter files for this book, and apps/figures only used for this explainer.</p>
 </div>
 </div>
 </section>
-<section id="option-b-start-from-nothing" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="option-b-start-from-nothing"><span class="header-section-number">2.2</span> Option B: start from nothing</h2>
-<p>If you would rather see a book grow from an empty folder, RStudio will make you one.</p>
+<section id="option-b-start-from-nothing" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="option-b-start-from-nothing"><span class="header-section-number">2.3</span> Option B: start from nothing</h2>
+<p>If you would rather setup your book from an empty folder, which will help you better understand how it works, you can start one from scratch with RStudio.</p>
 </section>
-<section id="make-the-project" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="make-the-project"><span class="header-section-number">2.3</span> Make the project</h2>
+<section id="make-the-project" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="make-the-project"><span class="header-section-number">2.4</span> Make the project</h2>
 <p><kbd>File</kbd> → <kbd>New Project…</kbd> → <kbd>New Directory</kbd> → <kbd>Quarto Book</kbd>.</p>
-<p>Give the folder a name. Tick <strong>Create a git repository</strong> if you already know you want to publish it (see <a href="#sec-publishing" class="quarto-xref"><span class="quarto-unresolved-ref">sec-publishing</span></a>) — it is easier to tick now than to add later. Press <strong>Create</strong>.</p>
+<p>Give the folder a name. Tick <strong>Create a git repository</strong> if you already know you want to publish it (see <a href="12-publishing.html" class="quarto-xref"><span>Chapter 12</span></a>): it is easier to tick now than to add later. Press <strong>Create</strong>.</p>
 <p>RStudio opens the new project, and you are already looking at a working book.</p>
-<div class="screenshot">
-<p>RStudio’s <em>New Project → Quarto Book</em> dialog, and the resulting folder in the Files pane.</p>
-</div>
 </section>
-<section id="press-render" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="press-render"><span class="header-section-number">2.4</span> Press Render</h2>
-<p>The <strong>Render</strong> button sits in the toolbar above the editor. The first render takes a minute; the finished book then appears in RStudio’s Viewer pane, and as files in a folder called <code>_book</code> (or <code>docs</code> — see <a href="#sec-yml" class="quarto-xref"><span class="quarto-unresolved-ref">sec-yml</span></a>).</p>
-</section>
-<section id="turn-on-render-on-save" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="turn-on-render-on-save"><span class="header-section-number">2.5</span> Turn on Render on Save</h2>
-<p>The tick-box next to the Render button. Now every save refreshes the preview by itself.</p>
-<p>This is the single change that makes writing a book pleasant rather than laborious. Do it before you write anything.</p>
-<div class="screenshot">
-<p>The <strong>Render</strong> button in the toolbar with <em>Render on Save</em> ticked, and the preview pane updating after a save.</p>
+<section id="press-render" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="press-render"><span class="header-section-number">2.5</span> Press Render</h2>
+<p>The <strong>Render</strong> button sits in the toolbar above the editor. The first render takes a few minutes (depending on the book size); the finished book then appears either in the RStudio’s Viewer pane or in your web browser (system dependent). All the HTML files are moved to a folder called <code>_book</code> (or later: <code>docs</code> — see <a href="03-quarto-yml.html" class="quarto-xref"><span>Chapter 3</span></a>). Note that you can open the HTML files in this directory from your file browser, and everything will work with one exception: the live code chunks, which either requires a local webserve (by typing <code>quarto preview</code> in the terminal), or simply an online copy of your book (see <a href="12-publishing.html" class="quarto-xref"><span>Chapter 12</span></a>).</p>
+<p>If you use <code>quarto preview</code> to show your web book in the browser, there is a neat little tick-box left of the Render button called <code>Render on Save</code>. Now every save refreshes the preview by itself.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/renderbutton.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The Render button sits in the toolbare above the editor"><img src="figures/renderbutton.png" class="img-fluid figure-img" alt="The Render button sits in the toolbare above the editor"></a></p>
+<figcaption>The Render button sits in the toolbare above the editor</figcaption>
+</figure>
 </div>
 </section>
 <section id="source-or-visual" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="source-or-visual"><span class="header-section-number">2.6</span> Source or Visual?</h2>
-<p>Top-right of the editor pane there is a <kbd>Source</kbd> / <kbd>Visual</kbd> toggle.</p>
-<p><strong>Visual</strong> gives you a Word-like view — real bold text, real tables, menus for inserting figures, equations and cross-references — while still saving a plain text file underneath. A colleague who does not want to see any markup at all can live here permanently.</p>
-<p><strong>Source</strong> shows the markup. It is faster once you know it, and it is what the rest of this guide shows.</p>
-<p>Most people end up switching back and forth: Visual for tables and equations, Source for everything else.</p>
+<p>Note that the toolbar with the render button also contains a <kbd>Source</kbd>/<kbd>Visual</kbd> toggle.</p>
+<p><strong>Visual</strong> gives you a Word-like view real bold text, real tables, menus for inserting figures, equations and cross-references. If you dont want to see any markup at all, you can live here permanently.</p>
+<p><strong>Source</strong> shows the markup. It is faster once you know it, and it is what the rest of this guide shows. I do recommend this, with one exception, shown in the tip below.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Tables are the killer feature of Visual mode
+<span class="screen-reader-only">Tip</span>Make tables in Visual mode
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Markdown tables are miserable to write by hand and trivial in Visual mode. Insert one there, then switch back to Source.</p>
+<p>Markdown tables are miserable to write by hand and trivial in Visual mode. Insert one there, then switch back to Source. Or ask AI to convert a table into markdown.</p>
 </div>
 </div>
 </section>
-<section id="what-is-in-the-folder" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="what-is-in-the-folder"><span class="header-section-number">2.7</span> What is in the folder</h2>
+<section id="important-elements-in-a-quarto-book-folder" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="important-elements-in-a-quarto-book-folder"><span class="header-section-number">2.7</span> Important elements in a Quarto book folder</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -399,19 +387,19 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td><code>_quarto.yml</code></td>
-<td>The book definition: which chapters, in which order, with which theme. <strong>The only file you truly must understand</strong> — see <a href="#sec-yml" class="quarto-xref"><span class="quarto-unresolved-ref">sec-yml</span></a>.</td>
+<td>The book definition: which chapters, in which order, with which theme. <strong>The only file you truly must understand</strong> (see <a href="03-quarto-yml.html" class="quarto-xref"><span>Chapter 3</span></a>).</td>
 </tr>
 <tr class="even">
 <td><code>index.qmd</code></td>
-<td>The front page.</td>
+<td>The front page. You cannot rename this file, it is required and it the ‘home page’ of your web book.</td>
 </tr>
 <tr class="odd">
 <td><code>*.qmd</code></td>
-<td>One file per chapter. This is where you write.</td>
+<td>One file per chapter. This is where you write. You can enable / disable chapters by modifying <code>_quarto.yml</code>.</td>
 </tr>
 <tr class="even">
-<td><code>_book/</code> or <code>docs/</code></td>
-<td>The finished website. Generated — never edit anything in here, it is overwritten on every render.</td>
+<td><code>_book/</code></td>
+<td>The finished website, generated by Quarto upon rendering. Don’t edit these files, they will be overwritten next render anyway.</td>
 </tr>
 <tr class="odd">
 <td><code>*.Rproj</code></td>
@@ -419,23 +407,10 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td><code>_freeze/</code></td>
-<td>Stored results of code that has already run — see <a href="#sec-rendering" class="quarto-xref"><span class="quarto-unresolved-ref">sec-rendering</span></a>.</td>
+<td>Stored results of code that has already been run or rendered, helps speed up rendering later (see <a href="11-rendering.html" class="quarto-xref"><span>Chapter 11</span></a>).</td>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Never edit the output folder
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>_book/</code> and <code>docs/</code> are built from your <code>.qmd</code> files. Anything you type in there disappears at the next render. If you find yourself editing HTML, you are in the wrong folder.</p>
-</div>
-</div>
 
 
 <script type="ojs-module-contents">
@@ -450,8 +425,14 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>If you will follow the guide and publish your book on Github pages, this files ensures you do not track every single temporary file along with the actual contents of the book.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -880,8 +861,8 @@ window._ojs.runtime.interpretFromScriptTags();
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./03-quarto-yml.html" class="pagination-link" aria-label="The control panel: `_quarto.yml`">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03-quarto-yml.html" class="pagination-link" aria-label="Quarto yml">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -895,10 +876,42 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

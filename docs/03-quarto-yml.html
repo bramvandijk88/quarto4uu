@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; The control panel: _quarto.yml – Making a course book with Quarto</title>
+<title>3&nbsp; Almost everything is controlled by one file: _quarto.yml – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,6 +82,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-58a0d7e270a3423d7b380f20ee5520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -127,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-what-is-quarto.html">Getting started</a></li><li class="breadcrumb-item"><a href="./03-quarto-yml.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-what-is-quarto.html">Getting started</a></li><li class="breadcrumb-item"><a href="./03-quarto-yml.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -146,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -186,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -301,19 +304,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#a-minimal-book" id="toc-a-minimal-book" class="nav-link active" data-scroll-target="#a-minimal-book"><span class="header-section-number">3.1</span> A minimal book</a></li>
-  <li><a href="#controlling-the-sidebar-labels" id="toc-controlling-the-sidebar-labels" class="nav-link" data-scroll-target="#controlling-the-sidebar-labels"><span class="header-section-number">3.2</span> Controlling the sidebar labels</a></li>
+  <li><a href="#the-side-bar" id="toc-the-side-bar" class="nav-link" data-scroll-target="#the-side-bar"><span class="header-section-number">3.2</span> The side bar</a></li>
   <li><a href="#indentation" id="toc-indentation" class="nav-link" data-scroll-target="#indentation"><span class="header-section-number">3.3</span> Indentation</a></li>
-  <li><a href="#sec-theming" id="toc-sec-theming" class="nav-link" data-scroll-target="#sec-theming"><span class="header-section-number">3.4</span> Making it look like Utrecht University</a></li>
-  <li><a href="#useful-extras" id="toc-useful-extras" class="nav-link" data-scroll-target="#useful-extras"><span class="header-section-number">3.5</span> Useful extras</a></li>
+  <li><a href="#sec-theming" id="toc-sec-theming" class="nav-link" data-scroll-target="#sec-theming"><span class="header-section-number">3.4</span> CSS / UU house style</a></li>
+  <li><a href="#other-options-in-the-yaml" id="toc-other-options-in-the-yaml" class="nav-link" data-scroll-target="#other-options-in-the-yaml"><span class="header-section-number">3.5</span> Other options in the yaml</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-what-is-quarto.html">Getting started</a></li><li class="breadcrumb-item"><a href="./03-quarto-yml.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-what-is-quarto.html">Getting started</a></li><li class="breadcrumb-item"><a href="./03-quarto-yml.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-yml" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></h1>
+<h1 class="title"><span id="sec-yml" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Almost everything is controlled by one file: <code>_quarto.yml</code></span></span></h1>
 </div>
 
 
@@ -330,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This one file is the table of contents, the theme, and the settings. Get comfortable here and the rest of Quarto is just writing.</p>
+<p>This one file is the table of contents, the theme, and the settings. It is probably good to go through this step by step. Although the rest of working with Quarto is ust writing, you need to know a little bit about this file. That being said, if you end up using my template, you mostly need to modify the chapter organisation. If you want to use your own style, you can change the theme and add your own SCSS.</p>
 <section id="a-minimal-book" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="a-minimal-book"><span class="header-section-number">3.1</span> A minimal book</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
@@ -358,52 +361,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> scrreprt</span><span class="co"> # delete if you never want a PDF</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Three blocks matter:</p>
+<p>Three blocks matter most:</p>
 <ul>
 <li><strong><code>project</code></strong> — what you are building, and where the output goes.</li>
 <li><strong><code>book</code></strong> — the structure, and which chapters in which order.</li>
 <li><strong><code>format</code></strong> — how each output type looks.</li>
 </ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>The mistake everyone makes once
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>A chapter that is not listed under <code>chapters:</code> does not exist.</strong> Creating <code>week3.qmd</code> is not enough — Quarto will render the book without it and give you no warning at all. If a chapter is missing from the website, this is why, nine times out of ten.</p>
-</div>
-</div>
-<div class="screenshot">
-<p><code>_quarto.yml</code> open in the editor with the <code>project</code> / <code>book</code> / <code>format</code> blocks highlighted, next to the rendered sidebar, so the mapping is obvious.</p>
-</div>
 </section>
-<section id="controlling-the-sidebar-labels" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="controlling-the-sidebar-labels"><span class="header-section-number">3.2</span> Controlling the sidebar labels</h2>
-<p>A long chapter title makes an ugly sidebar entry. Give the sidebar its own shorter text:</p>
+<section id="the-side-bar" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="the-side-bar"><span class="header-section-number">3.2</span> The side bar</h2>
+<p>Your book will render each chapter with a navigation sidebar, like the one you can see to the left right now. Note that a very long chapter title makes an ugly sidebar entry. In fact, this specific chapter has a very long title. Fortunately, you can give the sidebar its own shorter text, which was done for this chapter:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">chapters</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> </span><span class="st">"Introduction"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> Modellen/intro_modellen.qmd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Chapters can live in subfolders, as this example shows. Paths in <code>_quarto.yml</code> are relative to the top of the project.</p>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> </span><span class="st">"Quarto yml"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> 03-quarto-yml.qmd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Chapters can also live in subfolders, organising your websites into bigger chunks of chapters (e.g.&nbsp;part 1 and part 2 of a course).</p>
 </section>
 <section id="indentation" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="indentation"><span class="header-section-number">3.3</span> Indentation</h2>
-<p>YAML indentation is meaningful, and must be <strong>spaces, never tabs</strong>. If Quarto complains about the file and the message makes no sense, an indentation slip is almost always the cause. RStudio inserts spaces for you if you leave its defaults alone.</p>
+<p>YAML indentation is annoyingly strict, and must be <strong>spaces, never tabs</strong>. If Quarto complains about the file and the message makes no sense, indentation is almost always the cause.</p>
 </section>
 <section id="sec-theming" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="sec-theming"><span class="header-section-number">3.4</span> Making it look like Utrecht University</h2>
-<p>Start from a <a href="https://bootswatch.com/">Bootswatch theme</a> — <code>cosmo</code>, <code>flatly</code> and <code>litera</code> all read well as a textbook — and layer your own SCSS on top:</p>
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-theming"><span class="header-section-number">3.4</span> CSS / UU house style</h2>
+<p>You can modify how your book looks by changing the style sheets. Some that ship with Quarto are <code>cosmo</code>, <code>flatly</code>and <code>litera</code> (all read well as a textbook). If you are familiar with CSS stylesheet, you can layer that on top:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cosmo</span><span class="kw">,</span><span class="at"> uu.scss</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That is what this book uses, and the single entry is deliberate. Quarto will happily give you a light/dark pair with a toggle in the corner:</p>
+<p>That is what this book uses. Quarto will also happily use a light/dark pair:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">light</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cosmo</span><span class="kw">,</span><span class="at"> uu.scss</span><span class="kw">]</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">dark</span><span class="kw">:</span><span class="at">  </span><span class="kw">[</span><span class="at">darkly</span><span class="kw">,</span><span class="at"> uu-dark.scss</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The theme listed first is the default, and the reader’s choice is remembered in their browser. Add <code>respect-user-color-scheme: true</code> and it follows their operating system instead.</p>
+<p>The theme listed as the first is the default, and the reader’s choice is remembered in their browser. Add <code>respect-user-color-scheme: true</code> and it follows their operating system settings instead.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -414,139 +401,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The UU identity is specified on a white ground: red and yellow are defined against paper, and yellow in particular becomes a different colour entirely on a dark surface. A dark palette would be something we invented, not something the university sanctioned — so this book stays light for every reader. Your own book can decide differently; the mechanism is right there above.</p>
+<p>The UU identity is specified on a white ground, and has no dark mode counter part. So I decided not to add it. You can do it for your own book, of course, as we have done for many of ours (see <a href="#fig-bmsdark" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>).</p>
 </div>
 </div>
-<p>An SCSS file has two blocks. The <code>defaults</code> block sets variables <em>before</em> Bootstrap is compiled; the <code>rules</code> block is ordinary CSS applied afterwards.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode scss code-with-copy"><code class="sourceCode scss"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:defaults --*/</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">$uu-yellow</span>: <span class="cn">#FFCD00</span><span class="op">;</span>    <span class="co">// UU geel — our most distinctive colour</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">$uu-red</span>:    <span class="cn">#C00A35</span><span class="op">;</span>    <span class="co">// UU rood</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">$primary</span>:   <span class="va">$uu-red</span> <span class="at">!default</span><span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">$font-family-sans-serif</span>: <span class="st">"Open Sans"</span><span class="op">,</span> Arial<span class="op">,</span> <span class="dv">sans-serif</span> <span class="at">!default</span><span class="op">;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="va">$headings-font-family</span>:   <span class="st">"Merriweather"</span><span class="op">,</span> Georgia<span class="op">,</span> <span class="dv">serif</span> <span class="at">!default</span><span class="op">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="va">$font-size-root</span>: <span class="dv">17</span><span class="dt">px</span> <span class="at">!default</span><span class="op">;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:rules --*/</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>h2 { <span class="kw">border-bottom</span>: <span class="dv">2</span><span class="dt">px</span> <span class="dv">solid</span> <span class="va">$uu-yellow</span><span class="op">;</span> }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The full <a href="https://www.uu.nl/en/organisation/corporate-identity/brand-policy/colour">UU colour palette</a> is:</p>
-<div id="tbl-uu-colours" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-uu-colours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: Utrecht University house-style colours.
+<div id="fig-bmsdark" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bmsdark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/darkmode.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics."><img src="figures/darkmode.png" class="img-fluid figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bmsdark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics.
 </figcaption>
-<div aria-describedby="tbl-uu-colours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Hex</th>
-<th></th>
-<th>Name</th>
-<th>Hex</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>UU geel</td>
-<td><code>#FFCD00</code></td>
-<td></td>
-<td>UU groen</td>
-<td><code>#24A793</code></td>
-</tr>
-<tr class="even">
-<td>UU rood</td>
-<td><code>#C00A35</code></td>
-<td></td>
-<td>UU blauw</td>
-<td><code>#5287C6</code></td>
-</tr>
-<tr class="odd">
-<td>UU creme</td>
-<td><code>#FFE6AB</code></td>
-<td></td>
-<td>UU donkerblauw</td>
-<td><code>#001240</code></td>
-</tr>
-<tr class="even">
-<td>UU oranje</td>
-<td><code>#F3965E</code></td>
-<td></td>
-<td>UU paars</td>
-<td><code>#5B2182</code></td>
-</tr>
-<tr class="odd">
-<td>UU bordeauxrood</td>
-<td><code>#AA1555</code></td>
-<td></td>
-<td>UU bruin</td>
-<td><code>#6E3B23</code></td>
-</tr>
-</tbody>
-</table>
-</div>
 </figure>
 </div>
-<p>The <a href="https://www.uu.nl/en/organisation/corporate-identity/brand-policy/fonts">UU standard fonts</a> are <strong>Merriweather</strong> and <strong>Open Sans</strong> (with <strong>Zilla Slab</strong> permitted for headlines). All three are on Google Fonts, so a book can use them directly. Link them in the page header:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">include-in-header</span><span class="kw">:</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">      - </span><span class="fu">text</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>          &lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&amp;family=Open+Sans:wght@400;600;700&amp;display=swap"&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Steal this book’s theme
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>uu.scss</code> in this project is a complete, commented UU house-style theme — the palette, the fonts, callouts mapped onto the supporting colours, and the yellow accent rules. Copy that one file plus the <code>theme:</code> and <code>include-in-header:</code> blocks from this book’s <code>_quarto.yml</code> into yours, and you are done.</p>
-<p>There is a starting point for a dark variant in <code>_archive/uu-dark.scss</code> if you decide your book wants one.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>A note on using yellow
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>UU yellow is a signature colour but a poor text colour — it fails contrast requirements on white. Use it the way the university does: as an accent rule, an underline, a highlight, a block of background. Keep body text and links in red, black or dark blue.</p>
-</div>
-</div>
-</div>
-<div class="screenshot">
-<p>The same chapter side by side in light and dark mode, and the <code>uu.scss</code> file showing the <code>$primary</code> colour change.</p>
-</div>
 </section>
-<section id="useful-extras" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="useful-extras"><span class="header-section-number">3.5</span> Useful extras</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">book</span><span class="kw">:</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">favicon</span><span class="kw">:</span><span class="at"> figures/favicon.png</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">search</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logo</span><span class="kw">:</span><span class="at"> figures/uu-logo.png</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">style</span><span class="kw">:</span><span class="at"> floating</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">collapse-level</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pinned</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">page-footer</span><span class="kw">:</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span><span class="at"> </span><span class="st">"Utrecht University"</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">right</span><span class="kw">:</span><span class="at"> </span><span class="st">"Made with &lt;a href='https://quarto.org/'&gt;Quarto&lt;/a&gt;"</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-location</span><span class="kw">:</span><span class="at"> right</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">lightbox</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">            # click any figure to enlarge it</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-overflow</span><span class="kw">:</span><span class="at"> wrap</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">link-external-newwindow</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The official UU logo files are on the <a href="https://www.uu.nl/en/organisation/corporate-identity">corporate identity site</a>; download the right variant rather than taking one off a web page.</p>
+<section id="other-options-in-the-yaml" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="other-options-in-the-yaml"><span class="header-section-number">3.5</span> Other options in the yaml</h2>
+<p>The yaml has <a href="https://quarto-tdg.org/yaml.html">many other options</a>. With out listing all of them, you can look into these:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">book</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">favicon</span><span class="kw">:</span><span class="at"> figures/favicon.png</span><span class="co">    # the little (20x20) icon next the web address</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">search</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">  # search function enabled, really useful for students</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span><span class="co"> # menu to the left</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logo</span><span class="kw">:</span><span class="at"> figures/uu-logo.png</span><span class="co"> # logo's for your course / UU branding</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">style</span><span class="kw">:</span><span class="at"> floating</span><span class="co"> # other option: 'docked'</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">collapse-level</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span><span class="co"> # how many levels of headings are collapsed (1=all)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pinned</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # stays visible when scrolling down</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">page-footer</span><span class="kw">:</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span><span class="at"> </span><span class="st">"Utrecht University"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">right</span><span class="kw">:</span><span class="at"> </span><span class="st">"Quarto 4 UU"</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-location</span><span class="kw">:</span><span class="at"> right</span><span class="co">  # paragraph menu to the right of web page</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">lightbox</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">       # click figures to enlarge it</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-overflow</span><span class="kw">:</span><span class="at"> wrap</span><span class="co">  # wrap code that contain too many characters</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">link-external-newwindow</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # external links are always opening in a new window</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The official UU logo files are on the <a href="https://www.uu.nl/en/organisation/corporate-identity">corporate identity site</a>; download the right variant rather than taking one off a web random website.</p>
 
 
 <script type="ojs-module-contents">
@@ -561,7 +451,7 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
 </section>
 
@@ -1006,10 +896,42 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

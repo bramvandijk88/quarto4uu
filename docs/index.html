@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Bram van Dijk, Theoretical Biology, Utrecht University">
-<meta name="dcterms.date" content="2026-09-03">
+<meta name="dcterms.date" content="2026-09-06">
 
-<title>Making a course book with Quarto</title>
+<title>Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -152,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -269,8 +269,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
   <ul class="collapse">
   <li><a href="#what-you-end-up-with" id="toc-what-you-end-up-with" class="nav-link" data-scroll-target="#what-you-end-up-with">What you end up with</a></li>
-  <li><a href="#how-to-read-this" id="toc-how-to-read-this" class="nav-link" data-scroll-target="#how-to-read-this">How to read this</a></li>
-  <li><a href="#this-book-is-also-the-starter-book" id="toc-this-book-is-also-the-starter-book" class="nav-link" data-scroll-target="#this-book-is-also-the-starter-book">This book is also the starter book</a></li>
+  <li><a href="#what-this-explainer-covers" id="toc-what-this-explainer-covers" class="nav-link" data-scroll-target="#what-this-explainer-covers">What this explainer covers</a></li>
+  <li><a href="#starting-from-scratch-or-from-a-template" id="toc-starting-from-scratch-or-from-a-template" class="nav-link" data-scroll-target="#starting-from-scratch-or-from-a-template">Starting from scratch or from a template</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -280,8 +280,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Making a course book with Quarto</h1>
-<p class="subtitle lead">A guide, and a starter book, for teachers at Utrecht University</p>
+<h1 class="title">Quarto 4 UU</h1>
+<p class="subtitle lead">A guide to <a href="https://quarto.org/">Quarto</a>, and a template, for teachers at Utrecht University</p>
 </div>
 
 
@@ -298,7 +298,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 3, 2026</p>
+      <p class="date">September 6, 2026</p>
     </div>
   </div>
   
@@ -312,57 +312,29 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
-<p>This is a short, practical guide for teachers at Utrecht University who want to turn a course reader into a <strong>website</strong> — one that students can search, read on a phone, and click through, with live simulations sitting next to the text.</p>
-<p>We use <a href="https://quarto.org">Quarto</a> and RStudio. Quarto itself is only a publishing framework: it works just as happily from Jupyter notebooks or VS Code, and with Python or Julia instead of R. We describe the RStudio route because, within the Biology department, that is the environment most colleagues already have open.</p>
+<p>This is a short, practical guide for teachers at Utrecht University who want to offer students a course <strong>website</strong> along with their usual course book. For this, we can use <a href="https://quarto.org">Quarto</a>, which generates interactive and easy-to-navigate website, that is also printer-friendly. That means students can choose to read it on their screen, print it, and with very little extra effort, you can combine all this into <a href="https://tbb.bio.uu.nl/bvd/bms/slides/BMS_Cursusboek_2026.pdf">an actual course book</a>!</p>
+<p>Here, I explain how do do all this by using Quarto in RStudio. However, Quarto itself is a broader framework: it works just as happily from Jupyter notebooks or VS Code, and with Python or Julia instead of R. We describe the RStudio route because, within the Biology department, that is the environment most colleagues already have open.</p>
 <section id="what-you-end-up-with" class="level2">
 <h2 class="anchored" data-anchor-id="what-you-end-up-with">What you end up with</h2>
-<p>Two books in our own department are built exactly this way, and everything in this guide is drawn from their source:</p>
+<p>Two course books in our own department are built exactly this way, and everything in this guide is drawn from their source:</p>
 <ul>
-<li><strong><a href="https://tbb.bio.uu.nl/bvd/bms/">Biologische Modellen en Statistiek</a></strong> — a full Dutch-language course book with interactive statistics applets, shared LaTeX macros, and a printable PDF from the same source.</li>
+<li><strong><a href="https://bioms-uu.github.io">Biologische Modellen en Statistiek</a></strong> — a full Dutch-language course book with interactive statistics applets, shared LaTeX macros, and a printable PDF from the same source.</li>
 <li><strong><a href="https://modelinglife-uu.github.io/">Modeling Life</a></strong> — an English course website with embedded simulations and mini-projects.</li>
 </ul>
-<p>Between them they run to hundreds of pages, and neither required anyone to learn web development.</p>
 </section>
-<section id="how-to-read-this" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-read-this">How to read this</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>In a hurry?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Read <a href="#sec-setup" class="quarto-xref"><span class="quarto-unresolved-ref">sec-setup</span></a>, press Render, and come back for the rest when you need it.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>One extension needed
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><a href="#sec-webr" class="quarto-xref"><span class="quarto-unresolved-ref">sec-webr</span></a> contains two <strong>live</strong> R cells that students can edit and run in the browser, so the book needs the <code>quarto-live</code> extension. It travels with the project in <code>_extensions/</code>, so a copy of this folder needs nothing installed.</p>
-<p>If you ever see <em>“Include directive failed”</em> or an error naming <code>readExtensionFormat</code>, that folder is missing — <a href="#sec-webr-install" class="quarto-xref"><span class="quarto-unresolved-ref">sec-webr-install</span></a> has the one command that fetches it, and the two edits that switch live cells back off.</p>
-</div>
-</div>
+<section id="what-this-explainer-covers" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-explainer-covers">What this explainer covers</h2>
 <ul>
-<li><strong>Getting started</strong> — installing things, making the project, and the one configuration file that decides everything.</li>
-<li><strong>Writing</strong> — text, maths, code that runs, callouts, exercises, figures, and getting a decent PDF out of the same source.</li>
-<li><strong>Interactive material</strong> — embedding simulations, code your students can edit and run in the browser, and self-contained applets. This is the part that makes a Quarto book worth the effort.</li>
-<li><strong>Building and publishing</strong> — rendering fast, putting it online for free, and what to check when something breaks.</li>
+<li><strong>Getting started</strong>: installing stuff, making the project, and the one configuration file that decides everything.</li>
+<li><strong>Writing</strong>: text, maths, code that runs, callouts, exercises, figures, and getting a decent PDF out of the same source.</li>
+<li><strong>Interactive material</strong>: embedding simulations, code your students can edit and run in the browser, and self-contained applets. This is the part students love, so this makes a Quarto book worth the effort.</li>
+<li><strong>Building and publishing</strong>: rendering the book and putting it online via Github pages.</li>
 </ul>
 </section>
-<section id="this-book-is-also-the-starter-book" class="level2">
-<h2 class="anchored" data-anchor-id="this-book-is-also-the-starter-book">This book is also the starter book</h2>
-<p>You do not have to start from an empty folder. <strong>This book is itself the starter book</strong> — every chapter is a working demonstration of the thing it describes, so copying it hands you the UU house style, a working <code>_quarto.yml</code>, a live applet, a real figure, and an example of every pattern you are likely to need.</p>
-<p><a href="starter-book.zip"><strong>Download the starter book (.zip)</strong></a> — then see <a href="#sec-starter" class="quarto-xref"><span class="quarto-unresolved-ref">sec-starter</span></a> for how to open it in RStudio.</p>
+<section id="starting-from-scratch-or-from-a-template" class="level2">
+<h2 class="anchored" data-anchor-id="starting-from-scratch-or-from-a-template">Starting from scratch or from a template</h2>
+<p>You can either start from scratch, or start from a template. <strong>This explainer is itself also a starter book</strong>: every chapter is a working demonstration of the thing it describes, so copying it yields you the UU house style, a working <code>_quarto.yml</code>, an example live applet, how to use figures, and an example of every pattern you are likely to need.</p>
+<p><a href="starter-book.zip"><strong>Download the starter book (.zip)</strong></a> — then see <a href="02-setup-rstudio.html#sec-starter" class="quarto-xref"><span>Option A: start from this book</span></a> for how to open it in RStudio.</p>
 
 
 <script type="ojs-module-contents">
@@ -377,7 +349,7 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
 </section>
 </section>
@@ -820,7 +792,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>

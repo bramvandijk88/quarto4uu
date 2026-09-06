@@ -1,7 +1,7 @@
 # Putting it online {#sec-publishing}
 
 Once it renders, your book is just a folder of static files. Any web server can
-host it — including a free one.
+host it, including many free ones.
 
 ## Three routes
 
@@ -9,16 +9,16 @@ host it — including a free one.
 |---|---|---|
 | **GitHub Pages** | Set up once, then Commit + Push | A course book you will keep editing. Free, versioned, and a colleague can contribute. |
 | **A UU server** | Ask your local support to host the folder | Something that must live under a `uu.nl` address. The BMS book is served this way. |
-| **Quarto Pub** | One command | A quick demo or a one-off hand-out. |
+| **Your own server** | Reupload every time, or write your own automated script | A quick demo or a one-off hand-out. |
 
-The rest of this chapter is the GitHub Pages route, done **without ever opening
-a terminal**.
+The rest of this chapter is the first option: the GitHub Pages route. 
 
 ## The idea
 
-Your book folder becomes a *repository* — a folder that GitHub keeps a copy of.
+Your book folder becomes a *repository*: a folder that GitHub keeps a copy of.
 You render the website into a subfolder called `docs`, send it to GitHub, and
-tell GitHub to serve that folder as a website.
+tell GitHub to serve that folder as a website. Some of the steps below already
+apply to this template, but you will need to do them again for your own book. 
 
 ## Step by step
 
@@ -32,10 +32,18 @@ project:
 
 Render once. The finished website now appears in `docs/`.
 
-**2. Add a file called `.nojekyll`.** An empty file, at the top of your book
-folder. In RStudio: <kbd>File</kbd> → <kbd>New File</kbd> → <kbd>Text File</kbd>,
-then save it with exactly that name, leading dot included. It stops GitHub from
-reprocessing your site and quietly mangling parts of it.
+**2. Add a file called `.nojekyll`.** An empty file, inside `docs/`. 
+GitHub runs its own processor over whatever folder it publishes, and that 
+processor quietly drops directories whose names begin with an underscore,
+which is most of what Quarto generates. This file switches it off.
+
+In RStudio: <kbd>File</kbd> → <kbd>New File</kbd> → <kbd>Text File</kbd>, then
+<kbd>Save As</kbd>, navigate **into `docs/`**, and give it exactly that name,
+leading dot included^[Rstudio may complain, but ignore this and create the file]. 
+Nothing appears in the Files pane afterwards (a leading
+dot means hidden). It is there; *⚙* → *Show Hidden Files* will show it.
+
+Note: rendering again does **not** remove this file, so this step only needs to happen once per book. 
 
 **3. Make the folder a repository.** If you did not tick "Create a git
 repository" when making the project: <kbd>Tools</kbd> → <kbd>Project Options</kbd>
@@ -43,15 +51,17 @@ repository" when making the project: <kbd>Tools</kbd> → <kbd>Project Options</
 **Git** tab appears next to Environment and History.
 
 **4. Create the repository on GitHub and connect it.** Make a free account,
-press <kbd>New repository</kbd>, give it a name, leave it empty. GitHub then
-offers you a list of terminal commands — to avoid those, install
-[GitHub Desktop](https://desktop.github.com), choose *Add existing repository*,
-point it at your book folder, and press *Publish repository*.
+press <kbd>New repository</kbd>, give it a name, choose a public repository^[Note: this means your raw .qmd files are public, so if you wish to keep them private, choose a different route of publishing your website.]. Do not add anything
+to the repository (no Readme, no gitignore). Then, you can either run a few terminal
+commands to get your book uploaded ^[Assuming git is installed, these would be `git remote add origin https://github.com/USERNAME/REPOSITORY.git`, 
+`git branch -M main`, and `git push -u origin main`].
+If you wish to avoid the scary terminal, install [GitHub Desktop](https://desktop.github.com), 
+choose *Add existing repository*, point it at your book folder, and press *Publish repository*.
 
 **5. Send your work up.** From then on, in RStudio's **Git** tab or in GitHub
 Desktop: tick the changed files, write a one-line message saying what you
 changed, press <kbd>Commit</kbd>, then <kbd>Push</kbd>. Those three actions are
-the whole of Git for this purpose.
+the whole of Git for this purpose. 
 
 **6. Switch the website on.** On github.com, in your repository:
 <kbd>Settings</kbd> → <kbd>Pages</kbd> → under *Build and deployment*, set

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Embedding interactive content – Making a course book with Quarto</title>
+<title>8&nbsp; Embedding interactive content – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -175,7 +175,7 @@ window.Quarto = {
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -215,7 +215,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -329,7 +329,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-pattern" id="toc-the-pattern" class="nav-link active" data-scroll-target="#the-pattern"><span class="header-section-number">8.1</span> The pattern</a></li>
+  <li><a href="#how-to-embed-iframes" id="toc-how-to-embed-iframes" class="nav-link active" data-scroll-target="#how-to-embed-iframes"><span class="header-section-number">8.1</span> How to embed iframes</a></li>
   <li><a href="#external-a-simulation-on-another-server" id="toc-external-a-simulation-on-another-server" class="nav-link" data-scroll-target="#external-a-simulation-on-another-server"><span class="header-section-number">8.2</span> External: a simulation on another server</a></li>
   <li><a href="#external-a-desmos-graph" id="toc-external-a-desmos-graph" class="nav-link" data-scroll-target="#external-a-desmos-graph"><span class="header-section-number">8.3</span> External: a Desmos graph</a></li>
   <li><a href="#external-a-video" id="toc-external-a-video" class="nav-link" data-scroll-target="#external-a-video"><span class="header-section-number">8.4</span> External: a video</a></li>
@@ -360,63 +360,69 @@ window.Quarto = {
 </header>
 
 
-<p>An <strong>iframe</strong> is a whole webpage shown inside a box on your page. It is the single most useful trick in a course book, because it lets a student turn a knob instead of reading about the knob. The BMS book does it about fifty times.</p>
+<p>An <strong>iframe</strong> is a whole webpage shown inside a box on your page. It’s a tiny website inside your website. It is the single most useful trick in our course books, because it lets you develop independent “apps” that you can then drop in the middle of the book.</p>
 <p>There are two flavours, written almost identically:</p>
-<p><strong>External</strong> — you point at a page on someone else’s server: Desmos, YouTube, JSFiddle, a simulation on <code>tbb.bio.uu.nl</code>.</p>
-<p><strong>Internal</strong> — you point at an HTML file that lives inside your own project. Nothing external is involved and it keeps working forever.</p>
-<section id="the-pattern" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="the-pattern"><span class="header-section-number">8.1</span> The pattern</h2>
-<p>Raw HTML must be wrapped in a <code>{=html}</code> block, or Quarto escapes it and students see the angle brackets:</p>
+<p><strong>External</strong> — you point at a page on someone else’s server: Desmos for mathmatics, YouTube for videos, JSFiddle for javascript simulations, or one of my many <a href="tbb.bio.uu.nl/bvd/simulations">other simulations</a>.</p>
+<p><strong>Internal</strong> — you point at an HTML file that lives inside your own project. Nothing external is involved and it keeps working forever. If you<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> develop your own little app, you can ship it with your book.</p>
+<section id="how-to-embed-iframes" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="how-to-embed-iframes"><span class="header-section-number">8.1</span> How to embed iframes</h2>
+<p>Raw HTML must be wrapped into a <code>{=html}</code> block, or Quarto escapes it and students see the angle brackets:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="…" width="100%" height="600"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">        style="border:none; border-radius:8px;"&gt;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/iframe&gt;</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>width="100%"</code> makes it responsive to the page width. <code>height</code> is fixed per embed and has to suit the content — the BMS book uses anything from 330 to 680 px. The inline <code>style</code> (no border, rounded corners, a little vertical margin) is what makes an embedded tool look like part of the page rather than a box someone dropped in.</p>
+<p><code>width="100%"</code> makes it responsive to the page width (similar to images, probably a great idea with students looking at your content on phones and laptops alike). <code>height</code> is typically fixed for my embeddings. The inline <code>style</code> (no border, rounded corners, a little vertical margin) is what makes an embedded tool look like part of the page rather than a box someone dropped in.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>If your book also makes a PDF
+<span class="screen-reader-only">Important</span>Add a screenshot for the printed version
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>An iframe cannot exist on paper. Wrap every one of them in <code>::: {.content-visible when-format="html"}</code> and give the PDF a screenshot and a link instead — see <a href="#sec-pdf" class="quarto-xref"><span class="quarto-unresolved-ref">sec-pdf</span></a>. Otherwise the PDF gets a mysterious blank gap.</p>
+<p>As discussed in the previous section, an iframe cannot exist on paper. Wrap every one of them in <code>::: {.content-visible when-format="html"}</code> and give the PDF a screenshot and a link instead — see <a href="07-pdf-and-print.html" class="quarto-xref"><span>Chapter 7</span></a>. Otherwise the PDF gets a mysterious blank gap, or worse, something half cut-off or overlapping with your book’s content. The simulation below has a replacement: if you press print now, you will see the stale image appear with a remark that this interactive content is only available on the website.</p>
 </div>
 </div>
 </section>
 <section id="external-a-simulation-on-another-server" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="external-a-simulation-on-another-server"><span class="header-section-number">8.2</span> External: a simulation on another server</h2>
 <div class="screen-only">
-<iframe src="https://tbb.bio.uu.nl/bvd/simulations/australia/" width="100%" height="520" title="Rabbits in Australia" style="border:none; border-radius:8px;">
+<iframe src="https://tbb.bio.uu.nl/bvd/simulations/australia/" width="100%" height="560" title="Rabbits in Australia" style="border:none; border-radius:8px;">
 </iframe>
 </div>
 <div class="print-only">
-<p><strong>Simulation: rabbits in Australia.</strong> The interactive version is at <a href="https://tbb.bio.uu.nl/bvd/simulations/australia/" class="uri">https://tbb.bio.uu.nl/bvd/simulations/australia/</a></p>
+<p><strong>Simulation: rabbits in Australia.</strong> The interactive version is at <a href="https://tbb.bio.uu.nl/bvd/simulations/australia/" class="uri">https://tbb.bio.uu.nl/bvd/simulations/australia/</a> <img src="figures/australia.png" class="img-fluid" alt="figures"></p>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://tbb.bio.uu.nl/bvd/simulations/australia/"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"520"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Rabbits in Australia"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Rabbits in Australia"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        style</span><span class="op">=</span><span class="st">"border:none; border-radius:8px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="external-a-desmos-graph" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="external-a-desmos-graph"><span class="header-section-number">8.3</span> External: a Desmos graph</h2>
-<p>Build the graph on <a href="https://www.desmos.com/calculator">desmos.com/calculator</a>, press <strong>Share</strong>, and use the URL you are given — <code>https://www.desmos.com/calculator/qxycdqwsdq</code> — directly as the <code>src</code>. Students can then drag its sliders inside your book. The maths chapters of the BMS book use thirteen of these.</p>
+<p>Build the graph on <a href="https://www.desmos.com/calculator">desmos.com/calculator</a>, press <strong>Share</strong>, and use the URL you are given (something like <code>https://www.desmos.com/calculator/qxycdqwsdq</code>) directly as the <code>src</code>. Students can then drag its sliders inside your book. We use these quite often for students that struggle with maths.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.desmos.com/calculator/qxycdqwsdq"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"467"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        style</span><span class="op">=</span><span class="st">"border:1px solid #ccc;"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Give you:</p>
+<iframe src="https://www.desmos.com/calculator/qxycdqwsdq" width="100%" height="467" style="border:1px solid #ccc;" frameborder="0"></iframe>
 </section>
 <section id="external-a-video" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="external-a-video"><span class="header-section-number">8.4</span> External: a video</h2>
 <p>Do not hand-write an iframe for YouTube. Quarto has a shortcode that does it properly, including on phones:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/embed/wo9vZccmqwc &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Give you:</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/wo9vZccmqwc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
 <section id="external-code-students-can-edit-and-run" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="external-code-students-can-edit-and-run"><span class="header-section-number">8.5</span> External: code students can edit and run</h2>
 <p><a href="https://jsfiddle.net">JSFiddle</a> hosts a small program together with its output. Append <code>/embedded/result</code> to the share URL for output only, or <code>/embedded/js,result</code> to show the code beside it so students can change a parameter and press Run.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://jsfiddle.net/bramvandijk88/jq3u7f6t/embedded/result"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"550"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Simulation"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://tbb.bio.uu.nl/bvd/simulations/cooperation/"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">        width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"600"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"Simulation"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Give you:</p>
+<iframe src="https://tbb.bio.uu.nl/bvd/simulations/cooperation/" width="100%" height="600" title="Simulation"></iframe>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -427,7 +433,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Every external iframe is a promise made by somebody else. Servers move, accounts lapse, embedding gets blocked — and you find out when a student emails you in week 4. Check them at the start of each course year, and for anything students are assessed on, make it internal.</p>
+<p>Fair warning: every external iframe relies on that web page staying online. Servers move, accounts expire, embedding gets blocked… Probably check any external links at the start of each course year, and for anything students are assessed on, best to make it internal.</p>
 </div>
 </div>
 </section>
@@ -441,7 +447,7 @@ window.Quarto = {
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">        style="border:none; border-radius:8px; margin:1em 0;"&gt;</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/iframe&gt;</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Which gives you this — a real applet, running inside this page:</p>
+<p>Which gives you what you see below, a real applet, running inside this page:</p>
 <div class="screen-only">
 <iframe src="applets/example-applet.html" width="100%" height="620" title="Logistic growth explorer" style="border:none; border-radius:8px; margin:1em 0;">
 </iframe>
@@ -449,27 +455,7 @@ window.Quarto = {
 <div class="print-only">
 <p><strong>Applet: logistic growth explorer.</strong> Sliders for <span class="math inline">\(r\)</span>, <span class="math inline">\(K\)</span> and <span class="math inline">\(N_0\)</span>, with the resulting trajectory. Open the book in a browser to use it.</p>
 </div>
-<p>Notice that both examples on this page are wrapped in <code>::: {.screen-only}</code>, with a <code>::: {.print-only}</code> block beside them. That is not decoration — it is the whole print story, and <a href="#sec-printing" class="quarto-xref"><span class="quarto-unresolved-ref">sec-printing</span></a> explains why.</p>
-<p>That is the entire mechanism. The statistics chapters of the BMS book work exactly this way: <code>Statistiek/Applets/</code> holds a critical-value calculator, a <em>p</em>-value calculator and a sampling-distribution simulator, each one file. Nothing external, nothing that can go offline, and the applets travel with the book.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Four things that go wrong
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Blank box.</strong> The path is wrong. It is relative to the <em>chapter file</em>, so a chapter in a subfolder needs <code>../applets/…</code>.</p>
-<p><strong>It vanishes after rendering.</strong> Add <code>resources: [applets/]</code> to <code>_quarto.yml</code> so Quarto copies the folder into the finished site.</p>
-<p><strong>The box is too short</strong> and the applet gets its own scrollbar. Iframes never grow to fit their contents — tune <code>height</code> by hand, then check on a phone.</p>
-<p><strong>A stray quote.</strong> <code>height=600"</code> — missing its opening quote — silently breaks the whole tag. There is one of these in the BMS book right now (<code>Statistiek/ToetsenGemiddelde.qmd</code>). If an applet renders strangely, check the quotes before anything else.</p>
-</div>
-</div>
-<div class="screenshot">
-<p>The rendered page above, showing the applet embedded in the text — this is the image that sells the whole approach to a colleague.</p>
-</div>
+<p>Notice that do not transfer well to a printed version of your book, but there is a solution. See <a href="07-pdf-and-print.html#sec-printing" class="quarto-xref"><span>Section 7.2</span></a>.</p>
 
 
 <script type="ojs-module-contents">
@@ -484,8 +470,14 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>With or without the help of our robot overlords<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -929,7 +921,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>

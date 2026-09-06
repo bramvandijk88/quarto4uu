@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Maths and LaTeX – Making a course book with Quarto</title>
+<title>6&nbsp; Maths and LaTeX – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -175,7 +175,7 @@ window.Quarto = {
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -215,7 +215,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -330,15 +330,13 @@ window.Quarto = {
    
   <ul>
   <li><a href="#inline-and-displayed" id="toc-inline-and-displayed" class="nav-link active" data-scroll-target="#inline-and-displayed"><span class="header-section-number">6.1</span> Inline and displayed</a></li>
-  <li><a href="#the-notation-you-will-actually-use" id="toc-the-notation-you-will-actually-use" class="nav-link" data-scroll-target="#the-notation-you-will-actually-use"><span class="header-section-number">6.2</span> The notation you will actually use</a></li>
+  <li><a href="#common-notation-for-latex-equation" id="toc-common-notation-for-latex-equation" class="nav-link" data-scroll-target="#common-notation-for-latex-equation"><span class="header-section-number">6.2</span> Common notation for LateX equation</a></li>
   <li><a href="#statistics-notation" id="toc-statistics-notation" class="nav-link" data-scroll-target="#statistics-notation"><span class="header-section-number">6.3</span> Statistics notation</a></li>
   <li><a href="#words-inside-formulas" id="toc-words-inside-formulas" class="nav-link" data-scroll-target="#words-inside-formulas"><span class="header-section-number">6.4</span> Words inside formulas</a></li>
   <li><a href="#multi-line-equations" id="toc-multi-line-equations" class="nav-link" data-scroll-target="#multi-line-equations"><span class="header-section-number">6.5</span> Multi-line equations</a></li>
-  <li><a href="#brackets-that-grow" id="toc-brackets-that-grow" class="nav-link" data-scroll-target="#brackets-that-grow"><span class="header-section-number">6.6</span> Brackets that grow</a></li>
-  <li><a href="#numbering-and-referring-to-an-equation" id="toc-numbering-and-referring-to-an-equation" class="nav-link" data-scroll-target="#numbering-and-referring-to-an-equation"><span class="header-section-number">6.7</span> Numbering and referring to an equation</a></li>
-  <li><a href="#sec-macros" id="toc-sec-macros" class="nav-link" data-scroll-target="#sec-macros"><span class="header-section-number">6.8</span> Define your notation once</a></li>
-  <li><a href="#where-mathjax-and-latex-disagree" id="toc-where-mathjax-and-latex-disagree" class="nav-link" data-scroll-target="#where-mathjax-and-latex-disagree"><span class="header-section-number">6.9</span> Where MathJax and LaTeX disagree</a></li>
-  <li><a href="#when-something-does-not-render" id="toc-when-something-does-not-render" class="nav-link" data-scroll-target="#when-something-does-not-render"><span class="header-section-number">6.10</span> When something does not render</a></li>
+  <li><a href="#numbering-and-referring-to-an-equation" id="toc-numbering-and-referring-to-an-equation" class="nav-link" data-scroll-target="#numbering-and-referring-to-an-equation"><span class="header-section-number">6.6</span> Numbering and referring to an equation</a></li>
+  <li><a href="#sec-macros" id="toc-sec-macros" class="nav-link" data-scroll-target="#sec-macros"><span class="header-section-number">6.7</span> Define your notation once</a></li>
+  <li><a href="#when-something-does-not-render" id="toc-when-something-does-not-render" class="nav-link" data-scroll-target="#when-something-does-not-render"><span class="header-section-number">6.8</span> When something does not render</a></li>
   </ul>
 </nav>
     </div>
@@ -364,8 +362,7 @@ window.Quarto = {
 </header>
 
 
-<p>Quarto writes maths with <strong>LaTeX</strong> notation. You do not need to <em>learn LaTeX</em> — you are not typesetting a document with it, only writing formulas — but a page of the notation goes a very long way in a biology course book.</p>
-<p>The same source is rendered twice: by <strong>MathJax</strong> in the browser and by <strong>LaTeX itself</strong> in the PDF. You write it once.</p>
+<p>Quarto writes maths with <strong>LaTeX</strong> notation. You do not need to <em>learn LaTeX</em> itself, but the math notation is maybe worth knowing. Here’s a quick overview.</p>
 <section id="inline-and-displayed" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="inline-and-displayed"><span class="header-section-number">6.1</span> Inline and displayed</h2>
 <p><strong>Inline</strong> maths sits between single dollars, inside a sentence:</p>
@@ -388,12 +385,12 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>$r$</code> works. <code>$ r $</code> may not — Quarto uses the spacing to tell maths from an ordinary dollar sign. If you need a literal dollar in your text, escape it: <code>\$</code>.</p>
+<p><code>$r$</code> works. <code>$ r $</code> may not — Quarto uses the spacing to tell maths from an ordinary dollar sign. If you need a literal dollar in your text, escape it with a slash: <code>\$</code>.</p>
 </div>
 </div>
 </section>
-<section id="the-notation-you-will-actually-use" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="the-notation-you-will-actually-use"><span class="header-section-number">6.2</span> The notation you will actually use</h2>
+<section id="common-notation-for-latex-equation" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="common-notation-for-latex-equation"><span class="header-section-number">6.2</span> Common notation for LateX equation</h2>
 <div id="tbl-latex-basics" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-latex-basics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -643,28 +640,14 @@ Table&nbsp;6.3: Notation for the statistics chapters.
 </div>
 </figure>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Use <code>\mid</code>, not <code>|</code>, for “given”
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A bare <code>|</code> in <code>$P(A|B)$</code> is typeset as an ordinary bar with no spacing. <code>\mid</code> is the real conditional-probability symbol and gets the spacing right.</p>
-</div>
-</div>
 </section>
 <section id="words-inside-formulas" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="words-inside-formulas"><span class="header-section-number">6.4</span> Words inside formulas</h2>
 <p>Anything you type in maths mode is set in italic, letter by letter, as if every character were a variable. That is wrong for words and for units:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="an">Wrong:</span><span class="co">  $rate = births - deaths$</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">Right:</span><span class="co">  $\text{rate} = \text{births} - \text{deaths}$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Wrong: <span class="math inline">\(rate = births - deaths\)</span></p>
-<p>Right: <span class="math inline">\(\text{rate} = \text{births} - \text{deaths}\)</span></p>
-<p>Use <code>\text{...}</code> for words, and <code>\mathrm{...}</code> for upright single symbols such as the d in a derivative — <code>\mathrm{d}N</code>, not <code>dN</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="an">Wrong:</span><span class="co">  $rate = births per day - deaths per day$</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">Right:</span><span class="co">  $\text{rate} = \text{births per day} - \text{deaths per day}$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wrong: <span class="math inline">\(rate = births per day - deaths per day\)</span></p>
+<p>Right: <span class="math inline">\(\text{rate} = \text{births per day} - \text{deaths per day}\)</span></p>
 </section>
 <section id="multi-line-equations" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="multi-line-equations"><span class="header-section-number">6.5</span> Multi-line equations</h2>
@@ -711,106 +694,29 @@ J = \begin{pmatrix}
 \]</span></p>
 <p><code>pmatrix</code> gives round brackets, <code>bmatrix</code> square ones, <code>vmatrix</code> the vertical bars of a determinant.</p>
 </section>
-<section id="brackets-that-grow" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="brackets-that-grow"><span class="header-section-number">6.6</span> Brackets that grow</h2>
-<p>Ordinary brackets stay small and look wrong around a tall fraction. Prefix them with <code>\left</code> and <code>\right</code> and they scale:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="an">Small:</span><span class="co">  $(1 - \frac{N}{K})$</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">Grown:</span><span class="co">  $\left(1 - \frac{N}{K}\right)$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Small: <span class="math inline">\((1 - \frac{N}{K})\)</span> &nbsp;&nbsp; Grown: <span class="math inline">\(\left(1 - \frac{N}{K}\right)\)</span></p>
-<p><code>\left</code> and <code>\right</code> must come in pairs. If you want only one visible bracket, pair it with <code>\right.</code> (a full stop means “nothing here”).</p>
-</section>
-<section id="numbering-and-referring-to-an-equation" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="numbering-and-referring-to-an-equation"><span class="header-section-number">6.7</span> Numbering and referring to an equation</h2>
+<section id="numbering-and-referring-to-an-equation" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="numbering-and-referring-to-an-equation"><span class="header-section-number">6.6</span> Numbering and referring to an equation</h2>
 <p>Put a <code>#eq-</code> label after the closing <code>$$</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>$$ {#eq-logistic2}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>$$ {#eq-logistic2}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span id="eq-logistic2"><span class="math display">\[
 \frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
 \tag{6.1}\]</span></span></p>
-<p>Then <code>@eq-logistic2</code> gives <a href="#eq-logistic2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-logistic2</span></a>, numbered and clickable, and the numbering fixes itself when you reorder chapters. For a custom label, <code>[see @eq-logistic2]</code> gives <a href="#eq-logistic2" class="quarto-xref">see&nbsp;<span class="quarto-unresolved-ref ref-noprefix">eq-logistic2</span></a>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>The label goes <em>outside</em> the dollars
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>$$ ... $$ {#eq-name}</code> — on the same line as the closing <code>$$</code>. Inside the maths it is just more maths, and Quarto will not see it.</p>
-</div>
-</div>
+<p>Then <code>@eq-logistic2</code> gives <a href="#eq-logistic2" class="quarto-xref">Equation&nbsp;<span>6.1</span></a>, numbered and clickable, and the numbering fixes itself when you reorder chapters. For a custom label, you can use square brackets: <code>[see @eq-logistic2]</code> gives <a href="#eq-logistic2" class="quarto-xref">see&nbsp;<span>6.1</span></a>.</p>
 </section>
-<section id="sec-macros" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="sec-macros"><span class="header-section-number">6.8</span> Define your notation once</h2>
-<p>If you write <span class="math inline">\(\mathrm{d}N/\mathrm{d}t\)</span> two hundred times, define it once. Put your macros in a file called <code>_macros.tex</code> at the top of the project:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\providecommand</span>{<span class="ex">\dd</span>}{<span class="fu">\mathrm</span>{d}}</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\dt</span>}[1]{<span class="fu">\frac</span>{<span class="fu">\mathrm</span>{d}#1}{<span class="fu">\mathrm</span>{d}t}}</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\providecommand</span>{<span class="ex">\ev</span>}[1]{<span class="fu">\mathbb</span>{E}<span class="fu">\!\left</span>[#1<span class="fu">\right</span>]}</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\providecommand</span>{<span class="ex">\var</span>}[1]{<span class="fu">\mathrm</span>{Var}<span class="fu">\!\left</span>(#1<span class="fu">\right</span>)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>[1]</code> means “this macro takes one argument”, and <code>#1</code> is where that argument lands. So <code>\dt{N}</code> expands to the whole derivative.</p>
+<section id="sec-macros" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="sec-macros"><span class="header-section-number">6.7</span> Define your notation once</h2>
+<p>I write <span class="math inline">\(\mathrm{d}N/\mathrm{d}t\)</span>, <span class="math inline">\(\mathrm{d}X/\mathrm{d}t\)</span>, and <span class="math inline">\(\mathrm{d}Y/\mathrm{d}t\)</span> a lot, and to do the math formatting correctly, I make the ‘d’ non-italic (correct for derivative). This is a bit long and annoying to to write: <code>$\mathrm{d}N/\mathrm{d}t$</code>.</p>
+<p>So in my books, I use a macro to define it once. Put your macros in a file called <code>_macros.tex</code> at the top of the project:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\dt</span>}[1]{<span class="fu">\frac</span>{<span class="fu">\mathrm</span>{d}#1}{<span class="fu">\mathrm</span>{d}t}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>[1]</code> means “this macro takes one argument”, and <code>#1</code> is where that argument lands. So <code>\dt{N}</code> expands to the whole thing for <span class="math inline">\(\mathrm{d}N/\mathrm{d}t\)</span>.</p>
 <p>Then start every chapter that needs them with an include shortcode on the very first line:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>{{&lt; include _macros.tex &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now <code>$\dt{N}$</code> renders correctly in <strong>both</strong> outputs from a single definition: MathJax picks up the <code>\newcommand</code>s in the browser, LaTeX picks them up in the PDF. This is exactly what the BMS book does.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Why <code>\providecommand</code> rather than <code>\newcommand</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>\providecommand</code> only defines the macro if it does not already exist, so it cannot collide with something LaTeX already knows. Use it for anything with a plausibly common name; keep <code>\newcommand</code> for names you are sure are yours.</p>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>{{&lt; include _macros.tex &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>_macros.tex</code> can also contain <code>\usepackage{…}</code> lines that only make sense for the PDF. MathJax simply ignores them, which is why one include is safe for both formats.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>A tidy pattern
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Wrap the include in a hidden div so it never shows up as an empty line in the rendered page:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>::: {.content-hidden}</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>$ {{&lt; include _macros.tex &gt;}} $</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
 </section>
-<section id="where-mathjax-and-latex-disagree" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="where-mathjax-and-latex-disagree"><span class="header-section-number">6.9</span> Where MathJax and LaTeX disagree</h2>
-<p>They agree on almost everything, and then they do not. Watch for:</p>
-<ul>
-<li><strong>Packages.</strong> <code>\usepackage{amsmath}</code> and friends only exist in the PDF. MathJax has most of <code>amsmath</code> built in, so the common environments work anyway — but an exotic package will render on paper and silently fail on the web.</li>
-<li><strong><code>\text{}</code> needs no package</strong> in either. Prefer it to <code>\mbox{}</code>.</li>
-<li><strong>Coloured maths.</strong> <code>\color{red}{...}</code> works in MathJax; in the PDF it needs <code>\usepackage{xcolor}</code> in <code>_macros.tex</code>.</li>
-<li><strong>Line breaks.</strong> <code>\\</code> inside <code>aligned</code> is fine in both. A bare <code>\\</code> in inline maths is not — put multi-line maths in a display block.</li>
-<li><strong>Unicode.</strong> Typing <code>α</code> directly usually works in HTML and breaks the PDF. Write <code>\alpha</code>.</li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Always look at both outputs before a course starts
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Render to HTML and PDF and skim the equations in each. A formula that silently fails in one output is the single most common way a course book embarrasses itself.</p>
-</div>
-</div>
-</section>
-<section id="when-something-does-not-render" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="when-something-does-not-render"><span class="header-section-number">6.10</span> When something does not render</h2>
+<section id="when-something-does-not-render" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="when-something-does-not-render"><span class="header-section-number">6.8</span> When something does not render</h2>
 <p>A formula that shows as raw <code>\frac{...}</code> text, or a chunk of the page that has gone blank, is nearly always one of these:</p>
 <div id="tbl-latex-trouble" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -843,16 +749,8 @@ Table&nbsp;6.4: Maths that will not render.
 <td>A <code>\left</code> with no matching <code>\right</code></td>
 </tr>
 <tr class="even">
-<td>Works in HTML, breaks in PDF</td>
-<td>A missing <code>\usepackage</code>, or a Unicode character</td>
-</tr>
-<tr class="odd">
-<td>Works in PDF, breaks in HTML</td>
-<td>A LaTeX package MathJax does not implement</td>
-</tr>
-<tr class="even">
 <td>Nothing renders in one chapter</td>
-<td>A missing <code>{{&lt; include _macros.tex &gt;}}</code> line</td>
+<td>This one give no useful errors, but a missing <code>{{&lt; include _macros.tex &gt;}}</code> is often the culprit.</td>
 </tr>
 </tbody>
 </table>
@@ -865,11 +763,11 @@ Table&nbsp;6.4: Maths that will not render.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Two tools worth knowing
+<span class="screen-reader-only">Tip</span>A tools worth knowing
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="https://detexify.kirelabs.org">Detexify</a> lets you <em>draw</em> a symbol and tells you its LaTeX name. And RStudio’s <strong>Visual</strong> editor has an equation editor with a live preview — insert the equation there, then switch back to Source to see what it wrote.</p>
+<p><a href="https://detexify.kirelabs.org">Detexify</a> lets you <em>draw</em> a symbol and tells you its LaTeX name.</p>
 </div>
 </div>
 
@@ -886,7 +784,7 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
 </section>
 
@@ -1331,7 +1229,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>

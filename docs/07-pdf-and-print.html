@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Getting it onto paper – Making a course book with Quarto</title>
+<title>7&nbsp; Getting it onto paper – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -300,15 +300,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#two-different-splits-and-they-are-not-the-same-thing" id="toc-two-different-splits-and-they-are-not-the-same-thing" class="nav-link active" data-scroll-target="#two-different-splits-and-they-are-not-the-same-thing"><span class="header-section-number">7.1</span> Two different splits, and they are not the same thing</a></li>
-  <li><a href="#content-that-only-exists-in-one-format" id="toc-content-that-only-exists-in-one-format" class="nav-link" data-scroll-target="#content-that-only-exists-in-one-format"><span class="header-section-number">7.2</span> Content that only exists in one format</a></li>
-  <li><a href="#sec-printing" id="toc-sec-printing" class="nav-link" data-scroll-target="#sec-printing"><span class="header-section-number">7.3</span> Printing the web page</a>
+  <li><a href="#a-real-pdf-rather-than-printing-a-web-page" id="toc-a-real-pdf-rather-than-printing-a-web-page" class="nav-link active" data-scroll-target="#a-real-pdf-rather-than-printing-a-web-page"><span class="header-section-number">7.1</span> A real PDF, rather than printing a web page</a></li>
+  <li><a href="#sec-printing" id="toc-sec-printing" class="nav-link" data-scroll-target="#sec-printing"><span class="header-section-number">7.2</span> Printing the web page</a>
   <ul class="collapse">
-  <li><a href="#the-page-furniture-looks-after-itself" id="toc-the-page-furniture-looks-after-itself" class="nav-link" data-scroll-target="#the-page-furniture-looks-after-itself"><span class="header-section-number">7.3.1</span> The page furniture looks after itself</a></li>
-  <li><a href="#the-pattern-the-bms-book-uses" id="toc-the-pattern-the-bms-book-uses" class="nav-link" data-scroll-target="#the-pattern-the-bms-book-uses"><span class="header-section-number">7.3.2</span> The pattern the BMS book uses</a></li>
-  <li><a href="#what-you-do-have-to-handle" id="toc-what-you-do-have-to-handle" class="nav-link" data-scroll-target="#what-you-do-have-to-handle"><span class="header-section-number">7.3.3</span> What you do have to handle</a></li>
+  <li><a href="#a-trick-applied-in-this-template" id="toc-a-trick-applied-in-this-template" class="nav-link" data-scroll-target="#a-trick-applied-in-this-template"><span class="header-section-number">7.2.1</span> A trick applied in this template</a></li>
   </ul></li>
-  <li><a href="#a-real-pdf-rather-than-printing-a-web-page" id="toc-a-real-pdf-rather-than-printing-a-web-page" class="nav-link" data-scroll-target="#a-real-pdf-rather-than-printing-a-web-page"><span class="header-section-number">7.4</span> A real PDF, rather than printing a web page</a></li>
   </ul>
 </nav>
     </div>
@@ -334,131 +330,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>A course book usually has to exist as a PDF as well as a website, and students will print pages from the browser whether or not you planned for it. Both are handled from the same source — with care.</p>
-<section id="two-different-splits-and-they-are-not-the-same-thing" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="two-different-splits-and-they-are-not-the-same-thing"><span class="header-section-number">7.1</span> Two different splits, and they are not the same thing</h2>
-<p>This trips up everyone once, so here it is before anything else. There are two mechanisms, and they answer different questions.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><code>content-visible when-format</code></th>
-<th><code>.screen-only</code> / <code>.print-only</code></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Asks</td>
-<td>Which output is Quarto <strong>building</strong>?</td>
-<td>Is the browser painting to <strong>screen or paper</strong>?</td>
-</tr>
-<tr class="even">
-<td>Resolved</td>
-<td>Once, at render time</td>
-<td>In the reader’s browser, every time they print</td>
-</tr>
-<tr class="odd">
-<td>Splits</td>
-<td>HTML file vs PDF file</td>
-<td>The <em>same</em> HTML page, on screen vs printed</td>
-</tr>
-<tr class="even">
-<td>Use for</td>
-<td>A PDF edition of the book</td>
-<td>A student pressing Ctrl-P on a web page</td>
-</tr>
-</tbody>
-</table>
-<p>A book that produces a PDF <strong>and</strong> expects students to print pages needs both. The BMS book uses <code>content-visible</code> 33 times and the CSS classes 35 times — for different jobs.</p>
+<p>There are a few ways of getting your webbook onto paper.</p>
+<section id="a-real-pdf-rather-than-printing-a-web-page" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="a-real-pdf-rather-than-printing-a-web-page"><span class="header-section-number">7.1</span> A real PDF, rather than printing a web page</h2>
+<p>The easiest (but not always best) way to give a web book as both html and PDF, is to add both to the format section of <code>_quarto.yml</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cosmo</span><span class="kw">,</span><span class="at"> uu.scss</span><span class="kw">]</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> scrreprt</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">include-in-header</span><span class="kw">:</span><span class="at"> _macros.tex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Rendering then produces both. This needs a LaTeX installation; if you have none, <code>quarto install tinytex</code> sets up a small self-contained one.</p>
+<p>However, we ended up not using this options for our course books. It remains a little difficult to ensure the web book and the PDF really looked the same. Instead, we ensured the entire web-book was printer friendly, and decided to work from there. And if the student then decides to print it themselves, it will also look nice for them!</p>
 </section>
-<section id="content-that-only-exists-in-one-format" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="content-that-only-exists-in-one-format"><span class="header-section-number">7.2</span> Content that only exists in one format</h2>
-<p>An interactive simulation cannot exist on paper, and a full-page table of contents makes no sense on the web. Quarto’s native mechanism for this is conditional content:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">the</span><span class="ot"> live simulation</span><span class="dt">&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="al">![Screenshot of the simulation](figures/sim-screenshot.png)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>The interactive version is at <span class="ot">&lt;https://…&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>There is also <code>.content-hidden when-format="…"</code> if it reads better inverted.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Conditional content runs <em>after</em> the code does
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The div hides output; it does not stop a chunk from executing. A chunk that emits HTML-only output should also be gated at the chunk level:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: !expr knitr::is_html_output()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="sec-printing" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="sec-printing"><span class="header-section-number">7.3</span> Printing the web page</h2>
-<p>Students <em>will</em> hit Ctrl-P on a chapter. This is a different problem from the one above, and the distinction catches everybody out once.</p>
-<section id="the-page-furniture-looks-after-itself" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="the-page-furniture-looks-after-itself"><span class="header-section-number">7.3.1</span> The page furniture looks after itself</h3>
-<p>You do not have to hide the sidebar, the table of contents or the previous/next links. Quarto’s own CSS already does it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* from Quarto's bundled bootstrap css */</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">@media</span> <span class="an">print</span> {</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="in">:root</span> { <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">11</span><span class="dt">pt</span> }</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="pp">#quarto-sidebar</span><span class="op">,</span> <span class="pp">#TOC</span><span class="op">,</span> <span class="fu">.nav-page</span> { <span class="kw">display</span><span class="ch">:</span> <span class="dv">none</span> }</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">.fixed-top</span> { <span class="kw">position</span><span class="ch">:</span> <span class="dv">relative</span> }</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This applies to any Quarto HTML output, book or website. If you have ever seen a Quarto page print with its menu attached, it was almost certainly not Quarto output at all.</p>
-</section>
-<section id="the-pattern-the-bms-book-uses" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="the-pattern-the-bms-book-uses"><span class="header-section-number">7.3.2</span> The pattern the BMS book uses</h3>
-<p>This is the one worth copying. Every interactive embed in that book is a pair: a screenshot with a short caption for paper, and the live thing for screen.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>:::{.print-only}</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">center</span><span class="dt">&gt;</span>*Interactieve content beschikbaar op de website:*</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="al">![](figuren/interactive_plife.png)</span>{fig-align=center}</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">center</span><span class="dt">&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>:::{.screen-only}</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe width="100%" height="550"</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="in">  src="https://jsfiddle.net/…/embedded/result" title="Simulation"&gt;&lt;/iframe&gt;</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Two things make it work. The printed version is not an apology for a missing figure — it is a real screenshot plus a line telling the reader where the live version is. And because it is CSS rather than <code>when-format</code>, it applies to the <em>web page itself</em>: a student who prints chapter 4 gets the screenshots, and the same file on screen keeps the simulations.</p>
-<p>The cost is that you have to take the screenshots. Thirty-odd of them, in the BMS book’s case. There is no way around that — a browser cannot photograph an iframe for you.</p>
-</section>
-<section id="what-you-do-have-to-handle" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="what-you-do-have-to-handle"><span class="header-section-number">7.3.3</span> What you do have to handle</h3>
-<p>The content. Two helper classes, in an <code>@media print</code> block in your SCSS:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode scss code-with-copy"><code class="sourceCode scss"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.screen-only</span> { <span class="kw">display</span>: <span class="dv">block</span><span class="op">;</span> }</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.print-only</span>  { <span class="kw">display</span>: <span class="dv">none</span><span class="op">;</span> }</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">@media</span> print {</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">.screen-only</span> { <span class="kw">display</span>: <span class="dv">none</span> <span class="at">!important</span><span class="op">;</span> }</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">.print-only</span>  { <span class="kw">display</span>: <span class="dv">block</span> <span class="at">!important</span><span class="op">;</span> <span class="kw">border</span>: <span class="dv">1</span><span class="dt">px</span> <span class="dv">dashed</span> <span class="cn">#999</span><span class="op">;</span> <span class="kw">padding</span>: <span class="dv">1</span><span class="dt">em</span><span class="op">;</span> }</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  iframe { <span class="kw">display</span>: <span class="dv">none</span> <span class="at">!important</span><span class="op">;</span> }      <span class="co">// prints as an empty rectangle</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  h1<span class="op">,</span> h2<span class="op">,</span> h3 { <span class="kw">break-after</span>: <span class="dv">avoid</span><span class="op">;</span> }        <span class="co">// no heading orphaned at a page foot</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  figure<span class="op">,</span> table<span class="op">,</span> pre<span class="op">,</span> <span class="fu">.callout</span> { <span class="kw">break-inside</span>: <span class="dv">avoid</span><span class="op">;</span> }</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  a<span class="ex">[href</span><span class="op">^=</span><span class="st">"http"</span><span class="ex">]</span><span class="in">::after</span> {                  <span class="co">// paper cannot be clicked</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">content</span>: <span class="st">" ("</span> <span class="fu">attr(</span>href<span class="fu">)</span> <span class="st">")"</span><span class="op">;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span>: <span class="dv">0.75</span><span class="dt">em</span><span class="op">;</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>All of that is already in this book’s <code>uu.scss</code>, so <code>::: {.screen-only}</code> and <code>::: {.print-only}</code> work straight away — see the two embeds in <a href="#sec-iframes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-iframes</span></a>, which use exactly this pattern.</p>
+<section id="sec-printing" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="sec-printing"><span class="header-section-number">7.2</span> Printing the web page</h2>
+<p>Although a minority, some students enjoy printing your book. We found that approximately 1 in 8 students still wanted a printed version, which is why we decided to offer not only a printer-friendly web book, but also compiled our own PDF via the printing route.</p>
+<p>First things first: you do <strong>not</strong> have to worry about all the web elements, like the side bars and logos. Try it: hit print on this web page and you’ll they dont get printed. But what about interactive elements, like simulations and videos? How will these get printed? We did a bit of additional hacking to fix this.</p>
+<section id="a-trick-applied-in-this-template" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="a-trick-applied-in-this-template"><span class="header-section-number">7.2.1</span> A trick applied in this template</h3>
+<p>The trick below is already in this template, but if you have interactive materials and are <strong>not</strong> using this template, it is really worth copying. In our course material, every interactive embed in that book is a pair: a screenshot with a short caption for the printed version, and the live thing for screen.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>:::{.print-only}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">center</span><span class="dt">&gt;</span>*Interactive content available on the website.*</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="al">![](figuren/interactive_plife.png)</span>{fig-align=center}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">center</span><span class="dt">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>:::{.screen-only}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe width="100%" height="550"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">  src="https://jsfiddle.net/…/embedded/result" title="Simulation"&gt;&lt;/iframe&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The cost is that you have to take the screenshots, which can be a little extra work. Without a doubt, there will be better solutions for this soon-ish, but this enables us to be fully in control of what ends up being shown in the printed version of the web book.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -467,53 +373,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The BMS book squeezes a lot onto paper with <code>column-count: 2</code> inside its <code>@media print</code> block, plus smaller type and forced full-width figures. Worth copying if students print whole chapters — but check your equations and wide code blocks, which do not enjoy narrow columns.</p>
+<p>If you wish, you can apply a two-column layout, which we have use for one of our books (saving 70 pages that students did not need to pay for). To do this, us <code>column-count: 2</code> inside the <code>@media print</code> part of the uu.scss file. But carefully check your equations and wide code blocks, which do not enjoy narrow columns.</p>
 </div>
-</div>
-</div>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Historical note: <code>print_friendly.html</code>
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Earlier versions of the BMS book used a hand-written <code>&lt;script&gt;</code> that swapped every <code>&lt;iframe id="iframeToReplace"&gt;</code> for a link on <code>window.onbeforeprint</code> and reloaded the page afterwards. It was clever, and it predates Quarto having good native tools.</p>
-<p>It is retired: the file survives only as an unused copy in <code>Boek/scripts/</code>, and no live chapter includes it. Print handling now rests entirely on the CSS above plus <code>content-visible</code>.</p>
-<p><strong>Don’t teach it as a pattern.</strong> It relies on a magic element id, it reloads the page after printing, and <code>content-visible when-format</code> does the same job properly.</p>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="a-real-pdf-rather-than-printing-a-web-page" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="a-real-pdf-rather-than-printing-a-web-page"><span class="header-section-number">7.4</span> A real PDF, rather than printing a web page</h2>
-<p>Printing from the browser is always a compromise. If the PDF matters, add a proper format:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cosmo</span><span class="kw">,</span><span class="at"> uu.scss</span><span class="kw">]</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> scrreprt</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">include-in-header</span><span class="kw">:</span><span class="at"> _macros.tex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Rendering then produces both. This needs a LaTeX installation; if you have none, <code>quarto install tinytex</code> sets up a small self-contained one.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>LaTeX feels like too much?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>format: typst</code> is a modern, much lighter alternative that needs no LaTeX toolchain at all. It does not yet do everything LaTeX does — check your maths and your cross-references carefully — but for a straightforward reader it is fast and pleasant.</p>
 </div>
 </div>
 
@@ -530,8 +393,9 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -975,7 +839,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>

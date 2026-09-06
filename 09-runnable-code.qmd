@@ -9,15 +9,17 @@ engine: knitr
 
 # Code students can run in the browser {#sec-webr}
 
-This is the newest of the interactive options, and for a course that teaches
-programming it is the most useful. **The student edits your code and presses
-Run, and it executes in their browser** — no R installed, no server, no
-accounts, no logins that break in week 3.
+To run Python and R code, we often have servers set up that can run the code
+for our students. For big projects, that is still the way to go. But for small
+bits of practice code, there's a better way: **run it locally in the student's browser**. 
+No server, no accounts, and no other barriers related to installation. I will
+spare you the technical details of how it works^[for those interested, look for
+[WebAssembly](https://webassembly.org/)) online]. Let's see how it works. 
 
-## What it looks like
+## A first example
 
-Both cells below are real. Each is an editor with **Run Code** and **Start
-Over** buttons: change anything, run it again, and reset it when you have made
+Both cells below are real executable R code. Each is an editor with **Run Code** and **Start
+Over** buttons: students can change stuff, run it, and reset it when they have made
 a mess.
 
 <!-- DEMO1-START -->
@@ -28,25 +30,21 @@ for (x in 1:5) {
 ```
 <!-- DEMO1-END -->
 
-Small on purpose: the very first cell on a page has to download R itself, so a
-three-line example gets the student to their first **Run Code** quickly. Once
-webR is loaded, everything else on the page is instant.
-
-The second cell is a real model — change `d` to `0.9` and the paracetamol takes
-far longer to clear:
+Here is a second cell with some more advanced code, a toy-model of paracetamol in the 
+blood, mostly a nice finger exercise I give to students to learn about for loops^[I know, not the best way to go about with R but they have to learn the concepts of loops]:
 
 <!-- DEMO2-START -->
 ```{webr}
-#| caption: Paracetamol in de bloedbaan
+#| caption: Paracetamol in the blood
 #| min-lines: 12
-p <- 400          # hoeveelheid paracetamol
-d <- 0.7          # afname (d van decay)
+p <- 400          # amount of paracetamol in the blood (mg)
+d <- 0.7          # decay rate 
 
-for (i in 1:100) {
-  if (runif(1) < 0.1) {   # nieuwe pil met kans 0.1
-    p[i] <- p[i] + 400
+for (i in 1:100) { # little loop for "every hour"
+  if (runif(1) < 0.1) {   # randomly take another dose of paracetamol 10% chance
+    p[i] <- p[i] + 400 # bump dose
   }
-  p[i+1] <- p[i] * d
+  p[i+1] <- p[i] * d # apply decay
 }
 
 plot(p, type = 'l', lwd = 2, col = "#C00A35",
@@ -54,9 +52,12 @@ plot(p, type = 'l', lwd = 2, col = "#C00A35",
 ```
 <!-- DEMO2-END -->
 
+Try running the code above, and you'll even see a plot appear! If you run it 
+many times, you'll even see it's different every time. 
+
 ::: {.callout-note}
-## These two are live
-Press **Run Code**. The first cell has to fetch R itself, so give it a few
+## Loading webR
+Before you can press **Run Code**, the first cell has to fetch R itself, so give it a few
 seconds; after that everything on the page is instant. @sec-webr-install
 explains how this was set up, and how to switch it back off.
 :::
@@ -77,20 +78,19 @@ code*.
 
 ## Installing it {#sec-webr-install}
 
-The extension is [**Quarto Live**](https://r-wasm.github.io/quarto-live/), and
-installing it is the one moment in this guide that needs a terminal. It is one
-command, run once per project.
+The above setup requires an extension, [**Quarto Live**](https://r-wasm.github.io/quarto-live/), and
+installing it can be done in the R terminal. It is one command, run once per project.
 
 ::: {.callout-tip}
 ## Step by step, in RStudio
 
 1. Open the project (`File → Open Project`, or double-click its `.Rproj`).
-2. Click the **Terminal** tab — bottom-left pane, next to Console.
+2. Click the **Terminal** tab: bottom-left pane, next to Console.
 3. **Check where you are.** Type `pwd` and press Enter. It must print your
    project folder. If it prints your home folder instead, move there first:
 
 ```{=html}
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">cd ~/Dropbox/…/YourBookFolder</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">cd ~/Files/…/YourBookFolder</code></pre></div>
 ```
 
 4. Now install:
@@ -99,8 +99,8 @@ command, run once per project.
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">quarto add r-wasm/quarto-live</code></pre></div>
 ```
 
-5. It asks whether you trust the authors — press **Y**, Enter. It may ask a
-   second time to confirm; **Y** again.
+5. It asks whether you trust the authors. Assuming you do trust the authors, press **Y**, Enter. 
+   It may ask a  second time to confirm; **Y** again.
 6. Check it worked: a folder `_extensions/r-wasm/live/` should now exist in the
    project. In RStudio's Files pane you may need the **More → Show Hidden
    Files** option to see it.
@@ -112,17 +112,17 @@ command, run once per project.
 not into the project you have open in RStudio. Those are usually the same
 thing, but not always — a Terminal that opened in your home folder will
 cheerfully create `_extensions` there, report success, and leave your book
-exactly as broken as before.
-
-That is what step 3 is for. If it has already happened, just drag the stray
-`_extensions` folder into your project.
+exactly as broken as before. That is what step 3 is for. If it has already happened, either
+re-run the command or drag the stray `_extensions` folder into your project^[That 
+doesnt always work, but it does in this case]. 
 :::
 
-**Commit the `_extensions/` folder to Git** along with everything else. Then a
-colleague who clones the book does not have to install anything, and neither
-does a build server.
+If you're going to use git to work on your book with multiple teachers, 
+you can add the **`_extensions/` folder to Git** along with everything else. Then
+your colleague does not need to install anything, it's simply some files with
+configurations for your folder, not a local installation. 
 
-## Switching the book over
+## One more step before it works
 
 Two edits, both one line.
 
@@ -146,20 +146,9 @@ closing `---` of the YAML header:
 <div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">{{&lt; include ./_extensions/r-wasm/live/_knitr.qmd &gt;}}</code></pre></div>
 ```
 
-That line registers `webr` as an engine that knitr recognises, and it is needed
-whenever your book runs R chunks anywhere — which it almost certainly does.
-Miss it and Quarto stops with *"Include directive failed"*; miss the `live-html`
-change and the cells render as ordinary dead code blocks with no Run button.
-This chapter has both — look at its source.
-
-::: {.callout-note}
-## Going back
-Reverse the same two edits: `live-html` back to `html`, delete the include
-line, and put `engine: markdown` in the chapter header so Quarto stops looking
-for something to execute. The book then renders on any machine with no
-extension installed, which is what you want before handing it to a colleague
-who has not installed anything.
-:::
+That line then knows where to find the `webr` engine. If you forget this step, 
+Quarto stops with *"Include directive failed"*. So if you get that error, you
+know this step somehow didnt work. 
 
 ## Writing a cell
 
@@ -167,6 +156,7 @@ A live R cell is a `{webr}` block. That is the whole syntax — you write this:
 
 ```{=html}
 <div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">&#96;&#96;&#96;{webr}
+#plot a sine 
 plot(sin(seq(0, 4 * pi, 0.1)), type = 'l', lwd = 2, col = "#C00A35")
 &#96;&#96;&#96;</code></pre></div>
 ```
@@ -174,11 +164,10 @@ plot(sin(seq(0, 4 * pi, 0.1)), type = 'l', lwd = 2, col = "#C00A35")
 …and your students get this:
 
 ```{webr}
+# plot a since
 plot(sin(seq(0, 4 * pi, 0.1)), type = 'l', lwd = 2, col = "#C00A35")
-```
 
-Source above, result below — the same three backticks either way. Every example
-from here on is shown in that pair.
+```
 
 ## Cell options
 
@@ -191,7 +180,7 @@ the cell above uses `caption` and `min-lines`.
 | `edit: false` | show and run it, but do not let them change it |
 | `runbutton: false` | no Run button — pair with `autorun` for a live demo |
 | `startover: false` | remove the reset button |
-| `persist: true` | remember the student's edits in their browser across reloads |
+| `persist: true` | remember the student's edits in their browser across reloads^[Note: if students delete their cache, they lose their edits!] |
 | `min-lines`, `max-lines` | control the height of the editor box |
 | `timelimit: 10` | seconds before a runaway loop is stopped (default 30) |
 | `caption: "Try changing d"` | a title on the cell |
@@ -213,7 +202,6 @@ load and refuse edits — a live demonstration rather than an exercise:
 ```{webr}
 #| autorun: true
 #| edit: false
-#| caption: Exponentiële versus logistische groei
 t <- 0:40
 exponential <- 2 * exp(0.12 * t)
 logistic    <- 100 / (1 + 49 * exp(-0.12 * t))
@@ -225,20 +213,13 @@ legend("topleft", c("logistisch", "exponentieel"),
        col = c("#C00A35", "#001240"), lty = c(1, 2), lwd = 2, bty = "n")
 ```
 
-Notice there is no Run button and no editor — it simply appeared. Compare it
+Notice there is no Run button and no editor -- it simply appeared. Compare it
 with the cells at the top of the chapter, which have both.
 
 ::: {.callout-warning}
-## Live cells need a web *server* — and Render alone does not start one
-Open `docs/index.html` straight off your disk and the cells appear but stay
-dead: the editor never initialises, because browsers refuse to start the
-WebAssembly worker over a `file://` address. It looks exactly like a broken
-install, and it is not.
-
-**Render** builds the book but does not necessarily serve it. Worse, once the
-format is `live-html` RStudio no longer recognises it as something it knows how
-to preview, so the Render button quietly stops opening a preview window at all
-— it prints *"Output created: docs/index.html"* and nothing appears.
+## Live cells only on a *server*. Once you published your book online everything
+will work, but if you simply open your HTML file localy, the live code will grow
+stale: the editor never initialises. 
 
 To see live cells locally, start a server yourself. In the **Terminal** tab,
 from the project folder:
@@ -252,19 +233,19 @@ your browser at it, and re-renders whenever you save. Stop it with
 <kbd>Ctrl</kbd>+<kbd>C</kbd>.
 
 If it opens inside RStudio's Viewer pane rather than a real browser, click the
-*Show in new window* icon — the Viewer is a cut-down browser and WebAssembly
+*Show in new window* icon; the Viewer is a cut-down browser and WebAssembly
 is exactly the sort of thing it is bad at.
 
 Published to GitHub Pages the book is served over `https://`, so students never
-meet any of this.
+notice any of this. Once it works, it works. 
 :::
 
 ::: {.callout-tip}
 ## The setup-cell pattern
-Put data loading and library calls in an `include: false` cell at the top of
-the chapter. State carries between cells on the same page, so the student's
+If you load data or libraries, put that in a separate cell in the top of your page 
+with `include: false`. This carries between cells on the same page, so the student's
 cell can then be three lines about the actual idea instead of fifteen lines of
-boilerplate.
+extra boilerplate code.
 :::
 
 ## Packages
@@ -287,14 +268,15 @@ anything wrapping compiled C or Fortran that nobody has ported will simply not
 be there.
 
 **Check the packages you need before you rewrite a practical around this.**
-Python has the same limitation, with a different list — see @sec-webr-python.
+Python has the same limitation, with a different list (see @sec-webr-python).
 Every live cell in this chapter uses only base R or the Python standard
 library, deliberately.
 :::
 
 ## The same trick for Python {#sec-webr-python}
 
-There is nothing to install. The extension you already added ships **Pyodide**
+There is nothing extra to install (unless you skipped the previous installation). 
+That extension you already added ships **Pyodide**
 — CPython compiled to WebAssembly — alongside webR, and the include line at the
 top of this chapter registers both engines. Write `{pyodide}` instead of
 `{webr}` and it simply works:
@@ -329,8 +311,8 @@ pyodide:
 ```
 
 Pyodide ships the scientific stack, and `micropip` can fetch pure-Python wheels
-from PyPI — but not packages whose compiled parts have never been built for
-WebAssembly. Same caveat as R, different list.
+from PyPI. But some packages with compiled parts have never been built for
+WebAssembly. Same caveat as R.
 
 ::: {.callout-warning}
 ## One page, two runtimes
@@ -341,64 +323,16 @@ it to show you that it works.
 In a real course book, keep a page to one language unless you genuinely need
 both. Where you do — an introductory course where half the room knows R and
 half knows Python — a `::: {.panel-tabset}` with an R cell in one tab and a
-Python cell in the other is the tidy way to do it.
+Python cell in the other is the tidy way to do it. But there's plenty
+of documentation online already, so good luck! :)
 :::
 
-## What it costs {#sec-webr-cost}
-
-::: {.callout-important}
-## The first cell on a page is slow
-Loading webR means downloading R itself — tens of megabytes. Expect a few
-seconds on a good connection and rather longer on eduroam in a full lecture
-hall. After that it is fast, and it is cached for the rest of the session.
-
-Two things help: put an `autorun: true` cell early on so the download starts
-while the student is still reading, and do not scatter live cells across twenty
-chapters when three practical pages would do.
-:::
-
-Two more limits worth knowing before you commit a practical to this:
-
-- **No files and no network.** The browser sandbox means no reading from the
-  student's disk and no `download.file()`. Ship data inside the page, or as a
-  URL the extension is configured to fetch.
-- **It is not a replacement for teaching them to install R.** If the course
-  outcome is "can run an analysis on their own laptop", they still have to
-  install it. This is for the explaining, not for the doing.
 
 ## Does it work in the PDF?
 
-No — like everything else in this part of the book, a live cell needs a
+Of course not. Like everything else in this part of the book, a live cell needs a
 browser. Wrap it the way @sec-pdf describes: the live version inside
 `::: {.content-visible when-format="html"}`, and for the PDF a plain
 non-executing code block showing the same code, so the printed book still has
 something to read.
 
-## Writing *about* live cells
-
-There is a trap here, and this chapter walks into it deliberately so you do not
-have to.
-
-Quarto picks an engine per file by scanning the raw text for cell fences,
-*before* it parses any markdown. A ```` ```{webr} ```` fence therefore counts
-even when you only meant to show it as an example — nesting it inside a bigger
-code block, indenting it, or adding backticks makes no difference. In a book
-with no live cells at all, that alone is enough to make Quarto demand a Python
-kernel and stop with:
-
-```{=html}
-<div class="sourceCode"><pre class="sourceCode"><code>Starting python3 kernel...
-Jupyter is not available in this Python installation.</code></pre></div>
-```
-
-The syntax examples on this page are therefore written as raw HTML blocks
-rather than fenced ones — look at the source. They still get a copy button,
-Quarto never sees a fence at all, and it is what lets this chapter print a
-cell's source and *run that same cell* directly underneath.
-
-::: {.callout-tip}
-## If you only want to *describe* live cells
-A chapter that shows the syntax but runs nothing needs neither the extension
-nor the include. Put `engine: markdown` in its YAML header and Quarto will stop
-looking for something to execute.
-:::

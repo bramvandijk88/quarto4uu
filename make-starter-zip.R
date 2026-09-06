@@ -6,6 +6,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 skip <- c("^_book/", "^docs/", "^_site/", "^_freeze/", "^\\.quarto/", "^\\.git/",
           "^\\.Rproj\\.user/", "^_archive/", "^starter-book\\.zip$",
+          "^make-starter-zip\\.R$",
           "\\.DS_Store$", "^\\.RData$", "^\\.Rhistory$")
 
 files <- list.files(".", recursive = TRUE, all.files = TRUE, no.. = TRUE)

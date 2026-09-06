@@ -1,113 +1,75 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
 # Writing applets with an AI assistant {#sec-ai}
 
-A single self-contained HTML file with a few sliders and a plot is exactly the
-kind of thing Claude or ChatGPT produces well in one go. This is where the
-effort really collapses: the statistics applets in the BMS book are of this
-kind, and each took minutes rather than days.
+I am a programmer myself, and I have made a lot of teaching material by programming little simulations and apps. But, this takes a lot of time.
 
-The catch is in the title of this chapter's key section: *if you are careful*.
+With AI, not only can I personally make these materials much faster, but anyone should now be able to bring these kinds of things to the classroom.
 
-## Constrain the request
+The catch: you have to be very, very careful. AI tends to mix your message with general learnings from all over the globa, muddying up your material. It can write code, but it cannot check that material is correctly portraying your course content.
 
-The constraints below are what separate a file that still works in five years
-from one that mysteriously stops working in March.
+## Example applet
 
-- **One single `.html` file.** All CSS and JavaScript inline. No npm, no build
-  step, no separate files. If the answer needs installing, it is the wrong
-  answer.
-- **No external libraries, no CDN links.** Plain JavaScript and a `<canvas>`
-  element cover almost everything a statistics or modelling applet needs. A
-  library pulled from a CDN means the applet dies whenever that CDN does, or
-  whenever a student has no connection.
-- **Say the width is fluid and give the height.** "It will be embedded in an
-  iframe at `width: 100%`, `height: 620px`. Use a responsive layout; nothing
-  may overflow at that height."
-- **Ask it to set the background colour explicitly**, and to handle light and
-  dark colour schemes. Otherwise the applet inherits nothing and looks
-  unfinished.
-- **Ask it to state the formula it implemented** in a comment at the top of the
-  file, in mathematical notation. That one line is what makes the file
-  checkable.
+Below is an example (Dutch) applet made with the help of AI. While I could have
+spend a few days making this myself, it saved me a bunch of time and students
+did appreciate the extra effort (e.g. the animations) to clarify the mathematical
+procedure. 
 
-::: {.callout-caution collapse="true"}
-## A prompt you can paste
 
-> Write me a small interactive teaching applet as **one single, self-contained
-> HTML file**.
->
-> **Topic:** [what it should show — e.g. "the sampling distribution of the mean:
-> the student sets the population SD and the sample size n, draws many samples,
-> and sees the distribution of sample means beside the population distribution"]
->
-> **Controls:** [which sliders or inputs, and their ranges]
->
-> **Language of all labels:** [English / Dutch]
->
-> Hard requirements:
->
-> - One file. All CSS and JavaScript inline. No npm, no build step.
-> - **No external libraries and no CDN links.** Plain JavaScript and `<canvas>`
->   for plotting. It must work with no internet connection.
-> - It will be embedded in an iframe at `width: 100%`, `height: [N]px`. Use a
->   responsive layout; nothing may overflow or scroll inside the frame.
-> - Set the background colour explicitly on `body`, and support both light and
->   dark via `prefers-color-scheme`.
-> - Readable at phone width.
-> - Put a comment at the very top stating **exactly which formula or algorithm
->   you implemented**, in mathematical notation.
-> - Keep it simple and readable — I need to be able to check it.
->
-> Start with the simplest version that works. I will ask for additions
-> afterwards.
+```{=html}
+<iframe src="applets/linearisatie_eq.html" width="100%" height="950"
+        style="border:none; border-radius:8px;">
+</iframe>
+```
+
+
+## Tips for making apps with AI.
+
+Here's a few common constraints that helped me writing good applets with AI. Note
+that the example above does not follow all of these as it was made a while ago. But in
+the future, I will follow my own tips and tricks:
+
+- **Ask for a single, stand-alone `.html` file.** This prevents the AI from creating many files and loading modules externally from sources that may/may not be available in the future. No build steps, no weird compilation things, no students having to install anything. Just a file that can be opened in a browser.
+- **Say the width is fluid and give the height.** Tell the AI where you will use the applet: "It will be embedded in an iframe at `width: 100%`, `height: 620px`. Use a responsive layout; nothing may overflow at that height, and the width must be fluid."
+- **Ask answers/settings to be stored locally.** Local storage means that students will not lose their settings/answers if they close the browser or refresh the page. Without AI, I find this far too much programming, so I never used it. Now, I do use it. Note that this is not a privacy/security risk, as the data is stored on the student's own computer. However, if the student clears their cache, the data will be lost. For this, I sometimes offer an additional `Copy answers to clipboard` or `Download answers to PDF` option for students that want to keep their answers in a file.
+- **Request both light/dark mode** Most modern operating systems have a global setting for either light or dark mode, and browsers can retrieve this information. So you can request to make the app automatically adjust.
+- **Ask for it to repeat your request in a hidden comment** This way, your original suggestion (maybe reprased) will always remain visible, and it remains transparent that the app was made with the help of AI. We often request students to show when/if they used AI, so we should do the same.
+
+:::: {.callout-caution collapse="true"}
+## Example prompt
+
+::: {style="font-family: \"Courier New"}
+Write me a small interactive teaching applet as **one single, self-contained HTML file**, that teaches \[topic\] (below).
+
+**Topic:** \[what it should show — e.g. "the sampling distribution of the mean: the student sets the population SD and the sample size n, draws many samples, and sees the distribution of sample means beside the population distribution"\]
+
+**Controls:** \[which sliders or inputs, and their ranges\]
+
+**Language of all labels:** \[English / Dutch / Multiple languages with a button\]
+
+Hard requirements:
+
+- One stand-alone HTML file.
+- It will be embedded in an iframe at `width: 100%`, `height: 600px`. Use a responsive layout; nothing may overflow or scroll inside the frame.
+- Support both light and dark mode via `prefers-color-scheme`.
+- It must be readable at phone width.
+- Put a comment at the very top stating **exactly what I asked and what you implemented**
+- Keep it simple and readable (no weird compsci tricks), I need to be able to check it.
+- (optional: it must work with no internet connection)
+
+Start with the simplest version that works. I will ask for adjustments afterwards.
 :::
+::::
 
-## Then check it
+## What not to do
 
-::: {.callout-important}
-## An applet that looks convincing and computes the wrong thing is worse than no applet
-Students trust it more than they trust you. Five minutes, every time.
-:::
-
-1. **Read the formula comment** at the top of the file. Is it the formula you
-   actually teach, in your notation?
-2. **Open the file directly** in a browser by double-clicking it, before any
-   iframe is involved. It must work standalone.
-3. **Check three numbers against R.** Pick inputs you can compute yourself,
-   including one extreme case. For a *p*-value applet: does it agree with
-   `2 * pt(-abs(t), df = n - 1)`?
-4. **Push every slider to both ends.** $n = 1$, $\alpha = 0$, $r$ at maximum.
-   AI-written applets are reliably right in the middle of the range and
-   reliably produce `NaN`, an empty plot or a freeze at the edges.
-5. **Check the language and notation** match the rest of your book. Assistants
-   drift into English and into whatever notation is commonest online.
-6. **Narrow the browser window** to phone width.
-7. **Render the book** and open the real chapter page, not just the file.
-
-::: {.callout-note}
-## This is not hypothetical
-The applet embedded in @sec-iframes was written this way and then run through
-the list above. Steps 3 and 4 caught a real bug: at very low growth rates it
-labelled a population that was still slowly growing as "oscillating", because
-the classifier only looked at the spread of the last few values and never asked
-whether they were still rising. Correct everywhere in the middle of the range,
-wrong at the edge — exactly the failure mode step 4 exists to catch.
-:::
-
-## The rhythm that works
-
-Ask for the smallest version first — one slider, one plot — and check it. Then
-ask for one addition at a time.
-
-A 500-line applet produced in a single shot is genuinely hard to verify. The
-same applet grown over four steps is easy, because you checked each step while
-it was still small.
-
-## If you do accept a CDN link
-
-Sometimes a plotting library is worth it. The BMS applets use Chart.js this
-way. If you go there:
-
-- **Pin the exact version** — `chart.js@4.4.0`, never `chart.js@latest`.
-- Know that you have made your book depend on somebody else's server, and that
-  the applet will not work offline or in an exported copy.
-- Note it somewhere, so whoever inherits the book knows why it broke.
+- Do not forget to be transparent about AI usage to students. We are asking students to be transparent about their use of AI, so we should be too.
+- Do not use AI applets as part of evaluating/assessing students (e.g. in a quiz). While the UU policy on AI
+is still under development, I think one can make a moral case that students deserve to be graded by humans.  
+- Do not assume that an AI applet is always correct. Always verify the results and logic yourself.
+- Do not assume students will/want need less physical contact with AI. Quite the opposite; on-site education is
+becoming the more important to gatekeep against AI misuse!

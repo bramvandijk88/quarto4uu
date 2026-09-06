@@ -1,7 +1,10 @@
-# The control panel: `_quarto.yml` {#sec-yml}
+# Almost everything is controlled by one file: `_quarto.yml` {#sec-yml}
 
-This one file is the table of contents, the theme, and the settings. Get
-comfortable here and the rest of Quarto is just writing.
+This one file is the table of contents, the theme, and the settings. It is probably
+good to go through this step by step. Although the rest of working with Quarto
+is ust writing, you need to know a little bit about this file. That being said,
+if you end up using my template, you mostly need to modify the chapter organisation. If you want
+to use your own style, you can change the theme and add your own SCSS. 
 
 ## A minimal book
 
@@ -33,50 +36,41 @@ format:
     documentclass: scrreprt # delete if you never want a PDF
 ```
 
-Three blocks matter:
+Three blocks matter most:
 
 - **`project`** — what you are building, and where the output goes.
 - **`book`** — the structure, and which chapters in which order.
 - **`format`** — how each output type looks.
 
-::: {.callout-important}
-## The mistake everyone makes once
-**A chapter that is not listed under `chapters:` does not exist.** Creating
-`week3.qmd` is not enough — Quarto will render the book without it and give you
-no warning at all. If a chapter is missing from the website, this is why, nine
-times out of ten.
-:::
 
-::: {.screenshot}
-`_quarto.yml` open in the editor with the `project` / `book` / `format` blocks
-highlighted, next to the rendered sidebar, so the mapping is obvious.
-:::
+## The side bar
 
-## Controlling the sidebar labels
-
-A long chapter title makes an ugly sidebar entry. Give the sidebar its own
-shorter text:
+Your book will render each chapter with a navigation sidebar, like the one
+you can see to the left right now. Note that a very long chapter title makes 
+an ugly sidebar entry. In fact, this specific chapter has a very long title.
+Fortunately, you can give the sidebar its own shorter text, which was 
+done for this chapter:
 
 ```yaml
     chapters:
-      - text: "Introduction"
-        href: Modellen/intro_modellen.qmd
+      - text: "Quarto yml"
+        href: 03-quarto-yml.qmd
 ```
 
-Chapters can live in subfolders, as this example shows. Paths in `_quarto.yml`
-are relative to the top of the project.
+Chapters can also live in subfolders, organising your websites into bigger
+chunks of chapters (e.g. part 1 and part 2 of a course). 
 
 ## Indentation
 
-YAML indentation is meaningful, and must be **spaces, never tabs**. If Quarto
-complains about the file and the message makes no sense, an indentation slip is
-almost always the cause. RStudio inserts spaces for you if you leave its
-defaults alone.
+YAML indentation is annoyingly strict, and must be **spaces, never tabs**. If Quarto
+complains about the file and the message makes no sense, indentation is
+almost always the cause. 
 
-## Making it look like Utrecht University {#sec-theming}
+## CSS / UU house style {#sec-theming}
 
-Start from a [Bootswatch theme](https://bootswatch.com/) — `cosmo`, `flatly`
-and `litera` all read well as a textbook — and layer your own SCSS on top:
+You can modify how your book looks by changing the style sheets. Some that
+ship with Quarto are `cosmo`, `flatly`and `litera` (all read well as a textbook).
+If you are familiar with CSS stylesheet, you can layer that on top:
 
 ```yaml
 format:
@@ -84,8 +78,8 @@ format:
     theme: [cosmo, uu.scss]
 ```
 
-That is what this book uses, and the single entry is deliberate. Quarto will
-happily give you a light/dark pair with a toggle in the corner:
+That is what this book uses. Quarto will also happily use a light/dark 
+pair:
 
 ```yaml
     theme:
@@ -93,107 +87,47 @@ happily give you a light/dark pair with a toggle in the corner:
       dark:  [darkly, uu-dark.scss]
 ```
 
-The theme listed first is the default, and the reader's choice is remembered in
+
+The theme listed as the first is the default, and the reader's choice is remembered in
 their browser. Add `respect-user-color-scheme: true` and it follows their
-operating system instead.
+operating system settings instead. 
 
 ::: {.callout-note}
 ## Why this book has no dark mode
-The UU identity is specified on a white ground: red and yellow are defined
-against paper, and yellow in particular becomes a different colour entirely on
-a dark surface. A dark palette would be something we invented, not something
-the university sanctioned — so this book stays light for every reader. Your own
-book can decide differently; the mechanism is right there above.
+The UU identity is specified on a white ground, and has no dark mode counter part.
+So I decided not to add it. You can do it for your own book, of course, as we
+have done for many of ours (see @fig-bmsdark). 
 :::
 
-An SCSS file has two blocks. The `defaults` block sets variables *before*
-Bootstrap is compiled; the `rules` block is ordinary CSS applied afterwards.
+![Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics.](figures/darkmode.png){#fig-bmsdark width=50%}
 
-```scss
-/*-- scss:defaults --*/
-$uu-yellow: #FFCD00;    // UU geel — our most distinctive colour
-$uu-red:    #C00A35;    // UU rood
-$primary:   $uu-red !default;
-$font-family-sans-serif: "Open Sans", Arial, sans-serif !default;
-$headings-font-family:   "Merriweather", Georgia, serif !default;
-$font-size-root: 17px !default;
+## Other options in the yaml 
 
-/*-- scss:rules --*/
-h2 { border-bottom: 2px solid $uu-yellow; }
-```
+The yaml has [many other options](https://quarto-tdg.org/yaml.html). With out listing all of them, you can look 
+into these:
 
-The full [UU colour palette](https://www.uu.nl/en/organisation/corporate-identity/brand-policy/colour) is:
-
-| Name | Hex | | Name | Hex |
-|---|---|---|---|---|
-| UU geel | `#FFCD00` | | UU groen | `#24A793` |
-| UU rood | `#C00A35` | | UU blauw | `#5287C6` |
-| UU creme | `#FFE6AB` | | UU donkerblauw | `#001240` |
-| UU oranje | `#F3965E` | | UU paars | `#5B2182` |
-| UU bordeauxrood | `#AA1555` | | UU bruin | `#6E3B23` |
-
-: Utrecht University house-style colours. {#tbl-uu-colours}
-
-The [UU standard fonts](https://www.uu.nl/en/organisation/corporate-identity/brand-policy/fonts)
-are **Merriweather** and **Open Sans** (with **Zilla Slab** permitted for
-headlines). All three are on Google Fonts, so a book can use them directly.
-Link them in the page header:
-
-```yaml
-format:
-  html:
-    include-in-header:
-      - text: |
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@400;600;700&display=swap">
-```
-
-::: {.callout-tip}
-## Steal this book's theme
-`uu.scss` in this project is a complete, commented UU house-style theme — the
-palette, the fonts, callouts mapped onto the supporting colours, and the yellow
-accent rules. Copy that one file plus the `theme:` and `include-in-header:`
-blocks from this book's `_quarto.yml` into yours, and you are done.
-
-There is a starting point for a dark variant in `_archive/uu-dark.scss` if you
-decide your book wants one.
-:::
-
-::: {.callout-caution collapse="true"}
-## A note on using yellow
-UU yellow is a signature colour but a poor text colour — it fails contrast
-requirements on white. Use it the way the university does: as an accent rule,
-an underline, a highlight, a block of background. Keep body text and links in
-red, black or dark blue.
-:::
-
-::: {.screenshot}
-The same chapter side by side in light and dark mode, and the `uu.scss` file
-showing the `$primary` colour change.
-:::
-
-## Useful extras
 
 ```yaml
 book:
-  favicon: figures/favicon.png
-  search: true
-  sidebar:
-    logo: figures/uu-logo.png
-    style: floating
-    collapse-level: 1
-    pinned: true
+  favicon: figures/favicon.png    # the little (20x20) icon next the web address
+  search: true  # search function enabled, really useful for students
+  sidebar: # menu to the left
+    logo: figures/uu-logo.png # logo's for your course / UU branding
+    style: floating # other option: 'docked'
+    collapse-level: 1 # how many levels of headings are collapsed (1=all)
+    pinned: true # stays visible when scrolling down
   page-footer:
     left: "Utrecht University"
-    right: "Made with <a href='https://quarto.org/'>Quarto</a>"
+    right: "Quarto 4 UU"
 
 format:
   html:
-    toc-location: right
-    lightbox: true            # click any figure to enlarge it
-    code-overflow: wrap
-    link-external-newwindow: true
+    toc-location: right  # paragraph menu to the right of web page
+    lightbox: true       # click figures to enlarge it
+    code-overflow: wrap  # wrap code that contain too many characters
+    link-external-newwindow: true # external links are always opening in a new window
 ```
 
 The official UU logo files are on the
 [corporate identity site](https://www.uu.nl/en/organisation/corporate-identity);
-download the right variant rather than taking one off a web page.
+download the right variant rather than taking one off a web random website.

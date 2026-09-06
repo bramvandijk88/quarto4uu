@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Code students can run in the browser – Making a course book with Quarto</title>
+<title>9&nbsp; Code students can run in the browser – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -111,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -151,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -265,17 +265,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-it-looks-like" id="toc-what-it-looks-like" class="nav-link active" data-scroll-target="#what-it-looks-like"><span class="header-section-number">9.1</span> What it looks like</a></li>
+  <li><a href="#a-first-example" id="toc-a-first-example" class="nav-link active" data-scroll-target="#a-first-example"><span class="header-section-number">9.1</span> A first example</a></li>
   <li><a href="#where-this-sits-among-the-other-options" id="toc-where-this-sits-among-the-other-options" class="nav-link" data-scroll-target="#where-this-sits-among-the-other-options"><span class="header-section-number">9.2</span> Where this sits among the other options</a></li>
   <li><a href="#sec-webr-install" id="toc-sec-webr-install" class="nav-link" data-scroll-target="#sec-webr-install"><span class="header-section-number">9.3</span> Installing it</a></li>
-  <li><a href="#switching-the-book-over" id="toc-switching-the-book-over" class="nav-link" data-scroll-target="#switching-the-book-over"><span class="header-section-number">9.4</span> Switching the book over</a></li>
+  <li><a href="#one-more-step-before-it-works" id="toc-one-more-step-before-it-works" class="nav-link" data-scroll-target="#one-more-step-before-it-works"><span class="header-section-number">9.4</span> One more step before it works</a></li>
   <li><a href="#writing-a-cell" id="toc-writing-a-cell" class="nav-link" data-scroll-target="#writing-a-cell"><span class="header-section-number">9.5</span> Writing a cell</a></li>
   <li><a href="#cell-options" id="toc-cell-options" class="nav-link" data-scroll-target="#cell-options"><span class="header-section-number">9.6</span> Cell options</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">9.7</span> Packages</a></li>
   <li><a href="#sec-webr-python" id="toc-sec-webr-python" class="nav-link" data-scroll-target="#sec-webr-python"><span class="header-section-number">9.8</span> The same trick for Python</a></li>
-  <li><a href="#sec-webr-cost" id="toc-sec-webr-cost" class="nav-link" data-scroll-target="#sec-webr-cost"><span class="header-section-number">9.9</span> What it costs</a></li>
-  <li><a href="#does-it-work-in-the-pdf" id="toc-does-it-work-in-the-pdf" class="nav-link" data-scroll-target="#does-it-work-in-the-pdf"><span class="header-section-number">9.10</span> Does it work in the PDF?</a></li>
-  <li><a href="#writing-about-live-cells" id="toc-writing-about-live-cells" class="nav-link" data-scroll-target="#writing-about-live-cells"><span class="header-section-number">9.11</span> Writing <em>about</em> live cells</a></li>
+  <li><a href="#does-it-work-in-the-pdf" id="toc-does-it-work-in-the-pdf" class="nav-link" data-scroll-target="#does-it-work-in-the-pdf"><span class="header-section-number">9.9</span> Does it work in the PDF?</a></li>
   </ul>
 </nav>
     </div>
@@ -301,10 +299,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is the newest of the interactive options, and for a course that teaches programming it is the most useful. <strong>The student edits your code and presses Run, and it executes in their browser</strong> — no R installed, no server, no accounts, no logins that break in week 3.</p>
-<section id="what-it-looks-like" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="what-it-looks-like"><span class="header-section-number">9.1</span> What it looks like</h2>
-<p>Both cells below are real. Each is an editor with <strong>Run Code</strong> and <strong>Start Over</strong> buttons: change anything, run it again, and reset it when you have made a mess.</p>
+<p>To run Python and R code, we often have servers set up that can run the code for our students. For big projects, that is still the way to go. But for small bits of practice code, there’s a better way: <strong>run it locally in the student’s browser</strong>. No server, no accounts, and no other barriers related to installation. I will spare you the technical details of how it works<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Let’s see how it works.</p>
+<section id="a-first-example" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="a-first-example"><span class="header-section-number">9.1</span> A first example</h2>
+<p>Both cells below are real executable R code. Each is an editor with <strong>Run Code</strong> and <strong>Start Over</strong> buttons: students can change stuff, run it, and reset it when they have made a mess.</p>
 <!-- DEMO1-START -->
 <div class="cell">
 <div>
@@ -317,31 +315,31 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yICh4IGluIDE6NSkge1xu
 </div>
 </div>
 <!-- DEMO1-END -->
-<p>Small on purpose: the very first cell on a page has to download R itself, so a three-line example gets the student to their first <strong>Run Code</strong> quickly. Once webR is loaded, everything else on the page is instant.</p>
-<p>The second cell is a real model — change <code>d</code> to <code>0.9</code> and the paracetamol takes far longer to clear:</p>
+<p>Here is a second cell with some more advanced code, a toy-model of paracetamol in the blood, mostly a nice finger exercise I give to students to learn about for loops<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
 <!-- DEMO2-START -->
-<div class="cell" data-caption="Paracetamol in de bloedbaan" data-min-lines="12">
+<div class="cell" data-caption="Paracetamol in the blood" data-min-lines="12">
 <div>
 <div id="webr-2" class="exercise-cell">
 
 </div>
 <script type="webr-2-contents">
-eyJhdHRyIjp7ImNhcHRpb24iOiJQYXJhY2V0YW1vbCBpbiBkZSBibG9lZGJhYW4iLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJtaW4tbGluZXMiOjEyfSwiY29kZSI6InAgPC0gNDAwICAgICAgICAgICMgaG9ldmVlbGhlaWQgcGFyYWNldGFtb2xcbmQgPC0gMC43ICAgICAgICAgICMgYWZuYW1lIChkIHZhbiBkZWNheSlcblxuZm9yIChpIGluIDE6MTAwKSB7XG4gIGlmIChydW5pZigxKSA8IDAuMSkgeyAgICMgbmlldXdlIHBpbCBtZXQga2FucyAwLjFcbiAgICBwW2ldIDwtIHBbaV0gKyA0MDBcbiAgfVxuICBwW2krMV0gPC0gcFtpXSAqIGRcbn1cblxucGxvdChwLCB0eXBlID0gJ2wnLCBsd2QgPSAyLCBjb2wgPSBcIiNDMDBBMzVcIixcbiAgICAgeGxhYiA9IFwiVGlqZCAodXJlbilcIiwgeWxhYiA9IFwiUGFyYWNldGFtb2wgKG1nKVwiKSJ9
+eyJhdHRyIjp7ImNhcHRpb24iOiJQYXJhY2V0YW1vbCBpbiB0aGUgYmxvb2QiLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJtaW4tbGluZXMiOjEyfSwiY29kZSI6InAgPC0gNDAwICAgICAgICAgICMgYW1vdW50IG9mIHBhcmFjZXRhbW9sIGluIHRoZSBibG9vZCAobWcpXG5kIDwtIDAuNyAgICAgICAgICAjIGRlY2F5IHJhdGUgXG5cbmZvciAoaSBpbiAxOjEwMCkgeyAjIGxpdHRsZSBsb29wIGZvciBcImV2ZXJ5IGhvdXJcIlxuICBpZiAocnVuaWYoMSkgPCAwLjEpIHsgICAjIHJhbmRvbWx5IHRha2UgYW5vdGhlciBkb3NlIG9mIHBhcmFjZXRhbW9sIDEwJSBjaGFuY2VcbiAgICBwW2ldIDwtIHBbaV0gKyA0MDAgIyBidW1wIGRvc2VcbiAgfVxuICBwW2krMV0gPC0gcFtpXSAqIGQgIyBhcHBseSBkZWNheVxufVxuXG5wbG90KHAsIHR5cGUgPSAnbCcsIGx3ZCA9IDIsIGNvbCA9IFwiI0MwMEEzNVwiLFxuICAgICB4bGFiID0gXCJUaWpkICh1cmVuKVwiLCB5bGFiID0gXCJQYXJhY2V0YW1vbCAobWcpXCIpIn0=
 </script>
 </div>
 </div>
 <!-- DEMO2-END -->
+<p>Try running the code above, and you’ll even see a plot appear! If you run it many times, you’ll even see it’s different every time.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>These two are live
+<span class="screen-reader-only">Note</span>Loading webR
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Press <strong>Run Code</strong>. The first cell has to fetch R itself, so give it a few seconds; after that everything on the page is instant. <a href="#sec-webr-install" class="quarto-xref"><span>Section 9.3</span></a> explains how this was set up, and how to switch it back off.</p>
+<p>Before you can press <strong>Run Code</strong>, the first cell has to fetch R itself, so give it a few seconds; after that everything on the page is instant. <a href="#sec-webr-install" class="quarto-xref"><span>Section 9.3</span></a> explains how this was set up, and how to switch it back off.</p>
 </div>
 </div>
 </section>
@@ -396,7 +394,7 @@ Table&nbsp;9.1: The three kinds of interactive content.
 </section>
 <section id="sec-webr-install" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="sec-webr-install"><span class="header-section-number">9.3</span> Installing it</h2>
-<p>The extension is <a href="https://r-wasm.github.io/quarto-live/"><strong>Quarto Live</strong></a>, and installing it is the one moment in this guide that needs a terminal. It is one command, run once per project.</p>
+<p>The above setup requires an extension, <a href="https://r-wasm.github.io/quarto-live/"><strong>Quarto Live</strong></a>, and installing it can be done in the R terminal. It is one command, run once per project.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -409,16 +407,16 @@ Table&nbsp;9.1: The three kinds of interactive content.
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Open the project (<code>File → Open Project</code>, or double-click its <code>.Rproj</code>).</li>
-<li>Click the <strong>Terminal</strong> tab — bottom-left pane, next to Console.</li>
+<li>Click the <strong>Terminal</strong> tab: bottom-left pane, next to Console.</li>
 <li><strong>Check where you are.</strong> Type <code>pwd</code> and press Enter. It must print your project folder. If it prints your home folder instead, move there first:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash">cd ~/Dropbox/…/YourBookFolder</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash">cd ~/Files/…/YourBookFolder</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="4" type="1">
 <li>Now install:</li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash">quarto add r-wasm/quarto-live</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="5" type="1">
-<li>It asks whether you trust the authors — press <strong>Y</strong>, Enter. It may ask a second time to confirm; <strong>Y</strong> again.</li>
+<li>It asks whether you trust the authors. Assuming you do trust the authors, press <strong>Y</strong>, Enter. It may ask a second time to confirm; <strong>Y</strong> again.</li>
 <li>Check it worked: a folder <code>_extensions/r-wasm/live/</code> should now exist in the project. In RStudio’s Files pane you may need the <strong>More → Show Hidden Files</strong> option to see it.</li>
 </ol>
 </div>
@@ -433,14 +431,13 @@ Table&nbsp;9.1: The three kinds of interactive content.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>quarto add</code> installs into <strong>whatever folder the Terminal is currently in</strong>, not into the project you have open in RStudio. Those are usually the same thing, but not always — a Terminal that opened in your home folder will cheerfully create <code>_extensions</code> there, report success, and leave your book exactly as broken as before.</p>
-<p>That is what step 3 is for. If it has already happened, just drag the stray <code>_extensions</code> folder into your project.</p>
+<p><code>quarto add</code> installs into <strong>whatever folder the Terminal is currently in</strong>, not into the project you have open in RStudio. Those are usually the same thing, but not always — a Terminal that opened in your home folder will cheerfully create <code>_extensions</code> there, report success, and leave your book exactly as broken as before. That is what step 3 is for. If it has already happened, either re-run the command or drag the stray <code>_extensions</code> folder into your project<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 </div>
 </div>
-<p><strong>Commit the <code>_extensions/</code> folder to Git</strong> along with everything else. Then a colleague who clones the book does not have to install anything, and neither does a build server.</p>
+<p>If you’re going to use git to work on your book with multiple teachers, you can add the <strong><code>_extensions/</code> folder to Git</strong> along with everything else. Then your colleague does not need to install anything, it’s simply some files with configurations for your folder, not a local installation.</p>
 </section>
-<section id="switching-the-book-over" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="switching-the-book-over"><span class="header-section-number">9.4</span> Switching the book over</h2>
+<section id="one-more-step-before-it-works" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="one-more-step-before-it-works"><span class="header-section-number">9.4</span> One more step before it works</h2>
 <p>Two edits, both one line.</p>
 <p><strong>In <code>_quarto.yml</code>,</strong> change the html format to <code>live-html</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml">format:
@@ -450,25 +447,13 @@ Table&nbsp;9.1: The three kinds of interactive content.
 <p><code>live-html</code> is ordinary <code>html</code> with the WebAssembly machinery added, so everything else — the theme, the sidebar, cross-references — carries on unchanged.</p>
 <p><strong>At the top of every chapter that has a live cell</strong>, immediately below the closing <code>---</code> of the YAML header:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown">{{&lt; include ./_extensions/r-wasm/live/_knitr.qmd &gt;}}</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That line registers <code>webr</code> as an engine that knitr recognises, and it is needed whenever your book runs R chunks anywhere — which it almost certainly does. Miss it and Quarto stops with <em>“Include directive failed”</em>; miss the <code>live-html</code> change and the cells render as ordinary dead code blocks with no Run button. This chapter has both — look at its source.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Going back
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Reverse the same two edits: <code>live-html</code> back to <code>html</code>, delete the include line, and put <code>engine: markdown</code> in the chapter header so Quarto stops looking for something to execute. The book then renders on any machine with no extension installed, which is what you want before handing it to a colleague who has not installed anything.</p>
-</div>
-</div>
+<p>That line then knows where to find the <code>webr</code> engine. If you forget this step, Quarto stops with <em>“Include directive failed”</em>. So if you get that error, you know this step somehow didnt work.</p>
 </section>
 <section id="writing-a-cell" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="writing-a-cell"><span class="header-section-number">9.5</span> Writing a cell</h2>
 <p>A live R cell is a <code>{webr}</code> block. That is the whole syntax — you write this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown">```{webr}
+#plot a sine 
 plot(sin(seq(0, 4 * pi, 0.1)), type = 'l', lwd = 2, col = "#C00A35")
 ```</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>…and your students get this:</p>
@@ -478,11 +463,10 @@ plot(sin(seq(0, 4 * pi, 0.1)), type = 'l', lwd = 2, col = "#C00A35")
 
 </div>
 <script type="webr-3-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicGxvdChzaW4oc2VxKDAsIDQgKiBwaSwgMC4xKSksIHR5cGUgPSAnbCcsIGx3ZCA9IDIsIGNvbCA9IFwiI0MwMEEzNVwiKSJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBwbG90IGEgc2luY2VcbnBsb3Qoc2luKHNlcSgwLCA0ICogcGksIDAuMSkpLCB0eXBlID0gJ2wnLCBsd2QgPSAyLCBjb2wgPSBcIiNDMDBBMzVcIikifQ==
 </script>
 </div>
 </div>
-<p>Source above, result below — the same three backticks either way. Every example from here on is shown in that pair.</p>
 </section>
 <section id="cell-options" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="cell-options"><span class="header-section-number">9.6</span> Cell options</h2>
@@ -523,7 +507,7 @@ Table&nbsp;9.2: Live cell options.
 </tr>
 <tr class="odd">
 <td><code>persist: true</code></td>
-<td>remember the student’s edits in their browser across reloads</td>
+<td>remember the student’s edits in their browser across reloads<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></td>
 </tr>
 <tr class="even">
 <td><code>min-lines</code>, <code>max-lines</code></td>
@@ -552,34 +536,33 @@ Table&nbsp;9.2: Live cell options.
 #| edit: false
 #| caption: Exponentiële versus logistische groei
 ```</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell" data-autorun="true" data-edit="false" data-caption="Exponentiële versus logistische groei">
+<div class="cell" data-autorun="true" data-edit="false">
 <div>
 <div id="webr-4" class="exercise-cell">
 
 </div>
 <script type="webr-4-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImNhcHRpb24iOiJFeHBvbmVudGnDq2xlIHZlcnN1cyBsb2dpc3Rpc2NoZSBncm9laSIsImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlfSwiY29kZSI6InQgPC0gMDo0MFxuZXhwb25lbnRpYWwgPC0gMiAqIGV4cCgwLjEyICogdClcbmxvZ2lzdGljICAgIDwtIDEwMCAvICgxICsgNDkgKiBleHAoLTAuMTIgKiB0KSlcblxucGxvdCh0LCBsb2dpc3RpYywgdHlwZSA9ICdsJywgbHdkID0gMiwgY29sID0gXCIjQzAwQTM1XCIsIHlsaW0gPSBjKDAsIDEyMCksXG4gICAgIHhsYWIgPSBcInRpamRcIiwgeWxhYiA9IFwiTlwiKVxubGluZXModCwgZXhwb25lbnRpYWwsIGx3ZCA9IDIsIGx0eSA9IDIsIGNvbCA9IFwiIzAwMTI0MFwiKVxubGVnZW5kKFwidG9wbGVmdFwiLCBjKFwibG9naXN0aXNjaFwiLCBcImV4cG9uZW50aWVlbFwiKSxcbiAgICAgICBjb2wgPSBjKFwiI0MwMEEzNVwiLCBcIiMwMDEyNDBcIiksIGx0eSA9IGMoMSwgMiksIGx3ZCA9IDIsIGJ0eSA9IFwiblwiKSJ9
+eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlfSwiY29kZSI6InQgPC0gMDo0MFxuZXhwb25lbnRpYWwgPC0gMiAqIGV4cCgwLjEyICogdClcbmxvZ2lzdGljICAgIDwtIDEwMCAvICgxICsgNDkgKiBleHAoLTAuMTIgKiB0KSlcblxucGxvdCh0LCBsb2dpc3RpYywgdHlwZSA9ICdsJywgbHdkID0gMiwgY29sID0gXCIjQzAwQTM1XCIsIHlsaW0gPSBjKDAsIDEyMCksXG4gICAgIHhsYWIgPSBcInRpamRcIiwgeWxhYiA9IFwiTlwiKVxubGluZXModCwgZXhwb25lbnRpYWwsIGx3ZCA9IDIsIGx0eSA9IDIsIGNvbCA9IFwiIzAwMTI0MFwiKVxubGVnZW5kKFwidG9wbGVmdFwiLCBjKFwibG9naXN0aXNjaFwiLCBcImV4cG9uZW50aWVlbFwiKSxcbiAgICAgICBjb2wgPSBjKFwiI0MwMEEzNVwiLCBcIiMwMDEyNDBcIiksIGx0eSA9IGMoMSwgMiksIGx3ZCA9IDIsIGJ0eSA9IFwiblwiKSJ9
 </script>
 </div>
 </div>
-<p>Notice there is no Run button and no editor — it simply appeared. Compare it with the cells at the top of the chapter, which have both.</p>
+<p>Notice there is no Run button and no editor – it simply appeared. Compare it with the cells at the top of the chapter, which have both.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Live cells need a web <em>server</em> — and Render alone does not start one
+<span class="screen-reader-only">Warning</span>Live cells only on a <em>server</em>. Once you published your book online everything
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Open <code>docs/index.html</code> straight off your disk and the cells appear but stay dead: the editor never initialises, because browsers refuse to start the WebAssembly worker over a <code>file://</code> address. It looks exactly like a broken install, and it is not.</p>
-<p><strong>Render</strong> builds the book but does not necessarily serve it. Worse, once the format is <code>live-html</code> RStudio no longer recognises it as something it knows how to preview, so the Render button quietly stops opening a preview window at all — it prints <em>“Output created: docs/index.html”</em> and nothing appears.</p>
+<p>will work, but if you simply open your HTML file localy, the live code will grow stale: the editor never initialises.</p>
 <p>To see live cells locally, start a server yourself. In the <strong>Terminal</strong> tab, from the project folder:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash">quarto preview</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>That builds the book, serves it at a <code>http://localhost:####</code> address, opens your browser at it, and re-renders whenever you save. Stop it with <kbd>Ctrl</kbd>+<kbd>C</kbd>.</p>
-<p>If it opens inside RStudio’s Viewer pane rather than a real browser, click the <em>Show in new window</em> icon — the Viewer is a cut-down browser and WebAssembly is exactly the sort of thing it is bad at.</p>
-<p>Published to GitHub Pages the book is served over <code>https://</code>, so students never meet any of this.</p>
+<p>If it opens inside RStudio’s Viewer pane rather than a real browser, click the <em>Show in new window</em> icon; the Viewer is a cut-down browser and WebAssembly is exactly the sort of thing it is bad at.</p>
+<p>Published to GitHub Pages the book is served over <code>https://</code>, so students never notice any of this. Once it works, it works.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -592,7 +575,7 @@ eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImNhcHRpb24iOiJFeHBvbmVudGnDq2xlIHZlcnN1cyBsb2dp
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Put data loading and library calls in an <code>include: false</code> cell at the top of the chapter. State carries between cells on the same page, so the student’s cell can then be three lines about the actual idea instead of fifteen lines of boilerplate.</p>
+<p>If you load data or libraries, put that in a separate cell in the top of your page with <code>include: false</code>. This carries between cells on the same page, so the student’s cell can then be three lines about the actual idea instead of fifteen lines of extra boilerplate code.</p>
 </div>
 </div>
 </section>
@@ -614,13 +597,13 @@ eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImNhcHRpb24iOiJFeHBvbmVudGnDq2xlIHZlcnN1cyBsb2dp
 </div>
 <div class="callout-body-container callout-body">
 <p>An R package has to have been compiled for WebAssembly. Most of the common ones are, at <a href="https://repo.r-wasm.org">repo.r-wasm.org</a>, and R-universe builds WebAssembly versions automatically — add a <code>repos:</code> key to pull from one. But anything wrapping compiled C or Fortran that nobody has ported will simply not be there.</p>
-<p><strong>Check the packages you need before you rewrite a practical around this.</strong> Python has the same limitation, with a different list — see <a href="#sec-webr-python" class="quarto-xref"><span>Section 9.8</span></a>. Every live cell in this chapter uses only base R or the Python standard library, deliberately.</p>
+<p><strong>Check the packages you need before you rewrite a practical around this.</strong> Python has the same limitation, with a different list (see <a href="#sec-webr-python" class="quarto-xref"><span>Section 9.8</span></a>). Every live cell in this chapter uses only base R or the Python standard library, deliberately.</p>
 </div>
 </div>
 </section>
 <section id="sec-webr-python" class="level2" data-number="9.8">
 <h2 data-number="9.8" class="anchored" data-anchor-id="sec-webr-python"><span class="header-section-number">9.8</span> The same trick for Python</h2>
-<p>There is nothing to install. The extension you already added ships <strong>Pyodide</strong> — CPython compiled to WebAssembly — alongside webR, and the include line at the top of this chapter registers both engines. Write <code>{pyodide}</code> instead of <code>{webr}</code> and it simply works:</p>
+<p>There is nothing extra to install (unless you skipped the previous installation). That extension you already added ships <strong>Pyodide</strong> — CPython compiled to WebAssembly — alongside webR, and the include line at the top of this chapter registers both engines. Write <code>{pyodide}</code> instead of <code>{webr}</code> and it simply works:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown">```{pyodide}
 #| caption: Exponentiële groei
 r, N = 0.12, 2.0
@@ -629,7 +612,7 @@ for t in range(10):
     N = N * (1 + r)
 ```</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Which gives you a Python editor, with its own Run Code button:</p>
-<div class="cell" data-caption="Exponenti<U+00EB>le groei">
+<div class="cell" data-caption="Exponentiële groei">
 <div>
 <div id="pyodide-5" class="exercise-cell">
 
@@ -644,7 +627,7 @@ eyJhdHRyIjp7ImNhcHRpb24iOiJFeHBvbmVudGnDq2xlIGdyb2VpIiwiZWRpdCI6dHJ1ZSwiZXZhbCI6
   packages: [dplyr, ggplot2]
 pyodide:
   packages: [numpy, matplotlib]</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Pyodide ships the scientific stack, and <code>micropip</code> can fetch pure-Python wheels from PyPI — but not packages whose compiled parts have never been built for WebAssembly. Same caveat as R, different list.</p>
+<p>Pyodide ships the scientific stack, and <code>micropip</code> can fetch pure-Python wheels from PyPI. But some packages with compiled parts have never been built for WebAssembly. Same caveat as R.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -656,56 +639,13 @@ pyodide:
 </div>
 <div class="callout-body-container callout-body">
 <p>This page now loads <strong>both</strong> webR and Pyodide, because it has cells of both kinds. That is roughly double the first-load cost, and this chapter only does it to show you that it works.</p>
-<p>In a real course book, keep a page to one language unless you genuinely need both. Where you do — an introductory course where half the room knows R and half knows Python — a <code>::: {.panel-tabset}</code> with an R cell in one tab and a Python cell in the other is the tidy way to do it.</p>
+<p>In a real course book, keep a page to one language unless you genuinely need both. Where you do — an introductory course where half the room knows R and half knows Python — a <code>::: {.panel-tabset}</code> with an R cell in one tab and a Python cell in the other is the tidy way to do it. But there’s plenty of documentation online already, so good luck! :)</p>
 </div>
 </div>
 </section>
-<section id="sec-webr-cost" class="level2" data-number="9.9">
-<h2 data-number="9.9" class="anchored" data-anchor-id="sec-webr-cost"><span class="header-section-number">9.9</span> What it costs</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>The first cell on a page is slow
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Loading webR means downloading R itself — tens of megabytes. Expect a few seconds on a good connection and rather longer on eduroam in a full lecture hall. After that it is fast, and it is cached for the rest of the session.</p>
-<p>Two things help: put an <code>autorun: true</code> cell early on so the download starts while the student is still reading, and do not scatter live cells across twenty chapters when three practical pages would do.</p>
-</div>
-</div>
-<p>Two more limits worth knowing before you commit a practical to this:</p>
-<ul>
-<li><strong>No files and no network.</strong> The browser sandbox means no reading from the student’s disk and no <code>download.file()</code>. Ship data inside the page, or as a URL the extension is configured to fetch.</li>
-<li><strong>It is not a replacement for teaching them to install R.</strong> If the course outcome is “can run an analysis on their own laptop”, they still have to install it. This is for the explaining, not for the doing.</li>
-</ul>
-</section>
-<section id="does-it-work-in-the-pdf" class="level2" data-number="9.10">
-<h2 data-number="9.10" class="anchored" data-anchor-id="does-it-work-in-the-pdf"><span class="header-section-number">9.10</span> Does it work in the PDF?</h2>
-<p>No — like everything else in this part of the book, a live cell needs a browser. Wrap it the way <a href="07-pdf-and-print.html" class="quarto-xref"><span>Chapter 7</span></a> describes: the live version inside <code>::: {.content-visible when-format="html"}</code>, and for the PDF a plain non-executing code block showing the same code, so the printed book still has something to read.</p>
-</section>
-<section id="writing-about-live-cells" class="level2" data-number="9.11">
-<h2 data-number="9.11" class="anchored" data-anchor-id="writing-about-live-cells"><span class="header-section-number">9.11</span> Writing <em>about</em> live cells</h2>
-<p>There is a trap here, and this chapter walks into it deliberately so you do not have to.</p>
-<p>Quarto picks an engine per file by scanning the raw text for cell fences, <em>before</em> it parses any markdown. A <code>```{webr}</code> fence therefore counts even when you only meant to show it as an example — nesting it inside a bigger code block, indenting it, or adding backticks makes no difference. In a book with no live cells at all, that alone is enough to make Quarto demand a Python kernel and stop with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode"><pre class="sourceCode code-with-copy"><code>Starting python3 kernel...
-Jupyter is not available in this Python installation.</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The syntax examples on this page are therefore written as raw HTML blocks rather than fenced ones — look at the source. They still get a copy button, Quarto never sees a fence at all, and it is what lets this chapter print a cell’s source and <em>run that same cell</em> directly underneath.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>If you only want to <em>describe</em> live cells
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A chapter that shows the syntax but runs nothing needs neither the extension nor the include. Put <code>engine: markdown</code> in its YAML header and Quarto will stop looking for something to execute.</p>
-</div>
-</div>
+<section id="does-it-work-in-the-pdf" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="does-it-work-in-the-pdf"><span class="header-section-number">9.9</span> Does it work in the PDF?</h2>
+<p>Of course not. Like everything else in this part of the book, a live cell needs a browser. Wrap it the way <a href="07-pdf-and-print.html" class="quarto-xref"><span>Chapter 7</span></a> describes: the live version inside <code>::: {.content-visible when-format="html"}</code>, and for the PDF a plain non-executing code block showing the same code, so the printed book still has something to read.</p>
 
 
 <script type="webr-data">
@@ -726,8 +666,17 @@ eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2RO
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>for those interested, look for <a href="https://webassembly.org/">WebAssembly</a>) online<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>I know, not the best way to go about with R but they have to learn the concepts of loops<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>That doesnt always work, but it does in this case<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Note: if students delete their cache, they lose their edits!<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1171,7 +1120,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>

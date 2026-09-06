@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Writing a chapter – Making a course book with Quarto</title>
+<title>4&nbsp; Writing a chapter – Quarto 4 UU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -181,7 +181,7 @@ window.Quarto = {
       <img src="./figures/uu-logo.png" alt="Utrecht University" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Making a course book with Quarto</a> 
+      <a href="./">Quarto 4 UU</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -221,7 +221,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-quarto-yml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span></a>
   </div>
 </li>
       </ul>
@@ -337,7 +337,7 @@ window.Quarto = {
   <ul>
   <li><a href="#text-and-headings" id="toc-text-and-headings" class="nav-link active" data-scroll-target="#text-and-headings"><span class="header-section-number">4.1</span> Text and headings</a></li>
   <li><a href="#maths" id="toc-maths" class="nav-link" data-scroll-target="#maths"><span class="header-section-number">4.2</span> Maths</a></li>
-  <li><a href="#code-that-runs" id="toc-code-that-runs" class="nav-link" data-scroll-target="#code-that-runs"><span class="header-section-number">4.3</span> Code that runs</a></li>
+  <li><a href="#code-that-produces-a-figure" id="toc-code-that-produces-a-figure" class="nav-link" data-scroll-target="#code-that-produces-a-figure"><span class="header-section-number">4.3</span> Code that produces a figure</a></li>
   <li><a href="#code-that-is-only-shown" id="toc-code-that-is-only-shown" class="nav-link" data-scroll-target="#code-that-is-only-shown"><span class="header-section-number">4.4</span> Code that is only shown</a></li>
   <li><a href="#callouts" id="toc-callouts" class="nav-link" data-scroll-target="#callouts"><span class="header-section-number">4.5</span> Callouts</a></li>
   <li><a href="#exercises-that-number-themselves" id="toc-exercises-that-number-themselves" class="nav-link" data-scroll-target="#exercises-that-number-themselves"><span class="header-section-number">4.6</span> Exercises that number themselves</a></li>
@@ -368,27 +368,27 @@ window.Quarto = {
 </header>
 
 
-<p>A <code>.qmd</code> file is Markdown — plain text with a few marks for emphasis — plus three Quarto additions: maths, runnable code, and cross-references.</p>
+<p>A <code>.qmd</code> file is written in Markdown (q=quarto, md=markdown). That means you can write in plain text with a few marks for emphasis. It is extended with additional options: maths, raw html, (runnable) code that is easy to copy/paste, and cross-references. This page discusses some basics.</p>
 <section id="text-and-headings" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="text-and-headings"><span class="header-section-number">4.1</span> Text and headings</h2>
-<p><code>**bold**</code>, <code>*italic*</code>, <code>`code`</code>, <code>[link](url)</code>. A blank line starts a new paragraph.</p>
-<p>One <code>#</code> is the chapter title, <code>##</code> a section, <code>###</code> a subsection. The <code>##</code> headings are what fill the table of contents on the right of every page, so they are worth naming well.</p>
-<p>Add <code>{.unnumbered}</code> after a heading to keep a page out of the chapter numbering — useful for a preface, a schedule, or a links page.</p>
+<p><code>**bold**</code>, <code>*italic*</code>, <code>`code`</code>, <code>[link text](url)</code>. A blank line starts a new paragraph.</p>
+<p>One <code>#</code> is the chapter title, <code>##</code> a section, <code>###</code> a subsection. They get automatically numbered based on where they appear in the book (e.g.&nbsp;the second subsection of the first paragraph of chapter 3, will be 3.1.2). The sections (<code>##</code>) are headings are what fill the table of contents on the right of every page, so they are worth naming well.</p>
+<p>Add <code>{.unnumbered}</code> directly after a heading to keep a page out of the chapter numbering. This is useful for a preface, a schedule, or a links page.</p>
 </section>
 <section id="maths" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="maths"><span class="header-section-number">4.2</span> Maths</h2>
-<p>Inline between single dollars: <code>$N_{t+1} = \lambda N_t$</code> gives <span class="math inline">\(N_{t+1} = \lambda N_t\)</span>. Displayed between double dollars, with a label so you can point at it later:</p>
+<p>Inline between single dollars: <code>$f(x) = x^3 + \alpha x</code> gives <span class="math inline">\(f(x) = x^3 + \alpha x\)</span>. You can also put maths between double dollars, with a label so you can point at it later:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>$$ {#eq-logistic}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span id="eq-logistic"><span class="math display">\[
 \frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)
 \tag{4.1}\]</span></span></p>
-<p>Writing <code>@eq-logistic</code> anywhere in the book now produces a numbered, clickable reference: <a href="#eq-logistic" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-logistic</span></a>.</p>
-<p><a href="#sec-latex" class="quarto-xref"><span class="quarto-unresolved-ref">sec-latex</span></a> is a full reference for the notation — symbols, multi-line equations, statistics, and how to define your own shorthand once and use it in both the website and the PDF.</p>
+<p>Writing <code>@eq-logistic</code> anywhere in the book now produces a numbered, clickable reference: <a href="#eq-logistic" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>.</p>
+<p>If you’re familiar with LateX, I’m sure you’ll find your way with this stuff.</p>
 </section>
-<section id="code-that-runs" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="code-that-runs"><span class="header-section-number">4.3</span> Code that runs</h2>
+<section id="code-that-produces-a-figure" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="code-that-produces-a-figure"><span class="header-section-number">4.3</span> Code that produces a figure</h2>
 <p>A chunk marked <code>{r}</code> is executed when you render, and its output lands on the page.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">40</span></span>
@@ -415,7 +415,7 @@ Figure&nbsp;4.1: Logistic growth for three values of <span class="math inline">\
 </div>
 </div>
 </div>
-<p>Because that chunk carries <code>label: fig-growth</code>, it is referenceable as <a href="#fig-growth" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-growth</span></a>.</p>
+<p>Because that chunk carries <code>label: fig-growth</code>, it is referenceable as <a href="#fig-growth" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</p>
 <p>Chunk options go one per line at the top of the chunk, each starting with <code>#|</code>:</p>
 <div id="tbl-chunk-options" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -474,7 +474,7 @@ Table&nbsp;4.1: Chunk options you will actually use.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Options that should apply everywhere belong in <code>_quarto.yml</code>:</p>
+<p>Options that you with to apply, can be given in the main <code>_quarto.yml</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -484,7 +484,7 @@ Table&nbsp;4.1: Chunk options you will actually use.
 </section>
 <section id="code-that-is-only-shown" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="code-that-is-only-shown"><span class="header-section-number">4.4</span> Code that is only shown</h2>
-<p>To <em>display</em> code without running it — Python that students will run themselves, for instance — use a plain fenced block with no curly braces: write <code>```python</code> rather than <code>```{python}</code>. You still get syntax highlighting, and nothing executes.</p>
+<p>To <em>display</em> code without running it (Python code that students will run themselves, for instance) use a plain fenced block with no curly braces: write <code>```python</code> rather than <code>```{python}</code>. You still get syntax highlighting, and nothing executes.</p>
 </section>
 <section id="callouts" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="callouts"><span class="header-section-number">4.5</span> Callouts</h2>
@@ -499,7 +499,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>note</code> — background information, an aside.</p>
+<p><code>note</code> background information.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -512,7 +512,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>tip</code> — advice. A <code>##</code> heading on the first line becomes the callout’s title.</p>
+<p><code>tip</code> general advice. Here’s a tip: a <code>##</code> heading on the first line becomes the callout’s title.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -525,7 +525,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>important</code> — the thing students must not miss.</p>
+<p><code>important</code> the thing students must not miss!</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -538,7 +538,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>warning</code> — a common mistake.</p>
+<p><code>warning</code> a common mistake or pitfall</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -553,7 +553,7 @@ Warning
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><code>caution</code> — and with <code>collapse="true"</code> it starts folded shut. This is how you put a hint or a worked answer right next to the question without giving it away.</p>
+<p>A note (like this one: <code>caution</code>) that has <code>collapse="true"</code> enabled, starts folded shut. This is how you put a hint or a worked answer right next to the question without giving it away immediately.</p>
 </div>
 </div>
 </div>
@@ -565,21 +565,21 @@ Warning
 <section id="exercises-that-number-themselves" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="exercises-that-number-themselves"><span class="header-section-number">4.6</span> Exercises that number themselves</h2>
 <div id="exr-carrying" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.1 (Carrying capacity)</strong></span> Using <a href="#eq-logistic" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-logistic</span></a>, what happens to <span class="math inline">\(\mathrm{d}N/\mathrm{d}t\)</span> when <span class="math inline">\(N = K\)</span>?</p>
+<p><span class="theorem-title"><strong>Exercise 4.1 (Carrying capacity)</strong></span> Using <a href="#eq-logistic" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>, what happens to <span class="math inline">\(\mathrm{d}N/\mathrm{d}t\)</span> when <span class="math inline">\(N = K\)</span>?</p>
 <ol type="a">
 <li>Write down the answer.</li>
-<li>Check it against <a href="#fig-growth" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-growth</span></a>.</li>
+<li>Check it against <a href="#fig-growth" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</li>
 </ol>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>::: {#exr-carrying}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Carrying capacity</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Using @eq-logistic, what happens when $N = K$?</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Refer to it as <code>@exr-carrying</code> → <a href="#exr-carrying" class="quarto-xref">Exercise&nbsp;<span class="quarto-unresolved-ref">exr-carrying</span></a>. Reorder your chapters and every number in the book renumbers itself.</p>
+<p>Refer to it as <code>@exr-carrying</code> → <a href="#exr-carrying" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a>. Reorder your chapters and every number in the book renumbers itself.</p>
 </section>
 <section id="cross-references-in-one-table" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="cross-references-in-one-table"><span class="header-section-number">4.7</span> Cross-references, in one table</h2>
-<p>Structure emerges almost for free. The <strong>prefix decides the type</strong>, so it is not optional decoration.</p>
+<p>All the organisation and structure of the book is handled by Quarto. The <strong>prefix decides how it will be referenced</strong>, so it is not optional decoration.</p>
 <div id="tbl-xref" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-xref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -630,10 +630,7 @@ Table&nbsp;4.2: Cross-reference prefixes.
 </div>
 </figure>
 </div>
-<p><code>{#cover}</code> does nothing at all; <code>{#fig-cover}</code> works. A reference that renders as <code>?@fig-cover</code> means the label is missing, misspelled, or lacking its prefix.</p>
-<div class="screenshot">
-<p>The rendered sidebar and right-hand TOC, a resolved cross-reference link, and a coloured callout box.</p>
-</div>
+<p>Note that <code>{#cover}</code> does nothing at all, only <code>{#fig-cover}</code> works. A reference that renders as <code>?@fig-cover</code> means the label is missing, misspelled, or lacking its prefix.</p>
 </section>
 <section id="diagrams-without-a-drawing-program" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="diagrams-without-a-drawing-program"><span class="header-section-number">4.8</span> Diagrams without a drawing program</h2>
@@ -658,7 +655,7 @@ Figure&nbsp;4.2: Two ways to study a biological system.
 </div>
 </div>
 </div>
-<p>Six lines of <a href="https://mermaid.js.org/">Mermaid</a> produce <a href="#fig-approaches" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-approaches</span></a>, and it restyles itself with the rest of the book. Far easier to maintain than a PNG exported from PowerPoint.</p>
+<p>Six lines of <a href="https://mermaid.js.org/">Mermaid</a> produce <a href="#fig-approaches" class="quarto-xref">Figure&nbsp;<span>4.2</span></a>, and it restyles itself with the rest of the book. Far easier to maintain than a PNG exported from PowerPoint.</p>
 
 
 <script type="ojs-module-contents">
@@ -673,7 +670,7 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9leGFtcGxlLWFwcGxldC5odG1sIiwic3RhcnRlci1ib29rLnppcCJd
+WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
 </section>
 
@@ -1098,8 +1095,8 @@ window._ojs.runtime.interpretFromScriptTags();
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-quarto-yml.html" class="pagination-link" aria-label="The control panel: `_quarto.yml`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The control panel: <code>_quarto.yml</code></span></span>
+      <a href="./03-quarto-yml.html" class="pagination-link" aria-label="Quarto yml">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quarto yml</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1118,7 +1115,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <a href="https://quarto.org/">Quarto</a></p>
+<p>Quarto 4 UU</p>
 </div>
   </div>
 </footer>

@@ -1,63 +1,48 @@
 # Welcome {.unnumbered}
 
 This is a short, practical guide for teachers at Utrecht University who want to
-turn a course reader into a **website** — one that students can search, read on
-a phone, and click through, with live simulations sitting next to the text.
+offer students a course **website** along with their usual course book. For this,
+we can use [Quarto](https://quarto.org), which generates interactive and easy-to-navigate
+website, that is also printer-friendly. That means students can choose to read it on 
+their screen, print it, and with very little extra effort, you can combine all this
+into [an actual course book](https://tbb.bio.uu.nl/bvd/bms/slides/BMS_Cursusboek_2026.pdf)!
 
-We use [Quarto](https://quarto.org) and RStudio. Quarto itself is only a
-publishing framework: it works just as happily from Jupyter notebooks or VS
+Here, I explain how do do all this by using Quarto in RStudio. However, Quarto itself
+is a broader framework: it works just as happily from Jupyter notebooks or VS
 Code, and with Python or Julia instead of R. We describe the RStudio route
 because, within the Biology department, that is the environment most colleagues
 already have open.
 
 ## What you end up with
 
-Two books in our own department are built exactly this way, and everything in
+Two course books in our own department are built exactly this way, and everything in
 this guide is drawn from their source:
 
-- **[Biologische Modellen en Statistiek](https://tbb.bio.uu.nl/bvd/bms/)** —
+- **[Biologische Modellen en Statistiek](https://bioms-uu.github.io)** —
   a full Dutch-language course book with interactive statistics applets, shared
   LaTeX macros, and a printable PDF from the same source.
 - **[Modeling Life](https://modelinglife-uu.github.io/)** — an English course
-  website with embedded simulations and mini-projects.
+  website with embedded simulations and mini-projects. 
 
-Between them they run to hundreds of pages, and neither required anyone to
-learn web development.
 
-## How to read this
+## What this explainer covers
 
-::: {.callout-tip}
-## In a hurry?
-Read @sec-setup, press Render, and come back for the rest when you need it.
-:::
-
-::: {.callout-important}
-## One extension needed
-@sec-webr contains two **live** R cells that students can edit and run in the
-browser, so the book needs the `quarto-live` extension. It travels with the
-project in `_extensions/`, so a copy of this folder needs nothing installed.
-
-If you ever see *"Include directive failed"* or an error naming
-`readExtensionFormat`, that folder is missing — @sec-webr-install has the one
-command that fetches it, and the two edits that switch live cells back off.
-:::
-
-- **Getting started** — installing things, making the project, and the one
+- **Getting started**: installing stuff, making the project, and the one
   configuration file that decides everything.
-- **Writing** — text, maths, code that runs, callouts, exercises, figures, and
+- **Writing**: text, maths, code that runs, callouts, exercises, figures, and
   getting a decent PDF out of the same source.
-- **Interactive material** — embedding simulations, code your students can
+- **Interactive material**: embedding simulations, code your students can
   edit and run in the browser, and self-contained applets. This is the part
-  that makes a Quarto book worth the effort.
-- **Building and publishing** — rendering fast, putting it online for free, and
-  what to check when something breaks.
+  students love, so this makes a Quarto book worth the effort.
+- **Building and publishing**: rendering the book and putting it online via Github
+pages. 
 
-## This book is also the starter book
+## Starting from scratch or from a template
 
-You do not have to start from an empty folder. **This book is itself the
-starter book** — every chapter is a working demonstration of the thing it
-describes, so copying it hands you the UU house style, a working `_quarto.yml`,
-a live applet, a real figure, and an example of every pattern you are likely to
+You can either start from scratch, or start from a template. **This explainer is itself also a
+starter book**: every chapter is a working demonstration of the thing it
+describes, so copying it yields you the UU house style, a working `_quarto.yml`,
+an example live applet, how to use figures, and an example of every pattern you are likely to
 need.
 
 [**Download the starter book (.zip)**](starter-book.zip) — then see
