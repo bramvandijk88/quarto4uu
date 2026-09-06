@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Quarto 4 UU",
     "section": "",
-    "text": "Welcome\nThis is a short, practical guide for teachers at Utrecht University who want to offer students a course website along with their usual course book. For this, we can use Quarto, which generates interactive and easy-to-navigate website, that is also printer-friendly. That means students can choose to read it on their screen, print it, and with very little extra effort, you can combine all this into an actual course book!\nHere, I explain how do do all this by using Quarto in RStudio. However, Quarto itself is a broader framework: it works just as happily from Jupyter notebooks or VS Code, and with Python or Julia instead of R. We describe the RStudio route because, within the Biology department, that is the environment most colleagues already have open.",
+    "text": "Welcome\nThis is a practical guide for teachers at Utrecht University who want to offer students a course website along with their usual course book. For this, we can use Quarto, which generates interactive and easy-to-navigate website, that is also printer-friendly. That means students can choose to read it on their screen, print it, and with very little extra effort, you can combine all this into an actual course book!\nHere, I explain how do do all this by using Quarto in RStudio. However, Quarto itself is a broader framework: it works just as happily from Jupyter notebooks or VS Code, and with Python or Julia instead of R. We describe the RStudio route because, within the Biology department, that is the environment most colleagues already have open.",
     "crumbs": [
       "Welcome"
     ]
@@ -594,7 +594,7 @@
     "href": "08-iframes.html#internal-an-applet-inside-your-own-book",
     "title": "8  Embedding interactive content",
     "section": "8.6 Internal: an applet inside your own book",
-    "text": "8.6 Internal: an applet inside your own book\nOne self-contained .html file in a folder in your project. The src is then just a relative path:\n```{=html}\n&lt;iframe src=\"applets/example-applet.html\"\n        width=\"100%\" height=\"620\"\n        title=\"Logistic growth explorer\"\n        style=\"border:none; border-radius:8px; margin:1em 0;\"&gt;\n&lt;/iframe&gt;\n```\nWhich gives you what you see below, a real applet, running inside this page:\n\n\n\n\n\nApplet: logistic growth explorer. Sliders for \\(r\\), \\(K\\) and \\(N_0\\), with the resulting trajectory. Open the book in a browser to use it.\n\nNotice that do not transfer well to a printed version of your book, but there is a solution. See Section 7.2.",
+    "text": "8.6 Internal: an applet inside your own book\nOne self-contained .html file in a folder in your project. The src is then just a relative path:\n```{=html}\n&lt;iframe src=\"applets/example-applet.html\"\n        width=\"100%\" height=\"620\"\n        title=\"Logistic growth explorer\"\n        style=\"border:none; border-radius:8px; margin:1em 0;\"&gt;\n&lt;/iframe&gt;\n```\nWhich gives you what you see below, a real applet, running inside this page:\n\n\n\n\n\nApplet: logistic growth explorer. Sliders for \\(r\\), \\(K\\) and \\(N_0\\), with the resulting trajectory. Open the book in a browser to use it.\n\nNotice that this does not transfer well to a printed version of your book, but there is a solution. See Section 7.2.",
     "crumbs": [
       "Interactive material",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Embedding interactive content</span>"
@@ -843,22 +843,22 @@
     ]
   },
   {
-    "objectID": "12-publishing.html#before-you-make-it-public",
-    "href": "12-publishing.html#before-you-make-it-public",
+    "objectID": "12-publishing.html#note-that-the-github-repository-has-to-be-public",
+    "href": "12-publishing.html#note-that-the-github-repository-has-to-be-public",
     "title": "12  Putting it online",
-    "section": "12.4 Before you make it public",
-    "text": "12.4 Before you make it public\n\n\n\n\n\n\nWarningA GitHub Pages site is visible to anyone with the address\n\n\n\nAnd so is everything else in the repository — including files you never listed in _quarto.yml, because the source is published too.\nKeep exam questions, model answers you do not want found, and anything with student data out of the book folder entirely. Not merely unlisted: out. Answer chapters that are meant to be public are fine; the danger is the file you forgot was in there.\n\n\nA .gitignore file keeps generated and personal files out of the repository. A sensible starting point:\n.Rproj.user/\n.Rhistory\n.RData\n.DS_Store\n\n/.quarto/\n_book/\n**/*.quarto_ipynb\n**/*_cache/\n\n*.aux\n*.log\n*.toc\nNote that _freeze/ is deliberately not ignored — see Chapter 11.",
+    "section": "12.4 Note that the Github repository has to be public",
+    "text": "12.4 Note that the Github repository has to be public\nA GitHub Pages site is visible to anyone with the link to the repository. This means that even files that you never added to the book (not listed in _quarto.yml), are public too.\n\n\n\n\n\n\nWarning\n\n\n\nKeep exam questions, model answers you do not want found, and anything with student data out of the book folder entirely. Not merely unlisted: out. Answer chapters that are meant to be public are fine; the danger is the file you forgot was in there.\n\n\nTo help you out, note that the file .gitignore helps to keep generated and personal files out of the repository. A sensible starting point is shipped with this book:\n.Rproj.user/\n.Rhistory\n.RData\n.DS_Store\n\n/.quarto/\n_book/\n**/*.quarto_ipynb\n**/*_cache/\n\n*.aux\n*.log\n*.toc\nNote that _freeze/ is deliberately not ignored, as this can help you and your colleague not needing to re-render each others files. See Chapter 11.",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
     ]
   },
   {
-    "objectID": "12-publishing.html#working-on-a-book-with-a-colleague",
-    "href": "12-publishing.html#working-on-a-book-with-a-colleague",
+    "objectID": "12-publishing.html#footnotes",
+    "href": "12-publishing.html#footnotes",
     "title": "12  Putting it online",
-    "section": "12.5 Working on a book with a colleague",
-    "text": "12.5 Working on a book with a colleague\nTwo people editing different chapters is easy. Two people editing the same paragraph is a conflict, and no tool prevents that — agree who owns which chapters for a given course block.\nOne rule removes most of the pain: pull before you start, push when you stop. A week of uncommitted edits is what turns a small overlap into a large one.\n\n\n\n\n\n\nImportantEveryone must use the same Quarto version\n\n\n\nDifferent Quarto versions produce different HTML from identical source. If two people render the same book with different versions and both commit the output, every push rewrites the entire site and every merge becomes a conflict.\nAgree a version, write it down in the repository, and check it with quarto --version when someone new joins.",
+    "section": "",
+    "text": "Rstudio may complain, but ignore this and create the file↩︎\nNote: this means your raw .qmd files are public, so if you wish to keep them private, choose a different route of publishing your website.↩︎\nAssuming git is installed, the commands would be git remote add origin https://github.com/USERNAME/REPOSITORY.git, git branch -M main, and git push -u origin main↩︎",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
@@ -887,89 +887,6 @@
     ]
   },
   {
-    "objectID": "13-troubleshooting.html#where-to-look-next",
-    "href": "13-troubleshooting.html#where-to-look-next",
-    "title": "13  When it breaks",
-    "section": "13.2 Where to look next",
-    "text": "13.2 Where to look next\n\nThe official Quarto documentation is genuinely good and searchable. The authoring section covers layout, callouts and cross-references; the books section covers structure.\nThe fastest way to learn a trick is still to open a book you like and read the .qmd that produced the page. Both departmental books are readable source: Onderwijs/BMS/Boek and Onderwijs/Modeling_Life/Course_Website.\nThere is a copyable starter book at Onderwijs/Quarto Books/starter-book.\n\n\n\n\n\n\n\nTipAsk an assistant, but give it the file\n\n\n\nClaude and ChatGPT know Quarto well. Paste the actual _quarto.yml and the actual error message rather than describing them — most Quarto problems are one wrong character, and it will spot it faster than you will.",
-    "crumbs": [
-      "Building and publishing",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>When it breaks</span>"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About this guide",
-    "section": "",
-    "text": "This guide is written by Bram van Dijk in August/September 2026 as a means to transfer knowledge about Quarto to colleagues at Utrecht University. In 2024, we received some help from the facultair Utrechts Stimuleringsfonds Onderwijs (fUSO, 2nd call 2024) to turn some old course material into a website, for which we remain very grateful. This website is my attempt to return the favour.\nThe theme tries to follow the Utrecht University corporate identity, but is not official. I just applied the correct fonts (Merriweather and Open Sans), the correct colours (UU red and UU yellow), and the logo.",
-    "crumbs": [
-      "About this guide"
-    ]
-  },
-  {
-    "objectID": "about.html#source-material",
-    "href": "about.html#source-material",
-    "title": "About this guide",
-    "section": "",
-    "text": "Onderwijs/BMS/Boek — the Dutch course book\nOnderwijs/Modeling_Life/Course_Website — the English course website\n_archive/ in this project — the two documents this guide was merged from",
-    "crumbs": [
-      "About this guide"
-    ]
-  },
-  {
-    "objectID": "about.html#keeping-the-download-in-step",
-    "href": "about.html#keeping-the-download-in-step",
-    "title": "About this guide",
-    "section": "Keeping the download in step",
-    "text": "Keeping the download in step\nstarter-book.zip is a snapshot of this project. After you change the book, open make-starter-zip.R and Source it to rebuild the zip; otherwise readers download a stale copy.",
-    "crumbs": [
-      "About this guide"
-    ]
-  },
-  {
-    "objectID": "about.html#the-logo",
-    "href": "about.html#the-logo",
-    "title": "About this guide",
-    "section": "The logo",
-    "text": "The logo\nfigures/uu-logo.png is the official Utrecht University logo. Use the files from the corporate identity site rather than one pulled off a web page, and do not recolour, stretch or reconstruct it.",
-    "crumbs": [
-      "About this guide"
-    ]
-  },
-  {
-    "objectID": "about.html#colophon",
-    "href": "about.html#colophon",
-    "title": "About this guide",
-    "section": "Colophon",
-    "text": "Colophon\nBuilt with Quarto.\n\n\nRendered with R 4.6.1",
-    "crumbs": [
-      "About this guide"
-    ]
-  },
-  {
-    "objectID": "12-publishing.html#footnotes",
-    "href": "12-publishing.html#footnotes",
-    "title": "12  Putting it online",
-    "section": "",
-    "text": "Rstudio may complain, but ignore this and create the file↩︎\nNote: this means your raw .qmd files are public, so if you wish to keep them private, choose a different route of publishing your website.↩︎\nAssuming git is installed, the commands would be git remote add origin https://github.com/USERNAME/REPOSITORY.git, git branch -M main, and git push -u origin main↩︎",
-    "crumbs": [
-      "Building and publishing",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
-    ]
-  },
-  {
-    "objectID": "12-publishing.html#note-that-the-github-repository-has-to-be-public",
-    "href": "12-publishing.html#note-that-the-github-repository-has-to-be-public",
-    "title": "12  Putting it online",
-    "section": "12.4 Note that the Github repository has to be public",
-    "text": "12.4 Note that the Github repository has to be public\nA GitHub Pages site is visible to anyone with the link to the repository. This means that even files that you never added to the book (not listed in _quarto.yml), are public too.\n\n\n\n\n\n\nWarning\n\n\n\nKeep exam questions, model answers you do not want found, and anything with student data out of the book folder entirely. Not merely unlisted: out. Answer chapters that are meant to be public are fine; the danger is the file you forgot was in there.\n\n\nTo help you out, note that the file .gitignore helps to keep generated and personal files out of the repository. A sensible starting point is shipped with this book:\n.Rproj.user/\n.Rhistory\n.RData\n.DS_Store\n\n/.quarto/\n_book/\n**/*.quarto_ipynb\n**/*_cache/\n\n*.aux\n*.log\n*.toc\nNote that _freeze/ is deliberately not ignored, as this can help you and your colleague not needing to re-render each others files. See Chapter 11.",
-    "crumbs": [
-      "Building and publishing",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
-    ]
-  },
-  {
     "objectID": "13-troubleshooting.html#other-resources",
     "href": "13-troubleshooting.html#other-resources",
     "title": "13  When it breaks",
@@ -989,6 +906,16 @@
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>When it breaks</span>"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About this guide",
+    "section": "",
+    "text": "This guide is written by Bram van Dijk in August/September 2026 as a means to transfer knowledge about Quarto to colleagues at Utrecht University. In 2024, we received some help from the facultair Utrechts Stimuleringsfonds Onderwijs (fUSO, 2nd call 2024) to turn some old course material into a website, for which we remain very grateful. This website is my attempt to return the favour.\nThe theme tries to follow the Utrecht University corporate identity, but is not official. I just applied the correct fonts (Merriweather and Open Sans), the correct colours (UU red and UU yellow), and the logo.",
+    "crumbs": [
+      "About this guide"
     ]
   }
 ]

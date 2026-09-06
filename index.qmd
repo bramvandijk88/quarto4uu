@@ -1,6 +1,6 @@
 # Welcome {.unnumbered}
 
-This is a short, practical guide for teachers at Utrecht University who want to
+This is a practical guide for teachers at Utrecht University who want to
 offer students a course **website** along with their usual course book. For this,
 we can use [Quarto](https://quarto.org), which generates interactive and easy-to-navigate
 website, that is also printer-friendly. That means students can choose to read it on 

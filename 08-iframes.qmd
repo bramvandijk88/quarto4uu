@@ -163,6 +163,6 @@ Which gives you what you see below, a real applet, running inside this page:
 resulting trajectory. Open the book in a browser to use it.
 :::
 
-Notice that do not transfer well to a printed version of your book, but there
+Notice that this does not transfer well to a printed version of your book, but there
 is a solution. See @sec-printing.
 
