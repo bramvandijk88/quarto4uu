@@ -1,56 +1,9 @@
 # About this guide {.unnumbered}
 
-Written for teachers at Utrecht University who want to turn a course reader
-into a website.
+This guide is written by Bram van Dijk in August/September 2026 as a means to transfer
+knowledge about Quarto to colleagues at Utrecht University. In 2024, we received some help from the **facultair Utrechts Stimuleringsfonds Onderwijs** (fUSO, 2nd call 2024) to turn some old course material into a website, for which we remain very grateful. This website is my attempt
+to return the favour. 
 
-It merges three sources:
-
-- a scaffold outline of what colleagues need to be taught, in order;
-- the tricks used in the **Biologische Modellen en Statistiek** book — iframes,
-  shared LaTeX macros, `freeze` versus `cache`, SCSS theming;
-- a practical walkthrough of setup, figures, interactive applets and publishing.
-
-The theme follows the
-[Utrecht University corporate identity](https://www.uu.nl/en/organisation/corporate-identity):
-Merriweather and Open Sans as the standard fonts, UU red for links, UU yellow
-as the accent, and the supporting palette for callouts. `uu.scss` in this
-project is free to copy into your own book.
-
-The book is deliberately single-theme: the UU palette is defined against white
-paper, so there is no dark mode and no toggle. See @sec-theming if you want one
-anyway.
-
-Boxes like this one still need an image:
-
-::: {.screenshot}
-These mark screenshots that have not been taken yet. Search the project for
-`{.screenshot}` to find them all; delete the div once the figure is in place.
-:::
-
-## Source material
-
-- `Onderwijs/BMS/Boek` — the Dutch course book
-- `Onderwijs/Modeling_Life/Course_Website` — the English course website
-- `_archive/` in this project — the two documents this guide was merged from
-
-## Keeping the download in step
-
-`starter-book.zip` is a snapshot of this project. After you change the book,
-open `make-starter-zip.R` and Source it to rebuild the zip; otherwise readers
-download a stale copy.
-
-## The logo
-
-`figures/uu-logo.png` is the official Utrecht University logo. Use the files
-from the [corporate identity site](https://www.uu.nl/en/organisation/corporate-identity)
-rather than one pulled off a web page, and do not recolour, stretch or
-reconstruct it.
-
-## Colophon
-
-Built with [Quarto](https://quarto.org).
-
-```{r}
-#| echo: false
-cat("Rendered with R", paste(R.version$major, R.version$minor, sep = "."))
-```
+The theme tries to follow the [Utrecht University corporate identity](https://www.uu.nl/en/organisation/corporate-identity), 
+but is not official. I just applied the correct fonts (Merriweather and Open Sans), the correct colours (UU red and UU yellow), 
+and the logo. 

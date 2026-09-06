@@ -259,17 +259,8 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#source-material" id="toc-source-material" class="nav-link active" data-scroll-target="#source-material">Source material</a></li>
-  <li><a href="#keeping-the-download-in-step" id="toc-keeping-the-download-in-step" class="nav-link" data-scroll-target="#keeping-the-download-in-step">Keeping the download in step</a></li>
-  <li><a href="#the-logo" id="toc-the-logo" class="nav-link" data-scroll-target="#the-logo">The logo</a></li>
-  <li><a href="#colophon" id="toc-colophon" class="nav-link" data-scroll-target="#colophon">Colophon</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -293,43 +284,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Written for teachers at Utrecht University who want to turn a course reader into a website.</p>
-<p>It merges three sources:</p>
-<ul>
-<li>a scaffold outline of what colleagues need to be taught, in order;</li>
-<li>the tricks used in the <strong>Biologische Modellen en Statistiek</strong> book — iframes, shared LaTeX macros, <code>freeze</code> versus <code>cache</code>, SCSS theming;</li>
-<li>a practical walkthrough of setup, figures, interactive applets and publishing.</li>
-</ul>
-<p>The theme follows the <a href="https://www.uu.nl/en/organisation/corporate-identity">Utrecht University corporate identity</a>: Merriweather and Open Sans as the standard fonts, UU red for links, UU yellow as the accent, and the supporting palette for callouts. <code>uu.scss</code> in this project is free to copy into your own book.</p>
-<p>The book is deliberately single-theme: the UU palette is defined against white paper, so there is no dark mode and no toggle. See <a href="03-quarto-yml.html#sec-theming" class="quarto-xref"><span>CSS / UU house style</span></a> if you want one anyway.</p>
-<p>Boxes like this one still need an image:</p>
-<div class="screenshot">
-<p>These mark screenshots that have not been taken yet. Search the project for <code>{.screenshot}</code> to find them all; delete the div once the figure is in place.</p>
-</div>
-<section id="source-material" class="level2">
-<h2 class="anchored" data-anchor-id="source-material">Source material</h2>
-<ul>
-<li><code>Onderwijs/BMS/Boek</code> — the Dutch course book</li>
-<li><code>Onderwijs/Modeling_Life/Course_Website</code> — the English course website</li>
-<li><code>_archive/</code> in this project — the two documents this guide was merged from</li>
-</ul>
-</section>
-<section id="keeping-the-download-in-step" class="level2">
-<h2 class="anchored" data-anchor-id="keeping-the-download-in-step">Keeping the download in step</h2>
-<p><code>starter-book.zip</code> is a snapshot of this project. After you change the book, open <code>make-starter-zip.R</code> and Source it to rebuild the zip; otherwise readers download a stale copy.</p>
-</section>
-<section id="the-logo" class="level2">
-<h2 class="anchored" data-anchor-id="the-logo">The logo</h2>
-<p><code>figures/uu-logo.png</code> is the official Utrecht University logo. Use the files from the <a href="https://www.uu.nl/en/organisation/corporate-identity">corporate identity site</a> rather than one pulled off a web page, and do not recolour, stretch or reconstruct it.</p>
-</section>
-<section id="colophon" class="level2">
-<h2 class="anchored" data-anchor-id="colophon">Colophon</h2>
-<p>Built with <a href="https://quarto.org">Quarto</a>.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Rendered with R 4.6.1</code></pre>
-</div>
-</div>
+<p>This guide is written by Bram van Dijk in August/September 2026 as a means to transfer knowledge about Quarto to colleagues at Utrecht University. In 2024, we received some help from the <strong>facultair Utrechts Stimuleringsfonds Onderwijs</strong> (fUSO, 2nd call 2024) to turn some old course material into a website, for which we remain very grateful. This website is my attempt to return the favour.</p>
+<p>The theme tries to follow the <a href="https://www.uu.nl/en/organisation/corporate-identity">Utrecht University corporate identity</a>, but is not official. I just applied the correct fonts (Merriweather and Open Sans), the correct colours (UU red and UU yellow), and the logo.</p>
 
 
 <script type="ojs-module-contents">
@@ -346,7 +302,6 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
-</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">

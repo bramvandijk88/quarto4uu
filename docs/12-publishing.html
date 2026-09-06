@@ -82,6 +82,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-58a0d7e270a3423d7b380f20ee5520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -303,8 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#three-routes" id="toc-three-routes" class="nav-link active" data-scroll-target="#three-routes"><span class="header-section-number">12.1</span> Three routes</a></li>
   <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">12.2</span> The idea</a></li>
   <li><a href="#step-by-step" id="toc-step-by-step" class="nav-link" data-scroll-target="#step-by-step"><span class="header-section-number">12.3</span> Step by step</a></li>
-  <li><a href="#before-you-make-it-public" id="toc-before-you-make-it-public" class="nav-link" data-scroll-target="#before-you-make-it-public"><span class="header-section-number">12.4</span> Before you make it public</a></li>
-  <li><a href="#working-on-a-book-with-a-colleague" id="toc-working-on-a-book-with-a-colleague" class="nav-link" data-scroll-target="#working-on-a-book-with-a-colleague"><span class="header-section-number">12.5</span> Working on a book with a colleague</a></li>
+  <li><a href="#note-that-the-github-repository-has-to-be-public" id="toc-note-that-the-github-repository-has-to-be-public" class="nav-link" data-scroll-target="#note-that-the-github-repository-has-to-be-public"><span class="header-section-number">12.4</span> Note that the Github repository has to be public</a></li>
   </ul>
 </nav>
     </div>
@@ -382,43 +384,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Note: rendering again does <strong>not</strong> remove this file, so this step only needs to happen once per book.</p>
 <p><strong>3. Make the folder a repository.</strong> If you did not tick “Create a git repository” when making the project: <kbd>Tools</kbd> → <kbd>Project Options</kbd> → <kbd>Git/SVN</kbd> → set version control to <em>Git</em>, and restart RStudio. A <strong>Git</strong> tab appears next to Environment and History.</p>
 <p><strong>4. Create the repository on GitHub and connect it.</strong> Make a free account, press <kbd>New repository</kbd>, give it a name, choose a public repository<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Do not add anything to the repository (no Readme, no gitignore). Then, you can either run a few terminal commands to get your book uploaded<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. If you wish to avoid the scary terminal and the messiness of git, install <a href="https://desktop.github.com">GitHub Desktop</a>, choose <em>Add existing repository</em>, point it at your book folder, then press <em>Publish repository</em>. If you already added something (like a licence) upon making your repository, you may need to first <em>Fetch</em> and then <em>Publish</em>. If you get stuck, AI does a great job debuggin you when you give it the error messages.</p>
-<p><strong>5. Send your work up.</strong> From then on, in RStudio’s <strong>Git</strong> tab or in GitHub Desktop: tick the changed files, write a one-line message saying what you changed, press <kbd>Commit</kbd>, then <kbd>Push</kbd>. Those three actions are the whole of Git for this purpose.</p>
+<p><strong>5. Send your work up.</strong> From then on, in RStudio’s <strong>Git</strong> tab or in GitHub Desktop: tick the changed files, write a one-line message saying what you changed, press <kbd>Commit</kbd>, then <kbd>Push</kbd>. Those three actions are the whole of Git for this purpose, and all the setup above will no longer be necessary.</p>
 <p><strong>6. Switch the website on.</strong> On github.com, in your repository: <kbd>Settings</kbd> → <kbd>Pages</kbd> → under <em>Build and deployment</em>, set Source to <em>Deploy from a branch</em>, choose your main branch, and set the folder to <strong><code>/docs</code></strong>. Save.</p>
-<p>A minute later your book is live at <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code>.</p>
+<div id="fig-ghpages" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ghpages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/github_pages.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;12.1: Settings to be configures on your Github repository"><img src="figures/github_pages.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ghpages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: Settings to be configures on your Github repository
+</figcaption>
+</figure>
+</div>
+<p>A few minutes later your book is live at <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code>. Note that it is also possible to make a separate Gibhub account for your website, and host is with a domain name like we have for some of our course books (e.g.&nbsp;<code>https://bioms-uu.github.io/</code>). The workflow is similar, but you can only have 1 github account per email address, so you may need to create a new email address for this.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>From then on
+<span class="screen-reader-only">Tip</span>Now the workflow is simple:
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Write. Render. Commit. Push. The website updates itself within a minute or two. There is nothing else to remember.</p>
+<p>Write on your chapters. Render book. Commit changed files. Push to github. The website updates automatically within a minute or two.</p>
 </div>
-</div>
-<div class="screenshot">
-<p>GitHub’s <em>Settings → Pages</em> screen with Source set to the main branch and <code>/docs</code>, and the resulting live URL in a browser.</p>
 </div>
 </section>
-<section id="before-you-make-it-public" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="before-you-make-it-public"><span class="header-section-number">12.4</span> Before you make it public</h2>
+<section id="note-that-the-github-repository-has-to-be-public" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="note-that-the-github-repository-has-to-be-public"><span class="header-section-number">12.4</span> Note that the Github repository has to be public</h2>
+<p>A GitHub Pages site is visible to anyone with the link to the repository. This means that even files that you never added to the book (not listed in <code>_quarto.yml</code>), are public too.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>A GitHub Pages site is visible to anyone with the address
+Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>And so is everything else in the repository — including files you never listed in <code>_quarto.yml</code>, because the source is published too.</p>
 <p>Keep exam questions, model answers you do not want found, and anything with student data <strong>out of the book folder entirely</strong>. Not merely unlisted: out. Answer chapters that are <em>meant</em> to be public are fine; the danger is the file you forgot was in there.</p>
 </div>
 </div>
-<p>A <code>.gitignore</code> file keeps generated and personal files out of the repository. A sensible starting point:</p>
+<p>To help you out, note that the file <code>.gitignore</code> helps to keep generated and personal files out of the repository. A sensible starting point is shipped with this book:</p>
 <pre><code>.Rproj.user/
 .Rhistory
 .RData
@@ -432,26 +441,7 @@ _book/
 *.aux
 *.log
 *.toc</code></pre>
-<p>Note that <code>_freeze/</code> is deliberately <strong>not</strong> ignored — see <a href="11-rendering.html" class="quarto-xref"><span>Chapter 11</span></a>.</p>
-</section>
-<section id="working-on-a-book-with-a-colleague" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="working-on-a-book-with-a-colleague"><span class="header-section-number">12.5</span> Working on a book with a colleague</h2>
-<p>Two people editing different chapters is easy. Two people editing the same paragraph is a conflict, and no tool prevents that — agree who owns which chapters for a given course block.</p>
-<p>One rule removes most of the pain: <strong>pull before you start, push when you stop.</strong> A week of uncommitted edits is what turns a small overlap into a large one.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Everyone must use the same Quarto version
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Different Quarto versions produce different HTML from identical source. If two people render the same book with different versions and both commit the output, every push rewrites the entire site and every merge becomes a conflict.</p>
-<p>Agree a version, write it down in the repository, and check it with <code>quarto --version</code> when someone new joins.</p>
-</div>
-</div>
+<p>Note that <code>_freeze/</code> is deliberately <strong>not</strong> ignored, as this can help you and your colleague not needing to re-render each others files. See <a href="11-rendering.html" class="quarto-xref"><span>Chapter 11</span></a>.</p>
 
 
 <script type="ojs-module-contents">
@@ -923,6 +913,38 @@ window._ojs.runtime.interpretFromScriptTags();
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

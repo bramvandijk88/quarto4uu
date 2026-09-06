@@ -266,7 +266,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#reading-an-error-message" id="toc-reading-an-error-message" class="nav-link active" data-scroll-target="#reading-an-error-message"><span class="header-section-number">13.1</span> Reading an error message</a></li>
-  <li><a href="#where-to-look-next" id="toc-where-to-look-next" class="nav-link" data-scroll-target="#where-to-look-next"><span class="header-section-number">13.2</span> Where to look next</a></li>
+  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources"><span class="header-section-number">13.2</span> Other resources</a></li>
   </ul>
 </nav>
     </div>
@@ -292,11 +292,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Almost everything that goes wrong in a Quarto book is on this list.</p>
+<p>Quarto can break, or you are not yet used to the workflow. It’s usually not too complicated to fix errors or mistakes. AI is really good at handling the stuff you may encounter, but here’s a list of things I have encountered:</p>
 <div id="tbl-trouble" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-trouble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.1: The complete troubleshooting list, in rough order of how often it happens.
+Table&nbsp;13.1: An incomplete but probably useful troubleshooting list.
 </figcaption>
 <div aria-describedby="tbl-trouble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -317,7 +317,7 @@ Table&nbsp;13.1: The complete troubleshooting list, in rough order of how often 
 </tr>
 <tr class="even">
 <td>Render fails with a YAML error</td>
-<td>Indentation. A tab where spaces belong, or one level too many</td>
+<td>Nearly always indentation. A tab where spaces belong, or one level too many</td>
 </tr>
 <tr class="odd">
 <td><code>?@fig-something</code> appears in the text</td>
@@ -328,66 +328,46 @@ Table&nbsp;13.1: The complete troubleshooting list, in rough order of how often 
 <td>The path is relative to the chapter file, not to the top of the book</td>
 </tr>
 <tr class="odd">
-<td>An iframe shows a blank box</td>
-<td>Wrong relative path, or the folder isn’t listed under <code>resources:</code></td>
-</tr>
-<tr class="even">
 <td>Raw <code>&lt;iframe&gt;</code> text appears on the page</td>
 <td>The <code>```{=html}</code> wrapper is missing</td>
 </tr>
-<tr class="odd">
-<td>An applet renders strangely</td>
-<td>A missing quote in the iframe tag. <code>height=600"</code></td>
-</tr>
 <tr class="even">
-<td>A <code>{mermaid}</code> or <code>{r}</code> chunk renders as literal text, and its <code>@fig-</code> reference breaks</td>
-<td>Somewhere earlier in that chapter a line <em>begins</em> with three or more backticks as inline code. knitr reads it as a fence opener and stops recognising chunks after it. Reflow the sentence so the backticks are not the first thing on the line</td>
-</tr>
-<tr class="odd">
 <td>Render is painfully slow</td>
 <td>Add <code>execute: freeze: auto</code>; render HTML only while drafting</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>A plot doesn’t update after changing the data</td>
 <td>Stale <code>_freeze/</code> or <code>*_cache/</code>. Delete them and re-render</td>
 </tr>
-<tr class="odd">
-<td>The PDF has a blank gap</td>
+<tr class="even">
+<td>The PDF / print has a blank gap</td>
 <td>An interactive element not wrapped in <code>content-visible when-format="html"</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Custom LaTeX macros work in the PDF but not the browser</td>
 <td>The <code>{{&lt; include _macros.tex &gt;}}</code> line is missing from that chapter</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>The website is stale after pushing</td>
 <td>You rendered but didn’t commit <code>docs/</code>, or Pages is pointed at the wrong folder</td>
 </tr>
-<tr class="even">
-<td>Fonts look wrong</td>
-<td>The Google Fonts <code>&lt;link&gt;</code> is missing from <code>include-in-header</code> — see <a href="03-quarto-yml.html#sec-theming" class="quarto-xref"><span>Section 3.4</span></a></td>
-</tr>
 <tr class="odd">
-<td>Render dies naming <code>readExtensionFormat</code>, or “Include directive failed” for <code>_knitr.qmd</code></td>
-<td><code>_quarto.yml</code> says <code>live-html</code> but the <code>quarto-live</code> extension is missing. Either install it (<code>quarto add r-wasm/quarto-live</code>, from the project folder) or revert the two edits in <a href="09-runnable-code.html#sec-webr-install" class="quarto-xref"><span>Section 9.3</span></a></td>
-</tr>
-<tr class="even">
 <td>Render dies with “Jupyter is not available”</td>
 <td>A chapter <em>shows</em> a <code>{webr}</code>/<code>{pyodide}</code> fence as an example. Add <code>engine: markdown</code> to that chapter’s YAML header — see <a href="09-runnable-code.html" class="quarto-xref"><span>Chapter 9</span></a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Render says “Output created” but no preview window opens</td>
-<td>Expected once the format is <code>live-html</code> — RStudio only auto-previews formats it recognises. Run <code>quarto preview</code> in the Terminal instead</td>
+<td>Rstudio only auto-previews formats it recognises, and the live extension is not one of them. Run <code>quarto preview</code> in the Tetminal instead. If you don’t usewlive webr chunks, you can also add <code>format: html</code> to the chapter’s YAML header, and auto-previews should work.</td>
+</tr>
+<tr class="odd">
+<td>Live cells appear but never become editors, and nothing runs</td>
+<td>You opened the HTML file from disk, not from a local server. It will work fine when published online (e.g.&nbsp;on Github pages)</td>
 </tr>
 <tr class="even">
-<td>Live cells appear but never become editors, and nothing runs</td>
-<td>You opened the HTML file from disk. Browsers will not start the WebAssembly worker over <code>file://</code> — use RStudio’s Render/preview, or a published site</td>
-</tr>
-<tr class="odd">
 <td>A <code>{webr}</code> cell renders as a dead code block</td>
 <td>The <code>{{&lt; include ./_extensions/r-wasm/live/_knitr.qmd &gt;}}</code> line is missing from that chapter — see <a href="09-runnable-code.html" class="quarto-xref"><span>Chapter 9</span></a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>A live cell says a package is not available</td>
 <td>That package has no WebAssembly build. Check <code>repo.r-wasm.org</code> before rewriting a practical around it</td>
 </tr>
@@ -400,30 +380,18 @@ Table&nbsp;13.1: The complete troubleshooting list, in rough order of how often 
 <h2 data-number="13.1" class="anchored" data-anchor-id="reading-an-error-message"><span class="header-section-number">13.1</span> Reading an error message</h2>
 <p>Quarto’s errors usually name the file and the line. Two habits help:</p>
 <ul>
-<li><strong>Render one chapter at a time</strong> when hunting a problem. A full book render buries the useful line in a hundred others.</li>
+<li><strong>Render one chapter at a time</strong> when hunting a problem. A full book render buries the useful line in a hundred others. If you render only chapter 1, then 1 and 2, then 1 and 2 and 3, <em>etc.</em>, you will quickly find the chapter that is failing.</li>
 <li><strong>Look above the red text.</strong> The actual cause is often the last thing Quarto said it was doing successfully, not the line where it finally gave up.</li>
+<li><strong>Give the red text to an AI tool</strong> I found troubleshooting is one of the major strengths of AI<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
 </ul>
 </section>
-<section id="where-to-look-next" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="where-to-look-next"><span class="header-section-number">13.2</span> Where to look next</h2>
+<section id="other-resources" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="other-resources"><span class="header-section-number">13.2</span> Other resources</h2>
 <ul>
 <li>The <a href="https://quarto.org/docs/guide/">official Quarto documentation</a> is genuinely good and searchable. The <a href="https://quarto.org/docs/authoring/">authoring section</a> covers layout, callouts and cross-references; the <a href="https://quarto.org/docs/books/">books section</a> covers structure.</li>
-<li>The fastest way to learn a trick is still to open a book you like and read the <code>.qmd</code> that produced the page. Both departmental books are readable source: <code>Onderwijs/BMS/Boek</code> and <code>Onderwijs/Modeling_Life/Course_Website</code>.</li>
-<li>There is a copyable starter book at <code>Onderwijs/Quarto Books/starter-book</code>.</li>
+<li>Start from the template starter book available <a href="starter-book.zip"><strong>here</strong></a> (.zip file)</li>
+<li><a href="mailto:b.vandijk@uu.nl">Me</a>. Email me at any time if you have questions.</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Ask an assistant, but give it the file
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Claude and ChatGPT know Quarto well. Paste the actual <code>_quarto.yml</code> and the actual error message rather than describing them — most Quarto problems are one wrong character, and it will spot it faster than you will.</p>
-</div>
-</div>
 
 
 <script type="ojs-module-contents">
@@ -440,6 +408,12 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>I use Claude code, which is exceptionally good at this, but others are decent at this as well<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

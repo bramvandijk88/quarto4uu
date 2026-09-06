@@ -9,7 +9,7 @@ execute:
 book:
   title: "Quarto 4 UU"
   subtitle: "A guide to [Quarto](https://quarto.org/), and a template, for teachers at Utrecht University"
-  author: "Bram van Dijk, Theoretical Biology, Utrecht University"
+  author: "Bram van Dijk, TBB, Utrecht University"
   date: today
   language: "en"
   search: true

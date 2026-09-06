@@ -836,7 +836,7 @@
     "href": "12-publishing.html#step-by-step",
     "title": "12  Putting it online",
     "section": "12.3 Step by step",
-    "text": "12.3 Step by step\n1. Point Quarto at docs. In _quarto.yml:\nproject:\n  type: book\n  output-dir: docs\nRender once. The finished website now appears in docs/.\n2. Add a file called .nojekyll. An empty file, inside docs/. GitHub runs its own processor over whatever folder it publishes, and that processor quietly drops directories whose names begin with an underscore, which is most of what Quarto generates. This file switches it off.\nIn RStudio: File → New File → Text File, then Save As, navigate into docs/, and give it exactly that name, leading dot included1. Nothing appears in the Files pane afterwards (a leading dot means hidden). It is there; ⚙ → Show Hidden Files will show it.\nNote: rendering again does not remove this file, so this step only needs to happen once per book.\n3. Make the folder a repository. If you did not tick “Create a git repository” when making the project: Tools → Project Options → Git/SVN → set version control to Git, and restart RStudio. A Git tab appears next to Environment and History.\n4. Create the repository on GitHub and connect it. Make a free account, press New repository, give it a name, choose a public repository2. Do not add anything to the repository (no Readme, no gitignore). Then, you can either run a few terminal commands to get your book uploaded3. If you wish to avoid the scary terminal and the messiness of git, install GitHub Desktop, choose Add existing repository, point it at your book folder, then press Publish repository. If you already added something (like a licence) upon making your repository, you may need to first Fetch and then Publish. If you get stuck, AI does a great job debuggin you when you give it the error messages.\n5. Send your work up. From then on, in RStudio’s Git tab or in GitHub Desktop: tick the changed files, write a one-line message saying what you changed, press Commit, then Push. Those three actions are the whole of Git for this purpose.\n6. Switch the website on. On github.com, in your repository: Settings → Pages → under Build and deployment, set Source to Deploy from a branch, choose your main branch, and set the folder to /docs. Save.\nA minute later your book is live at https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/.\n\n\n\n\n\n\nTipFrom then on\n\n\n\nWrite. Render. Commit. Push. The website updates itself within a minute or two. There is nothing else to remember.\n\n\n\nGitHub’s Settings → Pages screen with Source set to the main branch and /docs, and the resulting live URL in a browser.",
+    "text": "12.3 Step by step\n1. Point Quarto at docs. In _quarto.yml:\nproject:\n  type: book\n  output-dir: docs\nRender once. The finished website now appears in docs/.\n2. Add a file called .nojekyll. An empty file, inside docs/. GitHub runs its own processor over whatever folder it publishes, and that processor quietly drops directories whose names begin with an underscore, which is most of what Quarto generates. This file switches it off.\nIn RStudio: File → New File → Text File, then Save As, navigate into docs/, and give it exactly that name, leading dot included1. Nothing appears in the Files pane afterwards (a leading dot means hidden). It is there; ⚙ → Show Hidden Files will show it.\nNote: rendering again does not remove this file, so this step only needs to happen once per book.\n3. Make the folder a repository. If you did not tick “Create a git repository” when making the project: Tools → Project Options → Git/SVN → set version control to Git, and restart RStudio. A Git tab appears next to Environment and History.\n4. Create the repository on GitHub and connect it. Make a free account, press New repository, give it a name, choose a public repository2. Do not add anything to the repository (no Readme, no gitignore). Then, you can either run a few terminal commands to get your book uploaded3. If you wish to avoid the scary terminal and the messiness of git, install GitHub Desktop, choose Add existing repository, point it at your book folder, then press Publish repository. If you already added something (like a licence) upon making your repository, you may need to first Fetch and then Publish. If you get stuck, AI does a great job debuggin you when you give it the error messages.\n5. Send your work up. From then on, in RStudio’s Git tab or in GitHub Desktop: tick the changed files, write a one-line message saying what you changed, press Commit, then Push. Those three actions are the whole of Git for this purpose, and all the setup above will no longer be necessary.\n6. Switch the website on. On github.com, in your repository: Settings → Pages → under Build and deployment, set Source to Deploy from a branch, choose your main branch, and set the folder to /docs. Save.\n\n\n\n\n\n\nFigure 12.1: Settings to be configures on your Github repository\n\n\n\nA few minutes later your book is live at https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/. Note that it is also possible to make a separate Gibhub account for your website, and host is with a domain name like we have for some of our course books (e.g. https://bioms-uu.github.io/). The workflow is similar, but you can only have 1 github account per email address, so you may need to create a new email address for this.\n\n\n\n\n\n\nTipNow the workflow is simple:\n\n\n\nWrite on your chapters. Render book. Commit changed files. Push to github. The website updates automatically within a minute or two.",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
@@ -869,7 +869,7 @@
     "href": "13-troubleshooting.html",
     "title": "13  When it breaks",
     "section": "",
-    "text": "13.1 Reading an error message\nAlmost everything that goes wrong in a Quarto book is on this list.\nQuarto’s errors usually name the file and the line. Two habits help:",
+    "text": "13.1 Reading an error message\nQuarto can break, or you are not yet used to the workflow. It’s usually not too complicated to fix errors or mistakes. AI is really good at handling the stuff you may encounter, but here’s a list of things I have encountered:\nQuarto’s errors usually name the file and the line. Two habits help:",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>When it breaks</span>"
@@ -880,7 +880,7 @@
     "href": "13-troubleshooting.html#reading-an-error-message",
     "title": "13  When it breaks",
     "section": "",
-    "text": "Render one chapter at a time when hunting a problem. A full book render buries the useful line in a hundred others.\nLook above the red text. The actual cause is often the last thing Quarto said it was doing successfully, not the line where it finally gave up.",
+    "text": "Render one chapter at a time when hunting a problem. A full book render buries the useful line in a hundred others. If you render only chapter 1, then 1 and 2, then 1 and 2 and 3, etc., you will quickly find the chapter that is failing.\nLook above the red text. The actual cause is often the last thing Quarto said it was doing successfully, not the line where it finally gave up.\nGive the red text to an AI tool I found troubleshooting is one of the major strengths of AI1.",
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>When it breaks</span>"
@@ -902,7 +902,7 @@
     "href": "about.html",
     "title": "About this guide",
     "section": "",
-    "text": "Source material\nWritten for teachers at Utrecht University who want to turn a course reader into a website.\nIt merges three sources:\nThe theme follows the Utrecht University corporate identity: Merriweather and Open Sans as the standard fonts, UU red for links, UU yellow as the accent, and the supporting palette for callouts. uu.scss in this project is free to copy into your own book.\nThe book is deliberately single-theme: the UU palette is defined against white paper, so there is no dark mode and no toggle. See CSS / UU house style if you want one anyway.\nBoxes like this one still need an image:",
+    "text": "This guide is written by Bram van Dijk in August/September 2026 as a means to transfer knowledge about Quarto to colleagues at Utrecht University. In 2024, we received some help from the facultair Utrechts Stimuleringsfonds Onderwijs (fUSO, 2nd call 2024) to turn some old course material into a website, for which we remain very grateful. This website is my attempt to return the favour.\nThe theme tries to follow the Utrecht University corporate identity, but is not official. I just applied the correct fonts (Merriweather and Open Sans), the correct colours (UU red and UU yellow), and the logo.",
     "crumbs": [
       "About this guide"
     ]
@@ -956,6 +956,39 @@
     "crumbs": [
       "Building and publishing",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
+    ]
+  },
+  {
+    "objectID": "12-publishing.html#note-that-the-github-repository-has-to-be-public",
+    "href": "12-publishing.html#note-that-the-github-repository-has-to-be-public",
+    "title": "12  Putting it online",
+    "section": "12.4 Note that the Github repository has to be public",
+    "text": "12.4 Note that the Github repository has to be public\nA GitHub Pages site is visible to anyone with the link to the repository. This means that even files that you never added to the book (not listed in _quarto.yml), are public too.\n\n\n\n\n\n\nWarning\n\n\n\nKeep exam questions, model answers you do not want found, and anything with student data out of the book folder entirely. Not merely unlisted: out. Answer chapters that are meant to be public are fine; the danger is the file you forgot was in there.\n\n\nTo help you out, note that the file .gitignore helps to keep generated and personal files out of the repository. A sensible starting point is shipped with this book:\n.Rproj.user/\n.Rhistory\n.RData\n.DS_Store\n\n/.quarto/\n_book/\n**/*.quarto_ipynb\n**/*_cache/\n\n*.aux\n*.log\n*.toc\nNote that _freeze/ is deliberately not ignored, as this can help you and your colleague not needing to re-render each others files. See Chapter 11.",
+    "crumbs": [
+      "Building and publishing",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Putting it online</span>"
+    ]
+  },
+  {
+    "objectID": "13-troubleshooting.html#other-resources",
+    "href": "13-troubleshooting.html#other-resources",
+    "title": "13  When it breaks",
+    "section": "13.2 Other resources",
+    "text": "13.2 Other resources\n\nThe official Quarto documentation is genuinely good and searchable. The authoring section covers layout, callouts and cross-references; the books section covers structure.\nStart from the template starter book available here (.zip file)\nMe. Email me at any time if you have questions.",
+    "crumbs": [
+      "Building and publishing",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>When it breaks</span>"
+    ]
+  },
+  {
+    "objectID": "13-troubleshooting.html#footnotes",
+    "href": "13-troubleshooting.html#footnotes",
+    "title": "13  When it breaks",
+    "section": "",
+    "text": "I use Claude code, which is exceptionally good at this, but others are decent at this as well↩︎",
+    "crumbs": [
+      "Building and publishing",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>When it breaks</span>"
     ]
   }
 ]

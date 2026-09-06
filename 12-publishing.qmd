@@ -61,33 +61,39 @@ AI does a great job debuggin you when you give it the error messages.
 **5. Send your work up.** From then on, in RStudio's **Git** tab or in GitHub
 Desktop: tick the changed files, write a one-line message saying what you
 changed, press <kbd>Commit</kbd>, then <kbd>Push</kbd>. Those three actions are
-the whole of Git for this purpose. 
+the whole of Git for this purpose, and all the setup above will no longer be 
+necessary. 
 
 **6. Switch the website on.** On github.com, in your repository:
 <kbd>Settings</kbd> → <kbd>Pages</kbd> → under *Build and deployment*, set
 Source to *Deploy from a branch*, choose your main branch, and set the folder to
 **`/docs`**. Save.
 
-A minute later your book is live at
-`https://<your-username>.github.io/<repository-name>/`.
+![Settings to be configures on your Github repository](figures/github_pages.png){#fig-ghpages}
+
+
+A few minutes later your book is live at `https://<your-username>.github.io/<repository-name>/`.
+Note that it is also possible to make a separate Gibhub account for your website, 
+and host is with a domain name like we have for some of our course books (e.g. `https://bioms-uu.github.io/`).
+The workflow is similar, but you can only have 1 github account per email address, so you may need to 
+create a new email address for this.
 
 ::: {.callout-tip}
-## From then on
-Write. Render. Commit. Push. The website updates itself within a minute or two.
-There is nothing else to remember.
+## Now the workflow is simple:
+
+Write on your chapters. Render book. Commit changed files. Push to github. 
+The website updates automatically within a minute or two. 
+
 :::
 
-::: {.screenshot}
-GitHub's *Settings → Pages* screen with Source set to the main branch and
-`/docs`, and the resulting live URL in a browser.
-:::
 
-## Before you make it public
+## Note that the Github repository has to be public
+
+A GitHub Pages site is visible to anyone with the link to the repository. This
+means that even files that you never added to the book (not listed in `_quarto.yml`),
+are public too. 
 
 ::: {.callout-warning}
-## A GitHub Pages site is visible to anyone with the address
-And so is everything else in the repository — including files you never listed
-in `_quarto.yml`, because the source is published too.
 
 Keep exam questions, model answers you do not want found, and anything with
 student data **out of the book folder entirely**. Not merely unlisted: out.
@@ -95,8 +101,9 @@ Answer chapters that are *meant* to be public are fine; the danger is the file
 you forgot was in there.
 :::
 
-A `.gitignore` file keeps generated and personal files out of the repository.
-A sensible starting point:
+To help you out, note that the file `.gitignore` helps to keep generated and 
+personal files out of the repository. A sensible starting point is shipped
+with this book:
 
 ```
 .Rproj.user/
@@ -114,24 +121,5 @@ _book/
 *.toc
 ```
 
-Note that `_freeze/` is deliberately **not** ignored — see @sec-rendering.
-
-## Working on a book with a colleague
-
-Two people editing different chapters is easy. Two people editing the same
-paragraph is a conflict, and no tool prevents that — agree who owns which
-chapters for a given course block.
-
-One rule removes most of the pain: **pull before you start, push when you
-stop.** A week of uncommitted edits is what turns a small overlap into a large
-one.
-
-::: {.callout-important}
-## Everyone must use the same Quarto version
-Different Quarto versions produce different HTML from identical source. If two
-people render the same book with different versions and both commit the output,
-every push rewrites the entire site and every merge becomes a conflict.
-
-Agree a version, write it down in the repository, and check it with
-`quarto --version` when someone new joins.
-:::
+Note that `_freeze/` is deliberately **not** ignored, as this can help you and 
+your colleague not needing to re-render each others files. See @sec-rendering.
