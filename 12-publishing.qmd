@@ -53,10 +53,10 @@ repository" when making the project: <kbd>Tools</kbd> → <kbd>Project Options</
 **4. Create the repository on GitHub and connect it.** Make a free account,
 press <kbd>New repository</kbd>, give it a name, choose a public repository^[Note: this means your raw .qmd files are public, so if you wish to keep them private, choose a different route of publishing your website.]. Do not add anything
 to the repository (no Readme, no gitignore). Then, you can either run a few terminal
-commands to get your book uploaded ^[Assuming git is installed, these would be `git remote add origin https://github.com/USERNAME/REPOSITORY.git`, 
-`git branch -M main`, and `git push -u origin main`].
-If you wish to avoid the scary terminal, install [GitHub Desktop](https://desktop.github.com), 
-choose *Add existing repository*, point it at your book folder, and press *Publish repository*.
+commands to get your book uploaded^[Assuming git is installed, the commands would be `git remote add origin https://github.com/USERNAME/REPOSITORY.git`, 
+`git branch -M main`, and `git push -u origin main`]. If you wish to avoid the scary terminal and the messiness of git, install [GitHub Desktop](https://desktop.github.com), choose *Add existing repository*, point it at your book folder, then press *Publish repository*. If 
+you already added something (like a licence) upon making your repository, you may need to first *Fetch* and then *Publish*. If you get stuck,
+AI does a great job debuggin you when you give it the error messages. 
 
 **5. Send your work up.** From then on, in RStudio's **Git** tab or in GitHub
 Desktop: tick the changed files, write a one-line message saying what you
