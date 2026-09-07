@@ -12,6 +12,7 @@ book:
   author: "Bram van Dijk, TBB, Utrecht University"
   date: today
   language: "en"
+  # Sources for @sec-writing. Add entries here and cite them by key.
   search: true
   page-footer:
     left: "Utrecht University"
@@ -51,6 +52,8 @@ book:
     - print.qmd
 
 # Applet files are copied into the finished site as-is.
+bibliography: references.bib
+
 resources:
   - applets/
   - starter-book.zip
@@ -71,6 +74,32 @@ format:
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+          <script>
+            // Name the footnotes section after the page it belongs to, so the
+            // printed book says "Footnotes -- Chapter 9" rather than a bare
+            // "Footnotes" pages away from the text that referenced it. The
+            // heading itself is drawn in CSS (see uu.scss); this only supplies
+            // the name. The one-page print book is skipped deliberately: it
+            // gathers every chapter's notes into a single list, so naming one
+            // chapter there would be a lie.
+            (function () {
+              function labelFootnotes() {
+                var fn = document.getElementById("footnotes");
+                if (!fn) return;
+                if (document.querySelectorAll("main > section.level1").length > 1) return;
+                var h = document.querySelector("#title-block-header h1.title");
+                if (!h) return;
+                var t = h.textContent.replace(/\u00a0/g, " ").trim();
+                var m = t.match(/^(\d+(?:\.\d+)*)\s+(.*)$/);
+                fn.setAttribute("data-for", m ? "Chapter " + m[1] : t);
+              }
+              if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", labelFootnotes);
+              } else {
+                labelFootnotes();
+              }
+            })();
+          </script>
     toc: true
     toc-depth: 3
     toc-location: right

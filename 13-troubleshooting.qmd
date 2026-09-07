@@ -12,7 +12,7 @@ at handling the stuff you may encounter, but here's a list of things I have enco
 | Raw `<iframe>` text appears on the page | The ```` ```{=html} ```` wrapper is missing |
 | Render is painfully slow | Add `execute: freeze: auto`; render HTML only while drafting |
 | A plot doesn't update after changing the data | Stale `_freeze/` or `*_cache/`. Delete them and re-render |
-| The PDF / print has a blank gap | An interactive element not wrapped in `content-visible when-format="html"` |
+| The print has a blank gap | An interactive element not wrapped in `.screen-only`, with no `.print-only` replacement |
 | Custom LaTeX macros work in the PDF but not the browser | The `{{{< include _macros.tex >}}}` line is missing from that chapter |
 | The website is stale after pushing | You rendered but didn't commit `docs/`, or Pages is pointed at the wrong folder |
 | Render dies with "Jupyter is not available" | A chapter *shows* a `{webr}`/`{pyodide}` fence as an example. Add `engine: markdown` to that chapter's YAML header — see @sec-webr |
@@ -33,7 +33,7 @@ Quarto's errors usually name the file and the line. Two habits help:
 - **Look above the red text.** The actual cause is often the last thing Quarto
   said it was doing successfully, not the line where it finally gave up.
 - **Give the red text to an AI tool** I found troubleshooting is one of the major strengths
-of AI^[I use Claude code, which is exceptionally good at this, but others are decent at this as well]. 
+of AI^[I use Claude code, which is exceptionally good at this, but others are decent at this as well. Once again, please follow UU guidelines when it comes to AI.]. 
 
 ## Other resources
 

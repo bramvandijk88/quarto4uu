@@ -331,8 +331,7 @@ of documentation online already, so good luck! :)
 ## Does it work in the PDF?
 
 Of course not. Like everything else in this part of the book, a live cell needs a
-browser. Wrap it the way @sec-pdf describes: the live version inside
-`::: {.content-visible when-format="html"}`, and for the PDF a plain
-non-executing code block showing the same code, so the printed book still has
-something to read.
+browser. The fix is the pairing from @sec-pdf: put the live cell inside
+`::: {.screen-only}`, and a plain, non-executing copy of the same code inside
+`::: {.print-only}`, so the printed book still has something to read.
 

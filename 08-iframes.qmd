@@ -36,8 +36,8 @@ box someone dropped in.
 ::: {.callout-important}
 ## Add a screenshot for the printed version
 As discussed in the previous section, an iframe cannot exist on paper. Wrap every one of them in
-`::: {.content-visible when-format="html"}` and give the PDF a screenshot and a
-link instead — see @sec-pdf. Otherwise the PDF gets a mysterious blank gap, or worse,
+`::: {.screen-only}`, and put a screenshot and a link in a matching
+`::: {.print-only}` — see @sec-pdf. Otherwise the printed page gets a mysterious blank gap, or worse,
 something half cut-off or overlapping with your book's content. The simulation below 
 has a replacement: if you press print now, you will see the stale image appear with
 a remark that this interactive content is only available on the website.

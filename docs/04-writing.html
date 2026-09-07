@@ -58,7 +58,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -79,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-6036fc3794b2b8ac1c61eac6f98d7e4d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7dc787a484c58ca90fffca74c61478bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5d83f424c8d3cbaa6d9cb65b8435d449.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -120,6 +139,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&amp;family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
+<script>
+  // Name the footnotes section after the page it belongs to, so the
+  // printed book says "Footnotes -- Chapter 9" rather than a bare
+  // "Footnotes" pages away from the text that referenced it. The
+  // heading itself is drawn in CSS (see uu.scss); this only supplies
+  // the name. The one-page print book is skipped deliberately: it
+  // gathers every chapter's notes into a single list, so naming one
+  // chapter there would be a lie.
+  (function () {
+    function labelFootnotes() {
+      var fn = document.getElementById("footnotes");
+      if (!fn) return;
+      if (document.querySelectorAll("main > section.level1").length > 1) return;
+      var h = document.querySelector("#title-block-header h1.title");
+      if (!h) return;
+      var t = h.textContent.replace(/\u00a0/g, " ").trim();
+      var m = t.match(/^(\d+(?:\.\d+)*)\s+(.*)$/);
+      fn.setAttribute("data-for", m ? "Chapter " + m[1] : t);
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", labelFootnotes);
+    } else {
+      labelFootnotes();
+    }
+  })();
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -348,7 +393,11 @@ window.Quarto = {
   <li><a href="#callouts" id="toc-callouts" class="nav-link" data-scroll-target="#callouts"><span class="header-section-number">4.5</span> Callouts</a></li>
   <li><a href="#exercises-that-number-themselves" id="toc-exercises-that-number-themselves" class="nav-link" data-scroll-target="#exercises-that-number-themselves"><span class="header-section-number">4.6</span> Exercises that number themselves</a></li>
   <li><a href="#cross-references-in-one-table" id="toc-cross-references-in-one-table" class="nav-link" data-scroll-target="#cross-references-in-one-table"><span class="header-section-number">4.7</span> Cross-references, in one table</a></li>
-  <li><a href="#diagrams-without-a-drawing-program" id="toc-diagrams-without-a-drawing-program" class="nav-link" data-scroll-target="#diagrams-without-a-drawing-program"><span class="header-section-number">4.8</span> Diagrams without a drawing program</a></li>
+  <li><a href="#sec-citing" id="toc-sec-citing" class="nav-link" data-scroll-target="#sec-citing"><span class="header-section-number">4.8</span> Citing a source</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  <li><a href="#diagrams-without-a-drawing-program" id="toc-diagrams-without-a-drawing-program" class="nav-link" data-scroll-target="#diagrams-without-a-drawing-program"><span class="header-section-number">4.9</span> Diagrams without a drawing program</a></li>
   </ul>
 </nav>
     </div>
@@ -378,12 +427,12 @@ window.Quarto = {
 <section id="text-and-headings" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="text-and-headings"><span class="header-section-number">4.1</span> Text and headings</h2>
 <p><code>**bold**</code>, <code>*italic*</code>, <code>`code`</code>, <code>[link text](url)</code>. A blank line starts a new paragraph.</p>
-<p>One <code>#</code> is the chapter title, <code>##</code> a section, <code>###</code> a subsection. They get automatically numbered based on where they appear in the book (e.g.&nbsp;the second subsection of the first paragraph of chapter 3, will be 3.1.2). The sections (<code>##</code>) are headings are what fill the table of contents on the right of every page, so they are worth naming well.</p>
+<p>One <code>#</code> is the chapter title, <code>##</code> a section, <code>###</code> a subsection. They get automatically numbered based on where they appear in the book. The sections (<code>##</code>) are headings are what fill the table of contents on the right-hand side of every page, so they are worth naming well.</p>
 <p>Add <code>{.unnumbered}</code> directly after a heading to keep a page out of the chapter numbering. This is useful for a preface, a schedule, or a links page.</p>
 </section>
 <section id="maths" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="maths"><span class="header-section-number">4.2</span> Maths</h2>
-<p>Inline between single dollars: <code>$f(x) = x^3 + \alpha x</code> gives <span class="math inline">\(f(x) = x^3 + \alpha x\)</span>. You can also put maths between double dollars, with a label so you can point at it later:</p>
+<p>Inline between single dollar signs: <code>$f(x) = x^3 + \alpha x</code> gives <span class="math inline">\(f(x) = x^3 + \alpha x\)</span>. You can also put maths between double dollar signs, with a label so you can refer to it later:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>\frac{\mathrm{d}N}{\mathrm{d}t} = rN\left(1 - \frac{N}{K}\right)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>$$ {#eq-logistic}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -395,19 +444,26 @@ window.Quarto = {
 </section>
 <section id="code-that-produces-a-figure" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="code-that-produces-a-figure"><span class="header-section-number">4.3</span> Code that produces a figure</h2>
-<p>A chunk marked <code>{r}</code> is executed when you render, and its output lands on the page.</p>
+<p>A chunk in R markdown always starts with three backticks (<code>```</code>) followed by the programming language for that chunk. Chunk options go one per line at the top, each starting with <code>#|</code>. So for a piece of R code, we can type:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">40</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>logistic <span class="ot">&lt;-</span> <span class="cf">function</span>(r, <span class="at">K =</span> <span class="dv">100</span>, <span class="at">N0 =</span> <span class="dv">2</span>) {</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(t)); N[<span class="dv">1</span>] <span class="ot">&lt;-</span> N0</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(t)) N[i] <span class="ot">&lt;-</span> N[i<span class="dv">-1</span>] <span class="sc">+</span> r <span class="sc">*</span> N[i<span class="dv">-1</span>] <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> N[i<span class="dv">-1</span>]<span class="sc">/</span>K)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  N</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t, <span class="fu">logistic</span>(<span class="fl">0.10</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"time"</span>, <span class="at">ylab =</span> <span class="st">"N"</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t, <span class="fu">logistic</span>(<span class="fl">0.20</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t, <span class="fu">logistic</span>(<span class="fl">0.35</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>, <span class="fu">c</span>(<span class="st">"r = 0.10"</span>, <span class="st">"r = 0.20"</span>, <span class="st">"r = 0.35"</span>), <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-growth</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Logistic growth for three values of $r$."</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 3.2</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">40</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>logistic <span class="ot">&lt;-</span> <span class="cf">function</span>(r, <span class="at">K =</span> <span class="dv">100</span>, <span class="at">N0 =</span> <span class="dv">2</span>) {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(t)); N[<span class="dv">1</span>] <span class="ot">&lt;-</span> N0</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(t)) N[i] <span class="ot">&lt;-</span> N[i<span class="dv">-1</span>] <span class="sc">+</span> r <span class="sc">*</span> N[i<span class="dv">-1</span>] <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> N[i<span class="dv">-1</span>]<span class="sc">/</span>K)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  N</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t, <span class="fu">logistic</span>(<span class="fl">0.10</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"time"</span>, <span class="at">ylab =</span> <span class="st">"N"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t, <span class="fu">logistic</span>(<span class="fl">0.20</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t, <span class="fu">logistic</span>(<span class="fl">0.35</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>, <span class="fu">c</span>(<span class="st">"r = 0.10"</span>, <span class="st">"r = 0.20"</span>, <span class="st">"r = 0.35"</span>), <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-growth" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -421,8 +477,8 @@ Figure&nbsp;4.1: Logistic growth for three values of <span class="math inline">\
 </div>
 </div>
 </div>
-<p>Because that chunk carries <code>label: fig-growth</code>, it is referenceable as <a href="print.html#fig-growth" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</p>
-<p>Chunk options go one per line at the top of the chunk, each starting with <code>#|</code>:</p>
+<p>Which produces the figure above. Because that chunk carries <code>label: fig-growth</code>, it can be reference in the text with <code>@fig-growth</code>, which gives this cross-reference: <a href="print.html#fig-growth" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</p>
+<p>Other chunk options to play with are:</p>
 <div id="tbl-chunk-options" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chunk-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -438,31 +494,31 @@ Table&nbsp;4.1: Chunk options you will actually use.
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>echo: false</code></td>
+<td><code>#| echo: false</code></td>
 <td>run the code, hide it from students</td>
 </tr>
 <tr class="even">
-<td><code>eval: false</code></td>
+<td><code>#| eval: false</code></td>
 <td>show the code, don’t run it</td>
 </tr>
 <tr class="odd">
-<td><code>code-fold: true</code></td>
+<td><code>#| code-fold: true</code></td>
 <td>hide the code behind a “Show the code” toggle</td>
 </tr>
 <tr class="even">
-<td><code>code-summary: "..."</code></td>
+<td><code>#| code-summary: "..."</code></td>
 <td>the text on that toggle</td>
 </tr>
 <tr class="odd">
-<td><code>warning: false</code></td>
+<td><code>#| warning: false</code></td>
 <td>suppress R’s warnings</td>
 </tr>
 <tr class="even">
-<td><code>label: fig-…</code></td>
+<td><code>#| label: fig-…</code></td>
 <td>make the output referenceable as a figure</td>
 </tr>
 <tr class="odd">
-<td><code>fig-width</code>, <code>fig-height</code></td>
+<td><code>#| fig-width</code>, <code>#| fig-height</code></td>
 <td>size in inches</td>
 </tr>
 </tbody>
@@ -480,7 +536,7 @@ Table&nbsp;4.1: Chunk options you will actually use.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Options that you with to apply, can be given in the main <code>_quarto.yml</code>:</p>
+<p>Options that you wish to apply everywhere, can be given in the main <code>_quarto.yml</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -553,7 +609,7 @@ Warning
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Click to see the answer
+<span class="screen-reader-only">Caution</span>Click to see the answer (web book only)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -564,7 +620,7 @@ Warning
 </div>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>::: {.callout-caution collapse="true"}</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Click to see the answer</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Click to see the answer (web book only, but be auto-replaced for printed version)</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Hidden until the student expands it.</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -585,7 +641,7 @@ Warning
 </section>
 <section id="cross-references-in-one-table" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="cross-references-in-one-table"><span class="header-section-number">4.7</span> Cross-references, in one table</h2>
-<p>All the organisation and structure of the book is handled by Quarto. The <strong>prefix decides how it will be referenced</strong>, so it is not optional decoration.</p>
+<p>All the organisation and structure of the book is handled by Quarto. The <strong>prefix</strong> will decide how it will be cross-referenced:</p>
 <div id="tbl-xref" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-xref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -638,9 +694,72 @@ Table&nbsp;4.2: Cross-reference prefixes.
 </div>
 <p>Note that <code>{#cover}</code> does nothing at all, only <code>{#fig-cover}</code> works. A reference that renders as <code>?@fig-cover</code> means the label is missing, misspelled, or lacking its prefix.</p>
 </section>
-<section id="diagrams-without-a-drawing-program" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="diagrams-without-a-drawing-program"><span class="header-section-number">4.8</span> Diagrams without a drawing program</h2>
+<section id="sec-citing" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="sec-citing"><span class="header-section-number">4.8</span> Citing a source</h2>
+<p>Keep your sources in a <code>.bib</code> file — <code>references.bib</code> here — and name it once in <code>_quarto.yml</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Each entry is a type, a key, and a few fields. Most reference managers (Zotero, Mendeley, EndNote) export this format directly, and Google Scholar offers it under <em>Cite → BibTeX</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">@book</span>{<span class="ot">darwin1859origin</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={On the Origin of Species.},</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Darwin, CR},</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={1859},</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={Harvard University Press, Cambridge, Massachusetts}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can now cite this using <code>darwin1859origin</code>. Square brackets put the whole citation in parentheses, and leaving them off makes the author part of your sentence:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Write this</th>
+<th>Gives</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>[@darwin1859origin]</code></td>
+<td><span class="citation" data-cites="darwin1859origin">(<a href="04-writing.html#ref-darwin1859origin" role="doc-biblioref">Darwin 1859</a>)</span></td>
+</tr>
+<tr class="even">
+<td><code>@darwin1859origin</code></td>
+<td><span class="citation" data-cites="darwin1859origin">Darwin (<a href="04-writing.html#ref-darwin1859origin" role="doc-biblioref">1859</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><code>[@darwin1859origin, p. 490]</code></td>
+<td><span class="citation" data-cites="darwin1859origin">(<a href="04-writing.html#ref-darwin1859origin" role="doc-biblioref">Darwin 1859, 490</a>)</span></td>
+</tr>
+<tr class="even">
+<td><code>[see @darwin1859origin]</code></td>
+<td><span class="citation" data-cites="darwin1859origin">(see <a href="04-writing.html#ref-darwin1859origin" role="doc-biblioref">Darwin 1859</a>)</span></td>
+</tr>
+</tbody>
+</table>
+<p>A citation that renders as <strong>?darwin1859origin</strong> means the key is missing from the <code>.bib</code> file or spelled differently there. Quarto assembles the reference list itself, automatically putting it on the foot of the chapter. I fyou want to put it somewhere else, place an empty region labelled <code>refs</code> somewhere in your source file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">### References{.unnumbered}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Will render as what you see below:</p>
+<section id="references" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-darwin1859origin" class="csl-entry" role="listitem">
+Darwin, CR. 1859. <em>On the Origin of Species.</em> Harvard University
+Press, Cambridge, Massachusetts.
+</div>
+</div>
+</section>
+</section>
+<section id="diagrams-without-a-drawing-program" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="diagrams-without-a-drawing-program"><span class="header-section-number">4.9</span> Diagrams without a drawing program</h2>
+<p>Six lines of <a href="https://mermaid.js.org/">Mermaid</a> produce <a href="print.html#fig-approaches" class="quarto-xref">Figure&nbsp;<span>4.2</span></a>, and it restyles itself with the rest of the book. Far easier to maintain than a PNG exported from PowerPoint.</p>
 <div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>%%| label: fig-approaches</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>%%| fig-cap: <span class="ot">"</span><span class="st">Two ways to study a biological system.</span><span class="ot">"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>flowchart TB</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  A(Biological <span class="fu">system</span>) --&gt; B(Model)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  A --&gt; C(Data)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  B --&gt; D(Simulate)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  C --&gt; E(Statistics)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-approaches" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -661,7 +780,6 @@ Figure&nbsp;4.2: Two ways to study a biological system.
 </div>
 </div>
 </div>
-<p>Six lines of <a href="https://mermaid.js.org/">Mermaid</a> produce <a href="print.html#fig-approaches" class="quarto-xref">Figure&nbsp;<span>4.2</span></a>, and it restyles itself with the rest of the book. Far easier to maintain than a PNG exported from PowerPoint.</p>
 
 
 <script type="ojs-module-contents">

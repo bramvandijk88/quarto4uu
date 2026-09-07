@@ -11,8 +11,8 @@ cross-references. This page discusses some basics.
 paragraph.
 
 One `#` is the chapter title, `##` a section, `###` a subsection. They get automatically
-numbered based on where they appear in the book (e.g. the second subsection of the first paragraph of chapter
-3, will be 3.1.2). The sections (`##`) are headings are what fill the table of contents on the right of every page, so
+numbered based on where they appear in the book. The sections (`##`) are headings are 
+what fill the table of contents on the right-hand side of every page, so
 they are worth naming well.
 
 Add `{.unnumbered}` directly after a heading to keep a page out of the chapter
@@ -20,9 +20,9 @@ numbering. This is useful for a preface, a schedule, or a links page.
 
 ## Maths
 
-Inline between single dollars: `$f(x) = x^3 + \alpha x` gives
-$f(x) = x^3 + \alpha x$. You can also put maths between double dollars, with a label so you
-can point at it later:
+Inline between single dollar signs: `$f(x) = x^3 + \alpha x` gives
+$f(x) = x^3 + \alpha x$. You can also put maths between double dollar signs, with a label so you
+can refer to it later:
 
 ```markdown
 $$
@@ -41,10 +41,12 @@ If you're familiar with LateX, I'm sure you'll find your way with this stuff.
 
 ## Code that produces a figure
 
-A chunk marked `{r}` is executed when you render, and its output lands on the
-page.
+A chunk in R markdown always starts with three backticks (` ``` `) followed by the
+programming language for that chunk. Chunk options go one per line at the top, 
+each starting with `#|`. So for a piece of R code, we can type:
 
 ```{r}
+#| echo: fenced
 #| label: fig-growth
 #| fig-cap: "Logistic growth for three values of $r$."
 #| fig-width: 6
@@ -63,26 +65,26 @@ lines(t, logistic(0.35), lwd = 2, lty = 3)
 legend("bottomright", c("r = 0.10", "r = 0.20", "r = 0.35"), lty = 1:3, lwd = 2)
 ```
 
-Because that chunk carries `label: fig-growth`, it is referenceable as
-@fig-growth.
+Which produces the figure above. Because that chunk carries `label: fig-growth`, 
+it can be reference in the text with `@fig-growth`, which gives this cross-reference: @fig-growth.
 
-Chunk options go one per line at the top of the chunk, each starting with `#|`:
+Other chunk options to play with are: 
 
 | Option | Effect |
 |---|---|
-| `echo: false` | run the code, hide it from students |
-| `eval: false` | show the code, don't run it |
-| `code-fold: true` | hide the code behind a "Show the code" toggle |
-| `code-summary: "..."` | the text on that toggle |
-| `warning: false` | suppress R's warnings |
-| `label: fig-…` | make the output referenceable as a figure |
-| `fig-width`, `fig-height` | size in inches |
+| `#| echo: false` | run the code, hide it from students |
+| `#| eval: false` | show the code, don't run it |
+| `#| code-fold: true` | hide the code behind a "Show the code" toggle |
+| `#| code-summary: "..."` | the text on that toggle |
+| `#| warning: false` | suppress R's warnings |
+| `#| label: fig-…` | make the output referenceable as a figure |
+| `#| fig-width`, `#| fig-height` | size in inches |
 
 : Chunk options you will actually use. {#tbl-chunk-options}
 
 ::: {.callout-tip}
 ## Set the defaults once
-Options that you with to apply, can be given in the main `_quarto.yml`:
+Options that you wish to apply everywhere, can be given in the main `_quarto.yml`:
 
 ```yaml
 execute:
@@ -122,14 +124,14 @@ Five kinds, and they are the workhorse of a teaching book.
 :::
 
 ::: {.callout-caution collapse="true"}
-## Click to see the answer
+## Click to see the answer (web book only)
 A note (like this one: `caution`) that has `collapse="true"` enabled, starts folded shut. This is how you
 put a hint or a worked answer right next to the question without giving it away immediately.
 :::
 
 ```markdown
 ::: {.callout-caution collapse="true"}
-## Click to see the answer
+## Click to see the answer (web book only, but be auto-replaced for printed version)
 Hidden until the student expands it.
 :::
 ```
@@ -157,9 +159,8 @@ number in the book renumbers itself.
 
 ## Cross-references, in one table
 
-All the organisation and structure of the book is handled by Quarto. The **prefix decides how it will be 
-referenced**, so it is
-not optional decoration.
+All the organisation and structure of the book is handled by Quarto. The **prefix** will
+decide how it will be cross-referenced:
 
 | Write this label | Refer to it as | Gives |
 |---|---|---|
@@ -176,9 +177,69 @@ Note that `{#cover}` does nothing at all, only `{#fig-cover}` works. A reference
 as `?@fig-cover` means the label is missing, misspelled, or lacking its prefix.
 
 
+## Citing a source {#sec-citing}
+
+Keep your sources in a `.bib` file — `references.bib` here — and name it once
+in `_quarto.yml`:
+
+```yaml
+bibliography: references.bib
+```
+
+Each entry is a type, a key, and a few fields. Most reference managers
+(Zotero, Mendeley, EndNote) export this format directly, and Google Scholar
+offers it under *Cite → BibTeX*:
+
+```bibtex
+@book{darwin1859origin,
+  title={On the Origin of Species.},
+  author={Darwin, CR},
+  year={1859},
+  publisher={Harvard University Press, Cambridge, Massachusetts}
+}
+```
+
+You can now cite this using `darwin1859origin`. Square brackets
+put the whole citation in parentheses, and leaving them off makes the author
+part of your sentence:
+
+| Write this | Gives |
+|---|---|
+| `[@darwin1859origin]` | [@darwin1859origin] |
+| `@darwin1859origin` | @darwin1859origin |
+| `[@darwin1859origin, p. 490]` | [@darwin1859origin, p. 490] |
+| `[see @darwin1859origin]` | [see @darwin1859origin] |
+
+A citation that renders as **?darwin1859origin** means the key is missing from
+the `.bib` file or spelled differently there. Quarto assembles the reference list itself, automatically putting it on the foot
+of the chapter. I fyou want to put it somewhere else, place an empty region labelled `refs` somewhere in your
+source file: 
+
+```markdown
+### References{.unnumbered}
+::: {#refs}
+:::
+```
+
+Will render as what you see below:
+
+### References{.unnumbered}
+
+::: {#refs}
+
+:::
+
+
+
 ## Diagrams without a drawing program
 
+Six lines of [Mermaid](https://mermaid.js.org/) produce @fig-approaches, and it
+restyles itself with the rest of the book. Far easier to maintain than a PNG
+exported from PowerPoint. 
+
+
 ```{mermaid}
+%%| echo: fenced
 %%| label: fig-approaches
 %%| fig-cap: "Two ways to study a biological system."
 flowchart TB
@@ -187,7 +248,3 @@ flowchart TB
   B --> D(Simulate)
   C --> E(Statistics)
 ```
-
-Six lines of [Mermaid](https://mermaid.js.org/) produce @fig-approaches, and it
-restyles itself with the rest of the book. Far easier to maintain than a PNG
-exported from PowerPoint. 

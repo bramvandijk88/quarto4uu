@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-6036fc3794b2b8ac1c61eac6f98d7e4d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7dc787a484c58ca90fffca74c61478bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5d83f424c8d3cbaa6d9cb65b8435d449.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -117,6 +117,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&amp;family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
+<script>
+  // Name the footnotes section after the page it belongs to, so the
+  // printed book says "Footnotes -- Chapter 9" rather than a bare
+  // "Footnotes" pages away from the text that referenced it. The
+  // heading itself is drawn in CSS (see uu.scss); this only supplies
+  // the name. The one-page print book is skipped deliberately: it
+  // gathers every chapter's notes into a single list, so naming one
+  // chapter there would be a lie.
+  (function () {
+    function labelFootnotes() {
+      var fn = document.getElementById("footnotes");
+      if (!fn) return;
+      if (document.querySelectorAll("main > section.level1").length > 1) return;
+      var h = document.querySelector("#title-block-header h1.title");
+      if (!h) return;
+      var t = h.textContent.replace(/\u00a0/g, " ").trim();
+      var m = t.match(/^(\d+(?:\.\d+)*)\s+(.*)$/);
+      fn.setAttribute("data-for", m ? "Chapter " + m[1] : t);
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", labelFootnotes);
+    } else {
+      labelFootnotes();
+    }
+  })();
+</script>
 
 
 </head>
@@ -339,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This one file is the table of contents, the theme, and the settings. It is probably good to go through this step by step. Although the rest of working with Quarto is ust writing, you need to know a little bit about this file. That being said, if you end up using my template, you mostly need to modify the chapter organisation. If you want to use your own style, you can change the theme and add your own SCSS.</p>
+<p>This one file is the table of contents, the theme, and the settings. It is probably good to go through this step by step. Although the rest of working with Quarto is just writing, you need to know a little bit about this file. That being said, if you end up using my template, you mostly need to modify the chapter organisation. If you want to use your own style, you can change the theme and add your own SCSS.</p>
 <section id="a-minimal-book" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="a-minimal-book"><span class="header-section-number">3.1</span> A minimal book</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
@@ -363,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span><span class="co">            # any Bootswatch theme</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span><span class="co">            # one of the default Quarto themes</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> scrreprt</span><span class="co"> # delete if you never want a PDF</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -380,11 +406,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">chapters</span><span class="kw">:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> </span><span class="st">"Quarto yml"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> 03-quarto-yml.qmd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Chapters can also live in subfolders, organising your websites into bigger chunks of chapters (e.g.&nbsp;part 1 and part 2 of a course).</p>
+<p>Chapters can also be placed in subfolders, organising your websites into bigger chunks of chapters (e.g.&nbsp;part 1 and part 2 of a course).</p>
 </section>
 <section id="indentation" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="indentation"><span class="header-section-number">3.3</span> Indentation</h2>
-<p>YAML indentation is annoyingly strict, and must be <strong>spaces, never tabs</strong>. If Quarto complains about the file and the message makes no sense, indentation is almost always the cause.</p>
+<p>The <code>_quarto.yml</code> file is very strict about indentation, everything must be <strong>spaces, never tabs</strong>. If Quarto complains about the file and the message makes no sense, indentation in this file is often the culprit.</p>
 </section>
 <section id="sec-theming" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="sec-theming"><span class="header-section-number">3.4</span> CSS / UU house style</h2>
@@ -413,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-bmsdark" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bmsdark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/darkmode.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics."><img src="figures/darkmode.png" class="img-fluid figure-img" style="width:50.0%"></a>
+<a href="figures/darkmode.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics."><img src="figures/darkmode.png" class="img-fluid figure-img" style="width:80.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bmsdark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics.
@@ -423,9 +449,9 @@ Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book 
 </section>
 <section id="other-options-in-the-yaml" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="other-options-in-the-yaml"><span class="header-section-number">3.5</span> Other options in the yaml</h2>
-<p>The yaml has <a href="https://quarto-tdg.org/yaml.html">many other options</a>. With out listing all of them, you can look into these:</p>
+<p>The yaml has <a href="https://quarto-tdg.org/yaml.html">many other options</a>. Without listing all of them, you can look into these:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">book</span><span class="kw">:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">favicon</span><span class="kw">:</span><span class="at"> figures/favicon.png</span><span class="co">    # the little (20x20) icon next the web address</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">favicon</span><span class="kw">:</span><span class="at"> figures/favicon.png</span><span class="co">    # the little (20x20) icon next to the web address</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">search</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">  # search function enabled, really useful for students</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span><span class="co"> # menu to the left</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logo</span><span class="kw">:</span><span class="at"> figures/uu-logo.png</span><span class="co"> # logo's for your course / UU branding</span></span>
@@ -442,7 +468,7 @@ Figure&nbsp;3.1: Example of a dark/light mode toggle in our (Dutch) course book 
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">lightbox</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">       # click figures to enlarge it</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-overflow</span><span class="kw">:</span><span class="at"> wrap</span><span class="co">  # wrap code that contain too many characters</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">link-external-newwindow</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # external links are always opening in a new window</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The official UU logo files are on the <a href="https://www.uu.nl/en/organisation/corporate-identity">corporate identity site</a>; download the right variant rather than taking one off a web random website.</p>
+<p>The official UU logo files are on the <a href="https://www.uu.nl/en/organisation/corporate-identity">corporate identity site</a>; download the right variant rather than taking one off a random website.</p>
 
 
 <script type="ojs-module-contents">

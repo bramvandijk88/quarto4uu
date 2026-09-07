@@ -5,7 +5,7 @@ but the math notation is maybe worth knowing. Here's a quick overview.
 
 ## Inline and displayed
 
-**Inline** maths sits between single dollars, inside a sentence:
+**Inline** maths sits between single dollar signs, inside a sentence:
 
 ``` markdown
 The population grows at rate $r$ until it approaches $K$.
@@ -13,7 +13,7 @@ The population grows at rate $r$ until it approaches $K$.
 
 The population grows at rate $r$ until it approaches $K$.
 
-**Displayed** maths sits between double dollars, on its own lines, and is
+**Displayed** maths sits between double dollar signs, on its own lines, and is
 centred:
 
 ``` markdown
@@ -28,12 +28,12 @@ $$
 
 ::: {.callout-important}
 ## Leave the dollars tight against the maths
-`$r$` works. `$ r $` may not — Quarto uses the spacing to tell maths from an
+`$r$` works. `$ r $` may not. Quarto uses the spacing to tell maths from anan
 ordinary dollar sign. If you need a literal dollar in your text, escape it with 
 a slash: `\$`.
 :::
 
-## Common notation for LateX equation
+## Common notation for LateX equations
 
 | You want | You write | You get |
 |---|---|---|
@@ -230,9 +230,3 @@ gone blank, is nearly always one of these:
 | Nothing renders in one chapter | This one give no useful errors, but a missing `{{{< include _macros.tex >}}}` is often the culprit. |
 
 : Maths that will not render. {#tbl-latex-trouble}
-
-::: {.callout-tip}
-## A tools worth knowing
-[Detexify](https://detexify.kirelabs.org) lets you *draw* a symbol and tells you
-its LaTeX name.
-:::

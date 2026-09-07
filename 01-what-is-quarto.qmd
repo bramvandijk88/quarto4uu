@@ -8,7 +8,7 @@ respectively, etc. Quarto can render this into a website or a PDF.
 ## Why it suits teaching
 
 **Less worry about formatting, more focus on content ** Your book is a folder of plain text files. 
-This enables you to think better about the content, rather than worry about
+This enables you to think more freely about the *content*, rather than worry about
 formatting. Quarto takes care of 90% of the formatting (I will not lie, sometimes
 you will still need to tweak a bit if you're a prefectionist). 
 
@@ -71,4 +71,4 @@ Python or other languages, so I cannot give you any advice on that. It's probabl
 just as easy. Either way, the structure, the figures, the callouts, the iframes, the
 publishing, this is all identical whether you edit in RStudio, VS Code, or a plain text editor.
 
-So let's get started. 
+Let's get started!

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Bram van Dijk, TBB, Utrecht University">
-<meta name="dcterms.date" content="2026-09-06">
+<meta name="dcterms.date" content="2026-09-07">
 
 <title>Quarto 4 UU</title>
 <style>
@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-6036fc3794b2b8ac1c61eac6f98d7e4d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7dc787a484c58ca90fffca74c61478bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5d83f424c8d3cbaa6d9cb65b8435d449.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -80,6 +80,32 @@ ul.task-list li input[type="checkbox"] {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&amp;family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
+<script>
+  // Name the footnotes section after the page it belongs to, so the
+  // printed book says "Footnotes -- Chapter 9" rather than a bare
+  // "Footnotes" pages away from the text that referenced it. The
+  // heading itself is drawn in CSS (see uu.scss); this only supplies
+  // the name. The one-page print book is skipped deliberately: it
+  // gathers every chapter's notes into a single list, so naming one
+  // chapter there would be a lie.
+  (function () {
+    function labelFootnotes() {
+      var fn = document.getElementById("footnotes");
+      if (!fn) return;
+      if (document.querySelectorAll("main > section.level1").length > 1) return;
+      var h = document.querySelector("#title-block-header h1.title");
+      if (!h) return;
+      var t = h.textContent.replace(/\u00a0/g, " ").trim();
+      var m = t.match(/^(\d+(?:\.\d+)*)\s+(.*)$/);
+      fn.setAttribute("data-for", m ? "Chapter " + m[1] : t);
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", labelFootnotes);
+    } else {
+      labelFootnotes();
+    }
+  })();
+</script>
 
 
 </head>
@@ -304,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 6, 2026</p>
+      <p class="date">September 7, 2026</p>
     </div>
   </div>
   
@@ -318,14 +344,14 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
-<p>This is a practical guide for teachers at Utrecht University who want to offer students a course <strong>website</strong> along with their usual course book. For this, we can use <a href="https://quarto.org">Quarto</a>, which generates interactive and easy-to-navigate website, that is also printer-friendly. That means students can choose to read it on their screen, print it, and with very little extra effort, you can combine all this into <a href="https://tbb.bio.uu.nl/bvd/bms/slides/BMS_Cursusboek_2026.pdf">an actual course book</a>!</p>
-<p>Here, I explain how do do all this by using Quarto in RStudio. However, Quarto itself is a broader framework: it works just as happily from Jupyter notebooks or VS Code, and with Python or Julia instead of R. We describe the RStudio route because, within the Biology department, that is the environment most colleagues already have open.</p>
+<p>This is a practical guide for teachers at Utrecht University who want to offer students a course <strong>website</strong> along with their usual course book. For this, we can use <a href="https://quarto.org">Quarto</a>, which generates a interactive and easy-to-navigate website, that is also printer-friendly. That means students can choose to read it on their screen, print it, and with very little extra effort, you can combine all this into <a href="https://tbb.bio.uu.nl/bvd/bms/slides/BMS_Cursusboek_2026.pdf">an actual course book</a>!</p>
+<p>Here, I explain how to do all this by using Quarto in RStudio. However, Quarto itself is a broader framework: it works just as happily from Jupyter notebooks or VS Code, and with Python or Julia instead of R. We describe the RStudio route because, within the Biology department I work in, that is the environment most colleagues already have open.</p>
 <section id="what-you-end-up-with" class="level2">
 <h2 class="anchored" data-anchor-id="what-you-end-up-with">What you end up with</h2>
-<p>Two course books in our own department are built exactly this way, and everything in this guide is drawn from their source:</p>
+<p>Two course books in the Biology department have been built exactly this way, and everything in this guide is drawn from their source:</p>
 <ul>
-<li><strong><a href="https://bioms-uu.github.io">Biologische Modellen en Statistiek</a></strong> — a full Dutch-language course book with interactive statistics applets, shared LaTeX macros, and a printable PDF from the same source.</li>
-<li><strong><a href="https://modelinglife-uu.github.io/">Modeling Life</a></strong> — an English course website with embedded simulations and mini-projects.</li>
+<li><strong><a href="https://bioms-uu.github.io">Biologische Modellen en Statistiek</a></strong>: a full Dutch-language course book with interactive statistics applets, shared LaTeX macros, and a printable PDF from the same source.</li>
+<li><strong><a href="https://modelinglife-uu.github.io/">Modeling Life</a></strong>: an English course website with embedded simulations and mini-projects.</li>
 </ul>
 </section>
 <section id="what-this-explainer-covers" class="level2">
@@ -333,7 +359,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>Getting started</strong>: installing stuff, making the project, and the one configuration file that decides everything.</li>
 <li><strong>Writing</strong>: text, maths, code that runs, callouts, exercises, figures, and getting a decent PDF out of the same source.</li>
-<li><strong>Interactive material</strong>: embedding simulations, code your students can edit and run in the browser, and self-contained applets. This is the part students love, so this makes a Quarto book worth the effort.</li>
+<li><strong>Interactive material</strong>: embedding simulations, code your students can edit and run in the browser, and self-contained applets. This is the part students love and tell you about in course evaluations (Caracal), so this makes a Quarto book worth the extra effort.</li>
 <li><strong>Building and publishing</strong>: rendering the book and putting it online via Github pages.</li>
 </ul>
 </section>

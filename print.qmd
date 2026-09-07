@@ -1,5 +1,6 @@
 ---
 toc: true
+reference-location: block
 toc-depth: 2
 search: false
 execute:
@@ -9,10 +10,13 @@ execute:
 # Print book 🖨️ {.unnumbered}
 
 ::: {.screen-only}
-This is the whole book in one document, so that a single print gives you
-everything rather than one chapter at a time. Nothing here is a second copy:
+This page serves the whole book in one document, so that a single call of 'print' 
+gives you everything rather than one chapter at a time. Nothing here is a second copy:
 the chapters are pulled straight from the same sources as the chapter pages,
-so this page cannot fall behind them.
+so this page cannot fall behind them. There's a few hacks additional hacks I applied
+(deleted the search-bar icon, moved the footnotes to not all be cluttered at the end, 
+small changes like this). Just make sure to update the chapter list on this page, and the
+print should follow along just fine. 
 
 Pick a layout and the print dialog opens:
 

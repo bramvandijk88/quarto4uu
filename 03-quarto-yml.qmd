@@ -2,7 +2,7 @@
 
 This one file is the table of contents, the theme, and the settings. It is probably
 good to go through this step by step. Although the rest of working with Quarto
-is ust writing, you need to know a little bit about this file. That being said,
+is just writing, you need to know a little bit about this file. That being said,
 if you end up using my template, you mostly need to modify the chapter organisation. If you want
 to use your own style, you can change the theme and add your own SCSS. 
 
@@ -30,7 +30,7 @@ book:
 
 format:
   html:
-    theme: cosmo            # any Bootswatch theme
+    theme: cosmo            # one of the default Quarto themes
     toc: true
   pdf:
     documentclass: scrreprt # delete if you never want a PDF
@@ -57,14 +57,14 @@ done for this chapter:
         href: 03-quarto-yml.qmd
 ```
 
-Chapters can also live in subfolders, organising your websites into bigger
+Chapters can also be placed in subfolders, organising your websites into bigger
 chunks of chapters (e.g. part 1 and part 2 of a course). 
 
 ## Indentation
 
-YAML indentation is annoyingly strict, and must be **spaces, never tabs**. If Quarto
-complains about the file and the message makes no sense, indentation is
-almost always the cause. 
+The `_quarto.yml` file is very strict about indentation, everything must be **spaces, never tabs**. If Quarto
+complains about the file and the message makes no sense, indentation in this file
+is often the culprit. 
 
 ## CSS / UU house style {#sec-theming}
 
@@ -99,17 +99,17 @@ So I decided not to add it. You can do it for your own book, of course, as we
 have done for many of ours (see @fig-bmsdark). 
 :::
 
-![Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics.](figures/darkmode.png){#fig-bmsdark width=50%}
+![Example of a dark/light mode toggle in our (Dutch) course book for Biological Modelling and statistics.](figures/darkmode.png){#fig-bmsdark width=80%}
 
 ## Other options in the yaml 
 
-The yaml has [many other options](https://quarto-tdg.org/yaml.html). With out listing all of them, you can look 
+The yaml has [many other options](https://quarto-tdg.org/yaml.html). Without listing all of them, you can look 
 into these:
 
 
 ```yaml
 book:
-  favicon: figures/favicon.png    # the little (20x20) icon next the web address
+  favicon: figures/favicon.png    # the little (20x20) icon next to the web address
   search: true  # search function enabled, really useful for students
   sidebar: # menu to the left
     logo: figures/uu-logo.png # logo's for your course / UU branding
@@ -130,4 +130,4 @@ format:
 
 The official UU logo files are on the
 [corporate identity site](https://www.uu.nl/en/organisation/corporate-identity);
-download the right variant rather than taking one off a web random website.
+download the right variant rather than taking one off a random website.

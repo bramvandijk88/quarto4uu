@@ -2,26 +2,26 @@
 
 This is a practical guide for teachers at Utrecht University who want to
 offer students a course **website** along with their usual course book. For this,
-we can use [Quarto](https://quarto.org), which generates interactive and easy-to-navigate
+we can use [Quarto](https://quarto.org), which generates a interactive and easy-to-navigate
 website, that is also printer-friendly. That means students can choose to read it on 
 their screen, print it, and with very little extra effort, you can combine all this
 into [an actual course book](https://tbb.bio.uu.nl/bvd/bms/slides/BMS_Cursusboek_2026.pdf)!
 
-Here, I explain how do do all this by using Quarto in RStudio. However, Quarto itself
+Here, I explain how to do all this by using Quarto in RStudio. However, Quarto itself
 is a broader framework: it works just as happily from Jupyter notebooks or VS
 Code, and with Python or Julia instead of R. We describe the RStudio route
-because, within the Biology department, that is the environment most colleagues
+because, within the Biology department I work in, that is the environment most colleagues
 already have open.
 
 ## What you end up with
 
-Two course books in our own department are built exactly this way, and everything in
+Two course books in the Biology department have been built exactly this way, and everything in
 this guide is drawn from their source:
 
-- **[Biologische Modellen en Statistiek](https://bioms-uu.github.io)** —
+- **[Biologische Modellen en Statistiek](https://bioms-uu.github.io)**: 
   a full Dutch-language course book with interactive statistics applets, shared
   LaTeX macros, and a printable PDF from the same source.
-- **[Modeling Life](https://modelinglife-uu.github.io/)** — an English course
+- **[Modeling Life](https://modelinglife-uu.github.io/)**: an English course
   website with embedded simulations and mini-projects. 
 
 
@@ -33,7 +33,8 @@ this guide is drawn from their source:
   getting a decent PDF out of the same source.
 - **Interactive material**: embedding simulations, code your students can
   edit and run in the browser, and self-contained applets. This is the part
-  students love, so this makes a Quarto book worth the effort.
+  students love and tell you about in course evaluations (Caracal),
+  so this makes a Quarto book worth the extra effort.
 - **Building and publishing**: rendering the book and putting it online via Github
 pages. 
 

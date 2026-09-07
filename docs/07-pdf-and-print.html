@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-6036fc3794b2b8ac1c61eac6f98d7e4d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7dc787a484c58ca90fffca74c61478bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5d83f424c8d3cbaa6d9cb65b8435d449.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -114,6 +114,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&amp;family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
+<script>
+  // Name the footnotes section after the page it belongs to, so the
+  // printed book says "Footnotes -- Chapter 9" rather than a bare
+  // "Footnotes" pages away from the text that referenced it. The
+  // heading itself is drawn in CSS (see uu.scss); this only supplies
+  // the name. The one-page print book is skipped deliberately: it
+  // gathers every chapter's notes into a single list, so naming one
+  // chapter there would be a lie.
+  (function () {
+    function labelFootnotes() {
+      var fn = document.getElementById("footnotes");
+      if (!fn) return;
+      if (document.querySelectorAll("main > section.level1").length > 1) return;
+      var h = document.querySelector("#title-block-header h1.title");
+      if (!h) return;
+      var t = h.textContent.replace(/\u00a0/g, " ").trim();
+      var m = t.match(/^(\d+(?:\.\d+)*)\s+(.*)$/);
+      fn.setAttribute("data-for", m ? "Chapter " + m[1] : t);
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", labelFootnotes);
+    } else {
+      labelFootnotes();
+    }
+  })();
+</script>
 
 
 </head>
@@ -311,6 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#a-trick-applied-in-this-template" id="toc-a-trick-applied-in-this-template" class="nav-link" data-scroll-target="#a-trick-applied-in-this-template"><span class="header-section-number">7.2.1</span> A trick applied in this template</a></li>
   </ul></li>
+  <li><a href="#printing-the-whole-book" id="toc-printing-the-whole-book" class="nav-link" data-scroll-target="#printing-the-whole-book"><span class="header-section-number">7.3</span> Printing the whole book</a></li>
   </ul>
 </nav>
     </div>
@@ -352,10 +379,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-printing" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="sec-printing"><span class="header-section-number">7.2</span> Printing the web page</h2>
 <p>Although a minority, some students enjoy printing your book. We found that approximately 1 in 8 students still wanted a printed version, which is why we decided to offer not only a printer-friendly web book, but also compiled our own PDF via the printing route.</p>
-<p>First things first: you do <strong>not</strong> have to worry about all the web elements, like the side bars and logos. Try it: hit print on this web page and you’ll they dont get printed. But what about interactive elements, like simulations and videos? How will these get printed? We did a bit of additional hacking to fix this.</p>
+<p>First things first: you do <strong>not</strong> have to worry about all the web elements, like the side bars and logos. Try it: hit print on this web page and you’ll see they don’t get printed. But what about interactive elements, like simulations and videos? How will these get printed? We did a bit of additional hacking to fix this.</p>
 <section id="a-trick-applied-in-this-template" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="a-trick-applied-in-this-template"><span class="header-section-number">7.2.1</span> A trick applied in this template</h3>
-<p>The trick below is already in this template, but if you have interactive materials and are <strong>not</strong> using this template, it is really worth copying. In our course material, every interactive embed in that book is a pair: a screenshot with a short caption for the printed version, and the live thing for screen.</p>
+<p>The trick below is already in this template, but if you have interactive materials and are <strong>not</strong> using this template, it is really worth copying.</p>
+<p>In our course material, every interactive embedded comes as a pair: a screenshot with a short caption for the printed version, and the live thing for screen.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>:::{.print-only}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">center</span><span class="dt">&gt;</span>*Interactive content available on the website.*</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="al">![](figuren/interactive_plife.png)</span>{fig-align=center}</span>
@@ -368,227 +396,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">  src="https://jsfiddle.net/…/embedded/result" title="Simulation"&gt;&lt;/iframe&gt;</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The cost is that you have to take the screenshots, which can be a little extra work. Without a doubt, there will be better solutions for this soon-ish, but this enables us to be fully in control of what ends up being shown in the printed version of the web book.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Going further: a two-column print layout
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>If you wish, you can apply a two-column layout, which we have use for one of our books (saving 70 pages that students did not need to pay for). To do this, us <code>column-count: 2</code> inside the <code>@media print</code> part of the uu.scss file. But carefully check your equations and wide code blocks, which do not enjoy narrow columns.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Printing the whole book
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<p>The cost is that you have to take the screenshots, which can be a little extra work. Without a doubt, there will be better automated solutions for this soon-ish, but at least this enables us to be fully in control of what ends up being shown in the printed version of the web book.</p>
+</section>
+</section>
+<section id="printing-the-whole-book" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="printing-the-whole-book"><span class="header-section-number">7.3</span> Printing the whole book</h2>
 <p>When you press print on one of these pages, you get a nice PDF, but only of that one chapter. For the <em>whole</em> book you would have to print all of them and stitch the pieces together, and with this template, you do not have to do that by hand.</p>
 <p>In the sidebar there is a page called <strong>Print book 🖨️</strong>. It is the entire book in one document: open it, press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd> and save as PDF. Everything on this page applies, so the <code>.print-only</code> screenshots appear and the live embeds do not.</p>
 <p>That page contains no prose of its own. <code>print.qmd</code> is a heading followed by a list of includes, one per chapter:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Print book 🖨️ {.unnumbered}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># What Quarto is, and why bother {#sec-what}</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Quarto is a free, open-source publishing system. You write in plain text —</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">`.qmd`</span> files, which use Markdown syntax: <span class="in">`#`</span> and <span class="in">`##`</span> indicate chapter and</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>section headings, text between one or two asterisks (<span class="in">`*`</span>) is italic/bold </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>respectively, etc. Quarto can render this into a website or a PDF.</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why it suits teaching</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>**Less worry about formatting, more focus on content ** Your book is a folder of plain text files. </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>This enables you to think better about the content, rather than worry about</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>formatting. Quarto takes care of 90% of the formatting (I will not lie, sometimes</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>you will still need to tweak a bit if you're a prefectionist). </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>**Maths renders properly.** You can use LaTeX to format all your math by putting</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>text between dollar signs. It prints beautifully, and students can copy/paste</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>either the image or the LateX code easily. </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>**Code can run.** A plot in your reader can be generated by the code that</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>produced it, so the figure and the analysis never drift apart.</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>**Interactive explainers right next to the explanation.** A student can read about the material,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>model and immediately turn some knobs (see section @sec-iframes). In fact, with @sec-webr they can</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>edit the R or Python code and run it **locally** in the browser, even if they have no R</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>or Python installed. </span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>**Navigational structure comes for free.** Sidebar, search box, chapter numbering,</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>cross-references and a table of contents are all generated for you.</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you need to install</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>As said, we will go the Rstudio route here. Three things you need to install, </span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>in this order.</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**[R](https://cran.r-project.org)**: the programming language itself.</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**[RStudio Desktop](https://posit.co/download/rstudio-desktop/)**: the</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>   editor. RStudio v2022.07 and later have built-in Quarto support.</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**[Quarto](https://quarto.org/docs/get-started/)** (sometimes optional)</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>Recent RStudio versions ship with a copy of Quarto bundled, so step 3 is</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>sometimes optional. But perhaps always good to jot down which version of Quarto </span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>you have. </span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Which version am I on?</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>In RStudio: <span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>Tools<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span> → <span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>Terminal<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span> → <span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>New Terminal<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span>,</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>then type <span class="in">`quarto --version`</span>. This is one of the few times in this guide you need a</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>terminal, and you can skip it if you would rather not. But let's be honest, we</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>all like to feel like a hacker every now and then =) </span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Document, website, or book?</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>The most important file, <span class="in">`_quarto.yml`</span>, decides what you are building.</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`type:`</span> <span class="pp">|</span> What you get <span class="pp">|</span> Good for <span class="pp">|</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`default`</span> <span class="pp">|</span> A single standalone document <span class="pp">|</span> A single web-page for a practical or lecture <span class="pp">|</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`website`</span> <span class="pp">|</span> Many pages with a top navigation bar <span class="pp">|</span> A course site: schedule, links, materials <span class="pp">|</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`book`</span> <span class="pp">|</span> Numbered chapters, a sidebar, cross-references, and a combined PDF <span class="pp">|</span> A course reader <span class="pp">|</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>A book *is* a website with extra structure, so starting as a website and</span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>graduating to a book later costs almost nothing. This guide assumes a book.</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Not an R user? {#sec-other-languages}</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>Almost nothing here is really about R. Write `<span class="in">``` ```</span>{python} ```` instead</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>of `<span class="in">``` ```</span>{r} ```` and your code chunks run Python; Julia and Observable JS</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>work too, and a book can mix them. However, I have no experience using Quarto with </span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>Python or other languages, so I cannot give you any advice on that. It's probably</span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>just as easy. Either way, the structure, the figures, the callouts, the iframes, the</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>publishing, this is all identical whether you edit in RStudio, VS Code, or a plain text editor.</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>So let's get started. </span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setting up in RStudio {#sec-setup}</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>Duration: ten minutes, once. At the end you will have a real book rendering in front of</span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>you.</span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>There are two ways in, and the second is usually the better one.</span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Option A: start from this book {#sec-starter}</span></span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>**The book you are reading is itself a starter template.** Every chapter in this </span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>guide is a working demonstration of the thing it describes. Download and</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>extract the folder below and you inherit all of it: the UU house style, </span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>a working <span class="in">`_quarto.yml`</span>, a sensible <span class="in">`.gitignore`</span>^[If you will follow the guide and</span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>publish your book on Github pages, this files ensures you do not track every single temporary file</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>along with the actual contents of the book.], and an example</span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>of each pattern you are likely to need.</span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">**Download the starter book (.zip)**</span><span class="co">](starter-book.zip)</span></span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Opening a downloaded folder in RStudio</span></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Unzip it somewhere sensible and **rename the folder** to your course.</span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>In RStudio: <span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>File<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span> → <span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>New Project…<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span> → **<span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>Existing</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>   Directory<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span>** → browse to that folder → <span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>Create Project<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span>.</span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>   *Existing Directory* is the option people miss, because the wizard's first</span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>   screen pushes you towards *New Directory*. It creates nothing of its own. It</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>   only tells RStudio "this folder is a project", writes an <span class="in">`.Rproj`</span> file into</span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>   it, and opens it. Everything already in the folder stays exactly as it is.</span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>   (The zip deliberately contains no <span class="in">`.Rproj`</span>, so the one RStudio makes will be</span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>   named after *your* folder.)</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Press **Render**. You should get this book back, running locally. Nothing</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>   else needs installing.</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Now start replacing. Open <span class="in">`_quarto.yml`</span>, change the title and author, and</span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>   work through the chapters one at a time: keep the scaffolding, delete our</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>   prose, write yours.</span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="fu">## What to keep, what to throw away</span></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>**Keep:** <span class="in">`_quarto.yml`</span> (although you'll edit it), <span class="in">`uu.scss`</span> (uu house style), </span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="in">`.gitignore`</span>, and folder structure (e.g. <span class="in">`figures/`</span> and <span class="in">`applets/`</span>)., and <span class="in">`applets/AI-prompt-template.md`</span>.</span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>Keep <span class="in">`make-starter-zip.R`</span> only if you want to hand *your* book on the same way.</span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>**Throw away** once you no longer need them: the speicific chapter files for this book, </span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>and apps/figures only used for this explainer. </span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="fu">## Option B: start from nothing</span></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>If you would rather setup your book from an empty folder, which will help you</span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>better understand how it works, you can start one from scratch with RStudio.</span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Make the project</span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>File<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span> → <span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>New Project…<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span> → <span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>New Directory<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span> →</span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>Quarto Book<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span>.</span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>Give the folder a name. Tick **Create a git repository** if you already know</span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>you want to publish it (see @sec-publishing): it is easier to tick now than to</span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>add later. Press **Create**.</span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>RStudio opens the new project, and you are already looking at a working book.</span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Press Render</span></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>The **Render** button sits in the toolbar above the editor. The first render</span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>takes a few minutes (depending on the book size); the finished book then </span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>appears either in the RStudio's Viewer pane or in your web browser (system dependent).</span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>All the HTML files are moved to a folder called <span class="in">`_book`</span> (or later: <span class="in">`docs`</span> — see @sec-yml). </span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>Note that you can open the HTML files in this directory from your file browser,</span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>and everything will work with one exception: the live code chunks, which</span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>either requires a local webserve (by typing <span class="in">`quarto preview`</span> in the terminal), </span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>or simply an online copy of your book (see @sec-publishing).</span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>If you use <span class="in">`quarto preview`</span> to show your web book in the browser, there is a neat</span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>little tick-box left of the Render button called <span class="in">`Render on Save`</span>. Now every save refreshes the preview by</span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>itself. </span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="al">![The Render button sits in the toolbare above the editor](figures/renderbutton.png)</span></span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="fu">## Source or Visual?</span></span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>Note that the toolbar with the render button also contains a <span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>Source<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span>/<span class="dt">&lt;</span><span class="kw">kbd</span><span class="dt">&gt;</span>Visual<span class="dt">&lt;/</span><span class="kw">kbd</span><span class="dt">&gt;</span></span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>toggle.</span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>**Visual** gives you a Word-like view real bold text, real tables, menus for</span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>inserting figures, equations and cross-references. If you dont want to see any markup at all,</span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>you can live here permanently.</span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>**Source** shows the markup. It is faster once you know it, and it is what the</span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>rest of this guide shows. I do recommend this, with one exception, shown in the </span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>tip below.</span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a><span class="fu">## Make tables in Visual mode</span></span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>Markdown tables are miserable to write by hand and trivial in Visual mode.</span>
-<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>Insert one there, then switch back to Source. Or ask AI to convert a table</span>
-<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>into markdown. </span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="fu">## Important elements in a Quarto book folder</span></span>
-<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Item <span class="pp">|</span> What it is <span class="pp">|</span></span>
-<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
-<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`_quarto.yml`</span> <span class="pp">|</span> The book definition: which chapters, in which order, with which theme. **The only file you truly must understand** (see @sec-yml). <span class="pp">|</span></span>
-<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`index.qmd`</span> <span class="pp">|</span> The front page. You cannot rename this file, it is required and it the 'home page' of your web book. <span class="pp">|</span></span>
-<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`*.qmd`</span> <span class="pp">|</span> One file per chapter. This is where you write. You can enable / disable chapters by modifying <span class="in">`_quarto.yml`</span>. <span class="pp">|</span></span>
-<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`_book/`</span> <span class="pp">|</span> The finished website, generated by Quarto upon rendering. Don't edit these files, they will be overwritten next render anyway. <span class="pp">|</span></span>
-<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`*.Rproj`</span> <span class="pp">|</span> RStudio's project file. Double-click it to reopen the book later. <span class="pp">|</span></span>
-<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`_freeze/`</span> <span class="pp">|</span> Stored results of code that has already been run or rendered, helps speed up rendering later (see @sec-rendering). <span class="pp">|</span></span>
-<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>{{&lt; include 01-what-is-quarto.qmd &gt;}}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>{{&lt; include 02-setup-rstudio.qmd &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The chapters are pulled from the same sources the chapter pages use, so there is no second copy of anything. Add a chapter to <code>_quarto.yml</code> and you add one line here as well – that is the whole maintenance burden.</p>
 <p>On paper it opens on a cover built from the <code>book:</code> metadata in <code>_quarto.yml</code>, so the title, subtitle and author cannot drift out of step with the website. After that, every chapter starts on a fresh sheet.</p>
 <p>Five settings are doing the work, and all five are worth copying:</p>
@@ -636,7 +455,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The freeze one is what will catch you out. Quarto’s cache tracks the file it is rendering, not the files that file includes – so without it the long page quietly serves yesterday’s text while the chapter pages update, with no warning of any kind. It costs a few seconds per render, and it saves you publishing a printed book that no longer matches the website.</p>
 <p>A couple of smaller things live in the <code>@media print</code> block of <code>uu.scss</code> and apply to every page, not just this one. Links stop being red and underlined, and only spell out their address in running prose – in a heading or on the cover a parenthesised URL is noise. The webR loading spinner is hidden, since it is often still on screen when the print is taken. And <code>{layout-ncol}</code> panels are forced back into a row: Quarto only lays those out side by side above 992px, and an A4 page is about 660px wide, so without help they silently stack.</p>
 <p>One last thing: the page must be listed under <code>chapters:</code> in <code>_quarto.yml</code>. A book renders only what is listed there. A loose <code>.qmd</code> sitting in the folder is silently skipped, and adding <code>project: render:</code> does not override it.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further: a two-column print layout
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you wish, you can apply a two-column layout, which we have use for one of our books (saving 70 pages that students did not need to pay for). To do this, us <code>column-count: 2</code> inside the <code>@media print</code> part of the uu.scss file. The page on this template that offers printer-friendly versions offers both options.</p>
 </div>
 </div>
 
@@ -655,7 +484,6 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 WyJhcHBsZXRzLy9BSS1wcm9tcHQtdGVtcGxhdGUubWQiLCJhcHBsZXRzLy9saW5lYXJpc2F0aWVfZXEuaHRtbCIsImFwcGxldHMvL2V4YW1wbGUtYXBwbGV0Lmh0bWwiLCJzdGFydGVyLWJvb2suemlwIl0=
 </script>
-</section>
 </section>
 
 </main> <!-- /main -->

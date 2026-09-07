@@ -1,5 +1,9 @@
 # Figures and tables {#sec-figures}
 
+Quarto supports many figure formats, including SVG, PNG, JPG, and PDF. SVG is best for diagrams, 
+PNG for screenshots, and PDF for plots from R or Python^[Although you can just as well generate these
+on the fly with inserted code!]. JPG is often best for photos, but it is a lossy format and can look bad if you zoom in.
+
 ## Inserting a figure
 
 Put the image in a `figures/` folder next to your chapters, and write one line:
@@ -7,6 +11,8 @@ Put the image in a `figures/` folder next to your chapters, and write one line:
 ```markdown
 ![A caption students will actually read.](figures/example-figure.svg)
 ```
+
+
 
 ![Two ways of coping with biological complexity: simplify it into a model, or measure it and use statistics.](figures/example-figure.svg)
 
@@ -26,14 +32,15 @@ Options go in curly braces after the image:
 `width` is best given as a percentage so it adapts to the reader's screen (you'd
 be surprised how many students will read from their phones...). 
 
-`fig-align` takes `left`, `center` or `right`. The `#fig-` prefix makes it referred
-to as @fig-example (rather than Table, Equation, etc.)
+`fig-align` takes `left`, `center` or `right`. As discussed above, the `#fig-` prefix makes it referred
+to as @fig-example (rather than Table, Equation, *etc.*)
 
 
 ## Click to enlarge
 
 `lightbox: true` in `_quarto.yml` makes every figure in the book open
-full-screen when clicked. 
+full-screen when clicked. Obviously that only works for the web version, but it is a 
+nice feature for students reading on a phone or tablet.
 
 ## Figures side-by-side
 

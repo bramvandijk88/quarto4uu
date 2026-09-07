@@ -177,6 +177,35 @@ p code, li code, td code {
 // with the website. On screen it does not exist at all.
 .cover-page { display: none; }
 
+// With `reference-location: block` (set in print.qmd) each footnote is placed
+// directly beneath the paragraph that cites it, instead of all of them being
+// piled at the end of the book where nobody can tell what they refer to.
+// They are notes, not a section, so they get no heading -- just small type
+// and a yellow edge to set them apart from the paragraph above.
+.footnotes-end-of-block {
+  position: relative;
+  margin: 1em 0 1.3em;
+  padding-top: 0.55em;
+  font-size: 0.82em;
+  line-height: 1.5;
+  color: #4d4d4d;
+}
+// The short rule above a footnote is the oldest convention in print, and it
+// is deliberately NOT the coloured left edge used by callouts and
+// blockquotes -- a note is apparatus, not something the author is saying.
+.footnotes-end-of-block::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5em;
+  border-top: 1px solid #b5b5b5;
+}
+.footnotes-end-of-block > ol { margin: 0; padding-left: 1.6em; }
+.footnotes-end-of-block p { margin: 0; }
+// Body lists mark themselves in UU red; a footnote number should not shout.
+.footnotes-end-of-block li::marker { color: #8a8a8a; }
+
 // The two print buttons on the print page. They set a class on <html> and
 // call print(); the @media print block below reads that class.
 .print-choices {
@@ -385,6 +414,20 @@ p code, li code, td code {
     page-break-inside: avoid;
   }
 
+  // Quarto draws callout icons as background images on an otherwise empty
+  // ::before, and browsers omit background images when printing unless the
+  // reader happens to tick "Background graphics" in the print dialog. That is
+  // why the icons vanished. print-color-adjust: exact tells the browser to
+  // print these regardless. Kept narrow -- the callout header tints are also
+  // backgrounds, and those are better left off a printed page.
+  .callout .callout-icon-container,
+  .callout .callout-icon,
+  .callout .callout-icon::before,
+  .callout .callout-toggle::before {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
   // Yellow all but disappears on a mono printer, so the accent rules that are
   // pure decoration become grey. Callout colours stay: those carry meaning.
   h1, .title { border-bottom-color: #333 !important; }
@@ -405,6 +448,50 @@ p code, li code, td code {
     color: #555;
     word-break: break-all;
   }
+
+  // Pandoc ends the document with a bare rule and a numbered list -- no
+  // heading. On screen that reads fine, because the notes sit just below a
+  // short page. In a printed book they can land pages away from the text
+  // that referenced them, and a run of unexplained numbers is baffling. Give
+  // the section a title, styled like the book's other headings, and drop the
+  // rule it stands in for.
+  .footnotes-end-of-document::before {
+    content: "Footnotes";
+    display: block;
+    font-family: $headings-font-family;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-top: 1.6rem;
+    padding-bottom: 0.25em;
+    margin-bottom: 1.1rem;      // breathing room before the first note
+    border-bottom: 2px solid rgba($uu-yellow, 0.75);
+  }
+  // On a chapter page the script in _quarto.yml records which page these
+  // notes belong to -- "Chapter 9", or the page's own name if it carries no
+  // number. The one-page print book has no attribute set, so it keeps the
+  // plain heading: its notes come from every chapter at once.
+  .footnotes-end-of-document[data-for]::before { content: "Footnotes — " attr(data-for); }
+
+  // A per-paragraph note must never be split from the paragraph it belongs to.
+  .footnotes-end-of-block { break-inside: avoid; page-break-inside: avoid; }
+  .footnotes-end-of-document > hr { display: none; }
+  .footnotes-end-of-document > ol {
+    margin-top: 0;
+    // Two-digit markers (10., 11., ...) overflow the default indent and get
+    // clipped at the page edge, so the list needs room for them.
+    padding-left: 2.4em;
+  }
+
+  // A footnote back-link (the little return arrow) is a click target. On
+  // paper it is a stray glyph, and some browsers resolve its attr(href) to
+  // the full absolute URL, which then gets spelled out beside it -- printed
+  // from a preview server that reads "(http://localhost:3483/...)".
+  .footnote-back { display: none !important; }
+
+  // Never spell out a link that only points inside the document: footnote
+  // markers, cross-references, TOC entries. Only genuinely external
+  // addresses are worth the ink.
+  a[href^="#"]::after { content: none !important; }
 
   // ...but never in a heading, on the cover, in the TOC or in navigation.
   // That is where the parenthesised URLs looked wrong: a subtitle reading

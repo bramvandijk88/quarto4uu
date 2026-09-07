@@ -32,7 +32,7 @@ in 8 students still wanted a printed version, which is why we decided to offer
 not only a printer-friendly web book, but also compiled our own PDF via the printing route.
 
 First things first: you do **not** have to worry about all the web elements, like the side bars
-and logos. Try it: hit print on this web page and you'll they dont get printed. But
+and logos. Try it: hit print on this web page and you'll see they don't get printed. But
 what about interactive elements, like simulations and videos? How will these get printed?
 We did a bit of additional hacking to fix this.
 
@@ -40,7 +40,8 @@ We did a bit of additional hacking to fix this.
 
 The trick below is already in this template, but if you have interactive materials
 and are **not** using this template, it is really worth copying. 
-In our course material, every interactive embed in that book is a pair:
+
+In our course material, every interactive embedded comes as a pair: 
 a screenshot with a short caption for the printed version, and the live thing for screen.
 
 ```` markdown
@@ -59,19 +60,11 @@ a screenshot with a short caption for the printed version, and the live thing fo
 ````
 
 The cost is that you have to take the screenshots, which can be a little extra work. 
-Without a doubt, there will be better solutions for this soon-ish, but this enables
+Without a doubt, there will be better automated solutions for this soon-ish, but at least this enables
 us to be fully in control of what ends up being shown in the printed version 
 of the web book. 
 
-::: {.callout-tip collapse="true"}
-## Going further: a two-column print layout
-If you wish, you can apply a two-column layout, which we have use for one of our
-books (saving 70 pages that students did not need to pay for). To do this, 
-us `column-count: 2` inside the `@media print` part of the uu.scss file. But carefully
-check your equations and wide code blocks, which do not enjoy narrow columns.
-:::
 
-::: {.callout-tip collapse="true"}
 ## Printing the whole book
 
 When you press print on one of these pages, you get a nice PDF, but only of that one chapter. For the *whole*
@@ -89,10 +82,12 @@ list of includes, one per chapter:
 ```` markdown
 # Print book 🖨️ {.unnumbered}
 
-{{< include 01-what-is-quarto.qmd >}}
-{{< include 02-setup-rstudio.qmd >}}
+{{{< include 01-what-is-quarto.qmd >}}}
+{{{< include 02-setup-rstudio.qmd >}}}
 
 ````
+
+
 
 The chapters are pulled from the same sources the chapter pages use, so there
 is no second copy of anything. Add a chapter to `_quarto.yml` and you add one
@@ -129,4 +124,12 @@ are forced back into a row: Quarto only lays those out side by side above
 One last thing: the page must be listed under `chapters:` in `_quarto.yml`. A
 book renders only what is listed there. A loose `.qmd` sitting in the folder is
 silently skipped, and adding `project: render:` does not override it.
+
+::: {.callout-tip}
+## Going further: a two-column print layout
+If you wish, you can apply a two-column layout, which we have use for one of our
+books (saving 70 pages that students did not need to pay for). To do this, 
+us `column-count: 2` inside the `@media print` part of the uu.scss file. The page
+on this template that offers printer-friendly versions offers both options. 
 :::
+
