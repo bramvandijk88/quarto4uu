@@ -176,6 +176,7 @@ p code, li code, td code {
 // _quarto.yml, so the title, subtitle and author cannot drift out of step
 // with the website. On screen it does not exist at all.
 .cover-page { display: none; }
+.cover-verso { display: none; }
 
 // With `reference-location: block` (set in print.qmd) each footnote is placed
 // directly beneath the paragraph that cites it, instead of all of them being
@@ -250,6 +251,22 @@ p code, li code, td code {
 }
 
 @media print {
+  // The sheet itself. Without this the text runs out to whatever margin the
+  // browser happens to default to -- too little for comfortable reading, and
+  // far too little in two columns. Slightly more at the foot than the head is
+  // the usual convention. For a bound copy, mirror the inner edge instead:
+  //     @page :left  { margin: 18mm 24mm 22mm 18mm; }
+  //     @page :right { margin: 18mm 18mm 22mm 24mm; }
+  // Support for :left / :right is patchy, so check a real duplex print first.
+  @page { margin: 18mm 20mm 22mm 20mm; }
+
+  // Mirrored margins, so a bound or stapled copy keeps a wider inner edge and
+  // the text does not vanish into the fold. :right is odd-numbered pages,
+  // which sit on the right of an open book and are bound on their LEFT;
+  // :left is even pages, bound on their right.
+  @page :right { margin-left: 24mm; margin-right: 18mm; }
+  @page :left  { margin-left: 18mm; margin-right: 24mm; }
+
   // Quarto hides the sidebar and the TOC, but not everything: the search
   // field lives in the sidebar *and* in the collapsed header, and the header
   // copy survives onto paper as an empty box. These are all screen furniture.
@@ -266,6 +283,19 @@ p code, li code, td code {
     align-items: center;
     text-align: center;
     min-height: 86vh;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  // The back of the cover, left deliberately white -- the book then opens on
+  // page 3, where a reader expects it. This is an empty block rather than
+  // `break-after: right` on the cover itself: the cover is a flex container,
+  // and Chrome's fragmentation inside flex is unreliable, while `right` and
+  // `recto` are patchily supported. A 1px block that starts its own page and
+  // ends it needs only `break-after: page`, which demonstrably works here.
+  .cover-verso {
+    display: block;
+    height: 1px;
     break-after: page;
     page-break-after: always;
   }

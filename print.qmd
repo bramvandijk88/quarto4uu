@@ -94,6 +94,9 @@ main > section.level1:not(.unnumbered) > h1::before {
 [{{< meta book.author >}}]{.cover-author}
 :::
 
+::: {.cover-verso}
+:::
+
 {{< include index.qmd >}}
 
 {{< include 01-what-is-quarto.qmd >}}
